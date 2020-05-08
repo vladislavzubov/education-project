@@ -9,6 +9,29 @@ const onSubmit = async () => {
   await sleep(300)
 }
 
+// validation function
+
+const composeValidators = (...validators) => (value) =>
+  validators.reduce((error, validator) => error || validator(value), undefined)
+
+const validateEmail = (value) =>
+  value.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/g)
+    ? undefined
+    : 'enter correct Email'
+
+const required = (value) => (value ? undefined : 'Required')
+
+const minLength = (value = '') =>
+  value.split('').length < 6 ? 'Input at min 6 symbol' : undefined
+
+const haveOneUppercase = (value = '') =>
+  value.match(/[A-Z]/g) === null
+    ? 'at least one uppercase letter is required'
+    : undefined
+
+const haveOneNumeral = (value = '') =>
+  value.replace(/\D+/g, '') === '' ? 'at least one digit is needed' : undefined
+
 class Login extends Component {
   render() {
     return (
@@ -19,24 +42,41 @@ class Login extends Component {
             onSubmit={onSubmit}
             render={({ handleSubmit }) => (
               <form onSubmit={handleSubmit}>
-                <div>
-                  <label>Email</label>
-                  <Field
-                    name="email"
-                    component="input"
-                    type="email"
-                    placeholder="Enter Email"
-                  />
-                </div>
-                <div>
-                  <label>Password</label>
-                  <Field
-                    name="password"
-                    component="input"
-                    type="password"
-                    placeholder="Enter Password"
-                  />
-                </div>
+                <Field
+                  name="email"
+                  validate={composeValidators(required, validateEmail)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <label>Email</label>
+                      <input {...input} type="email" placeholder="Email" />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
+                <Field
+                  name="password"
+                  validate={composeValidators(
+                    required,
+                    minLength,
+                    haveOneUppercase,
+                    haveOneNumeral
+                  )}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <label>Password</label>
+                      <input
+                        {...input}
+                        type="password"
+                        placeholder="Password"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
                 <div className="buttons">
                   <button type="submit">Login</button>
                 </div>
