@@ -1,0 +1,30 @@
+// validation function
+export function composeValidators(...validators) {
+  return (value) =>
+    validators.reduce(
+      (error, validator) => error || validator(value),
+      undefined
+    )
+}
+
+export function validateEmail(value) {
+  return value.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/g)
+    ? undefined
+    : 'enter correct Email'
+}
+export function required(value) {
+  return value ? undefined : 'Required'
+}
+export function minLength(value = '') {
+  return value.split('').length < 6 ? 'Input at min 6 symbol' : undefined
+}
+export function haveOneUppercase(value = '') {
+  return value.match(/[A-Z]/g) === null
+    ? 'at least one uppercase letter is required'
+    : undefined
+}
+export function haveOneNumeral(value = '') {
+  return value.replace(/\D+/g, '') === ''
+    ? 'at least one digit is needed'
+    : undefined
+}
