@@ -5,7 +5,7 @@ import Styles from './Styles'
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const onSubmit = async (values) => {
+const onSubmit = async () => {
   await sleep(300)
 }
 
