@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // import Layout from "./hoc/Layout/Layout";
 import './App.css'
-import Page from './containers/Page/Page'
+import Login from './containers/Login/Login'
+import Authorization from './containers/Authorization/Authorization'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
                 <Link to="/login">Login</Link>
               </li>
               <li>
-                <Link to="/authorization">authorization</Link>
+                <Link to="/authorization">Authorization</Link>
               </li>
             </ul>
           </nav>
@@ -27,7 +28,7 @@ class App extends Component {
             renders the first one that matches the current URL. */}
           <Switch>
             <Route path="/login">
-              <Page />
+              <Login />
             </Route>
             <Route path="/authorization">
               <Authorization />
@@ -35,8 +36,6 @@ class App extends Component {
             <Route path="/">
               <Home />
             </Route>
-
-            
           </Switch>
         </div>
       </Router>
@@ -46,8 +45,6 @@ class App extends Component {
 function Home() {
   return <h2>404 Page is not found H</h2>
 }
-function Authorization() {
-  return <h2>404 Page is not found A</h2>
-}
+
 
 export default App

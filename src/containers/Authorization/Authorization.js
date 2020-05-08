@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import classes from './Page.module.css'
+// import classes from './Authorization.module.css'
 import { Form, Field } from 'react-final-form'
 import Styles from './Styles'
 
@@ -9,12 +9,12 @@ const onSubmit = async () => {
   await sleep(300)
 }
 
-class Page extends Component {
+class Authorization extends Component {
   render() {
     return (
       <Styles>
-        <div className={classes.Page}>
-          <h1>Login</h1>
+        <div >
+          <h1>Authorization</h1>
           <Form
             onSubmit={onSubmit}
             render={({ handleSubmit }) => (
@@ -49,4 +49,4 @@ class Page extends Component {
   }
 }
 
-export default Page
+export default Authorization
