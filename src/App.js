@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
+import Probe from './containers/Probe/Probe'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 class App extends Component {
@@ -21,6 +22,9 @@ class App extends Component {
               <li>
                 <Link to="/registration">Registration</Link>
               </li>
+              <li>
+                <Link to="/probe">Probe</Link>
+              </li>
             </ul>
           </nav>
 
@@ -32,6 +36,9 @@ class App extends Component {
             </Route>
             <Route path="/registration">
               <Registration />
+            </Route>
+            <Route path="/probe">
+              <Probe />
             </Route>
             <Route path="/">
               <Home />
