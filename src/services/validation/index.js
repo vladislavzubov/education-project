@@ -41,13 +41,13 @@ export function haveNotChar(value = '') {
     : undefined
 }
 
-export function similarPassword(value = '') {
-  console.log(value.replace(), passwordRegist())
-  return value.replace() !== passwordRegist
-    ? "passwords don't match"
-    : undefined
-}
+// export function similarPassword(value = '') {
+//   console.log(value.replace(), passwordRegist())
+//   return value.replace() !== passwordRegist
+//     ? "passwords don't match"
+//     : undefined
+// }
 
-export function passwordRegist(value = '') {
-  return value.replace()
-}
+// export function passwordRegist(value = '') {
+//   return value.replace()
+// }

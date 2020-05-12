@@ -102,8 +102,7 @@ class Registration extends Component {
                   required,
                   minLength,
                   haveOneUppercase,
-                  haveOneNumeral,
-                  passwordRegist
+                  haveOneNumeral
                 )}
               >
                 {({ input, meta }) => (
@@ -121,7 +120,7 @@ class Registration extends Component {
 
               <Field
                 name="Repeat password"
-                validate={composeValidators(required, similarPassword)}
+                validate={composeValidators(required)}
               >
                 {({ input, meta }) => (
                   <div>
