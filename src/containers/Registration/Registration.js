@@ -55,12 +55,7 @@ class Authorization extends Component {
                 <div>
                   <InputGroup />
                   <label>Sign up</label>
-                  <Field
-                    name="Sign up"
-                    component="input"
-                    type="Sign up"
-                    placeholder="Enter Sign up"
-                  />
+                  <InputGroup />
                 </div>
                 <div>
                   <label>User name</label>
