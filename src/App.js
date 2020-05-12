@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import Layout from "./hoc/Layout/Layout";
 import './App.css'
 import Login from './containers/Login/Login'
-import Authorization from './containers/Authorization/Authorization'
+import Registration from './containers/Registration/Registration'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
                 <Link to="/login">Login</Link>
               </li>
               <li>
-                <Link to="/authorization">Authorization</Link>
+                <Link to="/registration">Registration</Link>
               </li>
             </ul>
           </nav>
@@ -30,8 +30,8 @@ class App extends Component {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/authorization">
-              <Authorization />
+            <Route path="/registration">
+              <Registration />
             </Route>
             <Route path="/">
               <Home />
@@ -45,6 +45,5 @@ class App extends Component {
 function Home() {
   return <h2>404 Page is not found H</h2>
 }
-
 
 export default App
