@@ -1,0 +1,17 @@
+.form_Registration {
+    width: 30%;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.style_form {
+    padding: 25px;
+    border: 2px solid rgb(204, 204, 204);
+    border-radius: 5px;
+}
+
+.form_Registration h1 {
+ padding-bottom: 15px;
+ text-align: center;
+}
+
