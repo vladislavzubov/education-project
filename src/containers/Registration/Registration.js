@@ -40,7 +40,7 @@ class Registration extends Component {
             <InputGroup class="bp3-inline form-group-input" />
           </div>
           <div>
-            <label>User name</label>
+            <label>User namee</label>
             <InputGroup />
           </div>
           <div>
