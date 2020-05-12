@@ -34,3 +34,20 @@ export function haveOneNumeral(value = '') {
     ? 'at least one digit is needed'
     : undefined
 }
+
+export function haveNotChar(value = '') {
+  return value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
+    ? 'enter only numbers'
+    : undefined
+}
+
+export function similarPassword(value = '') {
+  console.log(value.replace(), passwordRegist())
+  return value.replace() !== passwordRegist
+    ? "passwords don't match"
+    : undefined
+}
+
+export function passwordRegist(value = '') {
+  return value.replace()
+}
