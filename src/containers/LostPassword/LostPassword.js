@@ -1,33 +1,27 @@
 import React, { Component } from 'react'
-
 import { Form, Field } from 'react-final-form'
+import classes from './LostPassword.module.css'
 import {
   composeValidators,
   validateEmail,
   required,
-  minLength,
-  haveOneUppercase,
-  haveOneNumeral,
 } from '../../services/validation'
-
 import { Button, Card, Elevation } from '@blueprintjs/core'
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
 const onSubmit = async () => {
   await sleep(300)
 }
 
-class Probe extends Component {
+class LostPassword extends Component {
   render() {
     return (
-      <div>
-        <h1>Probe</h1>
-
+      <div className={classes.LostPassword}>
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit }) => (
             <Card interactive={true} elevation={Elevation.TWO}>
+              <h1>Lost Password</h1>
               <form onSubmit={handleSubmit}>
                 <Field
                   name="email"
@@ -45,32 +39,11 @@ class Probe extends Component {
                     </div>
                   )}
                 </Field>
-
-                <Field
-                  name="password"
-                  validate={composeValidators(
-                    required,
-                    minLength,
-                    haveOneUppercase,
-                    haveOneNumeral
-                  )}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <input
-                        {...input}
-                        class="bp3-input bp3-fill .modifier"
-                        type="password"
-                        placeholder="Password"
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
-                <button type="submit" class=" bp3-fill .modifier">
-                  Sign in
-                </button>
+                <Button
+                  type="submit"
+                  text="Send password to email"
+                  className=" bp3-button bp3-intent-primary bp3-fill"
+                ></Button>
               </form>
             </Card>
           )}
@@ -80,4 +53,4 @@ class Probe extends Component {
   }
 }
 
-export default Probe
+export default LostPassword
