@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Field } from 'react-final-form'
 import { BrowserRouter as Route, Link } from 'react-router-dom'
-
+import classes from "./Login.module.css"
 import {
   composeValidators,
   validateEmail,
@@ -15,10 +15,6 @@ import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
 class Login extends Component {
   state = {
     loading: false,
-    userData: {
-      email: '',
-      password: '',
-    },
   }
 
   onSubmit = (value) => {
