@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Field } from 'react-final-form'
 import { BrowserRouter as Route, Link } from 'react-router-dom'
-import classes from "./Login.module.css"
+import classes from './Login.module.css'
 import {
   composeValidators,
   validateEmail,
@@ -18,8 +18,8 @@ class Login extends Component {
   }
 
   onSubmit = (value) => {
+    console.clear()
     console.log(value)
-
     const loading = this.state.loading
     this.setState({
       loading: !loading,
@@ -93,7 +93,6 @@ class Login extends Component {
                   text="Sign in"
                   fill
                   intent="primary"
-                  // onClick={this.onClickButton}
                   loading={this.state.loading}
                 />
 
