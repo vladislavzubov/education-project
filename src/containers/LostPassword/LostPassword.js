@@ -6,7 +6,7 @@ import {
   validateEmail,
   required,
 } from '../../services/validation'
-import { Button, Card, Elevation } from '@blueprintjs/core'
+import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const onSubmit = async () => {
@@ -14,6 +14,20 @@ const onSubmit = async () => {
 }
 
 class LostPassword extends Component {
+  state = {
+    loading: false,
+    userData: {
+      email: '',
+    },
+  }
+
+  onClickButton = () => {
+    const loading = this.state.loading
+    this.setState({
+      loading: !loading,
+    })
+  }
+  
   render() {
     return (
       <div className={classes.LostPassword}>
@@ -23,26 +37,33 @@ class LostPassword extends Component {
             <Card interactive={true} elevation={Elevation.TWO}>
               <h1>Lost Password</h1>
               <form onSubmit={handleSubmit}>
-                <Field
+              <Field
                   name="email"
                   validate={composeValidators(required, validateEmail)}
                 >
                   {({ input, meta }) => (
                     <div>
-                      <input
+                      <InputGroup
                         {...input}
-                        class="bp3-input bp3-fill .modifier"
+                        fill
                         type="email"
                         placeholder="Email"
+                        disabled={this.state.loading}
                       />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                      {this.state.loading
+                        ? null
+                        : meta.error &&
+                          meta.touched && <span>{meta.error}</span>}
                     </div>
                   )}
                 </Field>
                 <Button
                   type="submit"
                   text="Send password to email"
-                  className=" bp3-button bp3-intent-primary bp3-fill"
+                  fill
+                  intent="primary"
+                  onClick={this.onClickButton}
+                  loading={this.state.loading}
                 ></Button>
               </form>
             </Card>

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import classes from './Login.module.css'
 import { Form, Field } from 'react-final-form'
-import LostPassword from '..//LostPassword/LostPassword'
-import Registration from '..//Registration/Registration'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Route, Link } from 'react-router-dom'
 
 import {
   composeValidators,
@@ -13,28 +11,23 @@ import {
   haveOneUppercase,
   haveOneNumeral,
 } from '../../services/validation'
-
 import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
-const onSubmit = async () => {
-  await sleep(300)
-}
 
 class Login extends Component {
   state = {
-    onClickButton: false,
+    loading: false,
     userData: {
       email: '',
       password: '',
     },
   }
 
-  onClickButton = () => {
-    const onClickButton = this.state.onClickButton
+  onSubmit = (value) => {
+    console.log(value)
+
+    const loading = this.state.loading
     this.setState({
-      onClickButton: !onClickButton,
+      loading: !loading,
     })
   }
 
@@ -42,7 +35,7 @@ class Login extends Component {
     return (
       <div className={classes.Login}>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={this.onSubmit}
           render={({ handleSubmit }) => (
             <Card
               interactive={true}
@@ -60,13 +53,12 @@ class Login extends Component {
                     <div>
                       <InputGroup
                         {...input}
-                        class="bp3-input .modifier"
                         fill
                         type="email"
                         placeholder="Email"
-                        disabled={this.state.onClickButton}
+                        disabled={this.state.loading}
                       />
-                      {this.state.onClickButton
+                      {this.state.loading
                         ? null
                         : meta.error &&
                           meta.touched && <span>{meta.error}</span>}
@@ -87,14 +79,13 @@ class Login extends Component {
                     <div>
                       <InputGroup
                         {...input}
-                        class="bp3-input bp3-fill .modifier"
                         fill
                         type="password"
                         placeholder="Password"
-                        disabled={this.state.onClickButton}
+                        disabled={this.state.loading}
                       />
 
-                      {this.state.onClickButton
+                      {this.state.loading
                         ? null
                         : meta.error &&
                           meta.touched && <span>{meta.error}</span>}
@@ -106,10 +97,9 @@ class Login extends Component {
                   type="submit"
                   text="Sign in"
                   fill
-                  loading={false}
                   intent="primary"
-                  onClick={this.onClickButton}
-                  loading={this.state.onClickButton}
+                  // onClick={this.onClickButton}
+                  loading={this.state.loading}
                 />
 
                 <Link to="/lostPassword">Lost your Password?</Link>
@@ -120,16 +110,6 @@ class Login extends Component {
         <p>
           Dont`t have an account? <Link to="/registration">Sign up here</Link>
         </p>
-        <Router>
-          <Switch>
-            <Route path="/registration">
-              <Registration />
-            </Route>
-            <Route path="/lostPassword">
-              <LostPassword />
-            </Route>
-          </Switch>
-        </Router>
       </div>
     )
   }
