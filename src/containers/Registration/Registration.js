@@ -138,7 +138,7 @@ class Registration extends Component {
               <div className={classes.buttons}>
                 <Button
                   text="Sumbit"
-                  className="bp3-intent-primary "
+                  intent="primary"
                   // loading="true"
                 />
               </div>
