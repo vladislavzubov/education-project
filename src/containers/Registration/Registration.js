@@ -17,7 +17,6 @@ import {
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const onSubmit = async () => {
@@ -35,9 +34,6 @@ const Error = ({ name }) => (
 )
 
 class Registration extends Component {
-  state = {
-    password: ""
-  }
   render() {
     return (
       <Styles>
@@ -124,7 +120,7 @@ class Registration extends Component {
 
               <Field
                 name="Repeat password"
-                validate={composeValidators(required, passwordRegist)}
+                validate={composeValidators(required)}
               >
                 {({ input, meta }) => (
                   <div>
@@ -142,7 +138,7 @@ class Registration extends Component {
               <div className={classes.buttons}>
                 <Button
                   text="Sumbit"
-                  className="bp3-intent-primary "
+                  intent="primary"
                   // loading="true"
                 />
               </div>
