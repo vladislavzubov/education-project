@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Field } from 'react-final-form'
-import { BrowserRouter as Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import classes from './Login.module.css'
 import {
   composeValidators,
@@ -10,23 +10,39 @@ import {
   haveOneUppercase,
   haveOneNumeral,
 } from '../../services/validation'
-import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
+import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
 
 class Login extends Component {
   state = {
     loading: false,
+    showPassword: false,
   }
 
   onSubmit = (value) => {
     console.clear()
     console.log(value)
-    const loading = this.state.loading
     this.setState({
-      loading: !loading,
+      loading: !this.state.loading,
     })
   }
 
+  handleLockClick = () => {
+    this.setState({ showPassword: !this.state.showPassword })
+  }
+
   render() {
+    const lockButton = (
+      <Tooltip
+        content={`${this.state.showPassword ? 'Hide' : 'Show'} Password`}
+      >
+        <Button
+          icon={this.state.showPassword ? 'unlock' : 'lock'}
+          minimal={true}
+          disabled={this.state.loading}
+          onClick={this.handleLockClick}
+        />
+      </Tooltip>
+    )
     return (
       <div className={classes.Login}>
         <Form
@@ -75,7 +91,8 @@ class Login extends Component {
                       <InputGroup
                         {...input}
                         fill
-                        type="password"
+                        rightElement={lockButton}
+                        type={this.state.showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         disabled={this.state.loading}
                       />

@@ -16,6 +16,10 @@
 }
 .Login Input{
     margin: 5px;
+    
+}
+.Login span{
+    margin-top: 2px;
 }
 .Login p{
     color: white;
