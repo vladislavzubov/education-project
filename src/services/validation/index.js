@@ -53,10 +53,10 @@ export function minAge(value = '') {
 //     : undefined
 // }
 
-export function passwordRegist(value = '') {
-  console.log(value)
-  return value.replace()
-}
+// export function passwordRegist(value = '') {
+//   console.log(value)
+//   return value.replace()
+// }
 // export function passwordRegist(value) {
 // console.clear()
 // console.log(value)
@@ -65,9 +65,37 @@ export function passwordRegist(value = '') {
 // : undefined
 // }
 
-export function similarPassword(value = '') {
-  console.log(value)
-  return value.replace() !== passwordRegist()
-    ? "passwords don't match"
-    : undefined
+// export function similarPassword(value = '') {
+//   console.log(value)
+//   return value.replace() !== passwordRegist()
+//     ? "passwords don't match"
+//     : undefined
+// }
+
+const validatePasswords = (function () {
+  let password
+  let repeatPassword
+  function setPassword(value) {
+    password = value
+  }
+  function setRepeatPassword(value) {
+    repeatPassword = value
+  }
+  function chekPassword() {
+    return password === repeatPassword
+  }
+  return {
+    setPassword,
+    setRepeatPassword,
+    chekPassword,
+  }
+})()
+
+export function setPasswordValue(value = '') {
+  validatePasswords.setPassword(value)
+}
+
+export function setRepeatPasswordValue(value = '') {
+  validatePasswords.setRepeatPassword(value)
+  return validatePasswords.chekPassword() ? undefined : "Passwords don't match"
 }

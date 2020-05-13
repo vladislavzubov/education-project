@@ -4,9 +4,7 @@ import { Form, Field } from 'react-final-form'
 import { FormGroup, InputGroup, Button } from '@blueprintjs/core'
 import {
   minAge,
-  passwordRegist,
   haveNotChar,
-  similarPassword,
   composeValidators,
   validateEmail,
   required,
@@ -14,12 +12,15 @@ import {
   haveOneUppercase,
   haveOneNumeral,
   password,
+  setPasswordValue,
+  setRepeatPasswordValue,
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 class Registration extends Component {
   state = {
     loading: false,
+    type: text,
   }
 
   onSubmit = (value) => {
@@ -95,7 +96,7 @@ class Registration extends Component {
                     minLength,
                     haveOneUppercase,
                     haveOneNumeral,
-                    passwordRegist
+                    setPasswordValue
                   )}
                 >
                   {({ input, meta }) => (
@@ -113,7 +114,7 @@ class Registration extends Component {
 
                 <Field
                   name="Repeat password"
-                  validate={composeValidators(required, similarPassword)}
+                  validate={composeValidators(required, setRepeatPasswordValue)}
                 >
                   {({ input, meta }) => (
                     <div>
