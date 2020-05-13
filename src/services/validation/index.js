@@ -1,4 +1,4 @@
-// validation function
+
 export function composeValidators(...validators) {
   return (value) =>
     validators.reduce(
@@ -33,4 +33,18 @@ export function haveOneNumeral(value = '') {
   return value.replace(/\D+/g, '') === ''
     ? 'at least one digit is needed'
     : undefined
+}
+
+export function haveNotChar(value = '') {
+  return value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
+    ? 'enter only numbers'
+    : undefined
+}
+
+export function passwordRegist(value) {
+  // console.clear()
+  // console.log(value)
+  // return  value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
+  // ? 'enter only numbers'
+  // : undefined
 }

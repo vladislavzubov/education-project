@@ -23,6 +23,21 @@ const onSubmit = async () => {
 }
 
 class Login extends Component {
+  state = {
+    onClickButton: false,
+    userData: {
+      email: '',
+      password: '',
+    },
+  }
+
+  onClickButton = () => {
+    const onClickButton = this.state.onClickButton
+    this.setState({
+      onClickButton: !onClickButton,
+    })
+  }
+
   render() {
     return (
       <div className={classes.Login}>
@@ -49,8 +64,12 @@ class Login extends Component {
                         fill
                         type="email"
                         placeholder="Email"
+                        disabled={this.state.onClickButton}
                       />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                      {this.state.onClickButton
+                        ? null
+                        : meta.error &&
+                          meta.touched && <span>{meta.error}</span>}
                     </div>
                   )}
                 </Field>
@@ -72,8 +91,13 @@ class Login extends Component {
                         fill
                         type="password"
                         placeholder="Password"
+                        disabled={this.state.onClickButton}
                       />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
+
+                      {this.state.onClickButton
+                        ? null
+                        : meta.error &&
+                          meta.touched && <span>{meta.error}</span>}
                     </div>
                   )}
                 </Field>
@@ -84,6 +108,8 @@ class Login extends Component {
                   fill
                   loading={false}
                   intent="primary"
+                  onClick={this.onClickButton}
+                  loading={this.state.onClickButton}
                 />
 
                 <Link to="/lostPassword">Lost your Password?</Link>
