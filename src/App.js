@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import './App.css'
 import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
+
+import LostPassword from './containers/LostPassword/LostPassword'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 class App extends Component {
@@ -21,17 +23,21 @@ class App extends Component {
               <li>
                 <Link to="/registration">Registration</Link>
               </li>
+              <li>
+                <Link to="/lostPassword">LostPassword</Link>
+              </li>
             </ul>
           </nav>
 
-          {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
           <Switch>
             <Route path="/login">
               <Login />
             </Route>
             <Route path="/registration">
               <Registration />
+            </Route>
+            <Route path="/LostPassword">
+              <LostPassword />
             </Route>
             <Route path="/">
               <Home />
@@ -42,6 +48,7 @@ class App extends Component {
     )
   }
 }
+
 function Home() {
   return <h2>404 Page is not found H</h2>
 }

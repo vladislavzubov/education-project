@@ -1,4 +1,3 @@
-// validation function
 export function composeValidators(...validators) {
   return (value) =>
     validators.reduce(
@@ -51,3 +50,10 @@ export function haveNotChar(value = '') {
 // export function passwordRegist(value = '') {
 //   return value.replace()
 // }
+export function passwordRegist(value) {
+  // console.clear()
+  // console.log(value)
+  // return  value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
+  // ? 'enter only numbers'
+  // : undefined
+}
