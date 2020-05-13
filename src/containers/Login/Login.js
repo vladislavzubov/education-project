@@ -18,8 +18,8 @@ class Login extends Component {
   }
 
   onSubmit = (value) => {
+    console.clear()
     console.log(value)
-
     const loading = this.state.loading
     this.setState({
       loading: !loading,
@@ -93,7 +93,6 @@ class Login extends Component {
                   text="Sign in"
                   fill
                   intent="primary"
-                  // onClick={this.onClickButton}
                   loading={this.state.loading}
                 />
 

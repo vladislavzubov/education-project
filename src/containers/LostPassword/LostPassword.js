@@ -8,36 +8,30 @@ import {
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-const onSubmit = async () => {
-  await sleep(300)
-}
-
 class LostPassword extends Component {
   state = {
     loading: false,
-    userData: {
-      email: '',
-    },
   }
 
-  onClickButton = () => {
+  onSubmit = (value) => {
+    console.clear()
+    console.log(value)
     const loading = this.state.loading
     this.setState({
       loading: !loading,
     })
   }
-  
+
   render() {
     return (
       <div className={classes.LostPassword}>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={this.onSubmit}
           render={({ handleSubmit }) => (
             <Card interactive={true} elevation={Elevation.TWO}>
               <h1>Lost Password</h1>
               <form onSubmit={handleSubmit}>
-              <Field
+                <Field
                   name="email"
                   validate={composeValidators(required, validateEmail)}
                 >
@@ -57,12 +51,12 @@ class LostPassword extends Component {
                     </div>
                   )}
                 </Field>
+
                 <Button
                   type="submit"
                   text="Send password to email"
                   fill
                   intent="primary"
-                  onClick={this.onClickButton}
                   loading={this.state.loading}
                 ></Button>
               </form>
