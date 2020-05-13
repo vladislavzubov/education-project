@@ -40,6 +40,12 @@ export function haveNotChar(value = '') {
     : undefined
 }
 
+export function minAge(value = '') {
+  return Number(value) > 10 && Number(value) < 120
+    ? undefined
+    : 'Enter the correct age'
+}
+
 // export function similarPassword(value = '') {
 //   console.log(value.replace(), passwordRegist())
 //   return value.replace() !== passwordRegist
@@ -47,13 +53,21 @@ export function haveNotChar(value = '') {
 //     : undefined
 // }
 
-// export function passwordRegist(value = '') {
-//   return value.replace()
+export function passwordRegist(value = '') {
+  console.log(value)
+  return value.replace()
+}
+// export function passwordRegist(value) {
+// console.clear()
+// console.log(value)
+// return  value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
+// ? 'enter only numbers'
+// : undefined
 // }
-export function passwordRegist(value) {
-  // console.clear()
-  // console.log(value)
-  // return  value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
-  // ? 'enter only numbers'
-  // : undefined
+
+export function similarPassword(value = '') {
+  console.log(value)
+  return value.replace() !== passwordRegist()
+    ? "passwords don't match"
+    : undefined
 }
