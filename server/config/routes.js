@@ -1,5 +1,6 @@
 const products = require("../app/controllers/products");
 const auth = require("../app/controllers/auth");
+const registration = require("../app/controllers/registration")
 const authMiddleware = require("../app/middleware/auth");
 
 module.exports = (app) => {
@@ -12,5 +13,7 @@ module.exports = (app) => {
   //auth
   app.post("/signin", auth.signIn);
   // app.get("/signin", auth.create);
+  // registration
+  app.post("/registration", registration.create);
   app.post("/refresh-tokens", auth.refreshTokens);
 };
