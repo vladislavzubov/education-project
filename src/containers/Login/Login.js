@@ -19,9 +19,8 @@ class Login extends Component {
   }
 
   onSubmit = (value) => {
-    console.clear()
-    console.log(value)
-    
+    console.log('ngjfnjg')
+
     this.setState({
       loading: !this.state.loading,
     })
@@ -69,9 +68,9 @@ class Login extends Component {
                         type="email"
                         placeholder="Email"
                         disabled={this.state.loading}
-                        intent = {meta.error ? "danger" : ""}
+                        intent={meta.error ? 'danger' : ''}
                       />
-                      
+
                       {this.state.loading
                         ? null
                         : meta.error &&
@@ -98,7 +97,7 @@ class Login extends Component {
                         type={this.state.showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         disabled={this.state.loading}
-                        intent = {meta.error ? "danger" : ""}
+                        intent={meta.error ? 'danger' : ''}
                       />
 
                       {this.state.loading
