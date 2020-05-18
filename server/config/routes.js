@@ -13,11 +13,11 @@ module.exports = (app) => {
 
   //auth
   app.post('/signin', auth.signIn)
-  
+
   // registration
   app.post('/registration', registration.create)
   app.post('/refresh-tokens', auth.refreshTokens)
-  
+
   // info
-  app.get('/info-user', info.refreshTokens)
+  app.get('/info-user', info.infoUser)
 }
