@@ -43,6 +43,7 @@ class LostPassword extends Component {
                         type="email"
                         placeholder="Email"
                         disabled={this.state.loading}
+                        intent = {meta.error ? "danger" : ""}
                       />
                       {this.state.loading
                         ? null

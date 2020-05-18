@@ -11,7 +11,7 @@ export function validateEmail(value) {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   )
     ? undefined
-    : 'enter correct Email'
+    : 'Enter correct Email'
 }
 
 export function required(value) {
@@ -24,19 +24,19 @@ export function minLength(value = '') {
 
 export function haveOneUppercase(value = '') {
   return value.match(/[A-Z]/g) === null
-    ? 'at least one uppercase letter is required'
+    ? 'At least one uppercase letter is required'
     : undefined
 }
 
 export function haveOneNumeral(value = '') {
   return value.replace(/\D+/g, '') === ''
-    ? 'at least one digit is needed'
+    ? 'At least one digit is needed'
     : undefined
 }
 
 export function haveNotChar(value = '') {
   return value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
-    ? 'enter only numbers'
+    ? 'Enter only numbers'
     : undefined
 }
 
