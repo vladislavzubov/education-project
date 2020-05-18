@@ -1,0 +1,153 @@
+import React, { Component } from 'react'
+import classes from './Registration.module.css'
+import { Form, Field } from 'react-final-form'
+import { FormGroup, InputGroup, Button } from '@blueprintjs/core'
+import {
+  minAge,
+  passwordRegist,
+  haveNotChar,
+  similarPassword,
+  composeValidators,
+  validateEmail,
+  required,
+  minLength,
+  haveOneUppercase,
+  haveOneNumeral,
+  password,
+} from '../../services/validation'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+
+class Registration extends Component {
+  state = {
+    loading: false,
+  }
+
+  onSubmit = (value) => {
+    console.log(value)
+
+    const loading = this.state.loading
+    this.setState({
+      loading: !loading,
+    })
+  }
+
+  render() {
+    return (
+      <div className={classes.Regist}>
+        <Form
+          onSubmit={this.onSubmit}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <div className={classes.form_regist}>
+                <h1>Registration</h1>
+                <Field name="User name" validate={composeValidators(required)}>
+                  {({ input, meta }) => (
+                    <div>
+                      <InputGroup
+                        {...input}
+                        type="text"
+                        placeholder="User name"
+                        disabled={this.state.loading}
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
+                <Field
+                  name="Email"
+                  validate={composeValidators(required, validateEmail)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <InputGroup
+                        {...input}
+                        type="email"
+                        disabled={this.state.loading}
+                        placeholder="Email"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
+                <Field
+                  name="Age"
+                  validate={composeValidators(required, haveNotChar, minAge)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <InputGroup
+                        {...input}
+                        type="number"
+                        disabled={this.state.loading}
+                        placeholder="Age"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
+                <Field
+                  name="Password"
+                  validate={composeValidators(
+                    required,
+                    minLength,
+                    haveOneUppercase,
+                    haveOneNumeral,
+                    passwordRegist
+                  )}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <InputGroup
+                        {...input}
+                        type="password"
+                        placeholder="Password"
+                        disabled={this.state.loading}
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
+                <Field
+                  name="Repeat password"
+                  validate={composeValidators(required, similarPassword)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <InputGroup
+                        {...input}
+                        type="password"
+                        placeholder="Repeat password"
+                        disabled={this.state.loading}
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+
+                <div className={classes.buttons}>
+                  <Button
+                    type="sumbit"
+                    text="Sumbit"
+                    intent="primary"
+                    fill
+                    loading={this.state.loading}
+                    // loading="true"
+                  />
+                </div>
+              </div>
+            </form>
+          )}
+        />
+        <p className={classes.text}>
+          Alreade,have an account? <Link to="/login">Login here</Link>
+        </p>
+      </div>
+    )
+  }
+}
+
+export default Registration
