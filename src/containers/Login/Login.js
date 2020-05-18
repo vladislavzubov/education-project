@@ -21,6 +21,7 @@ class Login extends Component {
   onSubmit = (value) => {
     console.clear()
     console.log(value)
+    
     this.setState({
       loading: !this.state.loading,
     })
