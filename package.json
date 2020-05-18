@@ -7,18 +7,12 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-<<<<<<< HEAD
     "axios": "^0.19.2",
-=======
->>>>>>> 9d805ba08d7adbcbe8c39f21672ead7d5ebbff87
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "final-form": "^4.19.1",
     "jsonwebtoken": "^8.5.1",
-<<<<<<< HEAD
-=======
     "md5": "^2.2.1",
->>>>>>> 9d805ba08d7adbcbe8c39f21672ead7d5ebbff87
     "mongoose": "^5.9.14",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

@@ -24,25 +24,38 @@ class Registration extends Component {
     // type: text,
   }
 
-  //transferServer = (value) => {
-  //  return console.log(value)
-  //try{
-  //    const response = await
-  //    axios.post('http://',
-  //    {value});
-  //    console.log("success")
-  //} catch (e) {
-  //  console.log("falied")
-  //}
+  transferServer = async (value) => {
+    
+    const registPost = {
+      name: value.userName,
+      age: value.age,
+      password: value.password,
+      email: value.email,
+    }
+    console.log(registPost)
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/registration',
+        registPost
+      )
+      console.log('success')
+      return true
+    } catch (e) {
+      console.log('falied')
+      return false
+    }
+  }
 
-  //  }
-
-  onSubmit = (value) => {
-    //  console.log(value)
-    //    transferServer(value)
-    const loading = this.state.loading
+  onSubmit = async (value) => {
+    
     this.setState({
-      loading: !loading,
+      loading: true,
+    })
+
+    await this.transferServer(value)
+    //const loading = this.state.loading
+    this.setState({
+      loading: false,
     })
   }
 

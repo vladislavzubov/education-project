@@ -6,6 +6,7 @@ const create = (req, res) => {
   const passwordUser = passwordCoding(req.body.password)
 
   const userObj = {
+    name: req.body.name,
     email: req.body.email,
     password: passwordUser,
     age: req.body.age,
