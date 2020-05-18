@@ -93,6 +93,7 @@ const validatePasswords = (function () {
 
 export function setPasswordValue(value = '') {
   validatePasswords.setPassword(value)
+  return undefined
 }
 
 export function setRepeatPasswordValue(value = '') {

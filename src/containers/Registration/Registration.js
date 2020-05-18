@@ -20,7 +20,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 class Registration extends Component {
   state = {
     loading: false,
-    type: text,
+    // type: text,
   }
 
   onSubmit = (value) => {
@@ -41,7 +41,7 @@ class Registration extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>Registration</h1>
-                <Field name="User name" validate={composeValidators(required)}>
+                <Field name="userName" validate={composeValidators(required)}>
                   {({ input, meta }) => (
                     <div>
                       <InputGroup
@@ -56,7 +56,7 @@ class Registration extends Component {
                 </Field>
 
                 <Field
-                  name="Email"
+                  name="email"
                   validate={composeValidators(required, validateEmail)}
                 >
                   {({ input, meta }) => (
@@ -73,7 +73,7 @@ class Registration extends Component {
                 </Field>
 
                 <Field
-                  name="Age"
+                  name="age"
                   validate={composeValidators(required, haveNotChar, minAge)}
                 >
                   {({ input, meta }) => (
@@ -90,7 +90,7 @@ class Registration extends Component {
                 </Field>
 
                 <Field
-                  name="Password"
+                  name="password"
                   validate={composeValidators(
                     required,
                     minLength,
@@ -113,7 +113,7 @@ class Registration extends Component {
                 </Field>
 
                 <Field
-                  name="Repeat password"
+                  name="repeatPassword"
                   validate={composeValidators(required, setRepeatPasswordValue)}
                 >
                   {({ input, meta }) => (
