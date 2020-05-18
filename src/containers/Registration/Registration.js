@@ -16,6 +16,7 @@ import {
   setRepeatPasswordValue,
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import axios from 'axios'
 
 class Registration extends Component {
   state = {
@@ -23,9 +24,22 @@ class Registration extends Component {
     // type: text,
   }
 
-  onSubmit = (value) => {
-    console.log(value)
+  //transferServer = (value) => {
+  //  return console.log(value)
+  //try{
+  //    const response = await
+  //    axios.post('http://',
+  //    {value});
+  //    console.log("success")
+  //} catch (e) {
+  //  console.log("falied")
+  //}
 
+  //  }
+
+  onSubmit = (value) => {
+    //  console.log(value)
+    //    transferServer(value)
     const loading = this.state.loading
     this.setState({
       loading: !loading,
