@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const authHelper = require('../helpers/authHelpers')
+const {
+  passwordCoding,
+  passwordCompare,
+} = require('../helpers/passwordHelpers')
 const { secret } = require('../../config/app').jwt
 
 const User = mongoose.model('User')
@@ -25,9 +29,12 @@ const signIn = (req, res) => {
         res.status(401).json({ message: 'User does not exist!' })
       }
 
-      const isValid = password === user.password
+      passwordServer = passwordCoding(password)
+      passwordUser = user.password
 
-      if (isValid) {
+      const resolveCompare = passwordCompare(passwordServer, passwordUser)
+
+      if (resolveCompare) {
         updateTokens(user._id).then((tokens) => res.json(tokens))
       } else {
         res.status(401).json({ message: 'Invalid credentials' })
