@@ -34,19 +34,20 @@ class Login extends Component {
   }
 
   postToken = async (token) => {
+    
     try {
       const response = await axios.post(
-        'http://localhost:3001/registration', //тут токен, какой сервак???
-        token.success
+        'http://localhost:3001/info-user', //тут токен, какой сервак???
+        { token: token.accessToken }
       )
-      console.log('success token')
-      return true
+      console.log('success token' ,response)
+      return
     } catch (e) {
-      if (response === 500) {
-        await this.refreshTokenPost(token.refresh)
-      }
+      // if (response === 987) {
+      //   await this.refreshTokenPost(token.refresh)
+      // }
       console.log('falied token')
-      return false
+      return
     }
   }
 
@@ -57,16 +58,18 @@ class Login extends Component {
     }
     try {
       const response = await axios.post(
-        'http://localhost:3001/registration', //поменять сервак!
+        'http://localhost:3001/signin', //поменять сервак!
         authentication
       )
-      await this.postToken(response.data)
+      console.log(response.data.tokens.accessToken)
+
+      await this.postToken(response.data.tokens)
 
       console.log('success email')
-      return true
+      return
     } catch (e) {
-      console.log('falied eamil')
-      return false
+      console.log('falied email', e)
+      return
     }
   }
 

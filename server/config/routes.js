@@ -19,5 +19,5 @@ module.exports = (app) => {
   app.post('/refresh-tokens', auth.refreshTokens)
 
   // info
-  app.get('/info-user', info.infoUser)
+  app.post('/info-user', info.infoUser)
 }
