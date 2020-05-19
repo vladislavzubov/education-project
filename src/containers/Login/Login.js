@@ -23,7 +23,7 @@ class Login extends Component {
     try {
       const response = await axios.post(
         'http://localhost:3001/refresh-tokens', //поменять сервак!
-        token
+        {refreshToken: token}
       )
       console.log('success refresh token')
       return true
@@ -39,11 +39,12 @@ class Login extends Component {
         'http://localhost:3001/info-user', //тут токен, какой сервак???
         { token: token.accessToken }
       )
-      console.log('success token', response)
+      
+      console.log('success token')
       return
     } catch (e) {
       if (response.err === 987) {
-        await this.refreshTokenPost(token.refresh)
+        await this.refreshTokenPost(token.refreshToken)
       }
       console.log('falied token')
       return
@@ -60,7 +61,7 @@ class Login extends Component {
         'http://localhost:3001/signin', //поменять сервак!
         authentication
       )
-      console.log(response.data.tokens.accessToken)
+      // console.log(response.data.tokens.accessToken)
 
       await this.postToken(response.data.tokens)
 
