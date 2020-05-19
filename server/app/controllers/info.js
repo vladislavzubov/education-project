@@ -12,8 +12,10 @@ const infoUser = (req, res) => {
     payload = jwt.verify(token, secret)
     
     if (payload.type !== 'access') {
-      
-      res.status(400).json({ message: 'Invalid tokensw!' })
+      res.status(401).json({
+        message: 'Invalid tokenssss!',
+      })
+      return
     }
 
     User.findById(payload.userId, function (err, user) {
@@ -29,12 +31,12 @@ const infoUser = (req, res) => {
         token: token,
         name: user.name,
         email: user.email,
-        age: user.age
+        age: user.age,
       })
     })
   } catch (e) {
     if (e instanceof jwt.TokenExpiredError) {
-      res.status(400).json({ message: 'Token expired!' })
+      res.status(400).json({ message: 'Token expired!', err: 987 })
       return
     } else if (e instanceof jwt.TokenExpiredError) {
       res.status(400).json({ message: 'Invalid token!' })

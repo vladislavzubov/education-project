@@ -22,7 +22,7 @@ class Login extends Component {
   refreshTokenPost = async (token) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/registration', //поменять сервак!
+        'http://localhost:3001/refresh-tokens', //поменять сервак!
         token
       )
       console.log('success refresh token')
@@ -42,9 +42,9 @@ class Login extends Component {
       console.log('success token', response)
       return
     } catch (e) {
-      // if (response === 987) {
-      //   await this.refreshTokenPost(token.refresh)
-      // }
+      if (response.err === 987) {
+        await this.refreshTokenPost(token.refresh)
+      }
       console.log('falied token')
       return
     }
