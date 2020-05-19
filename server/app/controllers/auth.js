@@ -30,29 +30,30 @@ const updateTokenAccess = (userId) => {
 
 const signIn = (req, res) => {
   const { email, password } = req.body
-  User.findOne({ email })
-    .exec()
-    .then((user) => {
-      if (!user) {
-        res.status(401).json({ message: 'User does not exist!' })
-      }
+  User.findOne({ $or: [{ email: email }, { name: email }] })
+      .exec()
+      .then((user) => {
+        if (!user) {
+          res.status(401).json({ message: 'User does not exist!' })
+        }
 
-      passwordServer = passwordCoding(password)
-      passwordUser = user.password
+        passwordServer = passwordCoding(password)
+        passwordUser = user.password
 
-      const resolveCompare = passwordCompare(passwordServer, passwordUser)
+        const resolveCompare = passwordCompare(passwordServer, passwordUser)
 
-      if (resolveCompare) {
-        updateTokens(user._id).then((tokens) =>
-          res.json({
-            tokens,
-          })
-        )
-      } else {
-        res.status(401).json({ message: 'Invalid credentials' })
-      }
-    })
-    .catch((err) => res.status(500).json({ message: err.message }))
+        if (resolveCompare) {
+          updateTokens(user._id).then((tokens) =>
+            res.json({
+              tokens,
+            })
+          )
+        } else {
+          res.status(401).json({ message: 'Invalid credentials' })
+        }
+      })
+      .catch((err) => res.status(500).json({ message: err.message }))
+  
 }
 
 const refreshTokens = (req, res) => {
