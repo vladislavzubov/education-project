@@ -20,6 +20,14 @@ const updateTokens = (userId) => {
   }))
 }
 
+const updateTokenAccess = (userId) => {
+  const accessToken = authHelper.generateAccessToken(userId)
+
+  return authHelper.replaceDbRefreshToken(userId).then(() => ({
+    accessToken,
+  }))
+}
+
 const signIn = (req, res) => {
   const { email, password } = req.body
   User.findOne({ email })
@@ -61,7 +69,7 @@ const refreshTokens = (req, res) => {
       res.status(400).json({ message: 'Token expired!' })
       return
     } else if (e instanceof jwt.TokenExpiredError) {
-      res.status(400).json({ message: 'Invalid token!' })
+      res.status(400).json({ message: 'Invalid tokenas!' })
       return
     }
   }
@@ -70,9 +78,10 @@ const refreshTokens = (req, res) => {
     .exec()
     .then((token) => {
       if (token === null) {
-        throw new Error('Invalid token!')
+        res.json(token)
+        throw new Error('Invalid tokens!')
       }
-      return updateTokens(token.userId)
+      return updateTokenAccess(token.userId)
     })
     .then((tokens) => res.json(tokens))
     .catch((err) => res.status(400).json({ message: err.message }))

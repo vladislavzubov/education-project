@@ -43,17 +43,6 @@ const infoUser = (req, res) => {
       return
     }
   }
-
-  // Token.findOne({ tokenId: payload.id })
-  //   .exec()
-  //   .then((token) => {
-  //     if (token === null) {
-  //       throw new Error('Invalid token!')
-  //     }
-  //     return updateTokens(token.userId)
-  //   })
-  //   .then((tokens) => res.json(tokens))
-  //   .catch((err) => res.status(400).json({ message: err.message }))
 }
 
 module.exports = {
