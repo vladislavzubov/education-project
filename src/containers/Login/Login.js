@@ -11,6 +11,7 @@ import {
   haveOneNumeral,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
+import axios from 'axios'
 
 class Login extends Component {
   state = {
@@ -18,11 +19,33 @@ class Login extends Component {
     showPassword: false,
   }
 
-  onSubmit = (value) => {
-    console.log('ngjfnjg')
+  transferServerLogin = async (value) => {
+    const authentication = {
+      password: value.password,
+      email: value.email,
+    }
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/registration', //поменять сервак!
+        authentication
+      )
+      console.log('success')
+      return true
+    } catch (e) {
+      console.log('falied')
+      return false
+    }
+  }
 
+  onSubmit = async (value) => {
     this.setState({
-      loading: !this.state.loading,
+      loading: true,
+    })
+
+    await this.transferServerLogin(value)
+    //const loading = this.state.loading
+    this.setState({
+      loading: false,
     })
   }
 

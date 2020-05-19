@@ -24,15 +24,14 @@ class Registration extends Component {
     // type: text,
   }
 
-  transferServer = async (value) => {
-    
+  transferServerRegist = async (value) => {
     const registPost = {
       name: value.userName,
       age: value.age,
       password: value.password,
       email: value.email,
     }
-    console.log(registPost)
+
     try {
       const response = await axios.post(
         'http://localhost:3001/registration',
@@ -47,12 +46,11 @@ class Registration extends Component {
   }
 
   onSubmit = async (value) => {
-    
     this.setState({
       loading: true,
     })
 
-    await this.transferServer(value)
+    await this.transferServerRegist(value)
     //const loading = this.state.loading
     this.setState({
       loading: false,

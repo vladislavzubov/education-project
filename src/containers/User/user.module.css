@@ -1,4 +1,4 @@
-.Login{
+.User{
     width: 400px;
     margin: 5px;
     padding: 30px;
@@ -7,23 +7,13 @@
     margin-left: auto;
     margin-right: auto;
 }
-.Login h1{
-    color: #394B59;
-    font-weight: normal;
+
+.User img{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+    border-radius: 30px;
 }
-.Login Button{
-    margin: 5px;
-}
-.Login Input{
-    margin: 5px;
-    
-}
-.Login span{
-    margin-top: 2px;
-}
-.Login p{
-    color: white;
-}
-.Login p Link{
-    color: white;
-}
+
+
+

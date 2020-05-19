@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Link } from 'react-router-dom'
 import classes from './user.module.css'
-import { Card, Elevation, InputGroup } from '@blueprintjs/core'
+import { Card, Elevation, InputGroup, FormGroup } from '@blueprintjs/core'
 
 class Login extends Component {
   onSubmit = (value) => {
@@ -15,7 +15,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className={classes.Login}>
+      <div className={classes.User}>
         <Form
           onSubmit={this.onSubmit}
           render={({ handleSubmit }) => (
@@ -24,15 +24,17 @@ class Login extends Component {
               elevation={Elevation.TWO}
               className={classes.Card}
             >
-              <div>
-                <p>Name:</p>
-                <InputGroup />
-                <p>Name:</p>
-                <InputGroup />
-                <p>Name:</p>
-                <InputGroup />
-                <p>Name:</p>
-                <InputGroup />
+              <div className={classes.formUser}>
+                <img src="Ivan.jpg" />
+                <FormGroup label="Name:" inline={true}>
+                  <InputGroup disabled={true} type="text" placeholder="Name" />
+                </FormGroup>
+                <FormGroup label="Email:" inline={true}>
+                  <InputGroup disabled={true} type="text" placeholder="Name" />
+                </FormGroup>
+                <FormGroup label="Age:" inline={true}>
+                  <InputGroup disabled={true} type="text" placeholder="Name" />
+                </FormGroup>
               </div>
             </Card>
           )}
