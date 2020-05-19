@@ -10,7 +10,7 @@ const infoUser = (req, res) => {
 
   try {
     payload = jwt.verify(token, secret)
-    
+
     if (payload.type !== 'access') {
       res.status(401).json({
         message: 'Invalid tokenssss!',

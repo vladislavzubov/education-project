@@ -23,7 +23,7 @@ class Login extends Component {
     try {
       const response = await axios.post(
         'http://localhost:3001/refresh-tokens', //поменять сервак!
-        {refreshToken: token}
+        { refreshToken: token }
       )
       console.log('success refresh token')
       return true
@@ -39,7 +39,7 @@ class Login extends Component {
         'http://localhost:3001/info-user', //тут токен, какой сервак???
         { token: token.accessToken }
       )
-      
+
       console.log('success token')
       return
     } catch (e) {
