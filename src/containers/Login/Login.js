@@ -11,19 +11,32 @@ import {
   haveOneNumeral,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
-import axios from 'axios'
+import { transferServerLogin } from '../../store/reducers/server_redux'
+import { connect } from 'react-redux'
 
 class Login extends Component {
   state = {
     loading: false,
     showPassword: false,
+    user: {},
+    //showInfo: false,
+    //refreshToken:"",
+    //accessToken:"",
+  }
+
+  /*
+  authorizationLogin = () => {
+    console.clear()
+    console.log('user')
+    userProperties()
+    window.location.assign('http://localhost:3000/user')
   }
 
   refreshTokenPost = async (token) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/refresh-tokens', //поменять сервак!
-        {refreshToken: token}
+        'http://localhost:3001/registration', //поменять сервак!
+        { refreshToken: token }
       )
       console.log('success refresh token')
       return true
@@ -39,13 +52,16 @@ class Login extends Component {
         'http://localhost:3001/info-user', //тут токен, какой сервак???
         { token: token.accessToken }
       )
-      
-      console.log('success token')
+      console.log('success token', response)
+      this.setState({
+        user: response,
+      })
+      this.authorizationLogin(this.state)
       return
     } catch (e) {
-      if (response.err === 987) {
-        await this.refreshTokenPost(token.refreshToken)
-      }
+      // if (response === 987) {
+      //   await this.refreshTokenPost(token.refreshToken)
+      // }
       console.log('falied token')
       return
     }
@@ -61,24 +77,24 @@ class Login extends Component {
         'http://localhost:3001/signin', //поменять сервак!
         authentication
       )
-      // console.log(response.data.tokens.accessToken)
+      console.log(response.data.tokens.accessToken)
 
       await this.postToken(response.data.tokens)
 
-      console.log('success email', response.data)
+      console.log('success email')
       return
     } catch (e) {
       console.log('falied email', e)
       return
     }
   }
-
+*/
   onSubmit = async (value) => {
     this.setState({
       loading: true,
     })
-
-    await this.transferServerLogin(value)
+    //this.authorizationLogin()
+    transferServerLogin(value)
     //const loading = this.state.loading
     this.setState({
       loading: false,
@@ -188,4 +204,16 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = (store) => {
+  return {
+    value: transferServerLogin(store).value,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    transferServerLogin: (value) => dispatch(transferServerLogin(value)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
