@@ -34,13 +34,12 @@ class Login extends Component {
   }
 
   postToken = async (token) => {
-    
     try {
       const response = await axios.post(
         'http://localhost:3001/info-user', //тут токен, какой сервак???
         { token: token.accessToken }
       )
-      console.log('success token' ,response)
+      console.log('success token', response)
       return
     } catch (e) {
       // if (response === 987) {
@@ -65,7 +64,7 @@ class Login extends Component {
 
       await this.postToken(response.data.tokens)
 
-      console.log('success email')
+      console.log('success email', response.data)
       return
     } catch (e) {
       console.log('falied email', e)
