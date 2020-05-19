@@ -38,7 +38,6 @@ const signIn = (req, res) => {
         updateTokens(user._id).then((tokens) =>
           res.json({
             tokens,
-            name: user.name,
           })
         )
       } else {
