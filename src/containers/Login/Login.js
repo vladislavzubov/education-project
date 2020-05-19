@@ -11,6 +11,7 @@ import {
   haveOneNumeral,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
+import axios from 'axios'
 
 class Login extends Component {
   state = {
@@ -18,12 +19,66 @@ class Login extends Component {
     showPassword: false,
   }
 
-  onSubmit = (value) => {
-    console.clear()
-    console.log(value)
-    
+  refreshTokenPost = async (token) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/registration', //поменять сервак!
+        token
+      )
+      console.log('success refresh token')
+      return true
+    } catch (e) {
+      console.log('falied refresh token')
+      return false
+    }
+  }
+
+  postToken = async (token) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/registration', //тут токен, какой сервак???
+        token.success
+      )
+      console.log('success token')
+      return true
+    } catch (e) {
+      if (response === 500) {
+        await this.refreshTokenPost(token.refresh)
+      }
+      console.log('falied token')
+      return false
+    }
+  }
+
+  transferServerLogin = async (value) => {
+    const authentication = {
+      password: value.password,
+      email: value.email,
+    }
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/registration', //поменять сервак!
+        authentication
+      )
+      await this.postToken(response.data)
+
+      console.log('success email')
+      return true
+    } catch (e) {
+      console.log('falied eamil')
+      return false
+    }
+  }
+
+  onSubmit = async (value) => {
     this.setState({
-      loading: !this.state.loading,
+      loading: true,
+    })
+
+    await this.transferServerLogin(value)
+    //const loading = this.state.loading
+    this.setState({
+      loading: false,
     })
   }
 
@@ -69,9 +124,9 @@ class Login extends Component {
                         type="email"
                         placeholder="Email"
                         disabled={this.state.loading}
-                        intent = {meta.error ? "danger" : ""}
+                        intent={meta.error ? 'danger' : ''}
                       />
-                      
+
                       {this.state.loading
                         ? null
                         : meta.error &&
@@ -98,7 +153,7 @@ class Login extends Component {
                         type={this.state.showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         disabled={this.state.loading}
-                        intent = {meta.error ? "danger" : ""}
+                        intent={meta.error ? 'danger' : ''}
                       />
 
                       {this.state.loading

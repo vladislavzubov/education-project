@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
-
+import User from './containers/User/user'
 import LostPassword from './containers/LostPassword/LostPassword'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
@@ -30,6 +30,10 @@ class App extends Component {
           </nav>
 
           <Switch>
+            <Route path="/user">
+              <User />
+            </Route>
+
             <Route path="/login">
               <Login />
             </Route>
