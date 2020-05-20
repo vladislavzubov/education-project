@@ -94,7 +94,7 @@ class Login extends Component {
       loading: true,
     })
     //this.authorizationLogin()
-    transferServerLogin(value)
+    this.props.transferServerLogin(value)
     //const loading = this.state.loading
     this.setState({
       loading: false,

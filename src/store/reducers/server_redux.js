@@ -19,15 +19,16 @@ export function transferServerLogin(value) {
 }
 
 export function reducer(state = initialState, action) {
+  console.log(action)
   switch (action.type) {
     case 'TRANSFER_SERVER_LOGIN': {
       const authentication = {
-        password: value.password,
-        email: value.email,
+        password: action.value.password,
+        email: action.value.email,
       }
       try {
         const response = axios.post(
-          'http://localhost:3001/signin', //поменять сервак!
+          'http://localhost:3001/signin',
           authentication
         )
         const succesToken = response.data.tokens.accessToken
@@ -35,10 +36,9 @@ export function reducer(state = initialState, action) {
         console.log('success email')
 
         try {
-          const responseUser = axios.post(
-            'http://localhost:3001/info-user', //тут токен, какой сервак???
-            { token: succesToken }
-          )
+          const responseUser = axios.get('http://localhost:3001/info-user', {
+            token: succesToken,
+          })
           console.log('success token')
           const name = responseUser.name
           const email = responseUser.email
@@ -58,11 +58,15 @@ export function reducer(state = initialState, action) {
           //   await this.refreshTokenPost(token.refreshToken)
           // }
           console.log('falied succesToken')
-          return
+          return {
+            ...state,
+          }
         }
       } catch (e) {
         console.log('email or password is incorrect ')
-        return
+        return {
+          ...state,
+        }
       }
     }
     default: {
