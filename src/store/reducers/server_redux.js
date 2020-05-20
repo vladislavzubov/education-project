@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const initialState = {
-  succesToken: '',
+  accessToken: '',
   refreshToken: '',
   name: '',
   email: '',
@@ -9,11 +9,23 @@ const initialState = {
   value: {},
 }
 
-export function transferServerLogin(value) {
+export function receptionToken(accessToken, refreshToken) {
   return (dispatch) => {
     dispatch({
-      type: 'TRANSFER_SERVER_LOGIN',
-      value,
+      type: 'RECEPTION_TOKEN',
+      accessToken,
+      refreshToken,
+    })
+  }
+}
+
+export function receptionUser(name, email, age) {
+  return (dispatch) => {
+    dispatch({
+      type: 'RECEPTION_USER',
+      name,
+      email,
+      age,
     })
   }
 }
@@ -21,7 +33,23 @@ export function transferServerLogin(value) {
 export function reducer(state = initialState, action) {
   console.log(action)
   switch (action.type) {
-    case 'TRANSFER_SERVER_LOGIN': {
+    case 'RECEPTION_TOKEN': {
+      return {
+        ...state,
+        accessToken: action.accessToken,
+        refreshToken: action.refreshToken,
+      }
+    }
+    case 'RECEPTION_TOKEN': {
+      return {
+        ...state,
+        name: action.name,
+        email: action.email,
+        age: action.age,
+      }
+    }
+
+    /*case 'TRANSFER_SERVER_LOGIN': {
       const authentication = {
         password: action.value.password,
         email: action.value.email,
@@ -68,7 +96,8 @@ export function reducer(state = initialState, action) {
           ...state,
         }
       }
-    }
+    }*/
+
     default: {
       return state
     }
