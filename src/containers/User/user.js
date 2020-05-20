@@ -3,6 +3,7 @@ import { Form, Field } from 'react-final-form'
 import { Link } from 'react-router-dom'
 import classes from './user.module.css'
 import { Card, Elevation, InputGroup, FormGroup } from '@blueprintjs/core'
+import { connect } from 'react-redux'
 
 class Login extends Component {
   onSubmit = (value) => {
@@ -33,8 +34,13 @@ class Login extends Component {
                   <InputGroup disabled={true} type="text" placeholder="Name" />
                 </FormGroup>
                 <FormGroup label="Age:" inline={true}>
-                  <InputGroup disabled={true} type="text" placeholder="Name" />
+                  <InputGroup
+                    disabled={true}
+                    type="text"
+                    placeholder={this.props.store}
+                  />
                 </FormGroup>
+                <p>`${this.props.accessToken}`</p>
               </div>
             </Card>
           )}
@@ -44,4 +50,12 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = (store) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

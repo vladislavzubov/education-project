@@ -16,6 +16,7 @@ import {
   receptionUser,
 } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 class Login extends Component {
   state = {
@@ -46,10 +47,15 @@ class Login extends Component {
   }
 */
   postToken = async (token) => {
+    // console.log(token)
+
     try {
+      axios.defaults.headers.common['Authorization'] = `${token}`
       const response = await axios.get('http://localhost:3001/info-user', {
-        token: token,
+        accessToken: token,
       })
+      console.log(response)
+
       this.props.receptionUser(
         response.data.name,
         response.data.email,
@@ -79,14 +85,17 @@ class Login extends Component {
         'http://localhost:3001/signin',
         authentication
       )
+
       this.setState({
         loading: true,
       })
+
       this.props.receptionToken(
         response.data.tokens.accessToken,
         response.data.tokens.refreshToken
       )
-      await this.postToken(props.tokens)
+
+      await this.postToken(response.data.tokens.accessToken)
       console.log('success email')
       return
     } catch (e) {
@@ -100,9 +109,6 @@ class Login extends Component {
     this.postServerLoginLoading(value)
 
     //const loading = this.state.loading
-    this.setState({
-      loading: false,
-    })
   }
 
   handleLockClick = () => {
