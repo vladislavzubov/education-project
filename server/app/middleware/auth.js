@@ -1,31 +1,33 @@
-const jwt = require("jsonwebtoken");
-const { secret } = require("../../config/app").jwt;
+const jwt = require('jsonwebtoken')
+const { secret } = require('../../config/app').jwt
 
 module.exports = (req, res, next) => {
-  const authHeader = req.get("Authorization");
+  const authHeader = req.get('Authorization')
   if (!authHeader) {
-    res.status(401).json({ message: "Token not provided!" });
-    return;
+    res.status(401).json({ message: 'Token not provided!' })
+    return
   }
-  const token = authHeader.replace("Bearer ", "");
-  const payload = jwt.verify(token, secret);
+  const token = authHeader.replace('Bearer ', '')
+
   try {
-    
-    if (payload.type !== "access") {
-      res.status(401).json({ message: "Invalid token" });
-      return;
+    const payload = jwt.verify(token, secret)
+    if (payload.type !== 'access') {
+      res.status(401).json({ message: 'Invalid token' })
+      return
     }
+    res.locals.userId = payload.userId
+    next()
   } catch (e) {
     if (e instanceof jwt.TokenExpiredError) {
-      res.status(401).json({ message: "Token expired!" });
-      return;
+      res.status(401).json({
+        errCode: 987,
+        message: 'Token expired!',
+      })
+      return
     }
     if (e instanceof jwt.JsonWebTokenError) {
-      res.status(401).json({ message: "Invalid token!" });
-      return;
+      res.status(401).json({ message: 'Invalid token!' })
+      return
     }
   }
-  res.locals.userId = payload.userId
-  
-  next();
-};
+}
