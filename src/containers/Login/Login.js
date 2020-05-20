@@ -51,7 +51,7 @@ class Login extends Component {
 
     try {
       axios.defaults.headers.common['Authorization'] = `${token}`
-      const response = await axios.get('http://localhost:3001/info-user', {
+      const response = await axios.get('http://localhost:3004/info-user', {
         accessToken: token,
       })
       console.log(response)
@@ -82,7 +82,7 @@ class Login extends Component {
     }
     try {
       const response = await axios.post(
-        'http://localhost:3001/signin',
+        'http://localhost:3004/signin',
         authentication
       )
 
