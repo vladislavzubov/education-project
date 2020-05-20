@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
-import User from './containers/User/User'
+import User from './containers/User/user'
 import LostPassword from './containers/LostPassword/LostPassword'
 import ChangeUserData from './containers/ChangeUserData/ChangeUserData'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
@@ -27,6 +27,7 @@ class App extends Component {
               <li>
                 <Link to="/lostPassword">LostPassword</Link>
               </li>
+
               <li>
                 <Link to="/user">ChangeUserData</Link>
               </li>

@@ -3,10 +3,11 @@ const auth = require('../app/controllers/auth')
 const registration = require('../app/controllers/registration')
 const info = require('../app/controllers/info')
 const searchByEmail = require('../app/controllers/searchByEmail')
-const updateUserInfo = require('../app/controllers/updateUserInfo')
 const authMiddleware = require('../app/middleware/auth')
+const cors = require('cors')
 
 module.exports = (app) => {
+  app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }))
   //products
   app.get('/products', authMiddleware, products.getAll)
   app.post('/products', authMiddleware, products.create)
@@ -24,10 +25,6 @@ module.exports = (app) => {
   app.get('/info-user', authMiddleware, info.infoUser)
 
   //serch by email
+
   app.post('/lost-password', searchByEmail.searchByEmail)
-
-  //update user info
-  app.put('/update-user-info', authMiddleware, updateUserInfo.updateUserInfo )
-
-
 }

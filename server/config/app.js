@@ -1,5 +1,5 @@
 module.exports = {
-  appPort: 3001,
+  appPort: 3004,
   mongoURi: 'mongodb://localhost:27017/online-store',
   jwt: {
     secret: 'ne vse mogut v IT',

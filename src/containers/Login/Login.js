@@ -11,17 +11,16 @@ import {
   haveOneNumeral,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
-import { transferServerLogin } from '../../store/reducers/server_redux'
+import {
+  receptionToken,
+  receptionUser,
+} from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 class Login extends Component {
   state = {
     loading: false,
-    showPassword: false,
-    user: {},
-    //showInfo: false,
-    //refreshToken:"",
-    //accessToken:"",
   }
 
   /*
@@ -36,6 +35,7 @@ class Login extends Component {
     try {
       const response = await axios.post(
 
+        
         { refreshToken: token }
       )
       console.log('success refresh token')
@@ -45,15 +45,27 @@ class Login extends Component {
       return false
     }
   }
-
+*/
   postToken = async (token) => {
-    try {
-      const response = await axios.post(
-        'http://localhost:3001/info-user', //тут токен, какой сервак???
-        { token: token.accessToken }
-      )
+    // console.log(token)
 
-      return
+    try {
+      axios.defaults.headers.common['Authorization'] = `${token}`
+      const response = await axios.get('http://localhost:3004/info-user', {
+        accessToken: token,
+      })
+      console.log(response)
+
+      this.props.receptionUser(
+        response.data.name,
+        response.data.email,
+        response.data.age
+      )
+      console.log('success token')
+      this.setState({
+        loading: false,
+      })
+      window.location.assign('http://localhost:3000/user')
     } catch (e) {
       // if (response === 987) {
       //   await this.refreshTokenPost(token.refreshToken)
@@ -63,20 +75,27 @@ class Login extends Component {
     }
   }
 
-  transferServerLogin = async (value) => {
+  postServerLoginLoading = async (value) => {
     const authentication = {
       password: value.password,
       email: value.email,
     }
     try {
       const response = await axios.post(
-        'http://localhost:3001/signin', //поменять сервак!
+        'http://localhost:3004/signin',
         authentication
       )
-      console.log(response.data.tokens.accessToken)
 
-      await this.postToken(response.data.tokens)
+      this.setState({
+        loading: true,
+      })
 
+      this.props.receptionToken(
+        response.data.tokens.accessToken,
+        response.data.tokens.refreshToken
+      )
+
+      await this.postToken(response.data.tokens.accessToken)
       console.log('success email')
       return
     } catch (e) {
@@ -84,17 +103,12 @@ class Login extends Component {
       return
     }
   }
-*/
+
   onSubmit = async (value) => {
-    this.setState({
-      loading: true,
-    })
     //this.authorizationLogin()
-    this.props.transferServerLogin(value)
+    this.postServerLoginLoading(value)
+
     //const loading = this.state.loading
-    this.setState({
-      loading: false,
-    })
   }
 
   handleLockClick = () => {
@@ -202,13 +216,21 @@ class Login extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    value: transferServerLogin(store).value,
+    accessToken: receptionToken(store).accessToken,
+    refreshToken: receptionToken(store).refreshToken,
+    name: receptionUser(store).name,
+    email: receptionUser(store).email,
+    age: receptionUser(store).age,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    transferServerLogin: (value) => dispatch(transferServerLogin(value)),
+    //transferServerLogin: (value) => dispatch(transferServerLogin(value)),
+    receptionToken: (accessToken, refreshToken) =>
+      dispatch(receptionToken(accessToken, refreshToken)),
+    receptionUser: (name, email, age) =>
+      dispatch(receptionUser(name, email, age)),
   }
 }
 
