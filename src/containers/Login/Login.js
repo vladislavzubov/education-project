@@ -35,7 +35,7 @@ class Login extends Component {
   refreshTokenPost = async (token) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/registration', //поменять сервак!
+
         { refreshToken: token }
       )
       console.log('success refresh token')
@@ -52,11 +52,7 @@ class Login extends Component {
         'http://localhost:3001/info-user', //тут токен, какой сервак???
         { token: token.accessToken }
       )
-      console.log('success token', response)
-      this.setState({
-        user: response,
-      })
-      this.authorizationLogin(this.state)
+
       return
     } catch (e) {
       // if (response === 987) {

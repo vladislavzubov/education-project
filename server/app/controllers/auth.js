@@ -20,31 +20,40 @@ const updateTokens = (userId) => {
   }))
 }
 
+const updateTokenAccess = (userId) => {
+  const accessToken = authHelper.generateAccessToken(userId)
+
+  return authHelper.replaceDbRefreshToken(userId).then(() => ({
+    accessToken,
+  }))
+}
+
 const signIn = (req, res) => {
   const { email, password } = req.body
-  User.findOne({ email })
-    .exec()
-    .then((user) => {
-      if (!user) {
-        res.status(401).json({ message: 'User does not exist!' })
-      }
+  User.findOne({ $or: [{ email: email }, { name: email }] })
+      .exec()
+      .then((user) => {
+        if (!user) {
+          res.status(401).json({ message: 'User does not exist!' })
+        }
 
-      passwordServer = passwordCoding(password)
-      passwordUser = user.password
+        passwordServer = passwordCoding(password)
+        passwordUser = user.password
 
-      const resolveCompare = passwordCompare(passwordServer, passwordUser)
+        const resolveCompare = passwordCompare(passwordServer, passwordUser)
 
-      if (resolveCompare) {
-        updateTokens(user._id).then((tokens) =>
-          res.json({
-            tokens,
-          })
-        )
-      } else {
-        res.status(401).json({ message: 'Invalid credentials' })
-      }
-    })
-    .catch((err) => res.status(500).json({ message: err.message }))
+        if (resolveCompare) {
+          updateTokens(user._id).then((tokens) =>
+            res.json({
+              tokens,
+            })
+          )
+        } else {
+          res.status(401).json({ message: 'Invalid credentials' })
+        }
+      })
+      .catch((err) => res.status(500).json({ message: err.message }))
+  
 }
 
 const refreshTokens = (req, res) => {
@@ -61,7 +70,7 @@ const refreshTokens = (req, res) => {
       res.status(400).json({ message: 'Token expired!' })
       return
     } else if (e instanceof jwt.TokenExpiredError) {
-      res.status(400).json({ message: 'Invalid token!' })
+      res.status(400).json({ message: 'Invalid tokenas!' })
       return
     }
   }
@@ -70,9 +79,10 @@ const refreshTokens = (req, res) => {
     .exec()
     .then((token) => {
       if (token === null) {
-        throw new Error('Invalid token!')
+        res.json(token)
+        throw new Error('Invalid tokens!')
       }
-      return updateTokens(token.userId)
+      return updateTokenAccess(token.userId)
     })
     .then((tokens) => res.json(tokens))
     .catch((err) => res.status(400).json({ message: err.message }))
