@@ -20,7 +20,7 @@ module.exports = (app) => {
   app.post('/refresh-tokens', auth.refreshTokens)
 
   // info
-  app.post('/info-user', info.infoUser)
+  app.get('/info-user', authMiddleware, info.infoUser)
 
   //serch by email
 
