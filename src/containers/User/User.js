@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Link } from 'react-router-dom'
-import classes from './user.module.css'
+import classes from './User.module.css'
 import { Card, Elevation, InputGroup, FormGroup } from '@blueprintjs/core'
 
-class Login extends Component {
+class User extends Component {
   onSubmit = (value) => {
     console.log('ngjfnjg')
 
@@ -44,4 +44,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default User
