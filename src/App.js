@@ -5,6 +5,7 @@ import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
 import User from './containers/User/User'
 import LostPassword from './containers/LostPassword/LostPassword'
+import ChangeUserData from './containers/ChangeUserData/ChangeUserData'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 class App extends Component {
@@ -27,21 +28,21 @@ class App extends Component {
                 <Link to="/lostPassword">LostPassword</Link>
               </li>
               <li>
-                <Link to="/user">User</Link>
+                <Link to="/user">ChangeUserData</Link>
               </li>
+              
             </ul>
           </nav>
 
           <Switch>
-            <Route path="/user">
-              <User />
-            </Route>
-
             <Route path="/login">
               <Login />
             </Route>
             <Route path="/registration">
               <Registration />
+            </Route>
+            <Route path="/changeUserData">
+              <ChangeUserData />
             </Route>
             <Route path="/LostPassword">
               <LostPassword />

@@ -1,0 +1,31 @@
+.Regist{
+    width: 400px;
+    margin: 5px;
+    padding: 30px;
+    background-color: #2f9ae1;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Regist h1{
+    color: #394B59;
+    font-weight: normal;
+}
+.Regist Button{
+    margin: 5px;
+   
+}
+.Regist Input{
+    margin: 5px;
+}
+.Regist p{
+    color: white;
+}
+.Regist p Link{
+    color: white;
+}
+
+.form_regist {
+    background: #ffffff;
+    padding: 20px;
+}

@@ -46,6 +46,8 @@ class Registration extends Component {
   }
 
   onSubmit = async (value) => {
+    console.log(value);
+    
     this.setState({
       loading: true,
     })
