@@ -2,6 +2,7 @@ const products = require('../app/controllers/products')
 const auth = require('../app/controllers/auth')
 const registration = require('../app/controllers/registration')
 const info = require('../app/controllers/info')
+const searchByEmail = require('../app/controllers/searchByEmail')
 const authMiddleware = require('../app/middleware/auth')
 
 module.exports = (app) => {
@@ -20,4 +21,8 @@ module.exports = (app) => {
 
   // info
   app.post('/info-user', info.infoUser)
+
+  //serch by email
+
+  app.post('/lost-password', searchByEmail.searchByEmail)
 }
