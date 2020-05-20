@@ -42,7 +42,7 @@ class App extends Component {
             <Route path="/registration">
               <Registration />
             </Route>
-            <Route path="/changeUserData">
+            <Route path="/user">
               <ChangeUserData />
             </Route>
             <Route path="/LostPassword">

@@ -34,7 +34,7 @@ class Registration extends Component {
 
     try {
       const response = await axios.post(
-        'http://localhost:3001/registration',
+        'http://localhost:3004/registration',
         registPost
       )
       console.log('success')
