@@ -1,10 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true,
+  },
   email: String,
   password: String,
   age: Number,
-});
+})
 
-mongoose.model("User", UserSchema);
+mongoose.model('User', UserSchema)

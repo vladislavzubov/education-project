@@ -15,6 +15,14 @@ const searchByEmail = (req, res) => {
     .catch((err) => res.status(500).json({ message: err.message }))
 }
 
+const verificationfUserData = async (body) => {
+  const { email, name } = body
+
+  const res = await User.exists({ $or: [{ email: email }, { name: name }] })
+
+  return res
+}
+
 module.exports = {
   searchByEmail,
 }
