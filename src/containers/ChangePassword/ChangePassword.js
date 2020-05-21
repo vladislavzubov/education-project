@@ -25,10 +25,11 @@ class ChangePassword extends Component {
 
   transferServerRegist = async (value) => {
     
-    
+    const parsed = queryString.parse(location.search);
+
     const registPost = {
       password: value.password,
-      key: location.search,
+      key: parsed.key,
     }
     console.log(registPost);
     

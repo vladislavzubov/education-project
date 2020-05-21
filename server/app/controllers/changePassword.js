@@ -9,7 +9,7 @@ const changePassword = (req, res) => {
 
   User.findOneAndUpdate(
     { keyChangePasswor: key },
-    { password: passwordCod, keyChangePasswor: null },
+    { password: passwordCod, keyChangePasswor: undefined },
     { new: true }
   )
     .exec()

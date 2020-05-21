@@ -7,7 +7,7 @@ const searchByEmail = (req, res) => {
   const { email } = req.body
   const key = passwordCoding(email)
   const site = 'http://localhost:3000/change-password'
-  const link = `${site}?${key}`
+  const link = `${site}?key=${key}`
 
   putKeyInUser(key, email)
 
@@ -36,7 +36,7 @@ const searchByEmail = (req, res) => {
 const putKeyInUser = (key, email) => {
   User.findOneAndUpdate(
     { email: email },
-    { keyChangePasswor: `?${key}` },
+    { keyChangePasswor: key },
     { new: true }
   )
     .exec()
