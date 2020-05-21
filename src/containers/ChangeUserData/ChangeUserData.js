@@ -127,6 +127,11 @@ class User extends Component {
       <div className={classes.Regist}>
         <Form
           onSubmit={this.onSubmit}
+          initialValues={{
+            Email: `${this.props.store.server_redux.email}`,
+            Name: `${this.props.store.server_redux.name}`,
+            Age: `${this.props.store.server_redux.age}`,
+          }}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
@@ -140,7 +145,7 @@ class User extends Component {
                         fill
                         rightElement={lockButtonEmail}
                         type="text"
-                        placeholder={this.props.store.server_redux.email}
+                        placeholder="Email"
                         disabled={this.state.showEmail}
                         // value={this.props.store.server_redux.email}
                       />
@@ -156,14 +161,14 @@ class User extends Component {
                         fill
                         rightElement={lockButtonName}
                         type="text"
-                        placeholder={this.props.store.server_redux.name}
+                        placeholder="Name"
                         disabled={this.state.showName}
                       />
                     </div>
                   )}
                 </Field>
 
-                <Field name="age">
+                <Field name="Age">
                   {({ input, meta }) => (
                     <div>
                       <InputGroup
@@ -171,7 +176,7 @@ class User extends Component {
                         fill
                         rightElement={lockButtonAge}
                         type="number"
-                        placeholder={this.props.store.server_redux.age}
+                        placeholder="Age"
                         disabled={this.state.showAge}
                       />
                     </div>
