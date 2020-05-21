@@ -3,6 +3,7 @@ const User = mongoose.model('User')
 const { passwordCoding } = require('../helpers/passwordHelpers')
 
 const changePassword = (req, res) => {
+  
   const userId = res.locals.userId
   const { password } = req.body
   const passwordCod = passwordCoding(password)
@@ -16,6 +17,7 @@ const changePassword = (req, res) => {
     .then((user) => res.json(user))
     .catch((err) => res.status(500).json({ message: err.message }))
 }
+
 
 module.exports = {
   changePassword,
