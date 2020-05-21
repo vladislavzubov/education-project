@@ -16,12 +16,13 @@ import {
   setRepeatPasswordValue,
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../services/axios'
 import {
   receptionToken,
   receptionUser,
 } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
+import { isEqual } from 'lodash'
 
 class User extends Component {
   state = {
@@ -33,43 +34,48 @@ class User extends Component {
     // type: text,
   }
 
-  //   transferServerRegist = async (value) => {
-  //     const registPost = {
-  //       name: value.userName,
-  //       age: value.age,
-  //       password: value.password,
-  //       email: value.email,
-  //     }
-
-  //     try {
-  //       const response = await axios.post(
-  //         'http://localhost:3001/registration',
-  //         registPost
-  //       )
-  //       console.log('success')
-  //       return true
-  //     } catch (e) {
-  //       console.log('falied')
-  //       return false
-  //     }
-  //   }
-
-  onSubmit = async (value) => {
-    console.log(value)
-
+  changeUserData = async (value) => {
     this.setState({
       loading: true,
     })
+    const globalUserData = {
+      name: userDataName,
+      age: userDataAge,
+    }
+    const changeData = {
+      name: value.name,
+      age: value.age,
+    }
+    if (isEqual(globalUserData, changeData)) {
+      try {
+        const response = await axios.put('update-user-info', changeData)
+
+        this.props.changeUserInfo(changeData.name, changeData.age)
+        this.setState({
+          loading: false,
+        })
+        console.log('change data user')
+        return
+      } catch (e) {
+        console.log('falied change data user', e)
+        return
+      }
+    }
+    return console.log('nothing to change')
+  }
+
+  onSubmit = async (value) => {
+    console.log(value)
+    await this.changeUserData(value),
+      this.setState({
+        loading: true,
+      })
 
     // await this.transferServerRegist(value)
     // //const loading = this.state.loading
     // this.setState({
     //   loading: false,
     // })
-  }
-
-  handleClickEmail = () => {
-    this.setState({ showEmail: !this.state.showEmail })
   }
 
   handleClickName = () => {
@@ -85,20 +91,6 @@ class User extends Component {
   }
 
   render() {
-    console.log(this.props.store)
-
-    const lockButtonEmail = (
-      <Tooltip
-        content={`${this.state.showEmail ? 'Do not change' : 'Correct'} Email`}
-      >
-        <Button
-          icon={!this.state.showEmail ? 'unlock' : 'lock'}
-          minimal={true}
-          disabled={false}
-          onClick={this.handleClickEmail}
-        />
-      </Tooltip>
-    )
     const lockButtonName = (
       <Tooltip
         content={`${this.state.showName ? 'Do not change' : 'Correct'} Name`}
@@ -128,30 +120,14 @@ class User extends Component {
         <Form
           onSubmit={this.onSubmit}
           initialValues={{
-            Email: `${this.props.store.server_redux.email}`,
-            Name: `${this.props.store.server_redux.name}`,
-            Age: `${this.props.store.server_redux.age}`,
+            Name: `${this.props.userDataName}`,
+            Age: `${this.props.userDataAge}`,
           }}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>Change User Data</h1>
                 <img src="Ivan.jpg" />
-                <Field name="Email">
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        fill
-                        rightElement={lockButtonEmail}
-                        type="text"
-                        placeholder="Email"
-                        disabled={this.state.showEmail}
-                        // value={this.props.store.server_redux.email}
-                      />
-                    </div>
-                  )}
-                </Field>
 
                 <Field name="Name">
                   {({ input, meta }) => (
@@ -206,17 +182,14 @@ class User extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    store: store,
+    userDataName: store.server_redux.name,
+    userDataAge: store.server_redux.age,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //transferServerLogin: (value) => dispatch(transferServerLogin(value)),
-    receptionToken: (accessToken, refreshToken) =>
-      dispatch(receptionToken(accessToken, refreshToken)),
-    receptionUser: (name, email, age) =>
-      dispatch(receptionUser(name, email, age)),
+    changeUserInfo: (name, age) => dispatch(changeUserInfo(name, age)),
   }
 }
 

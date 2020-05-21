@@ -16,7 +16,7 @@ import {
   receptionUser,
 } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
-import axios from 'axios'
+import axios from '../../services/axios'
 import { withRouter } from 'react-router'
 
 class Login extends Component {
@@ -52,7 +52,7 @@ class Login extends Component {
 
     try {
       axios.defaults.headers.common['Authorization'] = `${token}`
-      const response = await axios.get('http://localhost:3004/info-user', {
+      const response = await axios.get('info-user', {
         accessToken: token,
       })
 
@@ -82,10 +82,7 @@ class Login extends Component {
       email: value.email,
     }
     try {
-      const response = await axios.post(
-        'http://localhost:3004/signin',
-        authentication
-      )
+      const response = await axios.post('signin', authentication)
 
       this.setState({
         loading: true,

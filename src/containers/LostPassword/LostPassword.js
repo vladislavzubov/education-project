@@ -7,7 +7,7 @@ import {
   required,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
-import axios from 'axios'
+import axios from '../../services/axios'
 
 class LostPassword extends Component {
   state = {
@@ -18,10 +18,7 @@ class LostPassword extends Component {
     console.log(email.email)
 
     try {
-      const response = await axios.post(
-        'http://localhost:3004/lost-password',
-        email
-      )
+      const response = await axios.post('lost-password', email)
       console.log(response)
 
       this.setState({

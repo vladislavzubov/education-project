@@ -1,12 +1,20 @@
-import axios from 'axios'
-
 const initialState = {
   accessToken: '',
   refreshToken: '',
   name: '',
   email: '',
-  age: 12,
+  age: null,
   value: {},
+}
+
+export function changeUserInfo(name, age) {
+  return (dispatch) => {
+    dispatch({
+      type: 'CHANGE_USER_INFO',
+      name,
+      age,
+    })
+  }
 }
 
 export function receptionToken(accessToken, refreshToken) {
@@ -33,6 +41,13 @@ export function receptionUser(name, email, age) {
 export function reducer(state = initialState, action) {
   console.log(action)
   switch (action.type) {
+    case 'CHANGE_USER_INFO': {
+      return {
+        ...state,
+        name: action.name,
+        age: action.age,
+      }
+    }
     case 'RECEPTION_TOKEN': {
       return {
         ...state,
