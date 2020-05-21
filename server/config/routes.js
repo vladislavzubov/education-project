@@ -4,6 +4,8 @@ const registration = require('../app/controllers/registration')
 const info = require('../app/controllers/info')
 const searchByEmail = require('../app/controllers/searchByEmail')
 const authMiddleware = require('../app/middleware/auth')
+const changePassword = require('../app/controllers/changePassword')
+const updateUserInfo = require('../app/controllers/updateUserInfo')
 const cors = require('cors')
 
 module.exports = (app) => {
@@ -27,4 +29,12 @@ module.exports = (app) => {
   //serch by email
 
   app.post('/lost-password', searchByEmail.searchByEmail)
+
+  //Change Password
+
+  app.put('/change-password',authMiddleware, changePassword.changePassword)
+
+  //Update user info
+
+  app.put('/update-user-info', authMiddleware, updateUserInfo.updateUserInfo)
 }
