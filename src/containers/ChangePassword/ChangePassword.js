@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import classes from './ChangePassword.module.css'
 import { Form, Field } from 'react-final-form'
-import { FormGroup, InputGroup, Button } from '@blueprintjs/core'
+import { InputGroup, Button } from '@blueprintjs/core'
 import {
-  minAge,
-  haveNotChar,
   composeValidators,
-  validateEmail,
   required,
   minLength,
   haveOneUppercase,
@@ -17,30 +14,36 @@ import {
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
+import queryString from 'query-string'
 
 class ChangePassword extends Component {
   state = {
     loading: false,
   }
 
-    transferServerRegist = async (value) => {
-      const registPost = {
-       password: value.password,
-      }
-
-      try {
-        axios.defaults.headers.common['Authorization'] = `${token}`
-        const response = await axios.put(
-          'http://localhost:3004/change-password',
-          registPost
-        )
-        console.log('success')
-        return true
-      } catch (e) {
-        console.log('falied')
-        return false
-      }
+  transferServerRegist = async (value) => {
+    
+    
+    const registPost = {
+      password: value.password,
+      key: location.search,
     }
+    console.log(registPost);
+    
+
+    try {
+      
+      const response = await axios.put(
+        'http://localhost:3004/change-password',
+        registPost
+      )
+      console.log('success')
+      return true
+    } catch (e) {
+      console.log('falied')
+      return false
+    }
+  }
 
   onSubmit = async (value) => {
     this.setState({

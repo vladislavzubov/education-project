@@ -32,7 +32,7 @@ module.exports = (app) => {
 
   //Change Password
 
-  app.put('/change-password',authMiddleware, changePassword.changePassword)
+  app.put('/change-password', changePassword.changePassword)
 
   //Update user info
 
