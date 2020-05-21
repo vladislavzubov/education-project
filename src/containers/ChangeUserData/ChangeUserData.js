@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ChangeUserData.module.css'
 import { Form, Field } from 'react-final-form'
-import {  Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
+import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
 import {
   minAge,
   haveNotChar,
@@ -17,8 +17,13 @@ import {
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
+import {
+  receptionToken,
+  receptionUser,
+} from '../../store/reducers/server_redux'
+import { connect } from 'react-redux'
 
-class Registration extends Component {
+class User extends Component {
   state = {
     loading: false,
     showEmail: true,
@@ -28,30 +33,30 @@ class Registration extends Component {
     // type: text,
   }
 
-//   transferServerRegist = async (value) => {
-//     const registPost = {
-//       name: value.userName,
-//       age: value.age,
-//       password: value.password,
-//       email: value.email,
-//     }
+  //   transferServerRegist = async (value) => {
+  //     const registPost = {
+  //       name: value.userName,
+  //       age: value.age,
+  //       password: value.password,
+  //       email: value.email,
+  //     }
 
-//     try {
-//       const response = await axios.post(
-//         'http://localhost:3001/registration',
-//         registPost
-//       )
-//       console.log('success')
-//       return true
-//     } catch (e) {
-//       console.log('falied')
-//       return false
-//     }
-//   }
+  //     try {
+  //       const response = await axios.post(
+  //         'http://localhost:3001/registration',
+  //         registPost
+  //       )
+  //       console.log('success')
+  //       return true
+  //     } catch (e) {
+  //       console.log('falied')
+  //       return false
+  //     }
+  //   }
 
   onSubmit = async (value) => {
-    console.log(value);
-    
+    console.log(value)
+
     this.setState({
       loading: true,
     })
@@ -80,42 +85,44 @@ class Registration extends Component {
   }
 
   render() {
+    console.log(this.props.store)
+
     const lockButtonEmail = (
-        <Tooltip
-          content={`${this.state.showEmail ? 'Do not change' : 'Correct'} Email`}
-        >
-          <Button
-            icon={!this.state.showEmail ? 'unlock' : 'lock'}
-            minimal={true}
-            disabled={false}
-            onClick={this.handleClickEmail}
-          />
-        </Tooltip>
-      )
-      const lockButtonName = (
-        <Tooltip
-          content={`${this.state.showName ? 'Do not change' : 'Correct'} Name`}
-        >
-          <Button
-            icon={!this.state.showName ? 'unlock' : 'lock'}
-            minimal={true}
-            disabled={false}
-            onClick={this.handleClickName}
-          />
-        </Tooltip>
-      )
-      const lockButtonAge = (
-        <Tooltip
-          content={`${this.state.showAge ? 'Do not change' : 'Correct'} Age`}
-        >
-          <Button
-            icon={!this.state.showAge ? 'unlock' : 'lock'}
-            minimal={true}
-            disabled={false}
-            onClick={this.handleClickAge}
-          />
-        </Tooltip>
-      )
+      <Tooltip
+        content={`${this.state.showEmail ? 'Do not change' : 'Correct'} Email`}
+      >
+        <Button
+          icon={!this.state.showEmail ? 'unlock' : 'lock'}
+          minimal={true}
+          disabled={false}
+          onClick={this.handleClickEmail}
+        />
+      </Tooltip>
+    )
+    const lockButtonName = (
+      <Tooltip
+        content={`${this.state.showName ? 'Do not change' : 'Correct'} Name`}
+      >
+        <Button
+          icon={!this.state.showName ? 'unlock' : 'lock'}
+          minimal={true}
+          disabled={false}
+          onClick={this.handleClickName}
+        />
+      </Tooltip>
+    )
+    const lockButtonAge = (
+      <Tooltip
+        content={`${this.state.showAge ? 'Do not change' : 'Correct'} Age`}
+      >
+        <Button
+          icon={!this.state.showAge ? 'unlock' : 'lock'}
+          minimal={true}
+          disabled={false}
+          onClick={this.handleClickAge}
+        />
+      </Tooltip>
+    )
     return (
       <div className={classes.Regist}>
         <Form
@@ -124,7 +131,8 @@ class Registration extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>Change User Data</h1>
-                <Field name="Email" >
+                <img src="Ivan.jpg" />
+                <Field name="Email">
                   {({ input, meta }) => (
                     <div>
                       <InputGroup
@@ -132,18 +140,15 @@ class Registration extends Component {
                         fill
                         rightElement={lockButtonEmail}
                         type="text"
-                        placeholder="Email"
+                        placeholder={this.props.store.server_redux.email}
                         disabled={this.state.showEmail}
+                        // value={this.props.store.server_redux.email}
                       />
-                      
                     </div>
                   )}
                 </Field>
 
-                <Field
-                  name="Name"
-                  
-                >
+                <Field name="Name">
                   {({ input, meta }) => (
                     <div>
                       <InputGroup
@@ -151,18 +156,14 @@ class Registration extends Component {
                         fill
                         rightElement={lockButtonName}
                         type="text"
-                        placeholder="Name"
+                        placeholder={this.props.store.server_redux.name}
                         disabled={this.state.showName}
                       />
-                      
                     </div>
                   )}
                 </Field>
 
-                <Field
-                  name="age"
-                  
-                >
+                <Field name="age">
                   {({ input, meta }) => (
                     <div>
                       <InputGroup
@@ -170,15 +171,12 @@ class Registration extends Component {
                         fill
                         rightElement={lockButtonAge}
                         type="number"
-                        placeholder="Age"
+                        placeholder={this.props.store.server_redux.age}
                         disabled={this.state.showAge}
                       />
-                      
                     </div>
                   )}
                 </Field>
-
-                
 
                 <div className={classes.buttons}>
                   <Button
@@ -201,4 +199,20 @@ class Registration extends Component {
   }
 }
 
-export default Registration
+const mapStateToProps = (store) => {
+  return {
+    store: store,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //transferServerLogin: (value) => dispatch(transferServerLogin(value)),
+    receptionToken: (accessToken, refreshToken) =>
+      dispatch(receptionToken(accessToken, refreshToken)),
+    receptionUser: (name, email, age) =>
+      dispatch(receptionUser(name, email, age)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(User)

@@ -40,7 +40,7 @@ export function reducer(state = initialState, action) {
         refreshToken: action.refreshToken,
       }
     }
-    case 'RECEPTION_TOKEN': {
+    case 'RECEPTION_USER': {
       return {
         ...state,
         name: action.name,

@@ -31,7 +31,6 @@ class App extends Component {
               <li>
                 <Link to="/user">ChangeUserData</Link>
               </li>
-              
             </ul>
           </nav>
 

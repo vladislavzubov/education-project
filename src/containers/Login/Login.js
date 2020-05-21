@@ -17,6 +17,7 @@ import {
 } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { withRouter } from 'react-router'
 
 class Login extends Component {
   state = {
@@ -54,7 +55,6 @@ class Login extends Component {
       const response = await axios.get('http://localhost:3004/info-user', {
         accessToken: token,
       })
-      console.log(response)
 
       this.props.receptionUser(
         response.data.name,
@@ -65,7 +65,8 @@ class Login extends Component {
       this.setState({
         loading: false,
       })
-      window.location.assign('http://localhost:3000/user')
+      this.props.history.replace('/user')
+      //window.location.assign('http://localhost:3000/user')
     } catch (e) {
       // if (response === 987) {
       //   await this.refreshTokenPost(token.refreshToken)
@@ -234,4 +235,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
