@@ -5,8 +5,6 @@ const { passwordCoding } = require('../helpers/passwordHelpers')
 const create = async (req, res) => {
   const verificationOfUserData = await verificationfUserData(req.body)
 
-  
-
   if (!verificationOfUserData) {
     const passwordUser = passwordCoding(req.body.password)
 

@@ -7,7 +7,7 @@ const searchByEmail = (req, res) => {
     .exec()
     .then((user) => {
       if (!user) {
-        res.status(401).json({ message: 'User with this email was not found!' })
+        res.status(204).json({ message: 'User with this email was not found!' })
       } else {
         res.status(200).json({ message: `Password was sent to ${email}` })
       }

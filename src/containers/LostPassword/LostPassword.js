@@ -7,15 +7,37 @@ import {
   required,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
+import axios from 'axios'
 
 class LostPassword extends Component {
   state = {
     loading: false,
   }
 
-  onSubmit = (value) => {
+  postSerchByEmail = async (email) => {
+    console.log(email.email)
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3004/lost-password',
+        email
+      )
+      console.log(response)
+
+      this.setState({
+        loading: false,
+      })
+      // window.location.assign('http://localhost:3000/login')
+    } catch (e) {
+      console.log('falied', e)
+      return
+    }
+  }
+
+  onSubmit = async (value) => {
     console.clear()
     console.log(value)
+    this.postSerchByEmail(value)
     const loading = this.state.loading
     this.setState({
       loading: !loading,
@@ -43,7 +65,7 @@ class LostPassword extends Component {
                         type="email"
                         placeholder="Email"
                         disabled={this.state.loading}
-                        intent = {meta.error ? "danger" : ""}
+                        intent={meta.error ? 'danger' : ''}
                       />
                       {this.state.loading
                         ? null

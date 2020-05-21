@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import classes from './Registration.module.css'
+import classes from './ChangePassword.module.css'
 import { Form, Field } from 'react-final-form'
 import { FormGroup, InputGroup, Button } from '@blueprintjs/core'
 import {
@@ -18,36 +18,31 @@ import {
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
-class Registration extends Component {
+class ChangePassword extends Component {
   state = {
     loading: false,
-    // type: text,
   }
 
-  transferServerRegist = async (value) => {
-    const registPost = {
-      name: value.userName,
-      age: value.age,
-      password: value.password,
-      email: value.email,
-    }
+    transferServerRegist = async (value) => {
+      const registPost = {
+       password: value.password,
+      }
 
-    try {
-      const response = await axios.post(
-        'http://localhost:3004/registration',
-        registPost
-      )
-      console.log('success')
-      return true
-    } catch (e) {
-      console.log('falied')
-      return false
+      try {
+        axios.defaults.headers.common['Authorization'] = `${token}`
+        const response = await axios.put(
+          'http://localhost:3004/change-password',
+          registPost
+        )
+        console.log('success')
+        return true
+      } catch (e) {
+        console.log('falied')
+        return false
+      }
     }
-  }
 
   onSubmit = async (value) => {
-    console.log(value);
-    
     this.setState({
       loading: true,
     })
@@ -67,54 +62,7 @@ class Registration extends Component {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
-                <h1>Registration</h1>
-                <Field name="userName" validate={composeValidators(required)}>
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        type="text"
-                        placeholder="User name"
-                        disabled={this.state.loading}
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
-                <Field
-                  name="email"
-                  validate={composeValidators(required, validateEmail)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        type="email"
-                        disabled={this.state.loading}
-                        placeholder="Email"
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
-                <Field
-                  name="age"
-                  validate={composeValidators(required, haveNotChar, minAge)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        type="number"
-                        disabled={this.state.loading}
-                        placeholder="Age"
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
+                <h1>ChangePassword</h1>
 
                 <Field
                   name="password"
@@ -163,7 +111,6 @@ class Registration extends Component {
                     intent="primary"
                     fill
                     loading={this.state.loading}
-                    // loading="true"
                   />
                 </div>
               </div>
@@ -178,4 +125,4 @@ class Registration extends Component {
   }
 }
 
-export default Registration
+export default ChangePassword
