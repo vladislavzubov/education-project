@@ -1,3 +1,5 @@
+import axios from '../../services/axios'
+
 const initialState = {
   accessToken: '',
   refreshToken: '',
@@ -5,6 +7,26 @@ const initialState = {
   email: '',
   age: null,
   value: {},
+}
+
+export function checkRefreshToken(refreshToken) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('refresh-tokens', {
+        refreshToken: refreshToken,
+      })
+      console.log(response.data.accessToken)
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `${response.data.accessToken}`
+      dispatch({
+        type: 'UPDATE_ACCESS_TOKEN',
+        accessToken: response.data.accessToken,
+      })
+    } catch (e) {
+      console.log('error falied refresh token')
+    }
+  }
 }
 
 export function changeUserInfo(name, age) {
@@ -39,8 +61,13 @@ export function receptionUser(name, email, age) {
 }
 
 export function reducer(state = initialState, action) {
-  console.log(action)
   switch (action.type) {
+    case 'UPDATE_ACCESS_TOKEN': {
+      return {
+        ...state,
+        accessToken: action.accessToken,
+      }
+    }
     case 'CHANGE_USER_INFO': {
       return {
         ...state,
@@ -63,55 +90,6 @@ export function reducer(state = initialState, action) {
         age: action.age,
       }
     }
-
-    /*case 'TRANSFER_SERVER_LOGIN': {
-      const authentication = {
-        password: action.value.password,
-        email: action.value.email,
-      }
-      try {
-        const response = axios.post(
-          'http://localhost:3001/signin',
-          authentication
-        )
-        const succesToken = response.data.tokens.accessToken
-        const refreshToken = response.data.tokens.refreshToken
-        console.log('success email')
-
-        try {
-          const responseUser = axios.get('http://localhost:3001/info-user', {
-            token: succesToken,
-          })
-          console.log('success token')
-          const name = responseUser.name
-          const email = responseUser.email
-          const age = responseUser.age
-
-          window.location.assign('http://localhost:3000/user')
-          return {
-            ...state,
-            succesToken,
-            refreshToken,
-            name,
-            email,
-            age,
-          }
-        } catch (e) {
-          // if (response === 987) {
-          //   await this.refreshTokenPost(token.refreshToken)
-          // }
-          console.log('falied succesToken')
-          return {
-            ...state,
-          }
-        }
-      } catch (e) {
-        console.log('email or password is incorrect ')
-        return {
-          ...state,
-        }
-      }
-    }*/
 
     default: {
       return state

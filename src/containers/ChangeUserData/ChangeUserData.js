@@ -4,9 +4,13 @@ import { Form, Field } from 'react-final-form'
 import { Button, InputGroup, Tooltip } from '@blueprintjs/core'
 import { BrowserRouter as Link } from 'react-router-dom'
 import axios from '../../services/axios'
-import { changeUserInfo } from '../../store/reducers/server_redux'
+import {
+  changeUserInfo,
+  checkRefreshToken,
+} from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import { isEqual } from 'lodash'
+import { request } from 'express'
 
 class User extends Component {
   state = {
@@ -34,8 +38,23 @@ class User extends Component {
 
     if (!comparison) {
       try {
+        // const response = await request.put('update-user-info', changeData);
+        /*
+        async function request(axiosParams, attempt = 1) {
+          try {
+            const response = await axios(axiosParams);
+            return response;
+          } catch (e) {
+            if (e.response.data.errCode === 987 && attempt === 1) {
+              await updateRefreshToken();
+              return request(axiosParams, 2);
+            }
+            throw e;
+          }
+        }
+*/
         const response = await axios.put('update-user-info', changeData)
-
+        console.log(response)
         this.props.changeUserInfo(changeData.name, changeData.age)
         this.setState({
           loading: false,
@@ -43,6 +62,10 @@ class User extends Component {
         console.log('change data user')
         return
       } catch (e) {
+        if (e.response.data.errCode === 987) {
+          await this.props.checkRefreshToken(this.props.userDataRefreshToken)
+          this.changeUserData(value)
+        }
         console.log('falied change data user', e)
         return
       }
@@ -163,11 +186,15 @@ const mapStateToProps = (store) => {
   return {
     userDataName: store.server_redux.name,
     userDataAge: store.server_redux.age,
+    userDataRefreshToken: store.server_redux.refreshToken,
+    userDataAccessToken: store.server_redux.accessToken,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    checkRefreshToken: (refreshToken) =>
+      dispatch(checkRefreshToken(refreshToken)),
     changeUserInfo: (name, age) => dispatch(changeUserInfo(name, age)),
   }
 }
