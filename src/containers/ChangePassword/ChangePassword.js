@@ -15,27 +15,24 @@ import {
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'query-string'
+import ButtonRightIcon from '../../component/ButtonRightIcon/ButtonRightIcon'
 
 class ChangePassword extends Component {
   state = {
     loading: false,
-    showPassword:false
+    showPassword: false,
   }
-  
 
   transferServerRegist = async (value) => {
-    
-    const parsed = queryString.parse(location.search);
+    const parsed = queryString.parse(location.search)
 
     const registPost = {
       password: value.password,
       key: parsed.key,
     }
-    console.log(registPost);
-    
+    console.log(registPost)
 
     try {
-      
       const response = await axios.put(
         'http://localhost:3004/change-password',
         registPost
@@ -59,7 +56,7 @@ class ChangePassword extends Component {
       loading: false,
     })
   }
-  handleLockClick= () => {
+  handleLockClick = () => {
     this.setState({ showPassword: !this.state.showPassword })
   }
 
@@ -84,6 +81,7 @@ class ChangePassword extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>ChangePassword</h1>
+                <ButtonRightIcon name="name" show="show" />
 
                 <Field
                   name="password"
