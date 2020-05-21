@@ -33,10 +33,6 @@ class App extends Component {
                 <Link to="/user">ChangeUserData</Link>
               </li>
 
-              <li>
-                <Link to="/change-password">ChangePassword</Link>
-              </li>
-              
             </ul>
           </nav>
 

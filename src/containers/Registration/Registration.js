@@ -16,7 +16,7 @@ import {
   setRepeatPasswordValue,
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../services/axios'
 
 class Registration extends Component {
   state = {
@@ -33,10 +33,7 @@ class Registration extends Component {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:3004/registration',
-        registPost
-      )
+      const response = await axios.post('registration', registPost)
       console.log('success')
       return true
     } catch (e) {
@@ -46,8 +43,8 @@ class Registration extends Component {
   }
 
   onSubmit = async (value) => {
-    console.log(value);
-    
+    console.log(value)
+
     this.setState({
       loading: true,
     })
