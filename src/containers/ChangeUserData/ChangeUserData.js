@@ -1,52 +1,38 @@
 import React, { Component } from 'react'
 import classes from './ChangeUserData.module.css'
 import { Form, Field } from 'react-final-form'
-import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
-import {
-  minAge,
-  haveNotChar,
-  composeValidators,
-  validateEmail,
-  required,
-  minLength,
-  haveOneUppercase,
-  haveOneNumeral,
-  password,
-  setPasswordValue,
-  setRepeatPasswordValue,
-} from '../../services/validation'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { Button, InputGroup, Tooltip } from '@blueprintjs/core'
+import { BrowserRouter as Link } from 'react-router-dom'
 import axios from '../../services/axios'
-import {
-  receptionToken,
-  receptionUser,
-} from '../../store/reducers/server_redux'
+import { changeUserInfo } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import { isEqual } from 'lodash'
 
 class User extends Component {
   state = {
     loading: false,
-    showEmail: true,
     showName: true,
     showAge: true,
-    loading: false,
-    // type: text,
   }
 
   changeUserData = async (value) => {
     this.setState({
       loading: true,
     })
+
     const globalUserData = {
-      name: userDataName,
-      age: userDataAge,
+      name: this.props.userDataName,
+      age: this.props.userDataAge,
     }
+
     const changeData = {
-      name: value.name,
-      age: value.age,
+      name: value.Name,
+      age: +value.Age,
     }
-    if (isEqual(globalUserData, changeData)) {
+
+    const comparison = isEqual(globalUserData, changeData)
+
+    if (!comparison) {
       try {
         const response = await axios.put('update-user-info', changeData)
 
@@ -61,21 +47,14 @@ class User extends Component {
         return
       }
     }
+    this.setState({
+      loading: false,
+    })
     return console.log('nothing to change')
   }
 
   onSubmit = async (value) => {
-    console.log(value)
-    await this.changeUserData(value),
-      this.setState({
-        loading: true,
-      })
-
-    // await this.transferServerRegist(value)
-    // //const loading = this.state.loading
-    // this.setState({
-    //   loading: false,
-    // })
+    await this.changeUserData(value)
   }
 
   handleClickName = () => {

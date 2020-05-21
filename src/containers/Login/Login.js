@@ -24,32 +24,7 @@ class Login extends Component {
     loading: false,
   }
 
-  /*
-  authorizationLogin = () => {
-    console.clear()
-    console.log('user')
-    userProperties()
-    window.location.assign('http://localhost:3000/user')
-  }
-
-  refreshTokenPost = async (token) => {
-    try {
-      const response = await axios.post(
-
-        
-        { refreshToken: token }
-      )
-      console.log('success refresh token')
-      return true
-    } catch (e) {
-      console.log('falied refresh token')
-      return false
-    }
-  }
-*/
   postToken = async (token) => {
-    // console.log(token)
-
     try {
       axios.defaults.headers.common['Authorization'] = `${token}`
       const response = await axios.get('info-user', {
@@ -66,11 +41,7 @@ class Login extends Component {
         loading: false,
       })
       this.props.history.replace('/user')
-      //window.location.assign('http://localhost:3000/user')
     } catch (e) {
-      // if (response === 987) {
-      //   await this.refreshTokenPost(token.refreshToken)
-      // }
       console.log('falied token')
       return
     }
@@ -103,10 +74,7 @@ class Login extends Component {
   }
 
   onSubmit = async (value) => {
-    //this.authorizationLogin()
     this.postServerLoginLoading(value)
-
-    //const loading = this.state.loading
   }
 
   handleLockClick = () => {
