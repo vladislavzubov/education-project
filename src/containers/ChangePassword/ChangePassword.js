@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ChangePassword.module.css'
 import { Form, Field } from 'react-final-form'
-import { InputGroup, Button } from '@blueprintjs/core'
+import { Tooltip, InputGroup, Button } from '@blueprintjs/core'
 import {
   composeValidators,
   required,
@@ -19,7 +19,9 @@ import queryString from 'query-string'
 class ChangePassword extends Component {
   state = {
     loading: false,
+    showPassword:false
   }
+  
 
   transferServerRegist = async (value) => {
     
@@ -56,8 +58,23 @@ class ChangePassword extends Component {
       loading: false,
     })
   }
+  handleLockClick= () => {
+    this.setState({ showPassword: !this.state.showPassword })
+  }
 
   render() {
+    const lockButton = (
+      <Tooltip
+        content={`${this.state.showPassword ? 'Hide' : 'Show'} Password`}
+      >
+        <Button
+          icon={this.state.showPassword ? 'unlock' : 'lock'}
+          minimal={true}
+          disabled={this.state.loading}
+          onClick={this.handleLockClick}
+        />
+      </Tooltip>
+    )
     return (
       <div className={classes.Regist}>
         <Form
@@ -81,7 +98,9 @@ class ChangePassword extends Component {
                     <div>
                       <InputGroup
                         {...input}
-                        type="password"
+                        rightElement={lockButton}
+                        fill
+                        type={this.state.showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         disabled={this.state.loading}
                       />
@@ -98,8 +117,10 @@ class ChangePassword extends Component {
                     <div>
                       <InputGroup
                         {...input}
-                        type="password"
-                        placeholder="Repeat password"
+                        rightElement={lockButton}
+                        fill
+                        type={this.state.showPassword ? 'text' : 'password'}
+                        placeholder="Password"
                         disabled={this.state.loading}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
