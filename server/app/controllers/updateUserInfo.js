@@ -18,10 +18,12 @@ const updateUserInfo = async (req, res) => {
 
 const verificationfUserData = async (body) => {
   const { email, name } = body
-
-  const res = await User.exists({ $or: [{ email: email }, { name: name }] })
-
-  return res
+  if (!!name) {
+    return false
+  } else {
+    const res = await User.exists({ $or: [{ email: email }, { name: name }] })
+    return res
+  }
 }
 
 module.exports = {

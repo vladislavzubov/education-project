@@ -11,10 +11,7 @@ import {
   haveOneNumeral,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
-import {
-  receptionToken,
-  receptionUser,
-} from '../../store/reducers/server_redux'
+import { receptionUser } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import axios from '../../services/axios'
 import { withRouter } from 'react-router'
@@ -54,21 +51,18 @@ class Login extends Component {
     }
     try {
       const response = await axios.post('signin', authentication)
-
       this.setState({
         loading: true,
       })
-
-      this.props.receptionToken(
-        response.data.tokens.accessToken,
-        response.data.tokens.refreshToken
-      )
-
+      localStorage.setItem('refreshKey', response.data.tokens.refreshToken)
       await this.postToken(response.data.tokens.accessToken)
       console.log('success email')
       return
     } catch (e) {
       console.log('falied email', e)
+      this.setState({
+        loading: false,
+      })
       return
     }
   }
@@ -182,8 +176,6 @@ class Login extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    accessToken: receptionToken(store).accessToken,
-    refreshToken: receptionToken(store).refreshToken,
     name: receptionUser(store).name,
     email: receptionUser(store).email,
     age: receptionUser(store).age,
@@ -192,9 +184,6 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //transferServerLogin: (value) => dispatch(transferServerLogin(value)),
-    receptionToken: (accessToken, refreshToken) =>
-      dispatch(receptionToken(accessToken, refreshToken)),
     receptionUser: (name, email, age) =>
       dispatch(receptionUser(name, email, age)),
   }
