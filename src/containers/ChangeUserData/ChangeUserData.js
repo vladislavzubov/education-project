@@ -3,17 +3,53 @@ import classes from './ChangeUserData.module.css'
 import { Form } from 'react-final-form'
 import { Button } from '@blueprintjs/core'
 import { BrowserRouter as Link } from 'react-router-dom'
-import { changeUserInfo } from '../../store/reducers/server_redux'
+import {
+  changeUserInfo,
+  receptionUser,
+} from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import { isEqual } from 'lodash'
 import { requests } from '../../services/requests'
 import InputDisabled from '../../component/InputDisabled/InputDisabled'
+import axios from '../../services/axios'
 
 class User extends Component {
   state = {
     loading: false,
     showName: true,
     showAge: true,
+  }
+
+  componentDidMount() {
+    console.log(localStorage.getItem('accessKey'))
+    axios.defaults.headers.common['Authorization'] = `${localStorage.getItem(
+      'accessKey'
+    )}`
+    this.updateUserData(localStorage.getItem('accessKey'))
+  }
+
+  updateUserData = async (token) => {
+    console.log(token)
+
+    try {
+      const response = await axios.get('info-user', {
+        accessToken: token,
+      })
+      console.log(response)
+
+      this.props.receptionUser(
+        response.data.name,
+        response.data.email,
+        response.data.age
+      )
+      console.log('success data user')
+      this.setState({
+        loading: false,
+      })
+    } catch (e) {
+      console.log('falied data user', e.response)
+      return
+    }
   }
 
   changeUserData = async (value) => {
@@ -57,6 +93,10 @@ class User extends Component {
   }
 
   render() {
+    console.log({
+      Name: `${this.props.userDataName}`,
+      Age: `${this.props.userDataAge}`,
+    })
     return (
       <div className={classes.Regist}>
         <Form
@@ -109,12 +149,17 @@ const mapStateToProps = (store) => {
   return {
     userDataName: store.server_redux.name,
     userDataAge: store.server_redux.age,
+    name: receptionUser(store).name,
+    email: receptionUser(store).email,
+    age: receptionUser(store).age,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeUserInfo: (name, age) => dispatch(changeUserInfo(name, age)),
+    receptionUser: (name, email, age) =>
+      dispatch(receptionUser(name, email, age)),
   }
 }
 

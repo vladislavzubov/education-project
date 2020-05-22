@@ -3,6 +3,7 @@ import axios from './axios'
 export async function requests(methods, route, data, count = 1) {
   try {
     const response = await axios({ method: methods, url: route, data: data })
+    console.log(methods, route, data, count)
     return response
   } catch (e) {
     if (e.response.data.errCode === 987 && count === 1) {
