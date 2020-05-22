@@ -12,13 +12,13 @@ import { withRouter } from 'react-router'
 //this.roter.locasginioll
 
 class IndexContainers extends Component {
-  componentDidMount() {
-    if (localStorage.getItem('accessKey')) {
-      this.props.history.replace('/user')
-    } else {
-      this.props.history.replace('/login')
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.getItem('accessKey')) {
+  //     this.props.history.replace('/user')
+  //   } else {
+  //     this.props.history.replace('/login')
+  //   }
+  // }
 
   render() {
     return (

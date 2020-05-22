@@ -35,7 +35,7 @@ class InputDisabled extends Component {
                 {...input}
                 rightElement={lockButton}
                 fill
-                type={!this.state.type}
+                type={this.state.type}
                 placeholder={this.state.placeholder}
                 disabled={!this.state.showButton}
               />

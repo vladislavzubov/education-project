@@ -15,7 +15,7 @@ const searchByEmail = (req, res) => {
     .exec()
     .then(async (user) => {
       if (!user) {
-        res.status(204).json({ message: 'User with this email was not found!' })
+        res.status(404).json({ message: 'User with this email was not found!' })
       } else {
         const result = await sendEmail({
           email,

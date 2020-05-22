@@ -82,7 +82,7 @@ class User extends Component {
                 <InputDisabled
                   name="Age"
                   placeholder="Age"
-                  type="number"
+                  type="text"
                   show={false}
                 />
 
