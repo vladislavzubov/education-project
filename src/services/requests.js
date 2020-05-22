@@ -19,7 +19,6 @@ async function checkRefreshToken() {
     const response = await axios.post('refresh-tokens', {
       refreshToken: refreshToken,
     })
-    console.log(response.data.accessToken)
     axios.defaults.headers.common[
       'Authorization'
     ] = `${response.data.accessToken}`
