@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import classes from './ChangePassword.module.css'
 import { Form, Field } from 'react-final-form'
-import { Tooltip, InputGroup, Button } from '@blueprintjs/core'
+import { Button } from '@blueprintjs/core'
 import {
-  composeValidators,
   required,
   minLength,
   haveOneUppercase,
@@ -12,10 +11,10 @@ import {
   setPasswordValue,
   setRepeatPasswordValue,
 } from '../../services/validation'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'query-string'
-import ButtonRightIcon from '../../component/InputFull/InputFull'
+import InputFull from '../../component/InputFull/InputFull'
 
 class ChangePassword extends Component {
   state = {
@@ -51,28 +50,12 @@ class ChangePassword extends Component {
     })
 
     await this.transferServerRegist(value)
-    //const loading = this.state.loading
     this.setState({
       loading: false,
     })
   }
-  handleLockClick = () => {
-    this.setState({ showPassword: !this.state.showPassword })
-  }
 
   render() {
-    const lockButton = (
-      <Tooltip
-        content={`${this.state.showPassword ? 'Hide' : 'Show'} Password`}
-      >
-        <Button
-          icon={this.state.showPassword ? 'unlock' : 'lock'}
-          minimal={true}
-          disabled={this.state.loading}
-          onClick={this.handleLockClick}
-        />
-      </Tooltip>
-    )
     return (
       <div className={classes.Regist}>
         <Form
@@ -81,61 +64,35 @@ class ChangePassword extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>ChangePassword</h1>
-                <ButtonRightIcon name="name" show="show" />
 
-                <Field
+                <InputFull
                   name="password"
-                  validate={composeValidators(
+                  placeholder="Password"
+                  rightElement={true}
+                  show={true}
+                  validate={[
                     required,
                     minLength,
                     haveOneUppercase,
                     haveOneNumeral,
-                    setPasswordValue
-                  )}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        rightElement={lockButton}
-                        fill
-                        type={this.state.showPassword ? 'text' : 'password'}
-                        placeholder="Password"
-                        disabled={this.state.loading}
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
-                <Field
+                    setPasswordValue,
+                  ]}
+                />
+                <InputFull
                   name="repeatPassword"
-                  validate={composeValidators(required, setRepeatPasswordValue)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        rightElement={lockButton}
-                        fill
-                        type={this.state.showPassword ? 'text' : 'password'}
-                        placeholder="Password"
-                        disabled={this.state.loading}
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
+                  placeholder="Password"
+                  rightElement={true}
+                  show={true}
+                  validate={[required, setRepeatPasswordValue]}
+                />
 
-                <div className={classes.buttons}>
-                  <Button
-                    type="sumbit"
-                    text="Sumbit"
-                    intent="primary"
-                    fill
-                    loading={this.state.loading}
-                  />
-                </div>
+                <Button
+                  type="sumbit"
+                  text="Sumbit"
+                  intent="primary"
+                  fill
+                  loading={this.state.loading}
+                />
               </div>
             </form>
           )}

@@ -3,7 +3,6 @@ import { Form, Field } from 'react-final-form'
 import { Link } from 'react-router-dom'
 import classes from './Login.module.css'
 import {
-  composeValidators,
   validateEmail,
   required,
   minLength,
@@ -15,6 +14,7 @@ import { receptionUser } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import axios from '../../services/axios'
 import { withRouter } from 'react-router'
+import InputFull from '../../component/InputFull/InputFull'
 
 class Login extends Component {
   state = {
@@ -38,7 +38,6 @@ class Login extends Component {
         loading: false,
       })
       this.props.history.replace('/user')
-
     } catch (e) {
       console.log('falied token')
       return
@@ -73,23 +72,7 @@ class Login extends Component {
     this.postServerLoginLoading(value)
   }
 
-  handleLockClick = () => {
-    this.setState({ showPassword: !this.state.showPassword })
-  }
-
   render() {
-    const lockButton = (
-      <Tooltip
-        content={`${this.state.showPassword ? 'Hide' : 'Show'} Password`}
-      >
-        <Button
-          icon={this.state.showPassword ? 'unlock' : 'lock'}
-          minimal={true}
-          disabled={this.state.loading}
-          onClick={this.handleLockClick}
-        />
-      </Tooltip>
-    )
     return (
       <div className={classes.Login}>
         <Form
@@ -103,57 +86,26 @@ class Login extends Component {
               <h1>Login</h1>
 
               <form onSubmit={handleSubmit}>
-                <Field
+                <InputFull
                   name="email"
-                  validate={composeValidators(required, validateEmail)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        fill
-                        type="email"
-                        placeholder="Email"
-                        disabled={this.state.loading}
-                        intent={meta.error ? 'danger' : ''}
-                      />
+                  placeholder="Email"
+                  validate={[required, validateEmail]}
+                  loading={this.state.loading}
+                />
 
-                      {this.state.loading
-                        ? null
-                        : meta.error &&
-                          meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
-                <Field
+                <InputFull
                   name="password"
-                  validate={composeValidators(
+                  placeholder="Password"
+                  rightElement={true}
+                  show={true}
+                  validate={[
                     required,
                     minLength,
                     haveOneUppercase,
-                    haveOneNumeral
-                  )}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        fill
-                        rightElement={lockButton}
-                        type={this.state.showPassword ? 'text' : 'password'}
-                        placeholder="Password"
-                        disabled={this.state.loading}
-                        intent={meta.error ? 'danger' : ''}
-                      />
-
-                      {this.state.loading
-                        ? null
-                        : meta.error &&
-                          meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
+                    haveOneNumeral,
+                  ]}
+                  loading={this.state.loading}
+                />
 
                 <Button
                   type="submit"

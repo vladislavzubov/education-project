@@ -8,6 +8,7 @@ import {
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup } from '@blueprintjs/core'
 import axios from '../../services/axios'
+import InputFull from '../../component/InputFull/InputFull'
 
 class LostPassword extends Component {
   state = {
@@ -24,7 +25,6 @@ class LostPassword extends Component {
       this.setState({
         loading: false,
       })
-      // window.location.assign('http://localhost:3000/login')
     } catch (e) {
       console.log('falied', e)
       return
@@ -50,27 +50,12 @@ class LostPassword extends Component {
             <Card interactive={true} elevation={Elevation.TWO}>
               <h1>Lost Password</h1>
               <form onSubmit={handleSubmit}>
-                <Field
+                <InputFull
                   name="email"
-                  validate={composeValidators(required, validateEmail)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <InputGroup
-                        {...input}
-                        fill
-                        type="email"
-                        placeholder="Email"
-                        disabled={this.state.loading}
-                        intent={meta.error ? 'danger' : ''}
-                      />
-                      {this.state.loading
-                        ? null
-                        : meta.error &&
-                          meta.touched && <span>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
+                  placeholder="Email"
+                  validate={[required, validateEmail]}
+                  loading={this.state.loading}
+                />
 
                 <Button
                   type="submit"
@@ -78,7 +63,7 @@ class LostPassword extends Component {
                   fill
                   intent="primary"
                   loading={this.state.loading}
-                ></Button>
+                />
               </form>
             </Card>
           )}
