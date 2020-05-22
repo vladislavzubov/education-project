@@ -15,7 +15,7 @@ import {
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'query-string'
-import ButtonRightIcon from '../../component/ButtonRightIcon/ButtonRightIcon'
+import ButtonRightIcon from '../../component/InputFull/InputFull'
 
 class ChangePassword extends Component {
   state = {
