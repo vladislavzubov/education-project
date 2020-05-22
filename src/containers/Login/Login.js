@@ -38,6 +38,7 @@ class Login extends Component {
         loading: false,
       })
       this.props.history.replace('/user')
+
     } catch (e) {
       console.log('falied token')
       return
@@ -51,6 +52,7 @@ class Login extends Component {
     }
     try {
       const response = await axios.post('signin', authentication)
+
       this.setState({
         loading: true,
       })

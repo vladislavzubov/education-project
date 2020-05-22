@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Layout from "./hoc/Layout/Layout";
 import './App.css'
 import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
@@ -41,8 +40,6 @@ class App extends Component {
               <li>
                 <Link to="/probe">Probe</Link>
               </li>
-              
-
             </ul>
           </nav>
 
@@ -63,7 +60,7 @@ class App extends Component {
               <LostPassword />
             </Route>
             <Route path="/probe">
-              <Probe/>
+              <Probe />
             </Route>
             <Route path="/">
               <Home />
