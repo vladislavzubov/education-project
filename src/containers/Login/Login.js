@@ -10,38 +10,15 @@ import {
   haveOneNumeral,
 } from '../../services/validation'
 import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
-import { receptionUser } from '../../store/reducers/server_redux'
 import { connect } from 'react-redux'
 import axios from '../../services/axios'
 import { withRouter } from 'react-router'
 import InputFull from '../../component/InputFull/InputFull'
+import { requests } from '../../services/requests'
 
 class Login extends Component {
   state = {
     loading: false,
-  }
-
-  postToken = async (token) => {
-    try {
-      axios.defaults.headers.common['Authorization'] = `${token}`
-      const response = await axios.get('info-user', {
-        accessToken: token,
-      })
-
-      this.props.receptionUser(
-        response.data.name,
-        response.data.email,
-        response.data.age
-      )
-      console.log('success token')
-      this.setState({
-        loading: false,
-      })
-      this.props.history.replace('/user')
-    } catch (e) {
-      console.log('falied token')
-      return
-    }
   }
 
   postServerLoginLoading = async (value) => {
@@ -50,14 +27,17 @@ class Login extends Component {
       email: value.email,
     }
     try {
-      const response = await axios.post('signin', authentication)
-
+      const response = await requests('post', 'signin', authentication, 2)
       this.setState({
         loading: true,
       })
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `${response.data.tokens.accessToken}`
       localStorage.setItem('refreshKey', response.data.tokens.refreshToken)
       localStorage.setItem('accessKey', response.data.tokens.accessToken)
-      await this.postToken(response.data.tokens.accessToken)
+      //await this.postToken(response.data.tokens.accessToken)
+      this.props.history.replace('/user')
       console.log('success email')
       return
     } catch (e) {
@@ -130,18 +110,11 @@ class Login extends Component {
 }
 
 const mapStateToProps = (store) => {
-  return {
-    name: receptionUser(store).name,
-    email: receptionUser(store).email,
-    age: receptionUser(store).age,
-  }
+  return
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    receptionUser: (name, email, age) =>
-      dispatch(receptionUser(name, email, age)),
-  }
+  return
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
