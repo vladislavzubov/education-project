@@ -38,7 +38,6 @@ class Login extends Component {
         loading: false,
       })
       this.props.history.replace('/user')
-
     } catch (e) {
       console.log('falied token')
       return
@@ -57,6 +56,7 @@ class Login extends Component {
         loading: true,
       })
       localStorage.setItem('refreshKey', response.data.tokens.refreshToken)
+      localStorage.setItem('accessKey', response.data.tokens.accessToken)
       await this.postToken(response.data.tokens.accessToken)
       console.log('success email')
       return
