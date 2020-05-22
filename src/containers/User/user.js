@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Field } from 'react-final-form'
-import { Link } from 'react-router-dom'
+import { Form } from 'react-final-form'
 import classes from './user.module.css'
 import { Card, Elevation, InputGroup, FormGroup } from '@blueprintjs/core'
 import { connect } from 'react-redux'

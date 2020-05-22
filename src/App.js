@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Layout from "./hoc/Layout/Layout";
 import './App.css'
 import Login from './containers/Login/Login'
 import Registration from './containers/Registration/Registration'
@@ -8,6 +7,7 @@ import LostPassword from './containers/LostPassword/LostPassword'
 import ChangeUserData from './containers/ChangeUserData/ChangeUserData'
 import ChangePassword from './containers/ChangePassword/ChangePassword'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import Probe from './containers/Probe'
 
 class App extends Component {
   render() {
@@ -33,6 +33,13 @@ class App extends Component {
                 <Link to="/user">ChangeUserData</Link>
               </li>
 
+              <li>
+                <Link to="/change-password">ChangePassword</Link>
+              </li>
+
+              <li>
+                <Link to="/probe">Probe</Link>
+              </li>
             </ul>
           </nav>
 
@@ -51,6 +58,9 @@ class App extends Component {
             </Route>
             <Route path="/LostPassword">
               <LostPassword />
+            </Route>
+            <Route path="/probe">
+              <Probe />
             </Route>
             <Route path="/">
               <Home />

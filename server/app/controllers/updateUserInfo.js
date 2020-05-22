@@ -14,19 +14,16 @@ const updateUserInfo = async (req, res) => {
   } else {
     res.status(404).json({ message: 'A user with this data already exists ' })
   }
-
-  User.findOneAndUpdate({ _id: userId }, body, { new: true })
-    .exec()
-    .then((user) => res.json(user))
-    .catch((err) => res.status(500).json({ message: err.message }))
 }
 
 const verificationfUserData = async (body) => {
   const { email, name } = body
-
-  const res = await User.exists({ $or: [{ email: email }, { name: name }] })
-
-  return res
+  if (!!name) {
+    return false
+  } else {
+    const res = await User.exists({ $or: [{ email: email }, { name: name }] })
+    return res
+  }
 }
 
 module.exports = {
