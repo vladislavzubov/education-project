@@ -1,25 +1,16 @@
 import React, { Component } from 'react'
-import classes from './InputFull.module.css'
-import {
-  composeValidators,
-  validateEmail,
-  required,
-  minLength,
-  haveOneUppercase,
-  haveOneNumeral,
-} from '../../services/validation'
 import { validateProps } from './config'
-
 import { Field } from 'react-final-form'
-import { Tooltip, InputGroup, Button } from '@blueprintjs/core'
+import { Tooltip, InputGroup, Button, FormGroup } from '@blueprintjs/core'
 
 class InputFull extends Component {
   state = {
-    loading: false,
-    showButton: false,
+    loading: this.props.loading,
+    showButton: this.props.show,
     name: this.props.name,
     validate: this.props.validate,
     rightElement: this.props.rightElement,
+    placeholder: this.props.placeholder,
   }
 
   handleLockClick = () => {
@@ -39,22 +30,27 @@ class InputFull extends Component {
     )
 
     return (
-      <div className={classes.Button}>
+      <div>
         <Field
           name={this.state.name}
           validate={validateProps(this.state.validate)}
         >
           {({ input, meta }) => (
             <div>
-              <InputGroup
-                {...input}
-                rightElement={this.state.rightElement ? lockButton : null}
-                fill
-                type={this.state.showButton ? 'text' : 'password'}
-                placeholder={this.state.name}
-                disabled={this.state.loading}
-              />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
+              <FormGroup
+                helperText={
+                  meta.error && meta.touched && <span>{meta.error}</span>
+                }
+              >
+                <InputGroup
+                  {...input}
+                  rightElement={this.state.rightElement ? lockButton : null}
+                  fill
+                  type={!this.state.showButton ? 'text' : 'password'}
+                  placeholder={this.state.placeholder}
+                  disabled={this.state.loading}
+                />
+              </FormGroup>
             </div>
           )}
         </Field>
