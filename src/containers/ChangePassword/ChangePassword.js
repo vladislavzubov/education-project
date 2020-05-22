@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import classes from './ChangePassword.module.css'
 import { Form, Field } from 'react-final-form'
-import { FormGroup, InputGroup, Button } from '@blueprintjs/core'
+import { Tooltip, InputGroup, Button } from '@blueprintjs/core'
 import {
-  minAge,
-  haveNotChar,
   composeValidators,
-  validateEmail,
   required,
   minLength,
   haveOneUppercase,
@@ -17,30 +14,36 @@ import {
 } from '../../services/validation'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
+import queryString from 'query-string'
+import ButtonRightIcon from '../../component/InputFull/InputFull'
 
 class ChangePassword extends Component {
   state = {
     loading: false,
+    showPassword: false,
   }
 
-    transferServerRegist = async (value) => {
-      const registPost = {
-       password: value.password,
-      }
+  transferServerRegist = async (value) => {
+    const parsed = queryString.parse(location.search)
 
-      try {
-        axios.defaults.headers.common['Authorization'] = `${token}`
-        const response = await axios.put(
-          'http://localhost:3004/change-password',
-          registPost
-        )
-        console.log('success')
-        return true
-      } catch (e) {
-        console.log('falied')
-        return false
-      }
+    const registPost = {
+      password: value.password,
+      key: parsed.key,
     }
+    console.log(registPost)
+
+    try {
+      const response = await axios.put(
+        'http://localhost:3004/change-password',
+        registPost
+      )
+      console.log('success')
+      return true
+    } catch (e) {
+      console.log('falied')
+      return false
+    }
+  }
 
   onSubmit = async (value) => {
     this.setState({
@@ -53,8 +56,23 @@ class ChangePassword extends Component {
       loading: false,
     })
   }
+  handleLockClick = () => {
+    this.setState({ showPassword: !this.state.showPassword })
+  }
 
   render() {
+    const lockButton = (
+      <Tooltip
+        content={`${this.state.showPassword ? 'Hide' : 'Show'} Password`}
+      >
+        <Button
+          icon={this.state.showPassword ? 'unlock' : 'lock'}
+          minimal={true}
+          disabled={this.state.loading}
+          onClick={this.handleLockClick}
+        />
+      </Tooltip>
+    )
     return (
       <div className={classes.Regist}>
         <Form
@@ -63,6 +81,7 @@ class ChangePassword extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>ChangePassword</h1>
+                <ButtonRightIcon name="name" show="show" />
 
                 <Field
                   name="password"
@@ -78,7 +97,9 @@ class ChangePassword extends Component {
                     <div>
                       <InputGroup
                         {...input}
-                        type="password"
+                        rightElement={lockButton}
+                        fill
+                        type={this.state.showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         disabled={this.state.loading}
                       />
@@ -95,8 +116,10 @@ class ChangePassword extends Component {
                     <div>
                       <InputGroup
                         {...input}
-                        type="password"
-                        placeholder="Repeat password"
+                        rightElement={lockButton}
+                        fill
+                        type={this.state.showPassword ? 'text' : 'password'}
+                        placeholder="Password"
                         disabled={this.state.loading}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}

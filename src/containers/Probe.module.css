@@ -1,0 +1,29 @@
+.Probe{
+    width: 400px;
+    margin: 5px;
+    padding: 30px;
+    background-color: #2f9ae1;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Probe h1{
+    color: #394B59;
+    font-weight: normal;
+}
+.Probe Button{
+    margin: 5px;
+}
+.Probe Input{
+    margin: 5px;
+    
+}
+.Probe span{
+    margin-top: 2px;
+}
+.Probe p{
+    color: white;
+}
+.Probe p Link{
+    color: white;
+}
