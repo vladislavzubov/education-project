@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './ChangePassword.module.css';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 import { Button } from '@blueprintjs/core';
 import {
   required,

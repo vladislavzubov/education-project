@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Registration.module.css';
-import { Form, Field } from 'react-final-form';
-import { Tooltip, InputGroup, Button } from '@blueprintjs/core';
+import { Form } from 'react-final-form';
+import { Button } from '@blueprintjs/core';
 import {
   minAge,
   haveNotChar,
@@ -122,7 +122,6 @@ class Registration extends Component {
                   intent="primary"
                   fill
                   loading={this.state.loading}
-                  // loading="true"
                 />
               </div>
             </form>

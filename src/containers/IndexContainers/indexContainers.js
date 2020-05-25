@@ -9,17 +9,8 @@ import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Probe from '../../containers/Probe';
 import { withRouter } from 'react-router';
-//this.roter.locasginioll
 
 class IndexContainers extends Component {
-  // componentDidMount() {
-  //   if (localStorage.getItem('accessKey')) {
-  //     this.props.history.replace('/user')
-  //   } else {
-  //     this.props.history.replace('/login')
-  //   }
-  // }
-
   render() {
     return (
       <div>

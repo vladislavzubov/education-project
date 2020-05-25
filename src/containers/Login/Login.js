@@ -9,13 +9,7 @@ import {
   haveOneUppercase,
   haveOneNumeral,
 } from '../../services/validation';
-import {
-  Button,
-  Card,
-  Elevation,
-  InputGroup,
-  Tooltip,
-} from '@blueprintjs/core';
+import { Button, Card, Elevation } from '@blueprintjs/core';
 import { connect } from 'react-redux';
 import axios from '../../services/axios';
 import { withRouter } from 'react-router';
@@ -42,7 +36,6 @@ class Login extends Component {
       ] = `${response.data.tokens.accessToken}`;
       localStorage.setItem('refreshKey', response.data.tokens.refreshToken);
       localStorage.setItem('accessKey', response.data.tokens.accessToken);
-      //await this.postToken(response.data.tokens.accessToken)
       this.props.history.replace('/user');
       console.log('success email');
       return;
