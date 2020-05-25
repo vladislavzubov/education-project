@@ -22,6 +22,7 @@ class Registration extends Component {
   state = {
     loading: false,
     showPassword: false,
+    errMessage: false,
   }
 
   transferServerRegist = async (value) => {
@@ -34,23 +35,22 @@ class Registration extends Component {
 
     try {
       const response = await axios.post('registration', registPost)
-      console.log('success')
+      this.setState({ loading: false, errMessage: false })
+      // console.log('success')
       return true
     } catch (e) {
-      console.log('falied')
+      this.setState({ loading: false, errMessage: e.response.data.message })
+      // console.log('falied', e.response.data.message)
       return false
     }
   }
 
   onSubmit = async (value) => {
-    console.log(value)
-
     this.setState({
       loading: true,
     })
 
     await this.transferServerRegist(value)
-    //const loading = this.state.loading
     this.setState({
       loading: false,
     })
@@ -65,7 +65,11 @@ class Registration extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>Registration</h1>
-
+                {this.state.errMessage ? (
+                  <h3>{this.state.errMessage}</h3>
+                ) : (
+                  <h3>User successfully registered</h3>
+                )}
                 <InputFull
                   name="userName"
                   placeholder="User name"
