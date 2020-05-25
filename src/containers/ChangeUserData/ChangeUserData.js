@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ChangeUserData.module.css'
 import { Form } from 'react-final-form'
-import { Button } from '@blueprintjs/core'
+import { Button, Spinner } from '@blueprintjs/core'
 import { BrowserRouter as Link } from 'react-router-dom'
 import {
   changeUserInfo,
@@ -15,24 +15,27 @@ import axios from '../../services/axios'
 
 class User extends Component {
   state = {
+    download: false,
     loading: false,
     showName: true,
     showAge: true,
   }
 
   componentDidMount() {
-    console.log(localStorage.getItem('accessKey'))
     axios.defaults.headers.common['Authorization'] = `${localStorage.getItem(
       'accessKey'
     )}`
     this.updateUserData(localStorage.getItem('accessKey'))
   }
 
-  updateUserData = async (token) => {
-    console.log(token)
+  componentWillUnmount() {}
 
+  updateUserData = async (token) => {
+    this.setState({
+      download: true,
+    })
     try {
-      const response = await axios.get('info-user', {
+      const response = await requests('get', 'info-user', {
         accessToken: token,
       })
       console.log(response)
@@ -50,6 +53,9 @@ class User extends Component {
       console.log('falied data user', e.response)
       return
     }
+    this.setState({
+      download: false,
+    })
   }
 
   changeUserData = async (value) => {
@@ -97,7 +103,11 @@ class User extends Component {
       Name: `${this.props.userDataName}`,
       Age: `${this.props.userDataAge}`,
     })
-    return (
+    return this.state.download ? (
+      <div>
+        <Spinner />
+      </div>
+    ) : (
       <div className={classes.Regist}>
         <Form
           onSubmit={this.onSubmit}
