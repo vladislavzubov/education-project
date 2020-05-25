@@ -1,3 +1,3 @@
-require("./product");
-require("./user");
-require("./token");
+require('./product');
+require('./user');
+require('./token');

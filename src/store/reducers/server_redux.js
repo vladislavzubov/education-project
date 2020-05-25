@@ -3,7 +3,7 @@ const initialState = {
   email: '',
   age: null,
   value: {},
-}
+};
 
 export function changeUserInfo(name, age) {
   return (dispatch) => {
@@ -11,8 +11,8 @@ export function changeUserInfo(name, age) {
       type: 'CHANGE_USER_INFO',
       name,
       age,
-    })
-  }
+    });
+  };
 }
 
 export function receptionUser(name, email, age) {
@@ -22,8 +22,8 @@ export function receptionUser(name, email, age) {
       name,
       email,
       age,
-    })
-  }
+    });
+  };
 }
 
 export function reducer(state = initialState, action) {
@@ -33,7 +33,7 @@ export function reducer(state = initialState, action) {
         ...state,
         name: action.name,
         age: action.age,
-      }
+      };
     }
     case 'RECEPTION_USER': {
       return {
@@ -41,11 +41,11 @@ export function reducer(state = initialState, action) {
         name: action.name,
         email: action.email,
         age: action.age,
-      }
+      };
     }
 
     default: {
-      return state
+      return state;
     }
   }
 }

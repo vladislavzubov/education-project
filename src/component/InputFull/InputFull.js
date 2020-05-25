@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { validateProps } from './config'
-import { Field } from 'react-final-form'
-import { Tooltip, InputGroup, Button, FormGroup } from '@blueprintjs/core'
+import React, { Component } from 'react';
+import { validateProps } from './config';
+import { Field } from 'react-final-form';
+import { Tooltip, InputGroup, Button, FormGroup } from '@blueprintjs/core';
 
 class InputFull extends Component {
   state = {
@@ -11,11 +11,11 @@ class InputFull extends Component {
     validate: this.props.validate,
     rightElement: this.props.rightElement,
     placeholder: this.props.placeholder,
-  }
+  };
 
   handleLockClick = () => {
-    this.setState({ showButton: !this.state.showButton })
-  }
+    this.setState({ showButton: !this.state.showButton });
+  };
 
   render() {
     const lockButton = (
@@ -27,7 +27,7 @@ class InputFull extends Component {
           onClick={this.handleLockClick}
         />
       </Tooltip>
-    )
+    );
 
     return (
       <div>
@@ -55,8 +55,8 @@ class InputFull extends Component {
           )}
         </Field>
       </div>
-    )
+    );
   }
 }
 
-export default InputFull
+export default InputFull;

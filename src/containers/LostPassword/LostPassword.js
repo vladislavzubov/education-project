@@ -1,41 +1,41 @@
-import React, { Component } from 'react'
-import { Form } from 'react-final-form'
-import classes from './LostPassword.module.css'
-import { validateEmail, required } from '../../services/validation'
-import { Button, Card, Elevation, Popover } from '@blueprintjs/core'
-import axios from '../../services/axios'
-import InputFull from '../../component/InputFull/InputFull'
+import React, { Component } from 'react';
+import { Form } from 'react-final-form';
+import classes from './LostPassword.module.css';
+import { validateEmail, required } from '../../services/validation';
+import { Button, Card, Elevation, Popover } from '@blueprintjs/core';
+import axios from '../../services/axios';
+import InputFull from '../../component/InputFull/InputFull';
 
 class LostPassword extends Component {
   state = {
     loading: false,
     errMessage: false,
-  }
+  };
 
   postSerchByEmail = async (email) => {
     try {
-      const response = await axios.post('lost-password', email)
+      const response = await axios.post('lost-password', email);
       this.setState({
         loading: false,
         errMessage: false,
-      })
+      });
     } catch (e) {
       this.setState({
         errMessage: e.response.data.message,
         loading: false,
-      })
-      console.log('falied', e.response.data.message)
-      return
+      });
+      console.log('falied', e.response.data.message);
+      return;
     }
-  }
+  };
 
   onSubmit = async (value) => {
-    this.postSerchByEmail(value)
-    const loading = this.state.loading
+    this.postSerchByEmail(value);
+    const loading = this.state.loading;
     this.setState({
       loading: !loading,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -68,8 +68,8 @@ class LostPassword extends Component {
           )}
         />
       </div>
-    )
+    );
   }
 }
 
-export default LostPassword
+export default LostPassword;

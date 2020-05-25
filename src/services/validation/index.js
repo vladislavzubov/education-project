@@ -3,7 +3,7 @@ export function composeValidators(...validators) {
     validators.reduce(
       (error, validator) => error || validator(value),
       undefined
-    )
+    );
 }
 
 export function validateEmail(value) {
@@ -11,39 +11,39 @@ export function validateEmail(value) {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   )
     ? undefined
-    : 'Enter correct Email'
+    : 'Enter correct Email';
 }
 
 export function required(value) {
-  return value ? undefined : 'Required'
+  return value ? undefined : 'Required';
 }
 
 export function minLength(value = '') {
-  return value.split('').length < 6 ? 'Input at min 6 symbol' : undefined
+  return value.split('').length < 6 ? 'Input at min 6 symbol' : undefined;
 }
 
 export function haveOneUppercase(value = '') {
   return value.match(/[A-Z]/g) === null
     ? 'At least one uppercase letter is required'
-    : undefined
+    : undefined;
 }
 
 export function haveOneNumeral(value = '') {
   return value.replace(/\D+/g, '') === ''
     ? 'At least one digit is needed'
-    : undefined
+    : undefined;
 }
 
 export function haveNotChar(value = '') {
   return value.match(/[a-z]/g) || value.match(/[A-Z]/g) !== null
     ? 'Enter only numbers'
-    : undefined
+    : undefined;
 }
 
 export function minAge(value = '') {
   return Number(value) > 10 && Number(value) < 120
     ? undefined
-    : 'Enter the correct age'
+    : 'Enter the correct age';
 }
 
 // export function similarPassword(value = '') {
@@ -73,30 +73,30 @@ export function minAge(value = '') {
 // }
 
 const validatePasswords = (function () {
-  let password
-  let repeatPassword
+  let password;
+  let repeatPassword;
   function setPassword(value) {
-    password = value
+    password = value;
   }
   function setRepeatPassword(value) {
-    repeatPassword = value
+    repeatPassword = value;
   }
   function chekPassword() {
-    return password === repeatPassword
+    return password === repeatPassword;
   }
   return {
     setPassword,
     setRepeatPassword,
     chekPassword,
-  }
-})()
+  };
+})();
 
 export function setPasswordValue(value = '') {
-  validatePasswords.setPassword(value)
-  return undefined
+  validatePasswords.setPassword(value);
+  return undefined;
 }
 
 export function setRepeatPasswordValue(value = '') {
-  validatePasswords.setRepeatPassword(value)
-  return validatePasswords.chekPassword() ? undefined : "Passwords don't match"
+  validatePasswords.setRepeatPassword(value);
+  return validatePasswords.chekPassword() ? undefined : "Passwords don't match";
 }

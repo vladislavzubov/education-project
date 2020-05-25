@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import classes from './Registration.module.css'
-import { Form, Field } from 'react-final-form'
-import { Tooltip, InputGroup, Button } from '@blueprintjs/core'
+import React, { Component } from 'react';
+import classes from './Registration.module.css';
+import { Form, Field } from 'react-final-form';
+import { Tooltip, InputGroup, Button } from '@blueprintjs/core';
 import {
   minAge,
   haveNotChar,
@@ -13,17 +13,17 @@ import {
   password,
   setPasswordValue,
   setRepeatPasswordValue,
-} from '../../services/validation'
-import { BrowserRouter as Link } from 'react-router-dom'
-import axios from '../../services/axios'
-import InputFull from '../../component/InputFull/InputFull'
+} from '../../services/validation';
+import { BrowserRouter as Link } from 'react-router-dom';
+import axios from '../../services/axios';
+import InputFull from '../../component/InputFull/InputFull';
 
 class Registration extends Component {
   state = {
     loading: false,
     showPassword: false,
     errMessage: false,
-  }
+  };
 
   transferServerRegist = async (value) => {
     const registPost = {
@@ -31,30 +31,30 @@ class Registration extends Component {
       age: value.age,
       password: value.password,
       email: value.email,
-    }
+    };
 
     try {
-      const response = await axios.post('registration', registPost)
-      this.setState({ loading: false, errMessage: false })
+      const response = await axios.post('registration', registPost);
+      this.setState({ loading: false, errMessage: false });
       // console.log('success')
-      return true
+      return true;
     } catch (e) {
-      this.setState({ loading: false, errMessage: e.response.data.message })
+      this.setState({ loading: false, errMessage: e.response.data.message });
       // console.log('falied', e.response.data.message)
-      return false
+      return false;
     }
-  }
+  };
 
   onSubmit = async (value) => {
     this.setState({
       loading: true,
-    })
+    });
 
-    await this.transferServerRegist(value)
+    await this.transferServerRegist(value);
     this.setState({
       loading: false,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -132,8 +132,8 @@ class Registration extends Component {
           Alreade,have an account? <Link to="/login">Login here</Link>
         </p>
       </div>
-    )
+    );
   }
 }
 
-export default Registration
+export default Registration;

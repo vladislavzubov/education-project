@@ -1,46 +1,46 @@
-const mongoose = require('mongoose')
-const User = mongoose.model('User')
-const { passwordCoding } = require('../helpers/passwordHelpers')
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const { passwordCoding } = require('../helpers/passwordHelpers');
 
 const create = async (req, res) => {
-  const verificationOfUserData = await verificationfUserData(req.body)
+  const verificationOfUserData = await verificationfUserData(req.body);
 
   if (!verificationOfUserData) {
-    const passwordUser = passwordCoding(req.body.password)
+    const passwordUser = passwordCoding(req.body.password);
 
     const userObj = {
       name: req.body.name,
       email: req.body.email,
       password: passwordUser,
       age: req.body.age,
-    }
-    res.json(userObj)
+    };
+    res.json(userObj);
     User.create(userObj)
       .then((createUser) => res.json(createUser))
-      .catch((err) => res.status(500).json(err))
+      .catch((err) => res.status(500).json(err));
   }
 
   if (verificationOfUserData.name === req.body.name) {
     res
       .status(404)
-      .json({ message: 'A user with the same name already exists ' })
+      .json({ message: 'A user with the same name already exists ' });
   }
   if (verificationOfUserData.email === req.body.email) {
     res
       .status(404)
-      .json({ message: 'A user with the same email already exists ' })
+      .json({ message: 'A user with the same email already exists ' });
   } else {
   }
-}
+};
 
 const verificationfUserData = async (body) => {
-  const { email, name } = body
+  const { email, name } = body;
 
-  const res = await User.findOne({ $or: [{ email: email }, { name: name }] })
+  const res = await User.findOne({ $or: [{ email: email }, { name: name }] });
 
-  return res
-}
+  return res;
+};
 
 module.exports = {
   create,
-}
+};

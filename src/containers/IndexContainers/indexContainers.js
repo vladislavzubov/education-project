@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import '../../App.css'
-import Login from '../../containers/Login/Login'
-import Registration from '../../containers/Registration/Registration'
-import User from '../../containers/User/user'
-import LostPassword from '../../containers/LostPassword/LostPassword'
-import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData'
-import ChangePassword from '../../containers/ChangePassword/ChangePassword'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import Probe from '../../containers/Probe'
-import { withRouter } from 'react-router'
+import React, { Component } from 'react';
+import '../../App.css';
+import Login from '../../containers/Login/Login';
+import Registration from '../../containers/Registration/Registration';
+import User from '../../containers/User/user';
+import LostPassword from '../../containers/LostPassword/LostPassword';
+import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
+import ChangePassword from '../../containers/ChangePassword/ChangePassword';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Probe from '../../containers/Probe';
+import { withRouter } from 'react-router';
 //this.roter.locasginioll
 
 class IndexContainers extends Component {
@@ -76,12 +76,12 @@ class IndexContainers extends Component {
           </Route>
         </Switch>
       </div>
-    )
+    );
   }
 }
 
 function Home() {
-  return <h2>404 Page is not found H</h2>
+  return <h2>404 Page is not found H</h2>;
 }
 
-export default withRouter(IndexContainers)
+export default withRouter(IndexContainers);

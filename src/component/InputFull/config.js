@@ -1,5 +1,5 @@
-import { composeValidators } from '../../services/validation'
+import { composeValidators } from '../../services/validation';
 
 export function validateProps(validate) {
-  return composeValidators.apply(null, validate)
+  return composeValidators.apply(null, validate);
 }

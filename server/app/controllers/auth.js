@@ -1,77 +1,76 @@
-const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken')
-const authHelper = require('../helpers/authHelpers')
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const authHelper = require('../helpers/authHelpers');
 const {
   passwordCoding,
   passwordCompare,
-} = require('../helpers/passwordHelpers')
-const { secret } = require('../../config/app').jwt
+} = require('../helpers/passwordHelpers');
+const { secret } = require('../../config/app').jwt;
 
-const User = mongoose.model('User')
-const Token = mongoose.model('Token')
+const User = mongoose.model('User');
+const Token = mongoose.model('Token');
 
 const updateTokens = (userId) => {
-  const accessToken = authHelper.generateAccessToken(userId)
-  const refreshToken = authHelper.generateRefreshToken()
+  const accessToken = authHelper.generateAccessToken(userId);
+  const refreshToken = authHelper.generateRefreshToken();
 
   return authHelper.replaceDbRefreshToken(refreshToken.id, userId).then(() => ({
     accessToken,
     refreshToken: refreshToken.token,
-  }))
-}
+  }));
+};
 
 const updateTokenAccess = (userId) => {
-  const accessToken = authHelper.generateAccessToken(userId)
+  const accessToken = authHelper.generateAccessToken(userId);
 
   return authHelper.replaceDbRefreshToken(userId).then(() => ({
     accessToken,
-  }))
-}
+  }));
+};
 
 const signIn = (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
   User.findOne({ $or: [{ email: email }, { name: email }] })
-      .exec()
-      .then((user) => {
-        if (!user) {
-          res.status(401).json({ message: 'User does not exist!' })
-        }
+    .exec()
+    .then((user) => {
+      if (!user) {
+        res.status(401).json({ message: 'User does not exist!' });
+      }
 
-        passwordServer = passwordCoding(password)
-        passwordUser = user.password
+      passwordServer = passwordCoding(password);
+      passwordUser = user.password;
 
-        const resolveCompare = passwordCompare(passwordServer, passwordUser)
+      const resolveCompare = passwordCompare(passwordServer, passwordUser);
 
-        if (resolveCompare) {
-          updateTokens(user._id).then((tokens) =>
-            res.json({
-              tokens,
-            })
-          )
-        } else {
-          res.status(401).json({ message: 'Invalid credentials' })
-        }
-      })
-      .catch((err) => res.status(500).json({ message: err.message }))
-  
-}
+      if (resolveCompare) {
+        updateTokens(user._id).then((tokens) =>
+          res.json({
+            tokens,
+          })
+        );
+      } else {
+        res.status(401).json({ message: 'Invalid credentials' });
+      }
+    })
+    .catch((err) => res.status(500).json({ message: err.message }));
+};
 
 const refreshTokens = (req, res) => {
-  const { refreshToken } = req.body
-  let payload
+  const { refreshToken } = req.body;
+  let payload;
   try {
-    payload = jwt.verify(refreshToken, secret)
+    payload = jwt.verify(refreshToken, secret);
     if (payload.type !== 'refresh') {
-      res.status(400).json({ message: 'Invalid token!' })
-      return
+      res.status(400).json({ message: 'Invalid token!' });
+      return;
     }
   } catch (e) {
     if (e instanceof jwt.TokenExpiredError) {
-      res.status(400).json({ message: 'Token expired!' })
-      return
+      res.status(400).json({ message: 'Token expired!' });
+      return;
     } else if (e instanceof jwt.TokenExpiredError) {
-      res.status(400).json({ message: 'Invalid tokenas!' })
-      return
+      res.status(400).json({ message: 'Invalid tokenas!' });
+      return;
     }
   }
 
@@ -79,16 +78,16 @@ const refreshTokens = (req, res) => {
     .exec()
     .then((token) => {
       if (token === null) {
-        res.json(token)
-        throw new Error('Invalid tokens!')
+        res.json(token);
+        throw new Error('Invalid tokens!');
       }
-      return updateTokenAccess(token.userId)
+      return updateTokenAccess(token.userId);
     })
     .then((tokens) => res.json(tokens))
-    .catch((err) => res.status(400).json({ message: err.message }))
-}
+    .catch((err) => res.status(400).json({ message: err.message }));
+};
 
 module.exports = {
   signIn,
   refreshTokens,
-}
+};

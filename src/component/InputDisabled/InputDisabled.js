@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { Field } from 'react-final-form'
-import { Tooltip, InputGroup, Button } from '@blueprintjs/core'
+import { Field } from 'react-final-form';
+import { Tooltip, InputGroup, Button } from '@blueprintjs/core';
 
 class InputDisabled extends Component {
   state = {
@@ -9,11 +9,11 @@ class InputDisabled extends Component {
     name: this.props.name,
     placeholder: this.props.placeholder,
     type: this.props.type,
-  }
+  };
 
   handleLockClick = () => {
-    this.setState({ showButton: !this.state.showButton })
-  }
+    this.setState({ showButton: !this.state.showButton });
+  };
 
   render() {
     const lockButton = (
@@ -24,7 +24,7 @@ class InputDisabled extends Component {
           onClick={this.handleLockClick}
         />
       </Tooltip>
-    )
+    );
 
     return (
       <div>
@@ -43,8 +43,8 @@ class InputDisabled extends Component {
           )}
         </Field>
       </div>
-    )
+    );
   }
 }
 
-export default InputDisabled
+export default InputDisabled;

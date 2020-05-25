@@ -1,57 +1,63 @@
-import React, { Component } from 'react'
-import { Form, Field } from 'react-final-form'
-import { Link } from 'react-router-dom'
-import classes from './Login.module.css'
+import React, { Component } from 'react';
+import { Form, Field } from 'react-final-form';
+import { Link } from 'react-router-dom';
+import classes from './Login.module.css';
 import {
   validateEmail,
   required,
   minLength,
   haveOneUppercase,
   haveOneNumeral,
-} from '../../services/validation'
-import { Button, Card, Elevation, InputGroup, Tooltip } from '@blueprintjs/core'
-import { connect } from 'react-redux'
-import axios from '../../services/axios'
-import { withRouter } from 'react-router'
-import InputFull from '../../component/InputFull/InputFull'
-import { requests } from '../../services/requests'
+} from '../../services/validation';
+import {
+  Button,
+  Card,
+  Elevation,
+  InputGroup,
+  Tooltip,
+} from '@blueprintjs/core';
+import { connect } from 'react-redux';
+import axios from '../../services/axios';
+import { withRouter } from 'react-router';
+import InputFull from '../../component/InputFull/InputFull';
+import { requests } from '../../services/requests';
 
 class Login extends Component {
   state = {
     loading: false,
-  }
+  };
 
   postServerLoginLoading = async (value) => {
     const authentication = {
       password: value.password,
       email: value.email,
-    }
+    };
     try {
-      const response = await requests('post', 'signin', authentication, 2)
+      const response = await requests('post', 'signin', authentication, 2);
       this.setState({
         loading: true,
-      })
+      });
       axios.defaults.headers.common[
         'Authorization'
-      ] = `${response.data.tokens.accessToken}`
-      localStorage.setItem('refreshKey', response.data.tokens.refreshToken)
-      localStorage.setItem('accessKey', response.data.tokens.accessToken)
+      ] = `${response.data.tokens.accessToken}`;
+      localStorage.setItem('refreshKey', response.data.tokens.refreshToken);
+      localStorage.setItem('accessKey', response.data.tokens.accessToken);
       //await this.postToken(response.data.tokens.accessToken)
-      this.props.history.replace('/user')
-      console.log('success email')
-      return
+      this.props.history.replace('/user');
+      console.log('success email');
+      return;
     } catch (e) {
-      console.log('falied email', e)
+      console.log('falied email', e);
       this.setState({
         loading: false,
-      })
-      return
+      });
+      return;
     }
-  }
+  };
 
   onSubmit = async (value) => {
-    this.postServerLoginLoading(value)
-  }
+    this.postServerLoginLoading(value);
+  };
 
   render() {
     return (
@@ -105,16 +111,16 @@ class Login extends Component {
           Dont`t have an account? <Link to="/registration">Sign up here</Link>
         </p>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (store) => {
-  return
-}
+  return;
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return
-}
+  return;
+};
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

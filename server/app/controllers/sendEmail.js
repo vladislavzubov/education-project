@@ -1,10 +1,10 @@
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 const sendEmail = async (body) => {
-  const email = body.email
-  const bod = body.body
+  const email = body.email;
+  const bod = body.body;
 
-  let testEmailAccount = await nodemailer.createTestAccount()
+  let testEmailAccount = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -12,7 +12,7 @@ const sendEmail = async (body) => {
       user: email,
       pass: '', // naturally, replace both with your real credentials or an application-specific password
     },
-  })
+  });
 
   let result = await transporter.sendMail({
     from: '"Node js" <nodejs@example.com>',
@@ -22,9 +22,9 @@ const sendEmail = async (body) => {
     //   text: "This message was sent from Node js server.",
     text: bod,
     html: bod,
-  })
-  return result
-}
+  });
+  return result;
+};
 module.exports = {
   sendEmail,
-}
+};

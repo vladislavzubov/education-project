@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   name: String,
@@ -6,6 +6,6 @@ const UserSchema = new mongoose.Schema({
   password: String,
   age: Number,
   keyChangePasswor: String,
-})
+});
 
-mongoose.model('User', UserSchema)
+mongoose.model('User', UserSchema);

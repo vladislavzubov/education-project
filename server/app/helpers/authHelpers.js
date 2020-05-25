@@ -1,9 +1,9 @@
-const {v4} = require("uuid");
-const jwt = require("jsonwebtoken");
-const { secret, tokens } = require("../../config/app").jwt;
-const mongoose = require("mongoose");
+const { v4 } = require('uuid');
+const jwt = require('jsonwebtoken');
+const { secret, tokens } = require('../../config/app').jwt;
+const mongoose = require('mongoose');
 
-const Token = mongoose.model("Token");
+const Token = mongoose.model('Token');
 
 const generateAccessToken = (userId) => {
   const payLoad = {

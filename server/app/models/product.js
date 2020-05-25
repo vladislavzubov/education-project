@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
   id: Number,
@@ -6,4 +6,4 @@ const ProductSchema = new mongoose.Schema({
   price: mongoose.Schema.Types.Decimal128,
 });
 
-mongoose.model("Product", ProductSchema);
+mongoose.model('Product', ProductSchema);

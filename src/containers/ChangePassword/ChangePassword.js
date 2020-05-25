@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import classes from './ChangePassword.module.css'
-import { Form, Field } from 'react-final-form'
-import { Button } from '@blueprintjs/core'
+import React, { Component } from 'react';
+import classes from './ChangePassword.module.css';
+import { Form, Field } from 'react-final-form';
+import { Button } from '@blueprintjs/core';
 import {
   required,
   minLength,
@@ -10,50 +10,50 @@ import {
   password,
   setPasswordValue,
   setRepeatPasswordValue,
-} from '../../services/validation'
-import { BrowserRouter as Link } from 'react-router-dom'
-import axios from 'axios'
-import queryString from 'query-string'
-import InputFull from '../../component/InputFull/InputFull'
+} from '../../services/validation';
+import { BrowserRouter as Link } from 'react-router-dom';
+import axios from 'axios';
+import queryString from 'query-string';
+import InputFull from '../../component/InputFull/InputFull';
 
 class ChangePassword extends Component {
   state = {
     loading: false,
     showPassword: false,
-  }
+  };
 
   transferServerRegist = async (value) => {
-    const parsed = queryString.parse(location.search)
+    const parsed = queryString.parse(location.search);
 
     const registPost = {
       password: value.password,
       key: parsed.key,
-    }
-    console.log(registPost)
+    };
+    console.log(registPost);
 
     try {
       const response = await axios.put(
         'http://localhost:3004/change-password',
         registPost
-      )
-      console.log('success')
-      return true
+      );
+      console.log('success');
+      return true;
     } catch (e) {
-      console.log('falied')
-      return false
+      console.log('falied');
+      return false;
     }
-  }
+  };
 
   onSubmit = async (value) => {
     this.setState({
       loading: true,
-    })
+    });
 
-    await this.transferServerRegist(value)
+    await this.transferServerRegist(value);
     this.setState({
       loading: false,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -101,8 +101,8 @@ class ChangePassword extends Component {
           Alreade,have an account? <Link to="/login">Login here</Link>
         </p>
       </div>
-    )
+    );
   }
 }
 
-export default ChangePassword
+export default ChangePassword;
