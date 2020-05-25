@@ -10,7 +10,7 @@ const sendEmail = async (body) => {
     service: 'gmail',
     auth: {
       user: email,
-      pass: 'Gsanek159753', // naturally, replace both with your real credentials or an application-specific password
+      pass: '', // naturally, replace both with your real credentials or an application-specific password
     },
   })
 
