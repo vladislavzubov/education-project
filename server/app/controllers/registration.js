@@ -14,19 +14,29 @@ const create = async (req, res) => {
       password: passwordUser,
       age: req.body.age,
     }
-
+    res.json(userObj)
     User.create(userObj)
       .then((createUser) => res.json(createUser))
       .catch((err) => res.status(500).json(err))
+  }
+
+  if (verificationOfUserData.name === req.body.name) {
+    res
+      .status(404)
+      .json({ message: 'A user with the same name already exists ' })
+  }
+  if (verificationOfUserData.email === req.body.email) {
+    res
+      .status(404)
+      .json({ message: 'A user with the same email already exists ' })
   } else {
-    res.status(404).json({ message: 'A user with this data already exists ' })
   }
 }
 
 const verificationfUserData = async (body) => {
   const { email, name } = body
 
-  const res = await User.exists({ $or: [{ email: email }, { name: name }] })
+  const res = await User.findOne({ $or: [{ email: email }, { name: name }] })
 
   return res
 }
