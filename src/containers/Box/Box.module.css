@@ -1,0 +1,21 @@
+.Box {
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 0 0 1px rgb(78, 78, 78);
+    padding: 20px 0; 
+    color: black;
+}
+
+p {
+    text-align: center;
+}
+
+.Box:hover {
+    font-weight: 900;
+    color:rgba(19, 12, 58, 0.774);
+    box-shadow: 0 3px 3px #575555 inset;
+}
+
+a:hover{
+    text-decoration: none;
+}

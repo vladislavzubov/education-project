@@ -1,0 +1,13 @@
+.Title {
+    padding: 15px 0 15px 25px;
+    margin: 0;
+}
+
+.MatrixCopmonents {
+    background: rgb(79, 46, 179);
+}
+
+.Boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
