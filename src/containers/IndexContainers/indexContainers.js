@@ -41,9 +41,11 @@ class IndexContainers extends Component {
         <Route path="/LostPassword">
           <PageLostPassword />
         </Route>
-        <Route path="/probe">
-          <Probe />
-        </Route>
+        {
+          // <Route path="/probe">
+          // <Probe />
+          //</Route>
+        }
         <Route path="/">
           <Home />
         </Route>

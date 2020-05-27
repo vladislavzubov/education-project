@@ -1,3 +1,10 @@
 .MainLayout {
     background: rgb(160, 160, 160);
 }
+
+.MainLayout main {
+    display: flex;
+   //display: grid;
+  //  grid-template-areas: "menu matrix";
+  //  grid-template-columns: 2fr 10fr;
+}
