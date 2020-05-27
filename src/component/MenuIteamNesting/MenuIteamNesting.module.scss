@@ -20,7 +20,6 @@
 .value{
     flex-grow: 1;
 }
-
 .badges{
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
@@ -28,21 +27,16 @@
     color: cornsilk;
     border-radius: 0.125rem;
     justify-self: self-end;
-    
 }
 .nesting{
     display: flex;
     background-color: #515983;
     flex: none;
-
 }
 .nesting ul{
-     margin: 0;
+    margin: 0;
 }
 .nesting li{
-    
-    
-    
     padding-left:1.125rem;
     margin-top:0.625rem;
     margin-bottom: 0.625rem;

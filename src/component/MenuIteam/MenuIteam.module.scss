@@ -5,7 +5,6 @@
 }
 
 .MenuIteam a {
-    
     color: #9fa1b0;
 }
 .line{
@@ -18,7 +17,6 @@
     justify-items: flex-start;
     align-items: center;
     margin-left: 0.625rem;
-    
 }
 .line:hover{
     background-color: #6881f5;
@@ -27,16 +25,13 @@
 .value{
     flex-grow: 1;
 }
-
 .badges{
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
-    
     margin-right: 2.5625rem;
     background-color: #5a76f5;
     color: cornsilk;
     border-radius: 0.125rem;
     justify-self: self-end;
     height: 1.125rem;
-    
 }

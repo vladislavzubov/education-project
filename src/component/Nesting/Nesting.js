@@ -6,9 +6,7 @@ export default function Nesting(props) {
 
   return (
     <li className={Styles.Nesting}>
-      <a href={href} >
-        {value}
-      </a>
+      <a href={href}>{value}</a>
     </li>
   );
 }
