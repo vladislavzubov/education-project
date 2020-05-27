@@ -14,7 +14,7 @@ class IndexContainers extends Component {
   render() {
     return (
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -41,7 +41,7 @@ class IndexContainers extends Component {
               <Link to="/probe">Probe</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         <Switch>
           <Route path="/login">
