@@ -1,4 +1,4 @@
-.Login{
+.MenuIteam{
     width: 400px;
     margin: 5px;
     padding: 30px;
@@ -6,23 +6,23 @@
     margin-left: auto;
     margin-right: auto;
 }
-.Login h1{
+.MenuIteam h1{
     color: #394B59;
     font-weight: normal;
 }
-.Login Button{
+.MenuIteam Button{
     margin: 5px;
 }
-.Login Input{
+.MenuIteam Input{
     margin: 5px;
     
 }
-.Login span{
+.MenuIteam span{
     margin-top: 2px;
 }
-.Login p{
+.MenuIteam p{
     color: white;
 }
-.Login p Link{
+.MenuIteam p Link{
     color: white;
 }
