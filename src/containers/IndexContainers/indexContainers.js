@@ -8,65 +8,47 @@ import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Probe from '../../containers/Probe';
+import Matrix from '../Matrix/Matrix';
 import { withRouter } from 'react-router';
+import Styles from './IndexContainers.module.scss';
+import PageLogin from '../../pages/pageBase/PageLogin';
+import PageChangePassword from '../../pages/pageBase/PageChangePassword';
+import PageChangeUserData from '../../pages/pageBase/PageChangeUserData';
+import PageLostPassword from '../../pages/pageBase/PageLostPassword';
+import PageRegistration from '../../pages/pageBase/PageRegistration';
+import PageMain from '../../pages/pageMain/PageMain';
+//import Layout from '../../Pages/Layout/Layout';
 
 class IndexContainers extends Component {
   render() {
     return (
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/registration">Registration</Link>
-            </li>
-            <li>
-              <Link to="/lostPassword">LostPassword</Link>
-            </li>
+      <Switch>
+        <Route path="/matrix">
+          <PageMain />
+        </Route>
+        <Route path="/login">
+          <PageLogin />
+        </Route>
+        <Route path="/registration">
+          <PageRegistration />
+        </Route>
+        <Route path="/user">
+          <PageChangeUserData />
+        </Route>
+        <Route path="/change-password">
+          <PageChangePassword />
+        </Route>
+        <Route path="/LostPassword">
+          <PageLostPassword />
+        </Route>
+        <Route path="/probe">
+          <Probe />
+        </Route>
 
-            <li>
-              <Link to="/user">ChangeUserData</Link>
-            </li>
-
-            <li>
-              <Link to="/change-password">ChangePassword</Link>
-            </li>
-
-            <li>
-              <Link to="/probe">Probe</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/registration">
-            <Registration />
-          </Route>
-          <Route path="/user">
-            <ChangeUserData />
-          </Route>
-          <Route path="/change-password">
-            <ChangePassword />
-          </Route>
-          <Route path="/LostPassword">
-            <LostPassword />
-          </Route>
-          <Route path="/probe">
-            <Probe />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     );
   }
 }
