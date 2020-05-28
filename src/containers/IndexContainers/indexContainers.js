@@ -106,6 +106,6 @@ function PrivateRoute(route) {
           pathname: '/login',
         }}
       />
-    </Route>c
-  );
+    </Route>
+  )
 }
