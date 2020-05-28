@@ -6,6 +6,7 @@ function Matrix({ title, lectures }) {
   return (
     <div className={Styles.MatrixCopmonents}>
       <h1 className={Styles.Title}>{title}</h1>
+
       <div className={Styles.Boxes}>
         {lectures.map((lecture, index) => {
           return (
