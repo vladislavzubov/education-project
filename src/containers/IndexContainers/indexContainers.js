@@ -79,11 +79,9 @@ class IndexContainers extends Component {
 export default withRouter(IndexContainers);
 
 function nestingCheckRoute(routes) {
-  console.log(routes);
-
   return routes.map((route, i) =>
     route.isProtected ? (
-      <PrivateRoute {...route} />
+      <PrivateRoute key={i} {...route} />
     ) : route.routes ? (
       nestingCheckRoute(route.routes)
     ) : (
@@ -93,8 +91,6 @@ function nestingCheckRoute(routes) {
 }
 
 function PrivateRoute(route) {
-  console.log(route);
-
   return tokenCheck() ? (
     <Switch>
       <RouteWithSubRoutes {...route} />
@@ -107,5 +103,5 @@ function PrivateRoute(route) {
         }}
       />
     </Route>
-  )
+  );
 }
