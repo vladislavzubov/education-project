@@ -17,6 +17,7 @@ import PageChangeUserData from '../../pages/pageBase/PageChangeUserData';
 import PageLostPassword from '../../pages/pageBase/PageLostPassword';
 import PageRegistration from '../../pages/pageBase/PageRegistration';
 import PageMain from '../../pages/pageMain/PageMain';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 //import Layout from '../../Pages/Layout/Layout';
 
 class IndexContainers extends Component {
@@ -44,8 +45,11 @@ class IndexContainers extends Component {
         <Route path="/probe">
           <Probe />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="*">
+          <NotFoundPage />
         </Route>
       </Switch>
     );
@@ -53,7 +57,7 @@ class IndexContainers extends Component {
 }
 
 function Home() {
-  return <h2>404 Page is not found H</h2>;
+  return <h2>Home</h2>;
 }
 
 export default withRouter(IndexContainers);
