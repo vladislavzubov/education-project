@@ -4,156 +4,52 @@ import Matrix from '../../containers/Matrix/Matrix';
 import Menu from '../../component/Menu/Menu';
 import Styles from './PageMain.module.scss';
 import ContentInfo from '../../component/contentInfo/ContentInfo';
+//import { connect } from 'react-redux';
+import axios from '../../services/axios';
+import { receptionUser } from '../../store/reducers/server_redux';
+import { connect } from 'react-redux';
+import { requests } from '../../services/requests';
+import { Button, Spinner } from '@blueprintjs/core';
 
 class PageMain extends Component {
-  render() {
-    const prop = {
-      selection: [
-        {
-          title: 'Программирование на React',
-          lectures: [
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 5,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 15,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 25,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 35,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 45,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 55,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 65,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 75,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 85,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 95,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 100,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 0,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 5,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 15,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 25,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 35,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 45,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 55,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 65,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 75,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 85,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 95,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 100,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 0,
-            },
-          ],
-        },
-        {
-          title: 'А тут 2 лекция',
-          lectures: [
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 22,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 55,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 33,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 35,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 75,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 0,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 45,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 10,
-            },
-            {
-              link: 'https://ru.react.js.org/docs/components-and-props.html',
-              percent: 88,
-            },
-          ],
-        },
-      ],
-    };
+  componentDidMount() {
+    axios.defaults.headers.common['Authorization'] = `${localStorage.getItem(
+      'accessKey'
+    )}`;
+    if (!name) {
+      this.setState({
+        isLoading: true,
+      });
+      this.autorization();
+    }
+  }
 
+  state = {
+    isLoading: false,
+  };
+
+  autorization = async () => {
+    const token = localStorage.getItem('accessKey');
+    try {
+      const response = await requests('get', 'info-user', {
+        accessToken: token,
+      });
+      this.props.receptionUser(
+        response.data.name,
+        response.data.email,
+        response.data.age
+      );
+      this.setState({
+        isLoading: false,
+      });
+      return true;
+    } catch (e) {
+      console.log('falied change data user', e);
+      return false;
+    }
+  };
+
+  render() {
     const props = [
       {
         value: 'Main',
@@ -204,6 +100,11 @@ class PageMain extends Component {
             href: 'http://localhost:3000/probe',
           },
           {
+            value: 'Lectures',
+            icon: 'minimize',
+            href: 'http://localhost:3000/matrix',
+          },
+          {
             value: 'Email',
             icon: 'envelope',
             href: 'http://localhost:3000/probe',
@@ -222,26 +123,30 @@ class PageMain extends Component {
         ],
       },
     ];
-    return (
+    return this.state.isLoading ? (
+      <Spinner />
+    ) : (
       <MainLayout>
         <Menu categories={props} />
         <ContentInfo />
-        {/*
-        <div className={Styles.Matrix}>
-          {prop.selection.map((section, index) => {
-            return (
-              <Matrix
-                title={section.title}
-                lectures={section.lectures}
-                key={index}
-              />
-            );
-          })}
-        </div>
-        */}
       </MainLayout>
     );
   }
 }
 
-export default PageMain;
+const mapStateToProps = (store) => {
+  return {
+    name: receptionUser(store).name,
+    email: receptionUser(store).email,
+    age: receptionUser(store).age,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    receptionUser: (name, email, age) =>
+      dispatch(receptionUser(name, email, age)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageMain);

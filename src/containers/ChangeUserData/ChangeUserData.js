@@ -38,7 +38,6 @@ class User extends Component {
       const response = await requests('get', 'info-user', {
         accessToken: token,
       });
-      console.log(response);
 
       this.props.receptionUser(
         response.data.name,
