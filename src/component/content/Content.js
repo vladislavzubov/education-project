@@ -1,6 +1,7 @@
 import React from 'react';
 import Styles from './Content.module.scss';
 import Matrix from '../../containers/Matrix/Matrix';
+import { Spinner } from '@blueprintjs/core';
 
 function Content() {
   const prop = {
@@ -106,62 +107,38 @@ function Content() {
           },
         ],
       },
-      {
-        title: 'А тут 2 лекция',
-        lectures: [
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 22,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 55,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 33,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 35,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 75,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 0,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 45,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 10,
-          },
-          {
-            link: 'https://ru.react.js.org/docs/components-and-props.html',
-            percent: 88,
-          },
-        ],
-      },
     ],
   };
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const loadLectures = () => {
+    setIsLoading(true);
+    setTimeout(function () {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  React.useEffect(() => {
+    loadLectures();
+  }, []);
+
   return (
     <div className={Styles.Content}>
-      <div className={Styles.Matrix}>
-        {prop.selection.map((section, index) => {
-          return (
-            <Matrix
-              title={section.title}
-              lectures={section.lectures}
-              key={index}
-            />
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <Spinner className={Styles.Spinner} />
+      ) : (
+        <div className={Styles.Matrix}>
+          {prop.selection.map((section, index) => {
+            return (
+              <Matrix
+                title={section.title}
+                lectures={section.lectures}
+                key={index}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
