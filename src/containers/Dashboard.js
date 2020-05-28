@@ -4,12 +4,10 @@ import RouteWithSubRoutes from '../helper/RouteWithSubRoutes';
 
 export default function Dashboard({ routes }) {
   return (
-    <div>
-      <Switch>
-        {routes.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route} />
-        ))}
-      </Switch>
-    </div>
+    <Switch>
+      {routes.map((route, i) => (
+        <RouteWithSubRoutes key={i} {...route} />
+      ))}
+    </Switch>
   );
 }

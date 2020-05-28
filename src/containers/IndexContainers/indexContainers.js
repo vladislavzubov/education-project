@@ -38,6 +38,10 @@ class IndexContainers extends Component {
       component: PageLogin,
     },
     {
+      path: '/matrix',
+      component: PageMain,
+    },
+    {
       path: '/registration',
       component: PageRegistration,
     },
@@ -77,18 +81,14 @@ export default withRouter(IndexContainers);
 function nestingCheckRoute(routes) {
   console.log(routes);
 
-  return (
-    <div>
-      {routes.map((route, i) =>
-        route.isProtected ? (
-          <PrivateRoute {...route} />
-        ) : route.routes ? (
-          nestingCheckRoute(route.routes)
-        ) : (
-          <RouteWithSubRoutes key={i} {...route} />
-        )
-      )}
-    </div>
+  return routes.map((route, i) =>
+    route.isProtected ? (
+      <PrivateRoute {...route} />
+    ) : route.routes ? (
+      nestingCheckRoute(route.routes)
+    ) : (
+      <RouteWithSubRoutes key={i} {...route} />
+    )
   );
 }
 
