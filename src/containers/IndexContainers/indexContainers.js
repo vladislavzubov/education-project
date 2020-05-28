@@ -65,7 +65,7 @@ class IndexContainers extends Component {
         },
         {
           path: '/dashboard/matrix',
-          component: PageRegistration,
+          component: PageMain,
         },
       ],
     },
@@ -95,21 +95,17 @@ function nestingCheckRoute(routes) {
 function PrivateRoute(route) {
   console.log(route);
 
-  return (
-    <div>
-      {tokenCheck() ? (
-        <Switch>
-          <RouteWithSubRoutes {...route} />
-        </Switch>
-      ) : (
-        <Route>
-          <Redirect
-            to={{
-              pathname: '/login',
-            }}
-          />
-        </Route>
-      )}
-    </div>
+  return tokenCheck() ? (
+    <Switch>
+      <RouteWithSubRoutes {...route} />
+    </Switch>
+  ) : (
+    <Route>
+      <Redirect
+        to={{
+          pathname: '/login',
+        }}
+      />
+    </Route>c
   );
 }
