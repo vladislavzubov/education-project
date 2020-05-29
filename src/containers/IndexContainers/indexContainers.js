@@ -28,6 +28,7 @@ import Dashboard from '../../component/Dashboard/Dashboard';
 import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
 import { connect } from 'react-redux';
+import DashboardPage from '../../pages/dashboard/DashboardPage';
 
 //import Layout from '../../Pages/Layout/Layout';
 
@@ -59,17 +60,17 @@ class IndexContainers extends Component {
     },
     {
       path: '/dashboard',
-      component: Dashboard,
+      component: DashboardPage,
       isProtected: true,
       routes: [
         {
-          path: '/dashboard/user',
+          path: '/dashboard/lectures',
           // isProtected: true,
-          component: User,
+          component: DashboardPage,
         },
         {
           path: '/dashboard/matrix',
-          component: PageMain,
+          component: DashboardPage,
         },
       ],
     },
