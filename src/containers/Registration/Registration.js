@@ -17,6 +17,7 @@ import {
 import { Link } from 'react-router-dom';
 import axios from '../../services/axios';
 import InputFull from '../../component/InputFull/InputFull';
+import { requests } from '../../services/requests';
 
 class Registration extends Component {
   state = {
@@ -34,7 +35,7 @@ class Registration extends Component {
     };
 
     try {
-      const response = await axios.post('registration', registPost);
+      const response = await requests('post', 'registration', registPost);
       this.setState({ loading: false, errMessage: false });
       // console.log('success')
       return true;

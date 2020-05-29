@@ -5,6 +5,7 @@ import { validateEmail, required } from '../../services/validation';
 import { Button, Card, Elevation, Popover } from '@blueprintjs/core';
 import axios from '../../services/axios';
 import InputFull from '../../component/InputFull/InputFull';
+import { requests } from '../../services/requests';
 
 class LostPassword extends Component {
   state = {
@@ -14,7 +15,7 @@ class LostPassword extends Component {
 
   postSerchByEmail = async (email) => {
     try {
-      const response = await axios.post('lost-password', email);
+      const response = await requests('post', 'lost-password', email);
       this.setState({
         loading: false,
         errMessage: false,

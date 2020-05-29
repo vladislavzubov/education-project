@@ -15,6 +15,7 @@ import { BrowserRouter as Link } from 'react-router-dom';
 import axios from 'axios';
 import queryString from 'query-string';
 import InputFull from '../../component/InputFull/InputFull';
+import { requests } from '../../services/requests';
 
 class ChangePassword extends Component {
   state = {
@@ -32,10 +33,7 @@ class ChangePassword extends Component {
     console.log(registPost);
 
     try {
-      const response = await axios.put(
-        'http://localhost:3004/change-password',
-        registPost
-      );
+      const response = await requests('put', 'change-password', registPost);
       console.log('success');
       return true;
     } catch (e) {
