@@ -72,11 +72,7 @@ class Probe extends Component {
       },
     ];
 
-    return (
-      <div>
-        <Menu categories={props} />
-      </div>
-    );
+    return <Menu categories={props} />;
   }
 }
 

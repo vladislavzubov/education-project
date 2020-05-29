@@ -39,7 +39,7 @@ class Login extends Component {
                     placeholder={this.props.store}
                   />
                 </FormGroup>
-                <p>`${this.props.accessToken}`</p>
+                {/* <p>`${this.props.accessToken}`</p> */}
               </div>
             </Card>
           )}

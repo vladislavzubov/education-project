@@ -2,7 +2,10 @@ import React from 'react';
 import Styles from './HeadInfo.module.scss';
 import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
 
-function HeadInfo() {
+export default function HeadInfo() {
+  function output() {
+    localStorage.setItem('accessKey', undefined);
+  }
   return (
     <div className={Styles.Header}>
       <HeaderUserInfo />
@@ -10,5 +13,3 @@ function HeadInfo() {
     </div>
   );
 }
-
-export default HeadInfo;
