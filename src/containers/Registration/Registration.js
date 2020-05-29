@@ -14,7 +14,7 @@ import {
   setPasswordValue,
   setRepeatPasswordValue,
 } from '../../services/validation';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from '../../services/axios';
 import InputFull from '../../component/InputFull/InputFull';
 

@@ -102,7 +102,7 @@ class PageMain extends Component {
           {
             value: 'Lectures',
             icon: 'minimize',
-            href: 'http://localhost:3000/matrix',
+            href: 'http://localhost:3000/dashboard/matrix',
           },
           {
             value: 'Email',
