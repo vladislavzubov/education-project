@@ -36,9 +36,9 @@ class Login extends Component {
       ] = `${response.data.tokens.accessToken}`;
       localStorage.setItem('refreshKey', response.data.tokens.refreshToken);
       localStorage.setItem('accessKey', response.data.tokens.accessToken);
-      
-      this.props.history.replace('/user');
-      
+
+      this.props.history.replace('/dashboard');
+
       console.log('success email');
       return;
     } catch (e) {
