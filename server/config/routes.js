@@ -11,30 +11,34 @@ const cors = require('cors');
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
   //products
-  app.get('/products', authMiddleware, products.getAll);
-  app.post('/products', authMiddleware, products.create);
-  app.put('/products/:id', authMiddleware, products.update);
-  app.delete('/products/:id', authMiddleware, products.remove);
+  app.get('/api/products', authMiddleware, products.getAll);
+  app.post('/api/products', authMiddleware, products.create);
+  app.put('/api/products/:id', authMiddleware, products.update);
+  app.delete('/api/products/:id', authMiddleware, products.remove);
 
   //auth
-  app.post('/signin', auth.signIn);
+  app.post('/api/signin', auth.signIn);
 
   // registration
-  app.post('/registration', registration.create);
-  app.post('/refresh-tokens', auth.refreshTokens);
+  app.post('/api/registration', registration.create);
+  app.post('/api/refresh-tokens', auth.refreshTokens);
 
   // info
-  app.get('/info-user', authMiddleware, info.infoUser);
+  app.get('/api/info-user', authMiddleware, info.infoUser);
 
   //serch by email
 
-  app.post('/lost-password', searchByEmail.searchByEmail);
+  app.post('/api/lost-password', searchByEmail.searchByEmail);
 
   //Change Password
 
-  app.put('/change-password', changePassword.changePassword);
+  app.put('/api/change-password', changePassword.changePassword);
 
   //Update user info
 
-  app.put('/update-user-info', authMiddleware, updateUserInfo.updateUserInfo);
+  app.put(
+    '/api/update-user-info',
+    authMiddleware,
+    updateUserInfo.updateUserInfo
+  );
 };
