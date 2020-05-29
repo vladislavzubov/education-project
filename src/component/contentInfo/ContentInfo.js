@@ -4,7 +4,7 @@ import Header from '../headInfo/HeadInfo';
 import SitePath from '../sitePath/SitePath';
 import Content from '../content/Content';
 
-function ContentInfo() {
+function ContentInfo({ breadcrumbs, children }) {
   return (
     <div className={Styles.Container}>
       <Header />
