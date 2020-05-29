@@ -4,7 +4,7 @@ import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
 
 export default function HeadInfo() {
   function output() {
-    localStorage.setItem('accessKey', undefined);
+    localStorage.setItem('accessKey', 'delete');
   }
   return (
     <div className={Styles.Header}>

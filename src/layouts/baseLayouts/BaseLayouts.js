@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import Styles from './BaseLayouts.module.scss';
+import { withRouter } from 'react-router';
 
 class BaseLayouts extends Component {
+  componentDidMount() {
+    const asseccToken = localStorage.getItem('accessKey');
+    if (asseccToken !== 'delete') {
+      this.props.history.replace('/dashboard');
+    }
+  }
   render() {
     return (
       <div className={Styles.BluePage}>
@@ -11,4 +18,4 @@ class BaseLayouts extends Component {
   }
 }
 
-export default BaseLayouts;
+export default withRouter(BaseLayouts);
