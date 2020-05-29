@@ -1,5 +1,6 @@
 import React from 'react';
 import Styles from './HeadInfo.module.scss';
+import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
 
 export default function HeadInfo() {
   function output() {
@@ -7,10 +8,8 @@ export default function HeadInfo() {
   }
   return (
     <div className={Styles.Header}>
-      <p className={Styles.Name}>Имя и фамилия</p>
-      <a onClick={output} className={Styles.Exit}>
-        Выход
-      </a>
+      <HeaderUserInfo />
+      <a className={Styles.Exit}>Выход</a>
     </div>
   );
 }

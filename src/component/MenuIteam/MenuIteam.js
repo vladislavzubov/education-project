@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon } from '@blueprintjs/core';
 import Styles from './MenuIteam.module.scss';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default function MenuIteam({ data }) {
   const { value, icon, badges, href } = data;
