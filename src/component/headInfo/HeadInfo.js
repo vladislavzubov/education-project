@@ -9,7 +9,9 @@ export default function HeadInfo() {
   return (
     <div className={Styles.Header}>
       <HeaderUserInfo />
-      <a className={Styles.Exit}>Выход</a>
+      <a onClick={output} className={Styles.Exit}>
+        Выход
+      </a>
     </div>
   );
 }
