@@ -124,7 +124,7 @@ class PageMain extends Component {
       },
     ];
     return this.state.isLoading ? (
-      <Spinner />
+      <Spinner className={Styles.GlobalStyles} />
     ) : (
       <MainLayout>
         <Menu categories={props} />
