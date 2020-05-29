@@ -4,7 +4,7 @@ import Styles from './SitePath.module.scss';
 function SitePath() {
   return (
     <div className={Styles.SitePath}>
-      <p>ndjnjnjdsnjvn</p>
+      <p>Breadcrumbs</p>
     </div>
   );
 }

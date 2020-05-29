@@ -9,17 +9,20 @@ class Probe extends Component {
         menuIteam: [
           {
             value: 'Dashboard',
+            category: "Main",
             icon: 'home',
             badges: 2,
             href: 'http://localhost:3000/probe',
             nesting: [
               {
                 value: 'bigbigbigbig',
+                nesting:'Dashboard',
                 href:
                   'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
               },
               {
                 value: 'small',
+                nesting:'Dashboard',
                 href:
                   'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
               },

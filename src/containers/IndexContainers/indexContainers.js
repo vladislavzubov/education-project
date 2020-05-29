@@ -24,7 +24,7 @@ import PageLostPassword from '../../pages/pageBase/PageLostPassword';
 import PageRegistration from '../../pages/pageBase/PageRegistration';
 import PageMain from '../../pages/pageMain/PageMain';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import Dashboard from '../Dashboard';
+import Dashboard from '../../component/Dashboard/Dashboard';
 import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
 import { connect } from 'react-redux';
@@ -38,12 +38,12 @@ class IndexContainers extends Component {
       component: PageLogin,
     },
     {
-      path: '/matrix',
-      component: PageMain,
-    },
-    {
       path: '/registration',
       component: PageRegistration,
+    },
+    {
+      path: '/matrix',
+      component: PageMain,
     },
     {
       path: '/lostPassword',
