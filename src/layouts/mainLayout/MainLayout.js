@@ -6,13 +6,8 @@ class Layout extends Component {
   componentDidMount() {
     const asseccToken = localStorage.getItem('accessKey');
     if (
-      asseccToken === 'delete' ||
-      asseccToken === null ||
-      asseccToken === undefined ||
-      asseccToken === 'null' ||
-      asseccToken === 'undefined' ||
-      asseccToken === '' ||
-      asseccToken === ' '
+      asseccToken === 'delete'
+      
     ) {
       this.props.history.replace('/login');
     }
