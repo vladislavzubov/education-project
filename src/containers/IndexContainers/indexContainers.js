@@ -59,7 +59,7 @@ class IndexContainers extends Component {
     {
       path: '/dashboard',
       component: DashboardPage,
-      // isProtected: true,
+      isProtected: true,
       routes: [
         {
           path: '/dashboard/lectures/:id',
@@ -80,6 +80,9 @@ class IndexContainers extends Component {
       path: '/',
       component: PageLogin,
     },
+    // <Route path="*">
+    //   <NoMatch />
+    // </Route>,
   ];
 
   render() {
