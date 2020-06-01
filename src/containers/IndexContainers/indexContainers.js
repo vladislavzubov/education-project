@@ -29,6 +29,7 @@ import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
 import { connect } from 'react-redux';
 import DashboardPage from '../../pages/dashboard/DashboardPage';
+import Lectures from '../Lecture/Lecture';
 
 //import Layout from '../../Pages/Layout/Layout';
 
@@ -38,14 +39,10 @@ class IndexContainers extends Component {
       path: '/login',
       component: PageLogin,
     },
-    
+
     {
       path: '/registration',
       component: PageRegistration,
-    },
-    {
-      path: '/matrix',
-      component: PageMain,
     },
     {
       path: '/lostPassword',
@@ -56,18 +53,26 @@ class IndexContainers extends Component {
       component: PageLostPassword,
     },
     {
+      path: '/lec/:id',
+      component: Lectures,
+    },
+    {
       path: '/dashboard',
       component: DashboardPage,
-      isProtected: true,
+      // isProtected: true,
       routes: [
         {
-          path: '/dashboard/lectures',
-          // isProtected: true,
-          component: DashboardPage,
+          path: '/dashboard/lectures/:id',
+          component: Lectures,
         },
+
         {
           path: '/dashboard/matrix',
-          component: DashboardPage,
+          component: PageMain,
+        },
+        {
+          path: '/dashboard/change-user',
+          component: ChangeUserData,
         },
       ],
     },
