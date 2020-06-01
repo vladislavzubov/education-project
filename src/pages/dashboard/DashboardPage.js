@@ -22,7 +22,7 @@ function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
   const isAuthorized = React.useMemo(() => {
     const accessToken = localStorage.getItem('accessKey');
-    if (accessToken === 'delete') {
+    if (accessToken === null) {
       return false;
     } else {
       axios.defaults.headers.common['Authorization'] = `${localStorage.getItem(
