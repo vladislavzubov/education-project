@@ -6,9 +6,11 @@ const {
   passwordCompare,
 } = require('../helpers/passwordHelpers');
 const { secret } = require('../../config/app').jwt;
+const UserModel = require('../models/user');
+const TokenModel = require('../models/token');
 
-const User = mongoose.model('User');
-const Token = mongoose.model('Token');
+const User = UserModel;
+const Token = TokenModel;
 
 const updateTokens = (userId) => {
   const accessToken = authHelper.generateAccessToken(userId);

@@ -5,4 +5,6 @@ const TokenSchema = new mongoose.Schema({
   userId: String,
 });
 
-mongoose.model('Token', TokenSchema);
+const TokenModel = mongoose.model('token', TokenSchema);
+
+module.exports = TokenModel;

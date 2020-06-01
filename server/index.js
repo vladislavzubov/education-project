@@ -1,40 +1,34 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config');
-const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-require('./app/models');
 
 const app = express();
 config.express(app);
-config.routes(app);
 
-// mongoose.connect(
-//   mongoURi
-// );
-
-app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use(express.static(path.resolve(__dirname, '../', 'build')));
+console.log(path.resolve(__dirname, '../', 'build'));
+console.log(path.resolve(__dirname, '../', 'build/index.html'));
 
 app.use(cors());
-app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*' }));
 
-router(app);
+config.routes(app);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
+  res.sendFile(path.resolve(__dirname, '../', 'build/index.html'));
 });
 
 const { appPort, mongoURi } = config.app;
 
-const port = process.env.PORT || 3090;
+const port = process.env.PORT || 80;
 
 mongoose
   .connect(mongoURi)
   .then(() =>
-    app.listen(appPort, () =>
+    app.listen(port, () =>
       console.log(`listening on port ${port} ${appPort}...`)
     )
   )

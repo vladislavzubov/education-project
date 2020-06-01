@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const UserModel = require('../models/user');
+
+const User = UserModel;
 
 const updateUserInfo = async (req, res) => {
   const userId = res.locals.userId;

@@ -8,4 +8,6 @@ const UserSchema = new mongoose.Schema({
   keyChangePasswor: String,
 });
 
-mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('user', UserSchema);
+
+module.exports = UserModel;

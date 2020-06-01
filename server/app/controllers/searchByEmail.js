@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const UserModel = require('../models/user');
+
+const User = UserModel;
 const { sendEmail } = require('./sendEmail');
 const { passwordCoding } = require('../helpers/passwordHelpers');
 

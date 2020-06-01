@@ -1,4 +1,4 @@
-const products = require('../app/controllers/products');
+
 const auth = require('../app/controllers/auth');
 const registration = require('../app/controllers/registration');
 const info = require('../app/controllers/info');
@@ -10,11 +10,7 @@ const cors = require('cors');
 
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
-  //products
-  app.get('/api/products', authMiddleware, products.getAll);
-  app.post('/api/products', authMiddleware, products.create);
-  app.put('/api/products/:id', authMiddleware, products.update);
-  app.delete('/api/products/:id', authMiddleware, products.remove);
+
 
   //auth
   app.post('/api/signin', auth.signIn);

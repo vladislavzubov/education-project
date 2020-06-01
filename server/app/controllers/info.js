@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const UserModel = require('../models/user');
 
-const User = mongoose.model('User');
+const User = UserModel;
 
 const infoUser = (req, res) => {
   User.findById(res.locals.userId, function (err, user) {
