@@ -5,7 +5,14 @@ import { withRouter } from 'react-router';
 class Layout extends Component {
   componentDidMount() {
     const asseccToken = localStorage.getItem('accessKey');
+<<<<<<< HEAD
     if (asseccToken === null) {
+=======
+    if (
+      asseccToken === 'delete'
+      
+    ) {
+>>>>>>> f82409fd186c01d68264ce70851c65a5167f60b4
       this.props.history.replace('/login');
     }
   }
