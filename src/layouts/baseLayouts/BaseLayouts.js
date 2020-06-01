@@ -7,7 +7,7 @@ class BaseLayouts extends Component {
     const asseccToken = localStorage.getItem('accessKey');
     console.log(asseccToken);
 
-    if (asseccToken !== 'delete') {
+    if (asseccToken !== 'delete' || asseccToken !== null) {
       this.props.history.replace('/dashboard');
     }
   }
