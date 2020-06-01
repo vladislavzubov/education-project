@@ -12,6 +12,7 @@ function Content() {
           {
             link: 'https://ru.react.js.org/docs/components-and-props.html',
             percent: 5,
+            
           },
           {
             link: 'https://ru.react.js.org/docs/components-and-props.html',

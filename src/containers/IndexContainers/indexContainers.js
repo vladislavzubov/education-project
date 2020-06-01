@@ -80,9 +80,6 @@ class IndexContainers extends Component {
       path: '/',
       component: PageLogin,
     },
-    // <Route path="*">
-    //   <NoMatch />
-    // </Route>,
   ];
 
   render() {
