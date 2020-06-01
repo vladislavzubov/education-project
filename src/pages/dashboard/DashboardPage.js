@@ -18,6 +18,8 @@ import { Spinner } from '@blueprintjs/core';
 import { receptionUser } from '../../store/reducers/server_redux';
 import axios from '../../services/axios';
 import helperMenu from '../../helper/helperMenu';
+import InitialDasboard from '../../component/initialDasboard/InitialDasboard';
+import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -80,7 +82,9 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
-        <Route path="/lectures" component={Content} />
+        <Route path="/dashboard/lectures" component={Content} />
+        <Route path="/dashboard/change_user_data" component={ChangeUserData} />
+        <Route path="/dashboard/" component={InitialDasboard} />
         {
           //<Route exect path="/" component={LecturesPage} />
         }
