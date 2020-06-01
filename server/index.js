@@ -23,13 +23,9 @@ app.get('*', (req, res) => {
 
 const { appPort, mongoURi } = config.app;
 
-const port = process.env.PORT || 80;
-
 mongoose
   .connect(mongoURi)
   .then(() =>
-    app.listen(port, () =>
-      console.log(`listening on port ${port} ${appPort}...`)
-    )
+    app.listen(appPort, () => console.log(`listening on port ${appPort}...`))
   )
   .catch((err) => console.error(`Error connecting to mongo: ${mongoURi}`, err));
