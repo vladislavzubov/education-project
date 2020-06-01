@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux';
 import { Spinner } from '@blueprintjs/core';
 import { receptionUser } from '../../store/reducers/server_redux';
 import axios from '../../services/axios';
+import InitialDasboard from '../../component/initialDasboard/InitialDasboard';
+import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -110,14 +112,20 @@ function DashboardPage(props) {
             },
           ],
         },
+
         {
-          value: 'Calendar',
-          icon: 'calendar',
-          href: 'http://localhost:3000/probe',
+          value: 'Dashboard',
+          icon: 'home',
+          href: 'http://localhost:3000/',
+        },
+        {
+          value: 'Change user info',
+          icon: 'form',
+          href: 'http://localhost:3000/dashboard/change_user_data',
         },
         {
           value: 'Lectures',
-          icon: 'minimize',
+          icon: 'send-to-graph',
           href: 'http://localhost:3000/dashboard/lectures',
         },
         {
@@ -151,7 +159,9 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
-        <Route path="/lectures" component={Content} />
+        <Route path="/dashboard/lectures" component={Content} />
+        <Route path="/dashboard/change_user_data" component={ChangeUserData} />
+        <Route path="/dashboard/" component={InitialDasboard} />
         {
           //<Route exect path="/" component={LecturesPage} />
         }

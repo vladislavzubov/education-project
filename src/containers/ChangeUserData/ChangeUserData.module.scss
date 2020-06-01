@@ -7,6 +7,21 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.Content {
+    display: flex;
+  justify-content: center;
+    background: white;
+   border-radius: 15px;
+   padding: 2rem;
+   flex-grow: 1;
+   width: 100%;
+}
+
+.Title {
+text-align: left;
+}
+
 .Regist h1{
     color: #394B59;
     font-weight: normal;
@@ -27,11 +42,22 @@
 
 .form_regist {
     background: #ffffff;
-    padding: 20px;
+  
 }
 
 img {
-    width: 150px;
-    height: 150px;
-    border-radius: 20px;
+    width: 10rem;
+    height: 10rem;
+  justify-content: center;
+margin: 0px 15%;
+    
+}
+
+.InputChange_Name {
+    padding-top: 5rem;
+   
+}
+
+.form_regist .InputChange_Name{
+    margin-top: 10px;
 }

@@ -38,7 +38,7 @@ class IndexContainers extends Component {
       path: '/login',
       component: PageLogin,
     },
-    
+
     {
       path: '/registration',
       component: PageRegistration,
