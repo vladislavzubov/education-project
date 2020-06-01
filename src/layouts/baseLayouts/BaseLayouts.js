@@ -7,8 +7,16 @@ class BaseLayouts extends Component {
     const asseccToken = localStorage.getItem('accessKey');
     console.log(asseccToken);
 
-    if (asseccToken !== 'delete' || asseccToken !== undefined) {
-      this.props.history.replace('/login');
+    if (
+      asseccToken !== 'delete' ||
+      asseccToken !== null ||
+      asseccToken !== undefined ||
+      asseccToken !== 'null' ||
+      asseccToken !== 'undefined' ||
+      asseccToken !== '' ||
+      asseccToken !== ' '
+    ) {
+      this.props.history.replace('/dashboard');
     }
   }
   render() {
