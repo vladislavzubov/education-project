@@ -21,6 +21,7 @@ import helperMenu from '../../helper/helperMenu';
 import InitialDasboard from '../../component/initialDasboard/InitialDasboard';
 import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 import CreateCategory from '../../component/create/createCategory/CreateCategory';
+import Categories from '../../component/categories/Categories';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -70,91 +71,7 @@ function DashboardPage(props) {
     }
   }, [isAuthorized]);
 
-/*
-  const menuList = [
-    {
-      value: 'Main',
-      menuIteam: [
-        {
-          value: 'Dashboard',
-          icon: 'home',
-          badges: 2,
-          href: 'http://localhost:3000/probe',
-          nesting: [
-            {
-              value: 'bigbigbigbig',
-              href:
-                'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
-            },
-            {
-              value: 'small',
-              href:
-                'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      value: 'Apps',
-      menuIteam: [
-        {
-          value: 'Charts',
-          icon: 'grouped-bar-chart',
-          href: 'http://localhost:3000/probe',
-          nesting: [
-            {
-              value: 'Create category',
-              href: 'http://localhost:3000/dashboard/create-category',
-            },
-            {
-              value: 'Create lecture',
-              href: 'http://localhost:3000/dashboard/create-lecture',
-            },
-            {
-              value: 'Chart exercise',
-              href: 'http://localhost:3000/dashboard/create-exercise',
-            },
-          ],
-        },
-
-        {
-          value: 'Dashboard',
-          icon: 'home',
-          href: 'http://localhost:3000/',
-        },
-        {
-          value: 'Change user info',
-          icon: 'form',
-          href: 'http://localhost:3000/dashboard/change_user_data',
-        },
-        {
-          value: 'Lectures',
-          icon: 'send-to-graph',
-          href: 'http://localhost:3000/dashboard/lectures',
-        },
-        {
-          value: 'Email',
-          icon: 'envelope',
-          href: 'http://localhost:3000/probe',
-        },
-        {
-          value: 'Profile',
-          icon: 'user',
-          href: 'http://localhost:3000/probe',
-          badges: 3,
-        },
-        {
-          value: 'Widget',
-          icon: 'grid-view',
-          href: 'http://localhost:3000/probe',
-        },
-      ],
-    },
-  ];
-*/
   const menuList = helperMenu();
-
 
   if (isLoading) {
     return <Spinner />;
@@ -167,6 +84,7 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
+        <Route path="/dashboard/categories" component={Categories} />
         <Route path="/dashboard/lectures" component={Content} />
         <Route path="/dashboard/change_user_data" component={ChangeUserData} />
         <Route path="/dashboard/create-category" component={CreateCategory} />
