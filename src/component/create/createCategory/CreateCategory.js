@@ -14,7 +14,8 @@ const onSubmit = async (value) => {
 
 const postCategoryName = async (value) => {
   try {
-    const response = await requests('post', '/category', value); //проверить правильность адресса
+    console.log(value);
+    const response = await requests('post', 'category', value, 1); //проверить правильность адресса
     console.log('success create category');
   } catch (e) {
     console.log('falied create category', e);
