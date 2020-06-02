@@ -32,16 +32,23 @@ export default function helperMenu() {
           href: 'http://localhost:3000/probe',
           nesting: [
             {
-              value: 'Chart 1',
-              href:
-                'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
+              value: 'Create category',
+              href: 'http://localhost:3000/dashboard/create-category',
             },
             {
-              value: 'Chart 2',
-              href:
-                'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
+              value: 'Create lecture',
+              href: 'http://localhost:3000/dashboard/create-lecture',
+            },
+            {
+              value: 'Chart exercise',
+              href: 'http://localhost:3000/dashboard/create-exercise',
             },
           ],
+        },
+        {
+          value: 'Categories',
+          icon: 'pivot',
+          href: 'http://localhost:3000/dashboard/categories',
         },
         {
           value: 'Dashboard',
