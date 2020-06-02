@@ -29,7 +29,8 @@ import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
 import { connect } from 'react-redux';
 import DashboardPage from '../../pages/dashboard/DashboardPage';
-//import Lectures from '../Lecture/Lecture';
+import Lectures from '../Lecture/Lecture';
+
 //import Layout from '../../Pages/Layout/Layout';
 class IndexContainers extends Component {
   routes = [
@@ -51,7 +52,8 @@ class IndexContainers extends Component {
     },
     {
       path: '/lec/:id',
-      component: PageLostPassword,
+
+      component: Lectures,
     },
     {
       path: '/dashboard',
@@ -60,8 +62,11 @@ class IndexContainers extends Component {
       routes: [
         {
           path: '/dashboard/lectures/:id',
-          component: PageLostPassword,
+
+          component: Lectures,
+
         },
+
         {
           path: '/dashboard/matrix',
           component: PageMain,

@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 import { Spinner } from '@blueprintjs/core';
 import { receptionUser } from '../../store/reducers/server_redux';
 import axios from '../../services/axios';
+import helperMenu from '../../helper/helperMenu';
 import InitialDasboard from '../../component/initialDasboard/InitialDasboard';
 import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 import CreateCategory from '../../component/create/createCategory/CreateCategory';
@@ -69,6 +70,7 @@ function DashboardPage(props) {
     }
   }, [isAuthorized]);
 
+/*
   const menuList = [
     {
       value: 'Main',
@@ -150,6 +152,9 @@ function DashboardPage(props) {
       ],
     },
   ];
+*/
+  const menuList = helperMenu();
+
 
   if (isLoading) {
     return <Spinner />;
