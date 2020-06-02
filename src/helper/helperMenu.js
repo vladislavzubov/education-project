@@ -1,5 +1,5 @@
 export default function helperMenu() {
-  const menu = [
+  const menuAdmin = [
     {
       value: 'Main',
       menuIteam: [
@@ -82,5 +82,5 @@ export default function helperMenu() {
       ],
     },
   ];
-  return menu;
+  return menuAdmin;
 }

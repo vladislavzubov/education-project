@@ -10,6 +10,4 @@ const LectureSchema = new mongoose.Schema({
   link: String,
 });
 
-const LectureModel = mongoose.model('lecture', LectureSchema);
-
-module.exports = LectureModel;
+module.exports = mongoose.model('lecture', LectureSchema);

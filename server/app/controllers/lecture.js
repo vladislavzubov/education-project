@@ -3,6 +3,22 @@ const LectureModel = require('../models/lecture');
 
 const Lecture = LectureModel;
 
+const getAllLecturesCtegory = (req, res) => {
+  Lecture.find({ category: req.params.id })
+    .exec()
+    .then((lecture) => res.json(lecture))
+    .catch((err) => res.status(500).json(err));
+};
+
+// const getAllLectureCtegorys = (req, res) => {
+//   Lecture.find()
+//     .populate('category')
+//     .then((lecture) => res.json(lecture))
+//     .exec(function (error, posts) {
+//       console.log(JSON.stringify(posts, null, '\t'));
+//     });
+// };
+
 const getAll = (req, res) =>
   Lecture.find()
     .exec()
@@ -21,7 +37,7 @@ const create = (req, res) => {
     category: req.body.category,
     link: req.body.link,
   };
-  
+
   Lecture.create(lectureObj)
     .then((lecture) => res.json(lecture))
     .catch((err) => res.status(500).json(err));
@@ -46,4 +62,6 @@ module.exports = {
   create,
   update,
   remove,
+
+  getAllLecturesCtegory,
 };

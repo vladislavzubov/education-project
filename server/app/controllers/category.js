@@ -13,7 +13,7 @@ const create = (req, res) => {
   const categoryObj = {
     name: req.body.name,
   };
-  
+
   Category.create(categoryObj)
     .then((category) => res.json(category))
     .catch((err) => res.status(500).json(err));

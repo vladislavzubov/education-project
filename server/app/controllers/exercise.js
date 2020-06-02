@@ -9,6 +9,13 @@ const getAll = (req, res) =>
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(500).json(err));
 
+const getAllExercisesLecture = (req, res) => {
+  Exercise.find({ lecture: req.params.id })
+    .exec()
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(500).json(err));
+};
+
 const create = (req, res) => {
   const date = new Date();
   const exerciseObj = {
@@ -42,4 +49,6 @@ module.exports = {
   create,
   update,
   remove,
+
+  getAllExercisesLecture,
 };
