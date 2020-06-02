@@ -52,7 +52,6 @@ class PageMain extends Component {
 
   render() {
     const props =helperMenu();
-
     return this.state.isLoading ? (
       <Spinner className={Styles.GlobalStyles} />
     ) : (
