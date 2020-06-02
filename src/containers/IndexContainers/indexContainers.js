@@ -32,14 +32,12 @@ import DashboardPage from '../../pages/dashboard/DashboardPage';
 import Lectures from '../Lecture/Lecture';
 
 //import Layout from '../../Pages/Layout/Layout';
-
 class IndexContainers extends Component {
   routes = [
     {
       path: '/login',
       component: PageLogin,
     },
-
     {
       path: '/registration',
       component: PageRegistration,
@@ -54,6 +52,7 @@ class IndexContainers extends Component {
     },
     {
       path: '/lec/:id',
+
       component: Lectures,
     },
     {
@@ -63,7 +62,9 @@ class IndexContainers extends Component {
       routes: [
         {
           path: '/dashboard/lectures/:id',
+
           component: Lectures,
+
         },
 
         {
@@ -80,15 +81,15 @@ class IndexContainers extends Component {
       path: '/',
       component: PageLogin,
     },
+    //  <Route path="*">
+    //  <NoMatch />
+    //</Route>,
   ];
-
   render() {
     return <Switch>{nestingCheckRoute(this.routes)}</Switch>;
   }
 }
-
 export default withRouter(IndexContainers);
-
 function nestingCheckRoute(routes) {
   return routes.map((route, i) =>
     route.isProtected ? (
@@ -100,7 +101,6 @@ function nestingCheckRoute(routes) {
     )
   );
 }
-
 function PrivateRoute(route) {
   return tokenCheck() ? (
     <Switch>
