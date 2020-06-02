@@ -7,6 +7,7 @@ import { requests } from '../../services/requests';
 function Categories() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoriesAll, setCategoriesAll] = React.useState();
+  
   const getCategories = async () => {
     setIsLoading(true);
     try {

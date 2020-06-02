@@ -1,4 +1,26 @@
-export default function helperMenu() {
+import React from 'react';
+import { requests } from '../services/requests';
+
+function helperMenu() {
+  const [menuAll, setMenuAll] = React.useState();
+
+  const getMenu = async () => {
+    try {
+      const getAllMenu = await requests('get', 'menu');
+      setMenuAll(getAllMenu.data[0]);
+      console.log(getAllMenu.data[0]);
+    } catch (e) {
+      console.log('falied get all categories', e);
+      console.log(getAllMenu.data);
+    }
+    console.log('success get all categories');
+  };
+  console.log(menuAll);
+
+  React.useEffect(() => {
+    getMenu();
+  }, []);
+
   const menuAdmin = [
     {
       value: 'Apps',
@@ -42,10 +64,10 @@ export default function helperMenu() {
           icon: 'send-to-graph',
           href: 'http://localhost:3000/dashboard/lectures',
         },
-        
-        
       ],
     },
   ];
   return menuAdmin;
 }
+
+export default helperMenu;
