@@ -29,23 +29,17 @@ import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
 import { connect } from 'react-redux';
 import DashboardPage from '../../pages/dashboard/DashboardPage';
-
+//import Lectures from '../Lecture/Lecture';
 //import Layout from '../../Pages/Layout/Layout';
-
 class IndexContainers extends Component {
   routes = [
     {
       path: '/login',
       component: PageLogin,
     },
-
     {
       path: '/registration',
       component: PageRegistration,
-    },
-    {
-      path: '/matrix',
-      component: PageMain,
     },
     {
       path: '/lostPassword',
@@ -56,18 +50,25 @@ class IndexContainers extends Component {
       component: PageLostPassword,
     },
     {
+      path: '/lec/:id',
+      component: PageLostPassword,
+    },
+    {
       path: '/dashboard',
       component: DashboardPage,
       isProtected: true,
       routes: [
         {
-          path: '/dashboard/lectures',
-          // isProtected: true,
-          component: DashboardPage,
+          path: '/dashboard/lectures/:id',
+          component: PageLostPassword,
         },
         {
           path: '/dashboard/matrix',
-          component: DashboardPage,
+          component: PageMain,
+        },
+        {
+          path: '/dashboard/change-user',
+          component: ChangeUserData,
         },
       ],
     },
@@ -75,15 +76,15 @@ class IndexContainers extends Component {
       path: '/',
       component: PageLogin,
     },
+    //  <Route path="*">
+    //  <NoMatch />
+    //</Route>,
   ];
-
   render() {
     return <Switch>{nestingCheckRoute(this.routes)}</Switch>;
   }
 }
-
 export default withRouter(IndexContainers);
-
 function nestingCheckRoute(routes) {
   return routes.map((route, i) =>
     route.isProtected ? (
@@ -95,7 +96,6 @@ function nestingCheckRoute(routes) {
     )
   );
 }
-
 function PrivateRoute(route) {
   return tokenCheck() ? (
     <Switch>
