@@ -12,6 +12,7 @@ const getAll = (req, res) =>
 const create = (req, res) => {
   const categoryObj = {
     name: req.body.name,
+    alias: req.body.alias,
   };
 
   Category.create(categoryObj)
