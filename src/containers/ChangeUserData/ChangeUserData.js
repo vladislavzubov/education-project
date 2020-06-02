@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './ChangeUserData.module.css';
+import classes from './ChangeUserData.module.scss';
 import { Form } from 'react-final-form';
 import { Button, Spinner } from '@blueprintjs/core';
 import { BrowserRouter as Link } from 'react-router-dom';
@@ -107,7 +107,7 @@ class User extends Component {
         <Spinner />
       </div>
     ) : (
-      <div className={classes.Regist}>
+      <div className={classes.Content}>
         <Form
           onSubmit={this.onSubmit}
           initialValues={{
@@ -117,15 +117,16 @@ class User extends Component {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
-                <h1>Change User Data</h1>
+                <h1 className={classes.Title}>Change User Data</h1>
 
-                <img src="Ivan.jpg" />
+                <img src="/Ivan.jpg" />
 
                 <InputDisabled
                   name="Name"
                   placeholder="Name"
                   type="text"
                   show={false}
+                  className={classes.InputChange_Name}
                 />
 
                 <InputDisabled
@@ -146,9 +147,6 @@ class User extends Component {
             </form>
           )}
         />
-        <p className={classes.text}>
-          Alreade,have an account? <Link to="/login">Login here</Link>
-        </p>
       </div>
     );
   }

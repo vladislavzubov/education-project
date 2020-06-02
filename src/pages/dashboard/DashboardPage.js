@@ -17,6 +17,9 @@ import { useDispatch } from 'react-redux';
 import { Spinner } from '@blueprintjs/core';
 import { receptionUser } from '../../store/reducers/server_redux';
 import axios from '../../services/axios';
+import InitialDasboard from '../../component/initialDasboard/InitialDasboard';
+import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
+import CreateCategory from '../../component/create/createCategory/CreateCategory';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -99,25 +102,33 @@ function DashboardPage(props) {
           href: 'http://localhost:3000/probe',
           nesting: [
             {
-              value: 'Chart 1',
-              href:
-                'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
+              value: 'Create category',
+              href: 'http://localhost:3000/dashboard/create-category',
             },
             {
-              value: 'Chart 2',
-              href:
-                'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
+              value: 'Create lecture',
+              href: 'http://localhost:3000/dashboard/create-lecture',
+            },
+            {
+              value: 'Chart exercise',
+              href: 'http://localhost:3000/dashboard/create-exercise',
             },
           ],
         },
+
         {
-          value: 'Calendar',
-          icon: 'calendar',
-          href: 'http://localhost:3000/probe',
+          value: 'Dashboard',
+          icon: 'home',
+          href: 'http://localhost:3000/',
+        },
+        {
+          value: 'Change user info',
+          icon: 'form',
+          href: 'http://localhost:3000/dashboard/change_user_data',
         },
         {
           value: 'Lectures',
-          icon: 'minimize',
+          icon: 'send-to-graph',
           href: 'http://localhost:3000/dashboard/lectures',
         },
         {
@@ -151,7 +162,10 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
-        <Route path="/lectures" component={Content} />
+        <Route path="/dashboard/lectures" component={Content} />
+        <Route path="/dashboard/change_user_data" component={ChangeUserData} />
+        <Route path="/dashboard/create-category" component={CreateCategory} />
+        <Route path="/dashboard/" component={InitialDasboard} />
         {
           //<Route exect path="/" component={LecturesPage} />
         }
