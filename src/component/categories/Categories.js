@@ -3,11 +3,14 @@ import Styles from './Categories.module.scss';
 import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
+import TitleCategor from '../titleCategor/TitleCategor';
 
 function Categories() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoriesAll, setCategoriesAll] = React.useState();
   const getCategories = async () => {
+    console.log('jkj');
+
     setIsLoading(true);
     try {
       const getAllCategories = await requests('get', 'category');
@@ -18,7 +21,6 @@ function Categories() {
       console.log('falied get all categories', e);
       setIsLoading(false);
     }
-    console.log('success get all categories');
   };
   console.log(categoriesAll);
 
@@ -31,9 +33,15 @@ function Categories() {
       {isLoading ? (
         <Spinner className={Styles.Spinner} />
       ) : (
-        <div>
+        <div className={Styles.Categor}>
           {categoriesAll.map((categor, index) => {
-            return <p>{categor.name}</p>;
+            return (
+              <TitleCategor
+                name={categor.name}
+                id={categor._id}
+                getCategories={getCategories}
+              />
+            );
           })}
         </div>
       )}

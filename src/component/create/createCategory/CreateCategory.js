@@ -43,8 +43,8 @@ function CreateCategory() {
           <div>
             <h3 className={Styles.CreateCategory_Title}>Сreate a category</h3>
             <form onSubmit={handleSubmit}>
-              <InputFull name="name" placeholder="Text" />
-
+              <InputFull name="name" placeholder="Name" />
+              <InputFull name="alias" placeholder="Alias" />
               <button
                 className={Styles.CreateCategory_Button}
                 type="submit"
