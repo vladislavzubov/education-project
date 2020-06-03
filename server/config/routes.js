@@ -33,6 +33,11 @@ module.exports = (app) => {
   app.post('/api/exercise', authMiddleware, exercise.create);
   app.put('/api/exercise/:id', authMiddleware, exercise.update);
   app.delete('/api/exercise/:id', authMiddleware, exercise.remove);
+  app.delete(
+    '/api/exercise-all/:id',
+    authMiddleware,
+    exercise.removingFromLecture
+  );
 
   //lecture
   app.get('/api/lecture', authMiddleware, lecture.getAll);
@@ -40,6 +45,11 @@ module.exports = (app) => {
   app.post('/api/lecture', authMiddleware, lecture.create);
   app.put('/api/lecture/:id', authMiddleware, lecture.update);
   app.delete('/api/lecture/:id', authMiddleware, lecture.remove);
+  app.delete(
+    '/api/lecture-all/:id',
+    authMiddleware,
+    lecture.removingFromCategory
+  );
 
   //category
   app.get('/api/category', authMiddleware, category.getAll);

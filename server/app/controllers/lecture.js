@@ -41,18 +41,25 @@ const update = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+const removingFromCategory = (req, res) => {
+  Lecture.deleteMany({ category: req.params.id })
+    .exec()
+    .then(() => res.json({ success: true }))
+    .catch((err) => res.status(500).json(err));
+};
+
 const remove = (req, res) => {
   Lecture.deleteOne({ _id: req.params.id })
     .exec()
     .then(() => res.json({ success: true }))
     .catch((err) => res.status(500).json(err));
 };
-  
+
 module.exports = {
   getAll,
   create,
   update,
   remove,
-
   getAllLecturesCtegory,
+  removingFromCategory
 };
