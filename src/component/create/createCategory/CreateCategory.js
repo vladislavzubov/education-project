@@ -15,7 +15,7 @@ function CreateCategory() {
 
   const postCategoryName = async (value) => {
     try {
-      const response = await requests('post', 'category', value); //проверить правильность адресса
+      const response = await requests('post', 'category', value);
       console.log('success create category');
     } catch (e) {
       console.log('falied create category', e);
@@ -38,7 +38,6 @@ function CreateCategory() {
     <div className={Styles.CreateCategory}>
       <Form
         onSubmit={onSubmit}
-        //  initialValues={{ firstName: 'Bob' }}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <div>
             <h3 className={Styles.CreateCategory_Title}>Сreate a category</h3>
