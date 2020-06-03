@@ -3,6 +3,7 @@ import Styles from './Categories.module.scss';
 import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
+import TitleCategory from '../titleCategor/TitleCategor';
 
 function Categories() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -19,9 +20,35 @@ function Categories() {
       console.log('falied get all categories', e);
       setIsLoading(false);
     }
-    console.log('success get all categories');
   };
-  console.log(categoriesAll);
+
+  const handleCategoryChange = React.useCallback(
+    async (categoryInfo, categoryId) => {
+      try {
+        const response = await requests(
+          'put',
+          `category/${categoryId}`,
+          categoryInfo
+        );
+        getCategories();
+        console.log('success update categories');
+      } catch (e) {
+        console.log('falied update categories', e);
+      }
+    },
+    []
+  );
+
+  const handleCategoryDelete = React.useCallback(async (categoryId) => {
+    try {
+      const deleteCategor = await requests('delete', `category/${categoryId}`);
+      getCategories();
+      location.reload();
+      console.log('success delete categories');
+    } catch (e) {
+      console.log('falied delete categories', e);
+    }
+  }, []);
 
   React.useEffect(() => {
     getCategories();
@@ -32,9 +59,16 @@ function Categories() {
       {isLoading ? (
         <Spinner className={Styles.Spinner} />
       ) : (
-        <div>
-          {categoriesAll.map((categor, index) => {
-            return <p>{categor.name}</p>;
+        <div className={Styles.Category}>
+          {categoriesAll.map((category, index) => {
+            return (
+              <TitleCategory
+                category={category}
+                getCategories={getCategories}
+                onChange={handleCategoryChange}
+                onDelete={handleCategoryDelete}
+              />
+            );
           })}
         </div>
       )}

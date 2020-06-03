@@ -98,10 +98,6 @@ class User extends Component {
   };
 
   render() {
-    console.log({
-      Name: `${this.props.userDataName}`,
-      Age: `${this.props.userDataAge}`,
-    });
     return this.state.download ? (
       <div>
         <Spinner />

@@ -1,0 +1,23 @@
+.TitleCategor{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.EditTitle{
+    display: flex;
+}
+
+.Edit_Button {
+    height: 2rem;
+    width: 4rem;
+    border-radius: 3rem;
+    color: white;
+    background: rgb(1, 137, 201);
+}
+
+.Edit_Button:hover {
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    background: rgb(6, 31, 99);
+}
