@@ -6,6 +6,8 @@ const ExerciseSchema = new mongoose.Schema({
   date: Date,
   author: String,
   lecture: String,
+  type: String,
+  time: Number,
 });
 
 const ExerciseModel = mongoose.model('exercise', ExerciseSchema);

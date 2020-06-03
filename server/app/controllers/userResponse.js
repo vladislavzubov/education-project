@@ -24,6 +24,13 @@ const getAllResponseUser = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+const updateInLecture = (req, res) => {
+    UserResponse.findOneAndUpdate({ lectureId: req.params.id }, req.body, { new: true })
+      .exec()
+      .then((lecture) => res.json(lecture))
+      .catch((err) => res.status(500).json(err));
+  };
+
 const removeAllResponseUser = (req, res) => {
   UserResponse.deleteMany({ userId: req.params.id })
     .exec()
@@ -35,4 +42,5 @@ module.exports = {
   create,
   getAllResponseUser,
   removeAllResponseUser,
+  updateInLecture
 };
