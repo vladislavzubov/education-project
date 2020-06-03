@@ -35,6 +35,10 @@ import Lectures from '../Lecture/Lecture';
 class IndexContainers extends Component {
   routes = [
     {
+      path: '/probe',
+      component: Probe,
+    },
+    {
       path: '/login',
       component: PageLogin,
     },
@@ -64,7 +68,6 @@ class IndexContainers extends Component {
           path: '/dashboard/lectures/:id',
 
           component: Lectures,
-
         },
 
         {
