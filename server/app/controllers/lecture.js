@@ -47,7 +47,7 @@ const remove = (req, res) => {
     .then(() => res.json({ success: true }))
     .catch((err) => res.status(500).json(err));
 };
-
+  
 module.exports = {
   getAll,
   create,
