@@ -22,6 +22,7 @@ import InitialDasboard from '../../component/initialDasboard/InitialDasboard';
 import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 import CreateCategory from '../../component/create/createCategory/CreateCategory';
 import Categories from '../../component/categories/Categories';
+import CreateLecture from '../../component/create/createLecture/CreateLecture';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -84,6 +85,7 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
+        <Route path="/dashboard/create-lecture" component={CreateLecture} />
         <Route path="/dashboard/categories" component={Categories} />
         <Route path="/dashboard/lectures" component={Content} />
         <Route path="/dashboard/change_user_data" component={ChangeUserData} />
