@@ -4,26 +4,19 @@ import { requests } from '../../services/requests';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../component/InputFull/InputFull';
 
-function TitleCategor({ name, id }) {
+function TitleCategor({ category, onChange, onDelete }) {
   const [isOnChange, setIsOnChange] = React.useState(false);
-  const deleteCategor = async () => {
-    try {
-      const deleteCategor = await requests('delete', `category/${id}`);
-      // getCategories();
-      location.reload();
-      console.log('success delete categories');
-    } catch (e) {
-      console.log('falied delete categories', e);
+
+  const handleChange = (newCategory, id) => {
+    onChangeTitle();
+    if (typeof onChange === 'function') {
+      onChange(newCategory, id);
     }
   };
-  const putTitleCategor = async (value) => {
-    try {
-      const response = await requests('put', `category/${id}`, value);
-      // getCategories();
-      location.reload();
-      console.log('success update categories');
-    } catch (e) {
-      console.log('falied update categories', e);
+
+  const handleDelete = () => {
+    if (typeof onDelete === 'function') {
+      onDelete(category._id);
     }
   };
 
@@ -33,18 +26,17 @@ function TitleCategor({ name, id }) {
     setIsOnChange(!isOnChange);
   };
   const onSubmit = async (value) => {
-    console.log(value);
     setIsOnChange(!isOnChange);
-    putTitleCategor(value);
-    //   putTitleCategor();
+    handleChange(value, category._id);
   };
+
   return (
     <div className={Styles.TitleCategor}>
       {isOnChange ? (
         <Form
           onSubmit={onSubmit}
           initialValues={{
-            name: `${name}`,
+            name: `${category.name}`,
           }}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <div>
@@ -62,10 +54,10 @@ function TitleCategor({ name, id }) {
           )}
         />
       ) : (
-        <h3 onDoubleClick={onChangeTitle}>{name}</h3>
+        <h3 onDoubleClick={handleChange}>{category.name}</h3>
       )}
       <div>
-        <button onClick={deleteCategor}>X</button>
+        <button onClick={handleDelete}>X</button>
       </div>
     </div>
   );
