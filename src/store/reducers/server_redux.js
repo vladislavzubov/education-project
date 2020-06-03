@@ -44,6 +44,12 @@ export function reducer(state = initialState, action) {
         age: action.age,
       };
     }
+    case 'PUT_MENU_IN_STORE': {
+      return {
+        ...state,
+        menuAdmin: action.menuAdmin,
+      };
+    }
 
     default: {
       return state;
