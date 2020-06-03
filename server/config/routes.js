@@ -26,10 +26,16 @@ module.exports = (app) => {
     authMiddleware,
     userResponse.removeAllResponseUser
   );
+  app.put(
+    '/api/userResponse/:id',
+    authMiddleware,
+    userResponse.updateInLecture
+  );
 
   //exercise
+  app.get('/api/exercise/:id', authMiddleware, exercise.exerciseForLecture);
   app.get('/api/exercise', authMiddleware, exercise.getAll);
-  app.get('/api/exercise/:id', authMiddleware, exercise.getAllExercisesLecture);
+  app.get('/api/exercise-all/:id', authMiddleware, exercise.getAllExercisesLecture);
   app.post('/api/exercise', authMiddleware, exercise.create);
   app.put('/api/exercise/:id', authMiddleware, exercise.update);
   app.delete('/api/exercise/:id', authMiddleware, exercise.remove);
