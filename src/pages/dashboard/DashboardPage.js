@@ -23,6 +23,7 @@ import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
 import CreateCategory from '../../component/create/createCategory/CreateCategory';
 import Categories from '../../component/categories/Categories';
 import CreateLecture from '../../component/create/createLecture/CreateLecture';
+import Lecture from '../../component/lecture/Lecture';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -77,6 +78,11 @@ function DashboardPage(props) {
   if (isLoading) {
     return <Spinner />;
   }
+  console.log(typeof window.location.pathname);
+  console.log(typeof window.location.href);
+  const s = window.location.pathname.split('/').pop();
+  const sk = s.split('/');
+  console.log(s);
 
   return (
     <BasikLayout
@@ -85,6 +91,8 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
+        <Route path="/dashboard/lectures/:id" component={Lecture} />
+
         <Route path="/dashboard/create-lecture" component={CreateLecture} />
         <Route path="/dashboard/categories" component={Categories} />
         <Route path="/dashboard/lectures" component={Content} />

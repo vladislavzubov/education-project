@@ -5,8 +5,6 @@ import { Spinner } from '@blueprintjs/core';
 import { Remarkable } from 'remarkable';
 
 function Content() {
-  let md = new Remarkable();
-  let m = md.render('# Ggggggggg!');
   const prop = {
     selection: [
       {
@@ -214,10 +212,6 @@ function Content() {
     ],
   };
 
-  function createMarkup() {
-    return { __html: m };
-  }
-
   const [isLoading, setIsLoading] = React.useState(true);
 
   const loadLectures = () => {
@@ -248,7 +242,6 @@ function Content() {
           })}
         </div>
       )}
-      <p dangerouslySetInnerHTML={createMarkup()} />
     </div>
   );
 }

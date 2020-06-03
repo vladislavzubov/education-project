@@ -61,9 +61,19 @@ function Categories() {
   const handleCategoryDelete = React.useCallback(async (categoryId) => {
     try {
       const deleteCategor = await requests('delete', `category/${categoryId}`);
-      getCategories();
 
       console.log('success delete categories');
+      try {
+        const deleteCategor = await requests(
+          'delete',
+          `lecture-all/${categoryId}`
+        );
+        console.log('success delete all lectures in category');
+        getCategories();
+      } catch (e) {
+        console.log('success delete all lectures in category');
+        getCategories();
+      }
     } catch (e) {
       console.log('falied delete categories', e);
     }

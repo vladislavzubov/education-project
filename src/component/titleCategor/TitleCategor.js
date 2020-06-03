@@ -82,7 +82,7 @@ function TitleCategor({
           return (
             <div className={Styles.TitleLecture}>
               <a
-                href={`http://localhost:3000/dashboard/lectures/${lecture.link}`}
+                href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
               >
                 <h5>{lecture.title}</h5>
               </a>

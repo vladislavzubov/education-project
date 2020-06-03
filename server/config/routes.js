@@ -41,6 +41,7 @@ module.exports = (app) => {
 
   //lecture
   app.get('/api/lecture', authMiddleware, lecture.getAll);
+  app.get('/api/lecture-one/:id', authMiddleware, lecture.getOneLecture);
   app.get('/api/lecture/:id', authMiddleware, lecture.getAllLecturesCtegory);
   app.post('/api/lecture', authMiddleware, lecture.create);
   app.put('/api/lecture/:id', authMiddleware, lecture.update);

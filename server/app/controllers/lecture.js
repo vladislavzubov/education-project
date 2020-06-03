@@ -41,6 +41,13 @@ const update = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+const getOneLecture = (req, res) => {
+  Lecture.findOne({ _id: req.params.id })
+    .exec()
+    .then((lecture) => res.json(lecture))
+    .catch((err) => res.status(500).json(err));
+};
+
 const removingFromCategory = (req, res) => {
   Lecture.deleteMany({ category: req.params.id })
     .exec()
@@ -61,5 +68,6 @@ module.exports = {
   update,
   remove,
   getAllLecturesCtegory,
-  removingFromCategory
+  removingFromCategory,
+  getOneLecture,
 };
