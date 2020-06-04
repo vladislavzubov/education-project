@@ -43,7 +43,7 @@ const wery = {
 
 export default function Probe() {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [exercise, setExercise] = React.useState({tests:[], texts:[]});
+  const [exercise, setExercise] = React.useState({ tests: [], texts: [] });
   // console.log(exercise);
   const value = {
     numberOfText: 1,
@@ -55,10 +55,7 @@ export default function Probe() {
 
     try {
       const exercise = await requests('get', `exercise/${url}`, value);
-
-      console.log(exercise.data);
       setExercise(exercise.data);
-
       console.log('success get own exercise');
     } catch (e) {
       console.log('falied get wn exercise', e);
@@ -67,7 +64,6 @@ export default function Probe() {
   };
   React.useEffect(() => {
     const url = window.location.pathname.split('/').pop();
-    console.log(url);
     getExercise(url);
   }, []);
 
