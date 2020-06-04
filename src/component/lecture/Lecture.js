@@ -1,12 +1,8 @@
 import React from 'react';
 import Styles from './Lecture.module.scss';
-import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
-import TitleCategory from '../titleCategor/TitleCategor';
-import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
-import { Remarkable } from 'remarkable';
 import InputFull_TextArea from '../InputFull/InputFull_TextArea';
 import { Form, Field } from 'react-final-form';
 
@@ -14,11 +10,14 @@ function Lecture() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecture, setLecture] = React.useState([]);
   const [isOnChange, setIsOnChange] = React.useState(false);
+  const [lecturesID, setLecturesID] = React.useState(' ');
+  console.log(lecturesID);
 
-  const getLecture = async (id) => {
+  const getLecture = async (url) => {
     setIsLoading(true);
     try {
-      const lecture = await requests('get', `lecture-one/${id}`);
+      console.log(lecturesID);
+      const lecture = await requests('get', `lecture-one/${url}`);
       setLecture(lecture.data);
 
       console.log('success get own lecture');
@@ -29,27 +28,30 @@ function Lecture() {
     }
   };
   const onSubmit = async (value) => {
+    console.log(value);
     setIsOnChange(!isOnChange);
-    handleChange(value, category._id);
+    chanheLecture(value);
   };
-  console.log(lecture.title);
-  //попытаться другим способом
-  //let md = new Remarkable();
-  // let m = md.render(lecture);
-  // function createMarkup() {
-  //  return { __html: m };
-  // }
-  //
-
   React.useEffect(() => {
     const url = window.location.pathname.split('/').pop();
     console.log(url);
+    setLecturesID(url);
     getLecture(url);
   }, []);
-
   const handleChange = () => {
     setIsOnChange(!isOnChange);
     return;
+  };
+  const chanheLecture = async (value) => {
+    setIsLoading(true);
+    try {
+      const putLecture = await requests('put', `lecture/${lecturesID}`, value);
+      getLecture(lecturesID);
+      console.log('success put own lecture');
+    } catch (e) {
+      setIsLoading(false);
+      console.log('falied put own lecture');
+    }
   };
 
   return (
@@ -63,7 +65,7 @@ function Lecture() {
             <Form
               onSubmit={onSubmit}
               initialValues={{
-                name: `${lecture.value}`,
+                value: `${lecture.value}`,
               }}
               render={({
                 handleSubmit,
@@ -74,12 +76,8 @@ function Lecture() {
               }) => (
                 <div>
                   <form onSubmit={handleSubmit} className={Styles.EditTitle}>
-                    <InputFull_TextArea name="name" placeholder="Name" />
-                    <button
-                      className={Styles.Edit_Button}
-                      type="submit"
-                      onClick={handleChange}
-                    >
+                    <InputFull_TextArea name="value" placeholder="Value" />
+                    <button className={Styles.Edit_Button} type="submit">
                       Edit
                     </button>
                   </form>
@@ -91,10 +89,6 @@ function Lecture() {
               <ReactMarkdown source={lecture.value} />
             </div>
           )}
-
-          {
-            //  <p dangerouslySetInnerHTML={createMarkup()} />
-          }
         </div>
       )}
     </div>
