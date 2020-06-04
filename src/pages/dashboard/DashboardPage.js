@@ -24,6 +24,7 @@ import CreateCategory from '../../component/create/createCategory/CreateCategory
 import Categories from '../../component/categories/Categories';
 import CreateLecture from '../../component/create/createLecture/CreateLecture';
 import Lecture from '../../component/lecture/Lecture';
+import Testing from '../../component/Testing/Testing';
 import CreateExercise from '../../component/create/createExercise/CreateExercise';
 
 function DashboardPage(props) {
@@ -91,6 +92,7 @@ function DashboardPage(props) {
         <Route path="/dashboard/create-lecture" component={CreateLecture} />
         <Route path="/dashboard/create-exercise" component={CreateExercise} />
         <Route path="/dashboard/categories" component={Categories} />
+        {/* <Route path="/dashboard/test" component={Testing} /> */}
         <Route path="/dashboard/lectures" component={Content} />
         <Route path="/dashboard/change_user_data" component={ChangeUserData} />
         <Route path="/dashboard/create-category" component={CreateCategory} />

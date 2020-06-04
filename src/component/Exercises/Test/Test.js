@@ -6,7 +6,7 @@ export default function Test({ test }) {
     <div className={Styles.Test}>
       <h2>{test.question}</h2>
       <div>
-        {test.answers.map((answer, index) => {
+        {test.quantity.map((answer, index) => {
           return (
             <div>
               {answer}

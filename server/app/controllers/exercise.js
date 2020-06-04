@@ -19,13 +19,14 @@ const getAllExercisesLecture = (req, res) => {
 const create = (req, res) => {
   const date = new Date();
   const exerciseObj = {
-    title: req.body.title,
-    value: req.body.value,
+    question: req.body.question,
+    quantity: req.body.quantity,
+    correctAnswers: req.body.correctAnswers,
     date: date,
     author: req.body.author,
     lecture: req.body.lecture,
     type: req.body.type,
-    time: req.body.time,
+    
   };
   Exercise.create(exerciseObj)
     .then((exercise) => res.json(exercise))
@@ -64,14 +65,9 @@ const shuffle = (arr) => {
   return arr;
 };
 
-const spliceArr = (arr, number) => {
-  arr.splice(0, number);
-  return arr;
-};
-
 const exerciseForLecture = async (req, res) => {
-  const numberOfTest = req.body.numberOfTest;
-  const numberOfText = req.body.numberOfText;
+  const numberOfTest = req.query.numberOfTest;
+  const numberOfText = req.query.numberOfText;
 
   let tes = [];
   let tex = [];

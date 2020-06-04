@@ -3,10 +3,10 @@ import Styles from './Text.module.scss';
 import { TextArea } from '@blueprintjs/core';
 import MonacoEditor from 'react-monaco-editor';
 
-export default function Text({ test }) {
+export default function Text({ text }) {
   return (
     <div className={Styles.Text}>
-      <h2>{test.question}</h2>
+      <h2>{text.question}</h2>
       <div className={Styles.Text}>
         <MonacoEditor
           // width="800"

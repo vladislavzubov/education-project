@@ -2,7 +2,12 @@ import axios from './axios';
 
 export async function requests(methods, route, data, count = 1) {
   try {
-    const response = await axios({ method: methods, url: route, data: data });
+    const axiosConfig = {
+      method: methods,
+      url: route,
+      ...(methods === 'get' ? { params: data } : { data }),
+    };
+    const response = await axios(axiosConfig);
     console.log(methods, route, data, count);
     return response;
   } catch (e) {
