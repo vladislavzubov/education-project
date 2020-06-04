@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Menu from '../component/Menu/Menu';
 import helperMenu from '../helper/helperMenu';
 import Testing from '../component/Testing/Testing';
-import MonacoEditor from 'react-monaco-editor';
+
 
 const tests = [
   {
@@ -62,16 +62,7 @@ class Probe extends Component {
     return (
       <div>
         <h1>PROBE</h1>
-        <MonacoEditor
-        width="800"
-        height="600"
-        language="javascript"
-        theme="vs-dark"
-        value="hellow world"
-        // options={options}
-        // onChange={::this.onChange}
-        // editorDidMount={::this.editorDidMount}
-      />
+        
         <Testing tests={tests} />
       </div>
     );
