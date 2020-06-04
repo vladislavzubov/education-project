@@ -78,11 +78,6 @@ function DashboardPage(props) {
   if (isLoading) {
     return <Spinner />;
   }
-  console.log(typeof window.location.pathname);
-  console.log(typeof window.location.href);
-  const s = window.location.pathname.split('/').pop();
-  const sk = s.split('/');
-  console.log(s);
 
   return (
     <BasikLayout
@@ -92,8 +87,8 @@ function DashboardPage(props) {
     >
       <Switch>
         <Route path="/dashboard/lectures/:id" component={Lecture} />
-
         <Route path="/dashboard/create-lecture" component={CreateLecture} />
+        <Route path="/dashboard/create-exercise" component={CreateLecture} />
         <Route path="/dashboard/categories" component={Categories} />
         <Route path="/dashboard/lectures" component={Content} />
         <Route path="/dashboard/change_user_data" component={ChangeUserData} />
