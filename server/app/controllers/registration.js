@@ -15,6 +15,7 @@ const create = async (req, res) => {
       email: req.body.email,
       password: passwordUser,
       age: req.body.age,
+      role: req.body.role,
     };
     res.json(userObj);
     User.create(userObj)
