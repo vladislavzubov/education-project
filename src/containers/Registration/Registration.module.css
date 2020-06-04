@@ -24,7 +24,11 @@
 .Regist p Link{
     color: white;
 }
-
+.Regist select{
+    width: 100%;
+    
+    background-color: white;
+}
 .form_regist {
     background: #ffffff;
     padding: 20px;
