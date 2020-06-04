@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Menu from '../component/Menu/Menu';
 import helperMenu from '../helper/helperMenu';
-import Test from '../component/Testing/Testing';
+import Testing from '../component/Testing/Testing';
+
 
 const tests = [
   {
@@ -46,7 +47,7 @@ const tests = [
     time: 30,
     question: 'назовите хук который отвечает за сохранение стэйта',
     lectory: 'asdfasdf455d',
-    correctAnswer: ["setState"],
+    correctAnswer: ['setState'],
     answers: ['setState', 'useState', 'className', 'dispatch'],
     type: 'test',
   },
@@ -57,14 +58,12 @@ class Probe extends Component {
     time: 0,
   };
 
-  
   render() {
-    const props = helperMenu();
-
     return (
       <div>
         <h1>PROBE</h1>
-        <Test tests={tests}/>
+        
+        <Testing tests={tests} />
       </div>
     );
   }
