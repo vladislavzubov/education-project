@@ -1,0 +1,14 @@
+.CreateExercise {
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+    background: white;
+   border-radius: 15px;
+   padding: 2rem;
+   flex-grow: 1;
+   width: 100%;
+}
+
+.CreateExercise_Content .CreateExercise_Input{
+  height: 5rem;
+}
