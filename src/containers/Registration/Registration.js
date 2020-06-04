@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Registration.module.css';
-import { Form } from 'react-final-form';
-import { Button } from '@blueprintjs/core';
+import { Form, Field } from 'react-final-form';
+import { Button, HTMLSelect } from '@blueprintjs/core';
 import {
   minAge,
   haveNotChar,
@@ -27,11 +27,14 @@ class Registration extends Component {
   };
 
   transferServerRegist = async (value) => {
+    console.log(value);
+
     const registPost = {
       name: value.userName,
       age: value.age,
       password: value.password,
       email: value.email,
+      role: value.role,
     };
 
     try {
@@ -117,6 +120,11 @@ class Registration extends Component {
                   loading={this.state.loading}
                 />
 
+                <Field name="role" component="select">
+                  <option />
+                  <option value="user">user</option>;
+                  <option value="admin">admin</option>;
+                </Field>
                 <Button
                   type="sumbit"
                   text="Sumbit"

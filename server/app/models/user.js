@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   age: Number,
   keyChangePasswor: String,
+  role: String,
 });
 
 const UserModel = mongoose.model('user', UserSchema);

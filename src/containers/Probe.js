@@ -46,6 +46,7 @@ const tests = [
     time: 30,
     question: 'назовите хук который отвечает за сохранение стэйта',
     lectory: 'asdfasdf455d',
+    correctAnswer: ["setState"],
     answers: ['setState', 'useState', 'className', 'dispatch'],
     type: 'test',
   },
