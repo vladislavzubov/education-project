@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Test from '../Exercises/Test/Test';
 
 import Text from '../Exercises/Text/Text';
 import { Button } from '@blueprintjs/core';
 
-function Testing({tests}) {
-    
-  const state = {
-    time: 0,
-  };
-
+function Testing({ tests }) {
   return (
     <div>
       <h1>Test</h1>
