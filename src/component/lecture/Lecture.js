@@ -34,7 +34,7 @@ function Lecture() {
   };
   React.useEffect(() => {
     const url = window.location.pathname.split('/').pop();
-    console.log(url);
+    
     setLecturesID(url);
     getLecture(url);
   }, []);

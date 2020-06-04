@@ -15,7 +15,6 @@ const cors = require('cors');
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
 
-  
   app.get(
     '/api/requestUserLecture/',
     authMiddleware,
@@ -41,9 +40,13 @@ module.exports = (app) => {
   );
 
   //exercise
-  app.get('/api/exercise/:id', authMiddleware, exercise.exerciseForLecture);
+  app.get('/api/exercise/:id', exercise.exerciseForLecture);
   app.get('/api/exercise', authMiddleware, exercise.getAll);
-  app.get('/api/exercise-all/:id', authMiddleware, exercise.getAllExercisesLecture);
+  app.get(
+    '/api/exercise-all/:id',
+    authMiddleware,
+    exercise.getAllExercisesLecture
+  );
   app.post('/api/exercise', authMiddleware, exercise.create);
   app.put('/api/exercise/:id', authMiddleware, exercise.update);
   app.delete('/api/exercise/:id', authMiddleware, exercise.remove);

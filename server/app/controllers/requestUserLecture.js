@@ -7,17 +7,17 @@ const UserResponse = UserResponseModel;
 const requestUserLecture = async (req, res) => {
   const lectureId = req.body.lectureId;
   const resolveSerch = await serachForUserResponse(req.body);
-  
+
   if (!resolveSerch) {
     await Lecture.findOne({ _id: lectureId })
       .exec()
-      .then((lecture) => res.json(lecture))
+      .then((lecture) => res.json({ type: 'lecture', lecture }))
       .catch((err) => res.status(500).json(err));
   }
-  if (resolveSerch.response.length!==0) {
+  if (resolveSerch.response.length !== 0) {
     await Lecture.findOne({ _id: lectureId })
       .exec()
-      .then((lecture) => res.json(lecture))
+      .then((lecture) => res.json({ type: 'lecture', lecture }))
       .catch((err) => res.status(500).json(err));
   }
   res.json({ exersice: resolveSerch.exersice });

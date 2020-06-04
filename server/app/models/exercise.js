@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const ExerciseSchema = new mongoose.Schema({
-  title: String,
-  value: String,
+  question: String,
+  quantity: Array,
+  correctAnswers: Array,
   date: Date,
   author: String,
   lecture: String,
   type: String,
-  time: Number,
 });
 
 const ExerciseModel = mongoose.model('exercise', ExerciseSchema);
