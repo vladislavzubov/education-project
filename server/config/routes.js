@@ -5,6 +5,7 @@ const exercise = require('../app/controllers/exercise');
 const lecture = require('../app/controllers/lecture');
 const category = require('../app/controllers/category');
 const userResponse = require('../app/controllers/userResponse');
+const requestUserLecture = require('../app/controllers/requestUserLecture');
 const searchByEmail = require('../app/controllers/searchByEmail');
 const authMiddleware = require('../app/middleware/auth');
 const changePassword = require('../app/controllers/changePassword');
@@ -13,6 +14,13 @@ const cors = require('cors');
 
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
+
+  
+  app.get(
+    '/api/requestUserLecture/',
+    authMiddleware,
+    requestUserLecture.requestUserLecture
+  );
 
   //userResponse
   app.get(
