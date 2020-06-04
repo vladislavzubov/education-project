@@ -2,7 +2,6 @@ import React from 'react';
 import Styles from './Content.module.scss';
 import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
-import { Remarkable } from 'remarkable';
 
 function Content() {
   const prop = {
