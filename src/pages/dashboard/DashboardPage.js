@@ -78,11 +78,6 @@ function DashboardPage(props) {
   if (isLoading) {
     return <Spinner />;
   }
-  console.log(typeof window.location.pathname);
-  console.log(typeof window.location.href);
-  const s = window.location.pathname.split('/').pop();
-  const sk = s.split('/');
-  console.log(s);
 
   return (
     <BasikLayout

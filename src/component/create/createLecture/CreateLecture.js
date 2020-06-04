@@ -9,10 +9,6 @@ import { requests } from '../../../services/requests';
 function CreateLecture() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [allCategories, setAllCategories] = React.useState();
-  const onSubmit = async (value) => {
-    postCategoryName(value);
-  };
-
   const getCategories = async () => {
     setIsLoading(true);
     try {
@@ -27,7 +23,6 @@ function CreateLecture() {
       setIsLoading(false);
     }
   };
-
   const postCategoryName = async (value) => {
     try {
       const response = await requests('post', 'lecture', value);
@@ -39,6 +34,9 @@ function CreateLecture() {
   React.useEffect(() => {
     getCategories();
   }, []);
+  const onSubmit = async (value) => {
+    postCategoryName(value);
+  };
 
   if (isLoading) {
     return <Spinner />;
