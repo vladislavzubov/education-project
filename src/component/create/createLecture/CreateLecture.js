@@ -43,8 +43,6 @@ function CreateLecture() {
   if (isLoading) {
     return <Spinner />;
   }
-  console.log(window.location.pathname);
-  console.log(window.location.href);
 
   return (
     <div className={Styles.CreateLecture}>
