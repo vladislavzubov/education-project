@@ -25,6 +25,7 @@ import Categories from '../../component/categories/Categories';
 import CreateLecture from '../../component/create/createLecture/CreateLecture';
 import Lecture from '../../component/lecture/Lecture';
 import Testing from '../../component/Testing/Testing';
+import CreateExercise from '../../component/create/createExercise/CreateExercise';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -89,7 +90,7 @@ function DashboardPage(props) {
       <Switch>
         <Route path="/dashboard/lectures/:id" component={Lecture} />
         <Route path="/dashboard/create-lecture" component={CreateLecture} />
-        <Route path="/dashboard/create-exercise" component={CreateLecture} />
+        <Route path="/dashboard/create-exercise" component={CreateExercise} />
         <Route path="/dashboard/categories" component={Categories} />
         {/* <Route path="/dashboard/test" component={Testing} /> */}
         <Route path="/dashboard/lectures" component={Content} />

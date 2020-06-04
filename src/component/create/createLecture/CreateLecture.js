@@ -71,6 +71,7 @@ function CreateLecture() {
               >
                 Submit
               </button>
+              <button>+</button>
             </form>
           </div>
         )}
