@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Menu from '../component/Menu/Menu';
 import helperMenu from '../helper/helperMenu';
-import Test from '../component/Testing/Testing';
+import Testing from '../component/Testing/Testing';
 
 const tests = [
   {
@@ -64,7 +64,7 @@ class Probe extends Component {
     return (
       <div>
         <h1>PROBE</h1>
-        <Test tests={tests}/>
+        <Testing tests={tests}/>
       </div>
     );
   }
