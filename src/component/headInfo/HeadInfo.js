@@ -4,7 +4,7 @@ import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
 
 export default function HeadInfo() {
   function output() {
-    localStorage.removeItem('accessKey');
+    //localStorage.removeItem('accessKey');
     location.reload();
   }
   return (

@@ -1,81 +1,81 @@
 import React, { Component } from 'react';
 import Menu from '../component/Menu/Menu';
+import helperMenu from '../helper/helperMenu';
+import Test from '../component/Exercises/Test/Test';
+import Text from '../component/Exercises/Text/Text';
+import { Button } from '@blueprintjs/core';
+
+const tests = [
+  {
+    id: 'aasddhjkjfklluuuiosdfasdf45ssas5d',
+    time: 30,
+    question: 'назовите хук который отвечает за сохранение стэйта',
+    lectory: 'asdfasdf455d',
+    answers: ['setState', 'useState', 'className', 'dispatch'],
+    type: 'test',
+  },
+  {
+    id: 'aasddhjkjfklluuuiosdfasdf45ssas5d',
+    time: 30,
+    question: 'назовите хук который отвечает за сохранение стэйта',
+    lectory: 'asdfasdf455d',
+    type: 'text',
+  },
+  {
+    id: 'aasddhjkjfklluuuiosdfasdf45ssas5d',
+    time: 30,
+    question: 'назовите хук который отвечает за сохранение стэйта',
+    lectory: 'asdfasdf455d',
+    type: 'text',
+  },
+  {
+    id: 'aasddhjkjfklluuuiosdfasdf45ssas5d',
+    time: 30,
+    question: 'назовите хук который отвечает за сохранение стэйта',
+    lectory: 'asdfasdf455d',
+    type: 'text',
+  },
+  {
+    id: 'aasddhjkjfklluuuiosdfasdf45ssas5d',
+    time: 30,
+    question: 'назовите хук который отвечает за сохранение стэйта',
+    lectory: 'asdfasdf455d',
+    answers: ['setState', 'useState', 'className', 'dispatch'],
+    type: 'test',
+  },
+  {
+    id: 'aasddhjkjfklluuuiosdfasdf45ssas5d',
+    time: 30,
+    question: 'назовите хук который отвечает за сохранение стэйта',
+    lectory: 'asdfasdf455d',
+    answers: ['setState', 'useState', 'className', 'dispatch'],
+    type: 'test',
+  },
+];
 
 class Probe extends Component {
+  state = {
+    time: 0,
+  };
   render() {
-    const props = [
-      {
-        value: 'Main',
-        menuIteam: [
-          {
-            value: 'Dashboard',
-            category: "Main",
-            icon: 'home',
-            badges: 2,
-            href: 'http://localhost:3000/probe',
-            nesting: [
-              {
-                value: 'bigbigbigbig',
-                nesting:'Dashboard',
-                href:
-                  'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
-              },
-              {
-                value: 'small',
-                nesting:'Dashboard',
-                href:
-                  'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        value: 'Apps',
-        menuIteam: [
-          {
-            value: 'Charts',
-            icon: 'grouped-bar-chart',
-            href: 'http://localhost:3000/probe',
-            nesting: [
-              {
-                value: 'Chart 1',
-                href:
-                  'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
-              },
-              {
-                value: 'Chart 2',
-                href:
-                  'https://github.com/Zubov-Vladislav/react-practice-app/blob/redux-store/src/containers/Page/Page.js',
-              },
-            ],
-          },
-          {
-            value: 'Calendar',
-            icon: 'calendar',
-            href: 'http://localhost:3000/probe',
-          },
-          {
-            value: 'Email',
-            icon: 'envelope',
-            href: 'http://localhost:3000/probe',
-          },
-          {
-            value: 'Profile',
-            icon: 'user',
-            href: 'http://localhost:3000/probe',
-            badges: 3,
-          },
-          {
-            value: 'Widget',
-            icon: 'grid-view',
-            href: 'http://localhost:3000/probe',
-          },
-        ],
-      },
-    ];
+    const props = helperMenu();
 
-    return <Menu categories={props} />;
+    return (
+      <div>
+        <h1>PROBE</h1>
+        <div> </div>
+        <div>
+          {tests.map((test, index) => {
+            return test.type === 'test' ? (
+              <Test test={test} />
+            ) : (
+              <Text test={test} />
+            );
+          })}
+        </div>
+        <Button> Завершить тестирование</Button>
+      </div>
+    );
   }
 }
 

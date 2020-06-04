@@ -8,23 +8,21 @@ import { requests } from '../../../services/requests';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const onSubmit = async (value) => {
-  postCategoryName(value);
-};
+function CreateCategory() {
+  const onSubmit = async (value) => {
+    postCategoryName(value);
+  };
 
-const postCategoryName = async (value) => {
-  try {
-    const response = await requests('post', '/category', value); //проверить правильность адресса
-    console.log('success create category');
-  } catch (e) {
-    console.log('falied create category', e);
-  }
-};
-
-function Content() {
+  const postCategoryName = async (value) => {
+    try {
+      const response = await requests('post', 'category', value);
+      console.log('success create category');
+    } catch (e) {
+      console.log('falied create category', e);
+    }
+  };
+  // const [isLoading, setIsLoading] = React.useState(true);
   /*
-  const [isLoading, setIsLoading] = React.useState(true);
-
   const loadLectures = () => {
     setIsLoading(true);
     setTimeout(function () {
@@ -35,26 +33,17 @@ function Content() {
   React.useEffect(() => {
     loadLectures();
   }, []);
-
-  const getValyeInyput = () => {
-    console.log(k);
-  };
-  const myChangeHandler = (e) => {
-    console.log(event.target.value);
-    const k = event.target.value;
-  };
 */
   return (
     <div className={Styles.CreateCategory}>
       <Form
         onSubmit={onSubmit}
-        //  initialValues={{ firstName: 'Bob' }}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <div>
             <h3 className={Styles.CreateCategory_Title}>Сreate a category</h3>
             <form onSubmit={handleSubmit}>
-              <InputFull name="name" placeholder="Text" />
-
+              <InputFull name="name" placeholder="Name" />
+              <InputFull name="alias" placeholder="Alias" />
               <button
                 className={Styles.CreateCategory_Button}
                 type="submit"
@@ -70,4 +59,4 @@ function Content() {
   );
 }
 
-export default Content;
+export default CreateCategory;
