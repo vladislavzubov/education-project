@@ -6,7 +6,7 @@ import { Button, Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
 import { requests } from '../../services/requests';
 
-function Testing({ props }) {
+export default function Testing({ props }) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [response, setResponse] = React.useState({});
   const [lecturesId, setLecturesId] = React.useState(' ');
@@ -25,7 +25,7 @@ function Testing({ props }) {
     try {
       const exercise = await requests(
         'put',
-        `userResponse/5ed8c88aff3c470dd70dab91?userId=5ec4f8d81899471a11f22147ll`,
+        `userResponse/${lecturesId}?userId=${userId}`,
         response
       );
       console.log(exercise);
@@ -40,6 +40,7 @@ function Testing({ props }) {
     const url = window.location.pathname.split('/').pop();
     setLecturesId(url);
     setUserId('5ec4f8d81899471a11f22147ll');
+    //
     putUserResponse();
   }, [response]);
 
@@ -62,7 +63,6 @@ function Testing({ props }) {
                       value={`${index}`}
                     />
                   );
-                  // <Test test={test} />;
                 })}
                 {texts.map((text, index) => {
                   return (
@@ -75,11 +75,7 @@ function Testing({ props }) {
                   );
                 })}
               </div>
-              <button
-                type="submit"
-                disabled={submitting}
-                // onClick={putUserResponse}
-              >
+              <button type="submit" disabled={submitting}>
                 Завершить тестирование
               </button>
             </form>
@@ -89,5 +85,3 @@ function Testing({ props }) {
     </div>
   );
 }
-
-export default Testing;
