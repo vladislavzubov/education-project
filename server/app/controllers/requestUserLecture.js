@@ -6,7 +6,8 @@ const UserResponse = UserResponseModel;
 
 const requestUserLecture = async (req, res) => {
   const lectureId = req.params.id;
-  const userId = req.require.userId;
+  const userId = req.query.userId;
+
   const resolveSerch = await serachForUserResponse(userId, lectureId);
 
   if (!resolveSerch) {
