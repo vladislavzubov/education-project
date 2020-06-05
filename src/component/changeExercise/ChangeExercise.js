@@ -43,7 +43,7 @@ function ChangeExercise() {
   }
 
   return (
-    <div className={Styles.CreateLecture}>
+    <div className={Styles.ChangeExercise}>
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
