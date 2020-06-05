@@ -26,6 +26,7 @@ import CreateLecture from '../../component/create/createLecture/CreateLecture';
 import Lecture from '../../component/lecture/Lecture';
 import Testing from '../../component/Testing/Testing';
 import CreateExercise from '../../component/create/createExercise/CreateExercise';
+import ChangeExercise from '../../component/changeExercise/ChangeExercise';
 
 function DashboardPage(props) {
   const [isLoading, setLoading] = React.useState(false);
@@ -96,6 +97,7 @@ function DashboardPage(props) {
         <Route path="/dashboard/lectures" component={Content} />
         <Route path="/dashboard/change_user_data" component={ChangeUserData} />
         <Route path="/dashboard/create-category" component={CreateCategory} />
+        <Route path="/dashboard/change-exercise" component={ChangeExercise} />
         <Route path="/dashboard/" component={InitialDasboard} />
         {
           //<Route exect path="/" component={LecturesPage} />

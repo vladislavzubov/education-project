@@ -42,6 +42,11 @@ export default function helperMenu() {
           icon: 'send-to-graph',
           href: 'http://localhost:3000/dashboard/lectures',
         },
+        {
+          value: 'Сhange exercise',
+          icon: 'exchange',
+          href: 'http://localhost:3000/dashboard/change-exercise',
+        },
       ],
     },
   ];

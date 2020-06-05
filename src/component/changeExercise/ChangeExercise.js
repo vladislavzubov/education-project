@@ -1,12 +1,12 @@
 import React from 'react';
-import Styles from './CreateLecture.module.scss';
-import { Spinner, NumericInput } from '@blueprintjs/core';
+import Styles from './ChangeExercise.module.scss';
+import { Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
-import InputFull from '../../../component/InputFull/InputFull';
-import { requests } from '../../../services/requests';
-import { haveNotChar } from '../../../services/validation';
+import InputFull from '../../component/InputFull/InputFull';
+import InputFull_TextArea from '../../component/InputFull/InputFull_TextArea';
+import { requests } from '../../services/requests';
 
-function CreateLecture() {
+function ChangeExercise() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [allCategories, setAllCategories] = React.useState();
   const getCategories = async () => {
@@ -35,10 +35,7 @@ function CreateLecture() {
     getCategories();
   }, []);
   const onSubmit = async (value) => {
-    value.numberOfText = Number(value.numberOfText);
-    value.numberOfTest = Number(value.numberOfTest);
     postCategoryName(value);
-    location.reload();
   };
 
   if (isLoading) {
@@ -53,26 +50,41 @@ function CreateLecture() {
           <div className={Styles.CreateLecture_Content}>
             <h3 className={Styles.CreateLecture_Title}>Сreate a lecture</h3>
             <form onSubmit={handleSubmit}>
-              <InputFull
-                className={Styles.CreateLecture_Input}
-                name="title"
-                placeholder="Title"
-              />
-              <InputFull name="value" placeholder="Value" type="text_area" />
-              <InputFull name="author" placeholder="Author" type="text" />
-              <InputFull name="link" placeholder="Link" type="text" />
-              <InputFull
-                name="numberOfText"
-                placeholder="Quantity text question"
-                type="text"
-                validate={[haveNotChar]}
-              />
-              <InputFull
-                name="numberOfTest"
-                placeholder="Quantity test question"
-                type="text"
-                validate={[haveNotChar]}
-              />
+              <Field name="category" component="select">
+                <option />
+                {allCategories.map((category, index) => {
+                  return <option value={category._id}>{category.name} </option>;
+                })}
+              </Field>
+              <Field name="category" component="select">
+                <option />
+                {allCategories.map((category, index) => {
+                  return <option value={category._id}>{category.name}</option>;
+                })}
+              </Field>
+              <button
+                className={Styles.CreateLecture_Button}
+                type="submit"
+                disabled={submitting}
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        )}
+      />
+      <Form
+        onSubmit={onSubmit}
+        render={({ handleSubmit, form, submitting, pristine, values }) => (
+          <div className={Styles.CreateLecture_Content}>
+            <h3 className={Styles.CreateLecture_Title}>Сreate a lecture</h3>
+            <form onSubmit={handleSubmit}>
+              <Field name="category" component="select">
+                <option />
+                {allCategories.map((category, index) => {
+                  return <option value={category._id}>{category.name} </option>;
+                })}
+              </Field>
               <Field name="category" component="select">
                 <option />
                 {allCategories.map((category, index) => {
@@ -94,4 +106,4 @@ function CreateLecture() {
   );
 }
 
-export default CreateLecture;
+export default ChangeExercise;
