@@ -5,8 +5,9 @@ const Lecture = LectureModel;
 const UserResponse = UserResponseModel;
 
 const requestUserLecture = async (req, res) => {
-  const lectureId = req.body.lectureId;
-  const resolveSerch = await serachForUserResponse(req.body);
+  const lectureId = req.params.id;
+  const userId = req.require.userId;
+  const resolveSerch = await serachForUserResponse(userId, lectureId);
 
   if (!resolveSerch) {
     await Lecture.findOne({ _id: lectureId })
@@ -30,9 +31,7 @@ const requestUserLecture = async (req, res) => {
 //     .catch((err) => res.status(500).json(err));
 // };
 
-const serachForUserResponse = async (body) => {
-  const { userId, lectureId } = body;
-
+const serachForUserResponse = async (userId, lectureId) => {
   const res = await UserResponse.findOne({ $and: [{ userId }, { lectureId }] });
 
   return res;
