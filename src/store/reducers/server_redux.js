@@ -1,5 +1,6 @@
 const initialState = {
   name: '',
+  id: '',
   email: '',
   age: null,
   value: {},
@@ -15,14 +16,15 @@ export function changeUserInfo(name, age) {
   };
 }
 
-export function receptionUser(name, email, age) {
-  console.log(name, email, age);
+export function receptionUser(name, email, age, id) {
+  console.log(name, email, age, id);
   return (dispatch) => {
     dispatch({
       type: 'RECEPTION_USER',
       name,
       email,
       age,
+      id,
     });
   };
 }
@@ -42,6 +44,7 @@ export function reducer(state = initialState, action) {
         name: action.name,
         email: action.email,
         age: action.age,
+        id: action.id,
       };
     }
     case 'PUT_MENU_IN_STORE': {

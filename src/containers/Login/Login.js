@@ -73,6 +73,7 @@ class Login extends Component {
                   placeholder="Email"
                   validate={[required, validateEmail]}
                   loading={this.state.loading}
+                  type="text"
                 />
 
                 <InputFull
@@ -86,6 +87,7 @@ class Login extends Component {
                     haveOneUppercase,
                     haveOneNumeral,
                   ]}
+                  type="text"
                   loading={this.state.loading}
                 />
 
