@@ -19,10 +19,10 @@ const requestUserLecture = async (req, res) => {
   if (resolveSerch.response.length !== 0) {
     await Lecture.findOne({ _id: lectureId })
       .exec()
-      .then((lecture) => res.json({ type: 'lecture', lecture }))
+      .then((lecture) => res.json({ type: 'after answer lecture ', lecture }))
       .catch((err) => res.status(500).json(err));
   }
-  res.json({ exersice: resolveSerch.exersice });
+  res.json({ type: "exersice", exersice: resolveSerch.exersice });
 };
 
 // const getOneLecture = (lectureId, res) => {
