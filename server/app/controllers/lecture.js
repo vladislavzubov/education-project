@@ -27,6 +27,8 @@ const create = (req, res) => {
     author: req.body.author,
     category: req.body.category,
     link: req.body.link,
+    numberOfText: req.body.numberOfText,
+    numberOfTest: req.body.numberOfTest,
   };
 
   Lecture.create(lectureObj)
