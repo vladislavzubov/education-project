@@ -10,7 +10,7 @@ const create = (req, res) => {
     date: date,
     completionDate: null,
     exersice: req.body.exersice,
-    response: req.body.response,
+    response: [],
   };
   UserResponse.create(UserResponseObj)
     .then((UserResponse) => res.json(UserResponse))
