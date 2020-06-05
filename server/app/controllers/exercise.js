@@ -26,7 +26,6 @@ const create = (req, res) => {
     author: req.body.author,
     lecture: req.body.lecture,
     type: req.body.type,
-    
   };
   Exercise.create(exerciseObj)
     .then((exercise) => res.json(exercise))
