@@ -6,9 +6,13 @@ import InputFull from '../../component/InputFull/InputFull';
 import InputFull_TextArea from '../../component/InputFull/InputFull_TextArea';
 import { requests } from '../../services/requests';
 
-function ChangeExercise() {
+export default function ChangeExercise() {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [allCategories, setAllCategories] = React.useState();
+  const [allCategories, setAllCategories] = React.useState([]);
+  const [allLecture, setAllLecture] = React.useState([]);
+  // console.log({lectures: allLecture});
+  // console.log({categories: allCategories});
+
   const getCategories = async () => {
     setIsLoading(true);
     try {
@@ -23,6 +27,21 @@ function ChangeExercise() {
       setIsLoading(false);
     }
   };
+
+  const getLecture = async () => {
+    setIsLoading(true);
+    try {
+      const getAllLecture = await requests('get', `lecture`);
+      setAllLecture(getAllLecture.data);
+
+      console.log('success get own lecture');
+      setIsLoading(false);
+    } catch (e) {
+      console.log('falied get wn lecture', e);
+      setIsLoading(false);
+    }
+  };
+
   const postCategoryName = async (value) => {
     try {
       const response = await requests('post', 'lecture', value);
@@ -31,8 +50,10 @@ function ChangeExercise() {
       console.log('falied create lecture', e);
     }
   };
+
   React.useEffect(() => {
     getCategories();
+    getLecture();
   }, []);
   const onSubmit = async (value) => {
     postCategoryName(value);
@@ -48,7 +69,7 @@ function ChangeExercise() {
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <div className={Styles.CreateLecture_Content}>
-            <h3 className={Styles.CreateLecture_Title}>Сreate a lecture</h3>
+            <h3 className={Styles.CreateLecture_Title}>Change Exercise</h3>
             <form onSubmit={handleSubmit}>
               <Field name="category" component="select">
                 <option />
@@ -56,39 +77,10 @@ function ChangeExercise() {
                   return <option value={category._id}>{category.name} </option>;
                 })}
               </Field>
-              <Field name="category" component="select">
+              <Field name="lecture" component="select">
                 <option />
-                {allCategories.map((category, index) => {
-                  return <option value={category._id}>{category.name}</option>;
-                })}
-              </Field>
-              <button
-                className={Styles.CreateLecture_Button}
-                type="submit"
-                disabled={submitting}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        )}
-      />
-      <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
-          <div className={Styles.CreateLecture_Content}>
-            <h3 className={Styles.CreateLecture_Title}>Сreate a lecture</h3>
-            <form onSubmit={handleSubmit}>
-              <Field name="category" component="select">
-                <option />
-                {allCategories.map((category, index) => {
-                  return <option value={category._id}>{category.name} </option>;
-                })}
-              </Field>
-              <Field name="category" component="select">
-                <option />
-                {allCategories.map((category, index) => {
-                  return <option value={category._id}>{category.name}</option>;
+                {allLecture.map((lecture, index) => {
+                  return <option value={lecture._id}>{lecture.name}</option>;
                 })}
               </Field>
               <button
@@ -105,5 +97,3 @@ function ChangeExercise() {
     </div>
   );
 }
-
-export default ChangeExercise;

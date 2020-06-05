@@ -9,7 +9,7 @@ export async function requests(methods, route, data, count = 1) {
       ...(methods === 'get' ? { params: data } : { data }),
     };
     const response = await axios(axiosConfig);
-    console.log(methods, route, data, count);
+    // console.log(methods, route, data, count);
     return response;
   } catch (e) {
     if (e.response.data.errCode === 987 && count === 1) {
