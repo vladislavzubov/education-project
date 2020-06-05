@@ -1,17 +1,24 @@
 import React from 'react';
 import Styles from './Test.module.scss';
+import { Button, Checkbox, Label, Icon } from '@blueprintjs/core';
+import { Form, Field } from 'react-final-form';
 
 export default function Test({ test }) {
   return (
-    <div className={Styles.Test}>
-      <h2>{test.question}</h2>
+    <div>
+      <label>{test.question}</label>
       <div>
         {test.quantity.map((answer, index) => {
           return (
-            <div>
+            <label>
+              <Field
+                name={test._id}
+                component="input"
+                type="checkbox"
+                value={answer}
+              />{' '}
               {answer}
-              <input type="radio" />
-            </div>
+            </label>
           );
         })}
       </div>

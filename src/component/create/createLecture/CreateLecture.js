@@ -34,6 +34,7 @@ function CreateLecture() {
   React.useEffect(() => {
     getCategories();
   }, []);
+  
   const onSubmit = async (value) => {
     value.numberOfText = Number(value.numberOfText);
     value.numberOfTest = Number(value.numberOfTest);
