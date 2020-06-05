@@ -3,7 +3,6 @@ import Styles from './CreateExercise.module.scss';
 import { Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../../component/InputFull/InputFull';
-import InputFull_TextArea from '../../../component/InputFull/InputFull_TextArea';
 import { requests } from '../../../services/requests';
 import { useSelector } from 'react-redux';
 
@@ -32,7 +31,7 @@ function CreateExercise() {
   };
   const postCreateExercise = async (value) => {
     try {
-      const response = await requests('get', 'exercise', value);
+      const response = await requests('post', 'exercise', value);
       console.log('success create exercise');
     } catch (e) {
       console.log('falied create exercise', e);
@@ -43,6 +42,8 @@ function CreateExercise() {
   }, []);
 
   const onSubmit = async (value) => {
+    console.log(value.trueRequest);
+
     let correctAnswer = value.trueRequest.map((quantityIndex) => {
       return value.quantity[quantityIndex];
     });
@@ -63,8 +64,12 @@ function CreateExercise() {
           <div className={Styles.CreateExercise_Content}>
             <h3 className={Styles.CreateExercise_Title}>Сreate a exercise</h3>
             <form onSubmit={handleSubmit}>
-              <InputFull_TextArea name="question" placeholder="Question" />
-              <InputFull name="time" placeholder="Time" />
+              <InputFull
+                name="question"
+                placeholder="Question"
+                type="text_area"
+              />
+
               <Field name="lectory" component="select">
                 <option />
                 {allLecture.map((lectore, index) => {
@@ -90,7 +95,7 @@ function CreateExercise() {
                     value="number"
                     onClick={() => setIsAnswer(false)}
                   />
-                  Moe
+                  Text
                 </label>
               </div>
               {isOnAnswer ? (
@@ -98,7 +103,7 @@ function CreateExercise() {
                   {numberAnswer.map((num, index) => {
                     return (
                       <div>
-                        <Field
+                        <InputFull
                           name={`quantity[${index}]`}
                           component="input"
                           type="text"

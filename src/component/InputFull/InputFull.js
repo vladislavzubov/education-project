@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { validateProps } from './config';
 import { Field } from 'react-final-form';
-import { Tooltip, InputGroup, Button, FormGroup } from '@blueprintjs/core';
+import {
+  Tooltip,
+  InputGroup,
+  Button,
+  FormGroup,
+  TextArea,
+  NumericInput,
+} from '@blueprintjs/core';
 
 class InputFull extends Component {
   state = {
@@ -11,6 +18,7 @@ class InputFull extends Component {
     validate: this.props.validate,
     rightElement: this.props.rightElement,
     placeholder: this.props.placeholder,
+    type: this.props.type,
   };
 
   handleLockClick = () => {
@@ -42,14 +50,34 @@ class InputFull extends Component {
                   meta.error && meta.touched && <span>{meta.error}</span>
                 }
               >
-                <InputGroup
-                  {...input}
-                  rightElement={this.state.rightElement ? lockButton : null}
-                  fill
-                  type={!this.state.showButton ? 'text' : 'password'}
-                  placeholder={this.state.placeholder}
-                  disabled={this.state.loading}
-                />
+                {this.state.type === 'text' ? (
+                  <InputGroup
+                    {...input}
+                    rightElement={this.state.rightElement ? lockButton : null}
+                    fill
+                    type={!this.state.showButton ? 'text' : 'password'}
+                    placeholder={this.state.placeholder}
+                    disabled={this.state.loading}
+                  />
+                ) : this.state.type === 'text_area' ? (
+                  <TextArea
+                    {...input}
+                    rightElement={this.state.rightElement ? lockButton : null}
+                    fill
+                    type={!this.state.showButton ? 'text' : 'password'}
+                    placeholder={this.state.placeholder}
+                    disabled={this.state.loading}
+                  />
+                ) : this.state.type === 'number' ? (
+                  <NumericInput
+                    {...input}
+                    rightElement={this.state.rightElement ? lockButton : null}
+                    fill
+                    type={!this.state.showButton ? 'number' : 'password'}
+                    placeholder={this.state.placeholder}
+                    disabled={this.state.loading}
+                  />
+                ) : null}
               </FormGroup>
             </div>
           )}
