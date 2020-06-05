@@ -8,6 +8,8 @@ const LectureSchema = new mongoose.Schema({
   author: String,
   category: String,
   link: String,
+  numberOfText: Number,
+  numberOfTest: Number,
 });
 
 module.exports = mongoose.model('lecture', LectureSchema);
