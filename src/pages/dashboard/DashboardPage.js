@@ -43,8 +43,8 @@ function DashboardPage(props) {
   }, []);
   const dispatch = useDispatch();
   const incrementCounter = useCallback(
-    (name, email, age) =>
-      dispatch({ type: 'RECEPTION_USER', name, email, age }),
+    (name, email, age, id) =>
+      dispatch({ type: 'RECEPTION_USER', name, email, age, id }),
     [dispatch]
   );
 
@@ -56,10 +56,13 @@ function DashboardPage(props) {
       const response = await requests('get', 'info-user', {
         accessToken: token,
       });
+      console.log(response.data._id);
+
       incrementCounter(
         response.data.name,
         response.data.email,
-        response.data.age
+        response.data.age,
+        response.data._id
       );
       setLoading(false);
       return true;

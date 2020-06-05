@@ -18,7 +18,7 @@ class InputFull extends Component {
     validate: this.props.validate,
     rightElement: this.props.rightElement,
     placeholder: this.props.placeholder,
-    type: this.props.type,
+    type: this.props.type || 'text',
   };
 
   handleLockClick = () => {

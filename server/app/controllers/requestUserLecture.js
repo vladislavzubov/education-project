@@ -22,7 +22,7 @@ const requestUserLecture = async (req, res) => {
       .then((lecture) => res.json({ type: 'after answer lecture ', lecture }))
       .catch((err) => res.status(500).json(err));
   }
-  res.json({ type: "exersice", exersice: resolveSerch.exersice });
+  res.json({ type: 'exersice', exersice: resolveSerch.exersice });
 };
 
 // const getOneLecture = (lectureId, res) => {

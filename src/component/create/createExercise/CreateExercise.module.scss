@@ -9,6 +9,38 @@
    width: 100%;
 }
 
-.CreateExercise_Content .CreateExercise_Input{
-  height: 5rem;
+
+select {
+  background: transparent;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid rgb(59, 56, 56);
+  height: 2rem;
+}
+
+.Quantities {display: flex;
+flex-direction: row;}
+
+.TypeQuantity{
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.IncrementQuantity{
+  padding: 0.1rem 0.3rem;
+  background: rgb(43, 125, 172);
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: white;
+
+}
+
+.IncrementQuantity:hover{
+  color: white;
+  box-shadow: rgb(59, 56, 56);
 }

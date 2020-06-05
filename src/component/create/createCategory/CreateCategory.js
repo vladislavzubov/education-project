@@ -49,7 +49,7 @@ function CreateCategory() {
                 type="submit"
                 disabled={submitting}
               >
-                Submit
+                Create category
               </button>
             </form>
           </div>
