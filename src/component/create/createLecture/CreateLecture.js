@@ -57,6 +57,7 @@ function CreateLecture() {
                 className={Styles.CreateLecture_Input}
                 name="title"
                 placeholder="Title"
+                type="text"
               />
               <InputFull name="value" placeholder="Value" type="text_area" />
               <InputFull name="author" placeholder="Author" type="text" />
