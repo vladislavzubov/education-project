@@ -16,7 +16,7 @@ module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
 
   app.get(
-    '/api/requestUserLecture/',
+    '/api/requestUserLecture/:id',
     authMiddleware,
     requestUserLecture.requestUserLecture
   );
