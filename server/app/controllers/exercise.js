@@ -39,6 +39,7 @@ const update = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+
 const remove = (req, res) => {
   Exercise.deleteOne({ _id: req.params.id })
     .exec()
@@ -86,6 +87,12 @@ const exerciseForLecture = async (req, res) => {
   res.json({ texts, tests });
 };
 
+const getExerciseInfo = (req, res) => {
+  Exercise.findOne({ _id: req.params.id })
+    .exec()
+    .then((exercise) =>{res.json(exercise)})
+}
+
 module.exports = {
   getAll,
   create,
@@ -94,4 +101,5 @@ module.exports = {
   removingFromLecture,
   getAllExercisesLecture,
   exerciseForLecture,
+  getExerciseInfo
 };
