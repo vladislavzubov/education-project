@@ -47,6 +47,11 @@ module.exports = (app) => {
     authMiddleware,
     exercise.getAllExercisesLecture
   );
+  app.get(
+    '/api/exercise-info/:id',
+    authMiddleware,
+    exercise.getExerciseInfo
+  );
   app.post('/api/exercise', authMiddleware, exercise.create);
   app.put('/api/exercise/:id', authMiddleware, exercise.update);
   app.delete('/api/exercise/:id', authMiddleware, exercise.remove);
