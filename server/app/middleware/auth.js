@@ -16,6 +16,7 @@ module.exports = (req, res, next) => {
       return;
     }
     res.locals.userId = payload.userId;
+    res.locals.role = payload.role;
     next();
   } catch (e) {
     if (e instanceof jwt.TokenExpiredError) {
