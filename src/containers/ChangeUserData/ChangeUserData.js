@@ -28,8 +28,6 @@ class User extends Component {
     this.updateUserData(localStorage.getItem('accessKey'));
   }
 
-  componentWillUnmount() {}
-
   updateUserData = async (token) => {
     this.setState({
       download: true,
@@ -42,7 +40,8 @@ class User extends Component {
       this.props.receptionUser(
         response.data.name,
         response.data.email,
-        response.data.age
+        response.data.age,
+        response.data._id
       );
       console.log('success data user');
       this.setState({
@@ -155,14 +154,15 @@ const mapStateToProps = (store) => {
     name: receptionUser(store).name,
     email: receptionUser(store).email,
     age: receptionUser(store).age,
+    id: receptionUser(store).id,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeUserInfo: (name, age) => dispatch(changeUserInfo(name, age)),
-    receptionUser: (name, email, age) =>
-      dispatch(receptionUser(name, email, age)),
+    receptionUser: (name, email, age, id) =>
+      dispatch(receptionUser(name, email, age, id)),
   };
 };
 

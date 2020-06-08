@@ -75,19 +75,25 @@ function CreateLecture() {
                 type="text"
                 validate={[haveNotChar]}
               />
-              <Field name="category" component="select">
+              <Field
+                name="category"
+                component="select"
+                className={Styles.custom_drop}
+              >
                 <option />
                 {allCategories.map((category, index) => {
                   return <option value={category._id}>{category.name}</option>;
                 })}
               </Field>
-              <button
-                className={Styles.CreateLecture_Button}
-                type="submit"
-                disabled={submitting}
-              >
-                Submit
-              </button>
+              <div>
+                <button
+                  className={Styles.CreateLecture_Button}
+                  type="submit"
+                  disabled={submitting}
+                >
+                  Create lecture
+                </button>
+              </div>
             </form>
           </div>
         )}
