@@ -23,8 +23,7 @@ const requestUserLecture = async (req, res) => {
       .catch((err) => res.status(500).json(err));
   }
 
-  res.json({ type: 'exercise', exercise
-  : resolveSerch.exercise });
+  res.json({ type: 'exercise', exercise: resolveSerch.exercise });
 };
 
 // const getOneLecture = (lectureId, res) => {
