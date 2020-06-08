@@ -6,44 +6,40 @@ import { Button, Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
 import { requests } from '../../services/requests';
 
-export default function Testing({ props }) {
+export default function Testing(props) {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [response, setResponse] = React.useState({});
-  const [lecturesId, setLecturesId] = React.useState(' ');
-  const [userId, setUserId] = React.useState('');
+  const [responses, setResponse] = React.useState({});
+  const [userId, setUserId] = React.useState(props.idUser);
 
+  console.log(props);
+  const lecturesId = props.lecturesID;
   const tests = props.tests;
   const texts = props.texts;
   console.log(tests, texts);
 
   const onSubmit = async (value) => {
-    let resolve = { response: value };
-    setResponse(resolve);
+    const resolve = { response: value };
+    putUserResponse(resolve);
   };
 
-  const putUserResponse = async () => {
-    console.log(response);
+  const putUserResponse = async (resolve) => {
     try {
       const exercise = await requests(
         'put',
         `userResponse/${lecturesId}?userId=${userId}`,
-        response
+        resolve
       );
-      console.log(exercise);
-      console.log('success get own exercise', exercise);
+      props.onPerformExersice();
+      console.log('success put own exercise');
     } catch (e) {
-      console.log('falied get wn exercise', e);
+      console.log('falied put own exercise', e);
       setIsLoading(false);
     }
   };
 
   React.useEffect(() => {
-    const url = window.location.pathname.split('/').pop();
-    setLecturesId(url);
-    setUserId('5ec4f8d81899471a11f22147ll');
-    //
-    putUserResponse();
-  }, [response]);
+    setUserId(props.idUser);
+  }, []);
 
   return (
     <div className={Styles.Testing}>
@@ -77,7 +73,7 @@ export default function Testing({ props }) {
                 })}
               </div>
               <button type="submit" disabled={submitting}>
-                Завершить тестирование
+                Сomplete the test
               </button>
             </form>
           </div>

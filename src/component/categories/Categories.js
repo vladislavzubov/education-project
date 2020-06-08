@@ -15,6 +15,7 @@ function Categories() {
     try {
       const getAllCategories = await requests('get', 'category');
       setCategoriesAll(getAllCategories.data);
+      console.log(getAllCategories);
 
       console.log('success get all categories');
       setIsLoading(false);

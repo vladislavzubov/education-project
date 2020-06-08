@@ -7,52 +7,51 @@ import InputFull_TextArea from '../InputFull/InputFull_TextArea';
 import { Form, Field } from 'react-final-form';
 import { useSelector } from 'react-redux';
 import Testing from '../Testing/Testing';
+import { useParams } from 'react-router-dom';
 
 function Lecture() {
+  const lecturesID = React.useMemo(() => {
+    return useParams().id;
+  }, []);
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecture, setLecture] = React.useState([]);
   const [isOnChange, setIsOnChange] = React.useState(false);
-  const [lecturesID, setLecturesID] = React.useState(' ');
   const [isOnButtonExercise, seIsOnButtonExercise] = React.useState(true);
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
   const idUser = useSelector((store) => store.server_redux.id);
-  console.log(lecturesID);
 
   const onPerfomigExercise = async () => {
-    console.log(lecture);
-
+    setIsLoading(true);
     try {
       const onExercise = await requests(
         'get',
         `exercise/${lecturesID}?numberOfTest=${lecture.numberOfTest}&numberOfText=${lecture.numberOfText}`
       );
-
       try {
         const postExerciseServer = await requests('post', 'userResponse', {
           userId: idUser,
           lectureId: lecturesID,
-          exersice: onExercise.data,
+          exercise: onExercise.data,
         });
         console.log('success post exercise server');
       } catch (e) {
         console.log('falied post exercise server', e);
       }
+      setAllExercise(onExercise.data);
       setIsOnExercise(true);
-      setAllExercise(allExercise.data);
-      console.log(onExercise);
-
+      setIsLoading(false);
       console.log('success get exercise');
     } catch (e) {
       console.log('falied get exercise', e);
     }
   };
 
-  const getLecture = async (url) => {
+  const getLecture = async () => {
     setIsLoading(true);
     try {
       console.log(lecturesID);
-      const lecture = await requests('get', `lecture-one/${url}`);
+      const lecture = await requests('get', `lecture-one/${lecturesID}`);
       setLecture(lecture.data);
 
       console.log('success get own lecture');
@@ -68,13 +67,15 @@ function Lecture() {
     chanheLecture(value);
   };
 
-  const onPerformExersice = async (url, idUser) => {
+  const onPerformExersice = async () => {
     setIsLoading(true);
     try {
       const onExercise = await requests(
         'get',
-        `requestUserLecture/${url}?userId=${idUser}`
+        `requestUserLecture/${lecturesID}?userId=${idUser}`
       );
+      console.log(onExercise);
+
       switch (onExercise.data.type) {
         case 'lecture': {
           setLecture(onExercise.data.lecture);
@@ -82,19 +83,20 @@ function Lecture() {
           setIsOnExercise(false);
           break;
         }
-        case 'after answer lecture': {
+        case 'after answer lecture ': {
           setLecture(onExercise.data.lecture);
           seIsOnButtonExercise(false);
           setIsOnExercise(false);
           break;
         }
-        case 'exersice': {
-          //тут неправильно написано надо изменить!!!
+        case 'exercise': {
           setIsOnExercise(true);
+          setAllExercise(onExercise.data.exercise[0]);
+          console.log(onExercise.data.exercise[0]);
         }
       }
       setIsLoading(false);
-      console.log(onExercise.data);
+      return;
     } catch (e) {
       console.log('fallied server', e);
       return;
@@ -102,10 +104,7 @@ function Lecture() {
   };
 
   React.useEffect(() => {
-    const url = window.location.pathname.split('/').pop();
-    setLecturesID(url);
-    onPerformExersice(url, idUser);
-    // getLecture(url);
+    onPerformExersice(idUser);
   }, []);
   const handleChange = () => {
     setIsOnChange(!isOnChange);
@@ -115,25 +114,33 @@ function Lecture() {
     setIsLoading(true);
     try {
       const putLecture = await requests('put', `lecture/${lecturesID}`, value);
-      getLecture(lecturesID); //при путе не забыть поменять
+      getLecture(lecturesID);
       console.log('success put own lecture');
     } catch (e) {
       setIsLoading(false);
       console.log('falied put own lecture');
     }
   };
-  console.log(allExercise);
+
+  if (isLoading) {
+    return (
+      <div className={Styles.Content}>
+        <Spinner className={Styles.Spinner} />
+      </div>
+    );
+  }
+
   return (
     <div className={Styles.Content}>
-      {isLoading ? (
-        <Spinner className={Styles.Spinner} />
-      ) : isOnExercise ? (
+      {isOnExercise ? (
         <div>
-          {
-            //  <Testing tests={allExercise.tests} texts={allExercise.texts} />
-          }
-
-          <button>Сomplete the test</button>
+          <Testing
+            lecturesID={lecturesID}
+            tests={allExercise.tests}
+            texts={allExercise.texts}
+            idUser={idUser}
+            onPerformExersice={onPerformExersice}
+          />
         </div>
       ) : (
         <div className={Styles.Lecture}>
@@ -166,7 +173,7 @@ function Lecture() {
               <ReactMarkdown source={lecture.value} />
             </div>
           )}
-          {isOnButtonExercise ? (
+          {isOnButtonExercise && (
             <Popover>
               <Button text="Go to task" />
               <div>
@@ -175,7 +182,7 @@ function Lecture() {
                 <button>No</button>
               </div>
             </Popover>
-          ) : null}
+          )}
         </div>
       )}
     </div>
