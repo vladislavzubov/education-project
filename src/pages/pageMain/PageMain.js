@@ -38,7 +38,8 @@ class PageMain extends Component {
       this.props.receptionUser(
         response.data.name,
         response.data.email,
-        response.data.age
+        response.data.age,
+        response.data._id
       );
       this.setState({
         isLoading: false,
@@ -51,7 +52,7 @@ class PageMain extends Component {
   };
 
   render() {
-    const props =helperMenu();
+    const props = helperMenu();
     return this.state.isLoading ? (
       <Spinner className={Styles.GlobalStyles} />
     ) : (
@@ -68,13 +69,14 @@ const mapStateToProps = (store) => {
     name: receptionUser(store).name,
     email: receptionUser(store).email,
     age: receptionUser(store).age,
+    id: receptionUser(store).id,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receptionUser: (name, email, age) =>
-      dispatch(receptionUser(name, email, age)),
+    receptionUser: (name, email, age, id) =>
+      dispatch(receptionUser(name, email, age, id)),
   };
 };
 

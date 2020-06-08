@@ -42,14 +42,24 @@ function CreateExercise() {
   }, []);
 
   const onSubmit = async (value) => {
-    console.log(value.trueRequest);
-
-    let correctAnswer = value.trueRequest.map((quantityIndex) => {
-      return value.quantity[quantityIndex];
-    });
-    delete value.trueRequest;
-    value = { ...value, correctAnswer };
-    postCreateExercise(value);
+    console.log(value);
+    let formValue;
+    if (value.type === 'test') {
+      formValue = { ...value };
+      if (value.trueRequest !== undefined) {
+        let correctAnswer = value.trueRequest.map((quantityIndex) => {
+          return value.quantity[quantityIndex];
+        });
+        delete value.trueRequest;
+        formValue = { ...value, correctAnswer };
+      }
+    } else if (value.type === 'text') {
+      delete value.correctAnswer;
+      delete value.quantity;
+      formValue = { ...value };
+    }
+    console.log(formValue);
+    postCreateExercise(formValue);
   };
 
   if (isLoading) {
@@ -70,13 +80,13 @@ function CreateExercise() {
                 type="text_area"
               />
 
-              <Field name="lectory" component="select">
+              <Field name="lecture" component="select">
                 <option />
                 {allLecture.map((lectore, index) => {
                   return <option value={lectore._id}>{lectore.title}</option>;
                 })}
               </Field>
-              <div>
+              <div className={Styles.TypeQuantity}>
                 <label>
                   <Field
                     name="type"
@@ -92,7 +102,7 @@ function CreateExercise() {
                     name="type"
                     component="input"
                     type="radio"
-                    value="number"
+                    value="text"
                     onClick={() => setIsAnswer(false)}
                   />
                   Text
@@ -102,7 +112,7 @@ function CreateExercise() {
                 <div>
                   {numberAnswer.map((num, index) => {
                     return (
-                      <div>
+                      <div className={Styles.Quantities}>
                         <InputFull
                           name={`quantity[${index}]`}
                           component="input"
@@ -124,6 +134,7 @@ function CreateExercise() {
                       onClick={() => {
                         setNumberAnswer([...numberAnswer, 1]);
                       }}
+                      className={Styles.IncrementQuantity}
                     >
                       +
                     </a>

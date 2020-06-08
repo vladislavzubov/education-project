@@ -9,6 +9,33 @@
    width: 100%;
 }
 
-.CreateLecture_Content .CreateLecture_Input{
-  height: 5rem;
+
+
+select {
+  background: transparent;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid rgb(59, 56, 56);
+  height: 2rem;
 }
+
+.CreateLecture_Button {
+  margin-top: 1rem;
+  width: 100%;
+  height: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  color: white;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0,0,0,.1);
+  transition: .5s;
+}
+.CreateLecture_Button:hover {background-position: right center;}
