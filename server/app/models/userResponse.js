@@ -5,7 +5,7 @@ const UserResponseSchema = new mongoose.Schema({
   lectureId: String,
   date: Date,
   completionDate: Date,
-  exersice: Array,
+  exercise: Array,
   response: Array,
 });
 
