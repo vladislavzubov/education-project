@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import InputFull_TextArea from '../InputFull/InputFull_TextArea';
 import { Form, Field } from 'react-final-form';
 import { useSelector } from 'react-redux';
+import Testing from '../Testing/Testing';
 
 function Lecture() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -127,7 +128,8 @@ function Lecture() {
       {isLoading ? (
         <Spinner className={Styles.Spinner} />
       ) : isOnExercise ? (
-        <div>sssssssssss</div>
+        //  <Testing />
+        <button>Сomplete the test</button>
       ) : (
         <div className={Styles.Lecture}>
           <h1>{lecture.title}</h1>
