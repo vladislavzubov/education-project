@@ -9,7 +9,7 @@ const requestUserLecture = async (req, res) => {
   const userId = req.query.userId;
 
   const resolveSerch = await serachForUserResponse(userId, lectureId);
-
+ 
   if (!resolveSerch) {
     await Lecture.findOne({ _id: lectureId })
       .exec()
@@ -22,7 +22,11 @@ const requestUserLecture = async (req, res) => {
       .then((lecture) => res.json({ type: 'after answer lecture ', lecture }))
       .catch((err) => res.status(500).json(err));
   }
+
+  
+
   res.json({ type: 'exersice', exersice: resolveSerch.exersice });
+
 };
 
 // const getOneLecture = (lectureId, res) => {
