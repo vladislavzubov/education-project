@@ -1,8 +1,7 @@
 import axios from './axios';
 import { STATES } from 'mongoose';
 
-export async function requests(roles, methods, route, data, count = 1) {
-  await checkRole(roles);
+export async function requests(methods, route, data, count = 1, roles) {
   try {
     const axiosConfig = {
       method: methods,
@@ -21,9 +20,6 @@ export async function requests(roles, methods, route, data, count = 1) {
     }
     throw e;
   }
-}
-async function checkRole(roles) {
-  if (roles === state.role){} 
 }
 
 async function checkRefreshToken() {
