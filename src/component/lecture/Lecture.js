@@ -34,9 +34,9 @@ function Lecture() {
           lectureId: lecturesID,
           exersice: onExercise.data,
         });
-        onsole.log('success post exercise server');
+        console.log('success post exercise server');
       } catch (e) {
-        onsole.log('falied post exercise server', e);
+        console.log('falied post exercise server', e);
       }
       setIsOnExercise(true);
       setAllExercise(allExercise.data);
@@ -122,14 +122,19 @@ function Lecture() {
       console.log('falied put own lecture');
     }
   };
-
+  console.log(allExercise);
   return (
     <div className={Styles.Content}>
       {isLoading ? (
         <Spinner className={Styles.Spinner} />
       ) : isOnExercise ? (
-        //  <Testing />
-        <button>Сomplete the test</button>
+        <div>
+          {
+            //  <Testing tests={allExercise.tests} texts={allExercise.texts} />
+          }
+
+          <button>Сomplete the test</button>
+        </div>
       ) : (
         <div className={Styles.Lecture}>
           <h1>{lecture.title}</h1>

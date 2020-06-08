@@ -14,6 +14,7 @@ export default function Testing({ props }) {
 
   const tests = props.tests;
   const texts = props.texts;
+  console.log(tests, texts);
 
   const onSubmit = async (value) => {
     let resolve = { response: value };
