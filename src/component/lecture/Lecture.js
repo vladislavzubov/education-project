@@ -13,7 +13,6 @@ function Lecture() {
   const lecturesID = React.useMemo(() => {
     return useParams().id;
   }, []);
-  console.log(lecturesID);
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecture, setLecture] = React.useState([]);
   const [isOnChange, setIsOnChange] = React.useState(false);
