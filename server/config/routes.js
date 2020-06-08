@@ -8,6 +8,7 @@ const userResponse = require('../app/controllers/userResponse');
 const requestUserLecture = require('../app/controllers/requestUserLecture');
 const searchByEmail = require('../app/controllers/searchByEmail');
 const authMiddleware = require('../app/middleware/auth');
+const checkRole = require('../app/middleware/checkRole');
 const changePassword = require('../app/controllers/changePassword');
 const updateUserInfo = require('../app/controllers/updateUserInfo');
 const cors = require('cors');
@@ -47,11 +48,7 @@ module.exports = (app) => {
     authMiddleware,
     exercise.getAllExercisesLecture
   );
-  app.get(
-    '/api/exercise-info/:id',
-    authMiddleware,
-    exercise.getExerciseInfo
-  );
+  app.get('/api/exercise-info/:id', authMiddleware, exercise.getExerciseInfo);
   app.post('/api/exercise', authMiddleware, exercise.create);
   app.put('/api/exercise/:id', authMiddleware, exercise.update);
   app.delete('/api/exercise/:id', authMiddleware, exercise.remove);
@@ -88,7 +85,12 @@ module.exports = (app) => {
   app.post('/api/refresh-tokens', auth.refreshTokens);
 
   // info
-  app.get('/api/info-user', authMiddleware, info.infoUser);
+  app.get(
+    '/api/info-user',
+    authMiddleware,
+    checkRole(['admin', 'user']),
+    info.infoUser
+  );
 
   //serch by email
 

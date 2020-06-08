@@ -6,9 +6,10 @@ const TokenModel = require('../models/token');
 
 const Token = TokenModel;
 
-const generateAccessToken = (userId) => {
+const generateAccessToken = (userId, role) => {
   const payLoad = {
     userId,
+    role,
     type: tokens.access.type,
   };
   const options = { expiresIn: tokens.access.expiresIn };

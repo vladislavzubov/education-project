@@ -15,7 +15,11 @@ export default function ChangeExercise() {
 
   const getExerciseOnId = async () => {
     try {
-      const getExercise = await requests('get', `exercise-info/${exerciseId}`);
+      const getExercise = await requests(
+        ['admin', 'user'],
+        'get',
+        `exercise-info/${exerciseId}`
+      );
       setExercise(getExercise.data);
 
       // console.log('success get all categories');
@@ -73,7 +77,7 @@ export default function ChangeExercise() {
   const getExercisesByLecture = (lectureId) => {
     return allExercise.filter((exercise) => exercise.lecture === lectureId);
   };
-  
+
   const putExercise = async (value) => {
     const {
       answer0,
