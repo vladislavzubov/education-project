@@ -1,4 +1,31 @@
+import { requests } from '../services/requests';
+
 export default function helperMenu() {
+  // try {
+  //   const allCategories = await requests('get', 'category');
+  //   console.log(allCategories.data);
+
+  //   const manuCategories = allCategories.data.map((category, index) => {
+  //     return {
+  //       value: category.name,
+  //       href: `http://localhost:3000/dashboard/categories/${category.id}`,
+  //       icon: 'properties',
+  //     };
+  //   });
+  //   console.log(manuCategories);
+  //   const menuUser = [
+  //     {
+  //       value: 'Category',
+  //       menuIteam: manuCategories,
+  //     },
+  //   ];
+  //   console.log(menuUser);
+
+  //   return menuUser;
+  // } catch (e) {
+  //   console.log('falied menu', e);
+  // }
+
   const menuAdmin = [
     {
       value: 'Apps',
@@ -50,5 +77,7 @@ export default function helperMenu() {
       ],
     },
   ];
+  console.log(menuAdmin);
+
   return menuAdmin;
 }
