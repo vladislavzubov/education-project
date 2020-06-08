@@ -9,7 +9,7 @@ const create = (req, res) => {
     lectureId: req.body.lectureId,
     date: date,
     completionDate: null,
-    exersice: req.body.exersice,
+    exercise: req.body.exercise,
     response: [],
   };
   UserResponse.create(UserResponseObj)
