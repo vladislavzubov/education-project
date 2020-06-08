@@ -75,7 +75,9 @@ const exerciseForLecture = async (req, res) => {
     .exec()
     .then((exercises) =>
       shuffle(exercises).map((exercise, index) => {
-        exercise.type === 'test' ? tes.push(exercise) : tex.push(exercise);
+        exercise.type === 'test'
+          ? tes.push(exercise)
+          : tex.push(exercise);
       })
     );
   const tests = tes.splice(0, numberOfTest);

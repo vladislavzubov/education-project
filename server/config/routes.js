@@ -35,7 +35,7 @@ module.exports = (app) => {
   );
   app.put(
     '/api/userResponse/:id',
-    authMiddleware,
+
     userResponse.updateUserInLecture
   );
 

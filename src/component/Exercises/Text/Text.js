@@ -2,8 +2,14 @@ import React from 'react';
 import Styles from './Text.module.scss';
 import { TextArea } from '@blueprintjs/core';
 import MonacoEditor from 'react-monaco-editor';
+import { Form, Field } from 'react-final-form';
 
-export default function Text({ text }) {
+export default function Text({ text, input }) {
+  
+  const codeValue = (code) => {
+    input.onChange(code);
+  };
+
   return (
     <div className={Styles.Text}>
       <h2>{text.question}</h2>
@@ -13,7 +19,8 @@ export default function Text({ text }) {
           height="200"
           language="javascript"
           theme="vs-dark"
-          value="'Helow world'"
+          value={input.value}
+          onChange={codeValue}
         />
       </div>
     </div>
