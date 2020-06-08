@@ -2,16 +2,17 @@ import React from 'react';
 import Styles from './ChangeExercise.module.scss';
 import { Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
-import InputFull from '../../component/InputFull/InputFull';
-import InputFull_TextArea from '../../component/InputFull/InputFull_TextArea';
 import { requests } from '../../services/requests';
 
 export default function ChangeExercise() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [allCategories, setAllCategories] = React.useState([]);
   const [allLecture, setAllLecture] = React.useState([]);
-  // console.log({lectures: allLecture});
-  // console.log({categories: allCategories});
+  const [lecturesOfOneCategory, setLecturesOfOneCategory] = React.useState([]);
+
+  
+  console.log({lectures: allLecture});
+  console.log({categories: allCategories});
 
   const getCategories = async () => {
     setIsLoading(true);
@@ -42,6 +43,16 @@ export default function ChangeExercise() {
     }
   };
 
+  const searchLecturesbyCategory = (category, lectures)=>{
+    const lecturesOfOneCategory = []
+    lectures.map((lecture, index) => {
+      if (lecture.category===category._id){
+        lecturesOfOneCategory=[...lecturesOfOneCategory, lecture]
+      }
+    })
+    return lecturesOfOneCategory
+  }
+
   const postCategoryName = async (value) => {
     try {
       const response = await requests('post', 'lecture', value);
@@ -71,6 +82,7 @@ export default function ChangeExercise() {
           <div className={Styles.CreateLecture_Content}>
             <h3 className={Styles.CreateLecture_Title}>Change Exercise</h3>
             <form onSubmit={handleSubmit}>
+              <div className={Styles.Select}>
               <Field name="category" component="select">
                 <option />
                 {allCategories.map((category, index) => {
@@ -80,9 +92,10 @@ export default function ChangeExercise() {
               <Field name="lecture" component="select">
                 <option />
                 {allLecture.map((lecture, index) => {
-                  return <option value={lecture._id}>{lecture.name}</option>;
+                  return <option value={lecture._id}>{lecture.title}</option>;
                 })}
               </Field>
+              </div>
               <button
                 className={Styles.CreateLecture_Button}
                 type="submit"
