@@ -12,7 +12,6 @@ function Category() {
   const idCategory = React.useMemo(() => {
     return useParams().id;
   }, []);
-
   const getLectures = async () => {
     setIsLoading(true);
     try {
@@ -30,26 +29,28 @@ function Category() {
   React.useEffect(() => {
     getLectures();
   }, []);
+  console.log(lecturesAll, idCategory);
+
+  if (isLoading) {
+    <Spinner className={Styles.Spinner} />;
+  }
 
   return (
     <div className={Styles.Content}>
-      {isLoading ? (
-        <Spinner className={Styles.Spinner} />
-      ) : (
-        lecturesAll.map((lecture, index) => {
-          if (idCategory === lecture.category) {
-            return (
-              <div className={Styles.TitleLecture}>
-                <a
-                  href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
-                >
-                  <h5>{lecture.title}</h5>
-                </a>
-              </div>
-            );
-          }
-        })
-      )}
+      {lecturesAll.map((lecture, index) => {
+        if (idCategory === lecture.category) {
+          return (
+            <div className={Styles.TitleLecture}>
+              <a
+                href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
+              >
+                <h5>{lecture.title}</h5>
+                ujuu
+              </a>
+            </div>
+          );
+        }
+      })}
     </div>
   );
 }

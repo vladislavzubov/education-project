@@ -20,6 +20,7 @@ function Lecture() {
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
   const idUser = useSelector((store) => store.server_redux.id);
+  const permission = useSelector((store) => store.server_redux.role);
 
   const onPerfomigExercise = async () => {
     setIsLoading(true);
@@ -107,8 +108,12 @@ function Lecture() {
     onPerformExersice(idUser);
   }, []);
   const handleChange = () => {
-    setIsOnChange(!isOnChange);
-    return;
+    if (permission === 'admin') {
+      setIsOnChange(!isOnChange);
+      return;
+    } else {
+      return;
+    }
   };
   const chanheLecture = async (value) => {
     setIsLoading(true);

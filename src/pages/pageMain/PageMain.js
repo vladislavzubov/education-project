@@ -38,7 +38,8 @@ class PageMain extends Component {
         response.data.name,
         response.data.email,
         response.data.age,
-        response.data._id
+        response.data._id,
+        response.data.role
       );
       this.setState({
         isLoading: false,
@@ -67,13 +68,14 @@ const mapStateToProps = (store) => {
     email: receptionUser(store).email,
     age: receptionUser(store).age,
     id: receptionUser(store).id,
+    role: receptionUser(store).role,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receptionUser: (name, email, age, id) =>
-      dispatch(receptionUser(name, email, age, id)),
+    receptionUser: (name, email, age, id, role) =>
+      dispatch(receptionUser(name, email, age, id, role)),
   };
 };
 
