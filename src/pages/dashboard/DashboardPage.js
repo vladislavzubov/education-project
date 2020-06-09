@@ -53,7 +53,6 @@ function DashboardPage(props) {
     setLoading(true);
     try {
       const allCategories = await requests('get', 'category');
-      console.log(allCategories.data);
 
       const manuCategories = allCategories.data.map((category, index) => {
         return {
@@ -62,8 +61,18 @@ function DashboardPage(props) {
           icon: 'properties',
         };
       });
-      console.log(manuCategories);
+
       const menuUser = [
+        {
+          value: 'Apps',
+          menuIteam: [
+            {
+              value: 'home',
+              href: `http://localhost:3000/dashboard`,
+              icon: 'home',
+            },
+          ],
+        },
         {
           value: 'Category',
           menuIteam: manuCategories,
@@ -85,7 +94,6 @@ function DashboardPage(props) {
       const response = await requests('get', 'info-user', {
         accessToken: token,
       });
-      console.log(response.data._id);
 
       incrementCounter(
         response.data.name,

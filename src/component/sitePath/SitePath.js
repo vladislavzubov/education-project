@@ -1,12 +1,93 @@
 import React from 'react';
 import Styles from './SitePath.module.scss';
+import { Breadcrumbs } from '@blueprintjs/core';
+import { useLocation } from 'react-router-dom';
+import { requests } from '../../services/requests';
 
-function SitePath() {
+export default function SitePath() {
+  const url = React.useMemo(() => {
+    return useLocation().pathname;
+  }, []);
+  const [lecture, setLecture] = React.useState([]);
+  const [category, setCategory] = React.useState([]);
+
+  let items = [];
+
+  const arrUrl = url.split('/');
+
+  const getCategory = async (categoryId) => {
+    if (category.length === 0) {
+      try {
+        const categoryRequest = await requests('get', `category/${categoryId}`);
+
+        setCategory(categoryRequest.data);
+      } catch (e) {
+        console.log('falied get wn category', e);
+      }
+    }
+  };
+
+  const getLecture = async (lectureId) => {
+    if (lecture.length === 0) {
+      try {
+        const lectureRequest = await requests(
+          'get',
+          `lecture-one/${lectureId}`
+        );
+        setLecture(lectureRequest.data);
+      } catch (e) {
+        console.log('falied get wn lecture', e);
+      }
+    }
+  };
+
+  if (arrUrl[1] === 'dashboard') {
+    items = [
+      ...items,
+      {
+        href: 'http://localhost:3000/dashboard',
+        icon: 'home',
+        text: 'Home',
+      },
+    ];
+  }
+
+  if (arrUrl[2] === 'category') {
+    if (category) {
+      getCategory(arrUrl[3]);
+    }
+
+    items = [
+      ...items,
+      {
+        href: `http://localhost:3000/dashboard/category/${category._id}`,
+        icon: 'applications',
+        text: category.name,
+      },
+    ];
+  }
+
+  if (arrUrl[2] === 'lectures') {
+    getLecture(arrUrl[3]);
+    if (lecture.category) {
+      getCategory(lecture.category);
+    }
+
+    items = [
+      ...items,
+      {
+        href: `http://localhost:3000/dashboard/category/${category._id}`,
+        icon: 'applications',
+        text: category.name,
+      },
+      ,
+      { icon: 'application', text: lecture.title },
+    ];
+  }
+
   return (
     <div className={Styles.SitePath}>
-      <p>Breadcrumbs</p>
+      <Breadcrumbs items={items} />
     </div>
   );
 }
-
-export default SitePath;

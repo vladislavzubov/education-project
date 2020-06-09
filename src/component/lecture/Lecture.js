@@ -74,7 +74,6 @@ function Lecture() {
         'get',
         `requestUserLecture/${lecturesID}?userId=${idUser}`
       );
-      console.log(onExercise);
 
       switch (onExercise.data.type) {
         case 'lecture': {
@@ -133,15 +132,13 @@ function Lecture() {
   return (
     <div className={Styles.Content}>
       {isOnExercise ? (
-        <div>
-          <Testing
-            lecturesID={lecturesID}
-            tests={allExercise.tests}
-            texts={allExercise.texts}
-            idUser={idUser}
-            onPerformExersice={onPerformExersice}
-          />
-        </div>
+        <Testing
+          lecturesID={lecturesID}
+          tests={allExercise.tests}
+          texts={allExercise.texts}
+          idUser={idUser}
+          onPerformExersice={onPerformExersice}
+        />
       ) : (
         <div className={Styles.Lecture}>
           <h1>{lecture.title}</h1>

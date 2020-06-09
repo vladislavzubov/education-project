@@ -18,8 +18,8 @@ function Category() {
     try {
       const getAllLectures = await requests('get', 'lecture');
       setLecturesAll(getAllLectures.data);
-      console.log(getAllLectures.data);
-      console.log('success get all lecture');
+
+      // console.log('success get all lecture');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all lecture', e);
