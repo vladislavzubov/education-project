@@ -65,6 +65,16 @@ function DashboardPage(props) {
       console.log(manuCategories);
       const menuUser = [
         {
+          value: 'Apps',
+          menuIteam: [
+            {
+              value: 'home',
+              href: `http://localhost:3000/dashboard`,
+              icon: 'home',
+            },
+          ],
+        },
+        {
           value: 'Category',
           menuIteam: manuCategories,
         },
