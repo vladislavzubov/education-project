@@ -1,12 +1,10 @@
 import React from 'react';
 import Styles from './Category.module.scss';
-import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
-import TitleCategory from '../titleCategor/TitleCategor';
 import { useParams } from 'react-router-dom';
 
-function Category() {
+export default function Category() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecturesAll, setLecturesAll] = React.useState([]);
   const idCategory = React.useMemo(() => {
@@ -53,5 +51,3 @@ function Category() {
     </div>
   );
 }
-
-export default Category;
