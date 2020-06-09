@@ -1,12 +1,10 @@
 import React from 'react';
 import Styles from './Category.module.scss';
-import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
-import TitleCategory from '../titleCategor/TitleCategor';
 import { useParams } from 'react-router-dom';
 
-function Category() {
+export default function Category() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecturesAll, setLecturesAll] = React.useState([]);
   const idCategory = React.useMemo(() => {
@@ -17,8 +15,8 @@ function Category() {
     try {
       const getAllLectures = await requests('get', 'lecture');
       setLecturesAll(getAllLectures.data);
-      console.log(getAllLectures.data);
-      console.log('success get all lecture');
+
+      // console.log('success get all lecture');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all lecture', e);
@@ -44,8 +42,7 @@ function Category() {
               <a
                 href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
               >
-                <h5>{lecture.title}</h5>
-                ujuu
+                <h5 className={Styles.Lecture}>{lecture.title}</h5>
               </a>
             </div>
           );
@@ -54,5 +51,3 @@ function Category() {
     </div>
   );
 }
-
-export default Category;

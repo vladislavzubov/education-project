@@ -4,7 +4,7 @@ import { Spinner, Popover, Button } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
 import ReactMarkdown from 'react-markdown';
 import InputFull_TextArea from '../InputFull/InputFull_TextArea';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 import { useSelector } from 'react-redux';
 import Testing from '../Testing/Testing';
 import { useParams } from 'react-router-dom';
@@ -75,7 +75,6 @@ function Lecture() {
         'get',
         `requestUserLecture/${lecturesID}?userId=${idUser}`
       );
-      console.log(onExercise);
 
       switch (onExercise.data.type) {
         case 'lecture': {
@@ -138,15 +137,13 @@ function Lecture() {
   return (
     <div className={Styles.Content}>
       {isOnExercise ? (
-        <div>
-          <Testing
-            lecturesID={lecturesID}
-            tests={allExercise.tests}
-            texts={allExercise.texts}
-            idUser={idUser}
-            onPerformExersice={onPerformExersice}
-          />
-        </div>
+        <Testing
+          lecturesID={lecturesID}
+          tests={allExercise.tests}
+          texts={allExercise.texts}
+          idUser={idUser}
+          onPerformExersice={onPerformExersice}
+        />
       ) : (
         <div className={Styles.Lecture}>
           <h1>{lecture.title}</h1>

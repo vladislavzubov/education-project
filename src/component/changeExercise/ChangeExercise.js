@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './ChangeExercise.module.scss';
-import { Spinner, Button } from '@blueprintjs/core';
-import { Form, Field, useForm, FormSpy } from 'react-final-form';
+import { Spinner } from '@blueprintjs/core';
+import { Form, Field, FormSpy } from 'react-final-form';
 import { requests } from '../../services/requests';
 import InputDisabled from '../InputDisabled/InputDisabled';
 
