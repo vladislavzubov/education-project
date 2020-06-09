@@ -145,6 +145,12 @@ module.exports = (app) => {
     checkRole(['admin', 'user']),
     category.getAll
   );
+  app.get(
+    '/api/category/:id',
+    authMiddleware,
+    checkRole(['admin', 'user']),
+    category.getOneCategory
+  );
   app.post(
     '/api/category',
     authMiddleware,

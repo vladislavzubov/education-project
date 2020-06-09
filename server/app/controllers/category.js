@@ -8,6 +8,12 @@ const getAll = (req, res) =>
     .exec()
     .then((category) => res.json(category))
     .catch((err) => res.status(500).json(err));
+  
+const getOneCategory = (req, res) =>
+  Category.findOne({ _id: req.params.id })
+    .exec()
+    .then((category) => res.json(category))
+    .catch((err) => res.status(500).json(err));
 
 const create = (req, res) => {
   const categoryObj = {
@@ -35,6 +41,7 @@ const remove = (req, res) => {
 };
 
 module.exports = {
+  getOneCategory,
   getAll,
   create,
   update,

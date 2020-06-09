@@ -74,7 +74,6 @@ function Lecture() {
         'get',
         `requestUserLecture/${lecturesID}?userId=${idUser}`
       );
-      console.log(onExercise);
 
       switch (onExercise.data.type) {
         case 'lecture': {
