@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const LectureModel = require('../models/lecture');
 
 const Lecture = LectureModel;

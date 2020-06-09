@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const authHelper = require('../helpers/authHelpers');
 const {
