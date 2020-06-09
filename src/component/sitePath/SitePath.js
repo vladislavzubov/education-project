@@ -5,9 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { requests } from '../../services/requests';
 
 export default function SitePath() {
-  const url = React.useMemo(() => {
-    return useLocation().pathname;
-  }, []);
+  const url = useLocation().pathname;
+  
   const [lecture, setLecture] = React.useState([]);
   const [category, setCategory] = React.useState([]);
 
