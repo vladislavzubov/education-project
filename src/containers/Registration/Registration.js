@@ -93,7 +93,6 @@ class Registration extends Component {
                   placeholder="Age"
                   validate={[required, haveNotChar, minAge]}
                   loading={this.state.loading}
-                  type="number"
                 />
 
                 <InputFull
