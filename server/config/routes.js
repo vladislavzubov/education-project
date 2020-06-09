@@ -48,25 +48,25 @@ module.exports = (app) => {
   app.get(
     '/api/exercise/:id',
     authMiddleware,
-    checkRole(['admin'], 'user'),
+    checkRole(['admin', 'user']),
     exercise.exerciseForLecture
   );
   app.get(
     '/api/exercise',
     authMiddleware,
-    checkRole(['admin'], 'user'),
+    checkRole(['admin', 'user']),
     exercise.getAll
   );
   app.get(
     '/api/exercise-all/:id',
     authMiddleware,
-    checkRole(['admin'], 'user'),
+    checkRole(['admin', 'user']),
     exercise.getAllExercisesLecture
   );
   app.get(
     '/api/exercise-info/:id',
     authMiddleware,
-    checkRole(['admin'], 'user'),
+    checkRole(['admin', 'user']),
     exercise.getExerciseInfo
   );
   app.post(
@@ -98,13 +98,13 @@ module.exports = (app) => {
   app.get(
     '/api/lecture',
     authMiddleware,
-    checkRole(['admin'], 'user'),
+    checkRole(['admin', 'user']),
     lecture.getAll
   );
   app.get(
     '/api/lecture-one/:id',
     authMiddleware,
-    checkRole(['admin'], 'user'),
+    checkRole(['admin', 'user']),
     lecture.getOneLecture
   );
   app.get(
