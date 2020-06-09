@@ -12,11 +12,11 @@ export default function Text({ text, input }) {
 
   return (
     <div className={Styles.Text}>
-      <h2>{text.question}</h2>
+      <h3>{text.question}</h3>
       <div className={Styles.Text}>
         <MonacoEditor
           // width="800"
-          height="200"
+          height="600"
           language="javascript"
           theme="vs-dark"
           value={input.value}

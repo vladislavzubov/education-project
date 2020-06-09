@@ -46,11 +46,13 @@ export default function Testing(props) {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
-          <div className={Styles.Testing_content}>
+          <div className={Styles.Testing}>
             <form onSubmit={handleSubmit}>
-              <h1>Test</h1>
-
               <div>
+                <h1>Test</h1>
+              </div>
+
+              <div className={Styles.Content}>
                 {tests.map((test, index) => {
                   return (
                     <Field
@@ -72,9 +74,11 @@ export default function Testing(props) {
                   );
                 })}
               </div>
-              <button type="submit" disabled={submitting}>
-                Сomplete the test
-              </button>
+              <div >
+                <button type="submit" disabled={submitting} className={Styles.Testing_Button} >
+                  Сomplete the test
+                </button>
+              </div>
             </form>
           </div>
         )}
