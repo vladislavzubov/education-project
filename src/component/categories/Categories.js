@@ -1,11 +1,10 @@
 import React from 'react';
 import Styles from './Categories.module.scss';
-import Matrix from '../../containers/Matrix/Matrix';
 import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
 import TitleCategory from '../titleCategor/TitleCategor';
 
-function Categories() {
+export default function Categories() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoriesAll, setCategoriesAll] = React.useState([]);
   const [lecturesAll, setLecturesAll] = React.useState([]);
@@ -122,5 +121,3 @@ function Categories() {
     </div>
   );
 }
-
-export default Categories;

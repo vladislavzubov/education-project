@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const ExerciseModel = require('../models/exercise');
 
 const Exercise = ExerciseModel;
@@ -39,7 +38,6 @@ const update = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
-
 const remove = (req, res) => {
   Exercise.deleteOne({ _id: req.params.id })
     .exec()
@@ -76,9 +74,7 @@ const exerciseForLecture = async (req, res) => {
     .exec()
     .then((exercises) =>
       shuffle(exercises).map((exercise, index) => {
-        exercise.type === 'test'
-          ? tes.push(exercise)
-          : tex.push(exercise);
+        exercise.type === 'test' ? tes.push(exercise) : tex.push(exercise);
       })
     );
   const tests = tes.splice(0, numberOfTest);
@@ -90,8 +86,10 @@ const exerciseForLecture = async (req, res) => {
 const getExerciseInfo = (req, res) => {
   Exercise.findOne({ _id: req.params.id })
     .exec()
-    .then((exercise) =>{res.json(exercise)})
-}
+    .then((exercise) => {
+      res.json(exercise);
+    });
+};
 
 module.exports = {
   getAll,
@@ -101,5 +99,5 @@ module.exports = {
   removingFromLecture,
   getAllExercisesLecture,
   exerciseForLecture,
-  getExerciseInfo
+  getExerciseInfo,
 };

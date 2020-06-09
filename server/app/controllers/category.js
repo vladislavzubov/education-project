@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const CategoryModel = require('../models/category');
 
 const Category = CategoryModel;
@@ -8,7 +7,7 @@ const getAll = (req, res) =>
     .exec()
     .then((category) => res.json(category))
     .catch((err) => res.status(500).json(err));
-  
+
 const getOneCategory = (req, res) =>
   Category.findOne({ _id: req.params.id })
     .exec()

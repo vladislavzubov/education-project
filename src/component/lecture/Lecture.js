@@ -4,7 +4,7 @@ import { Spinner, Popover, Button } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
 import ReactMarkdown from 'react-markdown';
 import InputFull_TextArea from '../InputFull/InputFull_TextArea';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 import { useSelector } from 'react-redux';
 import Testing from '../Testing/Testing';
 import { useParams } from 'react-router-dom';
