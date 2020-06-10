@@ -66,7 +66,7 @@ export default function Category() {
             <div className={Styles.LectureIcon}>
               <Icon icon={icon} intent={intent} iconSize="20" />
               <a
-                href={`http://localhost:3000/dashboard/lectures/${lecture.lectureId}`}
+                href={`${REACT_CLIENT_URL}/dashboard/lectures/${lecture.lectureId}`}
               >
                 <h5 className={Styles.Lecture}>{lecture.LectureTitle}</h5>
               </a>

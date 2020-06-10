@@ -6,46 +6,46 @@ export default function helperMenu() {
         {
           value: 'Charts',
           icon: 'grouped-bar-chart',
-          href: 'http://localhost:3000/probe',
+          href: `${REACT_CLIENT_URL}/probe`,
           nesting: [
             {
               value: 'Create category',
-              href: 'http://localhost:3000/dashboard/create-category',
+              href: `${REACT_CLIENT_URL}/dashboard/create-category`,
             },
             {
               value: 'Create lecture',
-              href: 'http://localhost:3000/dashboard/create-lecture',
+              href: `${REACT_CLIENT_URL}/dashboard/create-lecture`,
             },
             {
               value: 'Chart exercise',
-              href: 'http://localhost:3000/dashboard/create-exercise',
+              href: `${REACT_CLIENT_URL}/dashboard/create-exercise`,
             },
           ],
         },
         {
           value: 'Categories',
           icon: 'pivot',
-          href: 'http://localhost:3000/dashboard/categories',
+          href: `${REACT_CLIENT_URL}/dashboard/categories`,
         },
         {
           value: 'Dashboard',
           icon: 'home',
-          href: 'http://localhost:3000/',
+          href: `${REACT_CLIENT_URL}/`,
         },
         {
           value: 'Change user info',
           icon: 'form',
-          href: 'http://localhost:3000/dashboard/change_user_data',
+          href: `${REACT_CLIENT_URL}/dashboard/change_user_data`,
         },
         {
           value: 'Lectures',
           icon: 'send-to-graph',
-          href: 'http://localhost:3000/dashboard/lectures',
+          href: `${REACT_CLIENT_URL}/dashboard/lectures`,
         },
         {
           value: 'Сhange exercise',
           icon: 'exchange',
-          href: 'http://localhost:3000/dashboard/change-exercise',
+          href: `${REACT_CLIENT_URL}/dashboard/change-exercise`,
         },
       ],
     },

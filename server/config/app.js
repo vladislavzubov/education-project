@@ -13,7 +13,7 @@ module.exports = {
       },
       refresh: {
         type: 'refresh',
-        expiresIn: '8000m',
+        expiresIn: '800000m',
       },
     },
   },

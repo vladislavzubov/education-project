@@ -54,7 +54,7 @@ export default function SitePath() {
     items = [
       ...items,
       {
-        href: `http://localhost:3000/dashboard/category/${category._id}`,
+        href: `${REACT_CLIENT_URL}/dashboard/category/${category._id}`,
         icon: 'applications',
         text: category.name,
       },
@@ -70,7 +70,7 @@ export default function SitePath() {
     items = [
       ...items,
       {
-        href: `http://localhost:3000/dashboard/category/${category._id}`,
+        href: `${REACT_CLIENT_URL}/dashboard/category/${category._id}`,
         icon: 'applications',
         text: category.name,
       },

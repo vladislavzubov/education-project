@@ -14,7 +14,7 @@ class NotFoundPage extends Component {
             <h3>Page not found</h3>
           </div>
           <div>
-            <a href="http://localhost:3000/login">Go home</a>
+            <a href={`${REACT_CLIENT_URL}/login`}>Go home</a>
           </div>
         </div>
       </BaseLayouts>
