@@ -73,7 +73,7 @@ function TitleCategor({
           return (
             <div className={Styles.TitleLecture}>
               <a
-                href={`https://dashboard-exceed.herokuapp.com//dashboard/lectures/${lecture._id}`}
+                href={`https://dashboard-exceed.herokuapp.com/dashboard/lectures/${lecture._id}`}
               >
                 <h5>{lecture.title}</h5>
               </a>

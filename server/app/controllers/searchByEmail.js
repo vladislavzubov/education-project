@@ -7,7 +7,7 @@ const { passwordCoding } = require('../helpers/passwordHelpers');
 const searchByEmail = (req, res) => {
   const { email } = req.body;
   const key = passwordCoding(email);
-  const site = `https://dashboard-exceed.herokuapp.com//change-password`;
+  const site = `https://dashboard-exceed.herokuapp.com/change-password`;
   const link = `${site}?key=${key}`;
 
   putKeyInUser(key, email);

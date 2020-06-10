@@ -14,9 +14,7 @@ class NotFoundPage extends Component {
             <h3>Page not found</h3>
           </div>
           <div>
-            <a href={`https://dashboard-exceed.herokuapp.com//login`}>
-              Go home
-            </a>
+            <a href={`https://dashboard-exceed.herokuapp.com/login`}>Go home</a>
           </div>
         </div>
       </BaseLayouts>
