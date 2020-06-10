@@ -210,9 +210,7 @@ function Content() {
       },
     ],
   };
-
   const [isLoading, setIsLoading] = React.useState(true);
-
   const loadLectures = () => {
     setIsLoading(true);
     setTimeout(function () {

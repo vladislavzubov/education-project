@@ -1,37 +1,23 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import Login from '../../containers/Login/Login';
-import Registration from '../../containers/Registration/Registration';
-import User from '../../containers/User/user';
-import LostPassword from '../../containers/LostPassword/LostPassword';
 import ChangeUserData from '../../containers/ChangeUserData/ChangeUserData';
-import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
 } from 'react-router-dom';
 import Probe from '../../containers/Probe';
-import Matrix from '../Matrix/Matrix';
 import { withRouter } from 'react-router';
-import Styles from './IndexContainers.module.scss';
 import PageLogin from '../../pages/pageBase/PageLogin';
-import PageChangePassword from '../../pages/pageBase/PageChangePassword';
-import PageChangeUserData from '../../pages/pageBase/PageChangeUserData';
 import PageLostPassword from '../../pages/pageBase/PageLostPassword';
 import PageRegistration from '../../pages/pageBase/PageRegistration';
 import PageMain from '../../pages/pageMain/PageMain';
-import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import Dashboard from '../../component/Dashboard/Dashboard';
 import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
-import { connect } from 'react-redux';
 import DashboardPage from '../../pages/dashboard/DashboardPage';
 import Lectures from '../Lecture/Lecture';
 
-//import Layout from '../../Pages/Layout/Layout';
 class IndexContainers extends Component {
   routes = [
     {
@@ -84,9 +70,6 @@ class IndexContainers extends Component {
       path: '/',
       component: PageLogin,
     },
-    //  <Route path="*">
-    //  <NoMatch />
-    //</Route>,
   ];
   render() {
     return <Switch>{nestingCheckRoute(this.routes)}</Switch>;

@@ -1,5 +1,4 @@
 import axios from './axios';
-import { STATES } from 'mongoose';
 
 export async function requests(methods, route, data, count = 1, roles) {
   try {
@@ -9,9 +8,7 @@ export async function requests(methods, route, data, count = 1, roles) {
       ...(methods === 'get' ? { params: data } : { data }),
       role: roles,
     };
-
     const response = await axios(axiosConfig);
-    // console.log(methods, route, data, count);
     return response;
   } catch (e) {
     if (e.response.data.errCode === 987 && count === 1) {

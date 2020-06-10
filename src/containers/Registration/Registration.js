@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Registration.module.css';
 import { Form, Field } from 'react-final-form';
-import { Button, HTMLSelect } from '@blueprintjs/core';
+import { Button } from '@blueprintjs/core';
 import {
   minAge,
   haveNotChar,
@@ -10,12 +10,10 @@ import {
   minLength,
   haveOneUppercase,
   haveOneNumeral,
-  password,
   setPasswordValue,
   setRepeatPasswordValue,
 } from '../../services/validation';
 import { Link } from 'react-router-dom';
-import axios from '../../services/axios';
 import InputFull from '../../component/InputFull/InputFull';
 import { requests } from '../../services/requests';
 
@@ -40,11 +38,10 @@ class Registration extends Component {
     try {
       const response = await requests('post', 'registration', registPost);
       this.setState({ loading: false, errMessage: false });
-      // console.log('success')
       return true;
     } catch (e) {
       this.setState({ loading: false, errMessage: e.response.data.message });
-      // console.log('falied', e.response.data.message)
+      console.log('falied', e);
       return false;
     }
   };

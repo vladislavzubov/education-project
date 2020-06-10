@@ -14,9 +14,6 @@ function CreateLecture() {
     try {
       const getAllCategories = await requests('get', 'category');
       setAllCategories(getAllCategories.data);
-      console.log(getAllCategories.data);
-
-      console.log('success get all categories');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all categories', e);
@@ -26,7 +23,6 @@ function CreateLecture() {
   const postCategoryName = async (value) => {
     try {
       const response = await requests('post', 'lecture', value);
-      console.log('success create lecture');
     } catch (e) {
       console.log('falied create lecture', e);
     }

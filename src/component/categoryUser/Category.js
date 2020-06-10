@@ -15,8 +15,6 @@ export default function Category() {
     try {
       const getAllLectures = await requests('get', 'lecture');
       setLecturesAll(getAllLectures.data);
-
-      // console.log('success get all lecture');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all lecture', e);
@@ -27,7 +25,6 @@ export default function Category() {
   React.useEffect(() => {
     getLectures();
   }, []);
-  console.log(lecturesAll, idCategory);
 
   if (isLoading) {
     <Spinner className={Styles.Spinner} />;

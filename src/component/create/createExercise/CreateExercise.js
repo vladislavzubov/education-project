@@ -4,10 +4,8 @@ import { Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../../component/InputFull/InputFull';
 import { requests } from '../../../services/requests';
-import { useSelector } from 'react-redux';
 
 function CreateExercise() {
-  const name = useSelector((store) => store.server_redux.name);
   const [isLoading, setIsLoading] = React.useState(true);
   const [allLecture, setAllLecture] = React.useState();
   const [isOnAnswer, setIsAnswer] = React.useState(false);
@@ -17,26 +15,20 @@ function CreateExercise() {
     try {
       const getAllLecture = await requests('get', 'lecture');
       setAllLecture(getAllLecture.data);
-      console.log('success get all categories');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all categories', e);
       setIsLoading(false);
     }
   };
-  console.log(numberAnswer);
-
-  const onAnswer = () => {
-    setIsAnswer(!isOnAnswer);
-  };
   const postCreateExercise = async (value) => {
     try {
       const response = await requests('post', 'exercise', value);
-      console.log('success create exercise');
     } catch (e) {
       console.log('falied create exercise', e);
     }
   };
+
   React.useEffect(() => {
     getAllLectures();
   }, []);

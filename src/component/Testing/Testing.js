@@ -3,16 +3,12 @@ import Styles from './Testing.module.scss';
 import Test from '../Exercises/Test/Test';
 import Text from '../Exercises/Text/Text';
 import InputFull_TextArea from '../InputFull/InputFull_TextArea';
-import { Button, Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
 import { requests } from '../../services/requests';
 
 export default function Testing(props) {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [responses, setResponse] = React.useState({});
   const [userId, setUserId] = React.useState(props.idUser);
-
-  console.log(props);
   const lecturesId = props.lecturesID;
   const tests = props.tests;
   const texts = props.texts;
