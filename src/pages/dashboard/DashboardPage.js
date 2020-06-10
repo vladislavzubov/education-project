@@ -94,6 +94,7 @@ function DashboardPage(props) {
         axios.defaults.headers.common[
           'Authorization'
         ] = `${localStorage.getItem('accessKey')}`;
+        location.reload();
         return true;
       } else {
         return false;
@@ -147,6 +148,7 @@ function DashboardPage(props) {
     } else {
       loadMainData();
     }
+
     onMenuList(role);
   }, [isAuthorized, role]);
 

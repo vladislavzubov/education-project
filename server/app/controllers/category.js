@@ -80,7 +80,6 @@ const lecturesOfCategory = async (req, res) => {
     const response = allUserResponse.find((resp) => {
       return resp.lectureId === String(lecture._id);
     });
-    console.log(response);
 
     if (!response) {
       return [
