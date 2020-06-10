@@ -1,12 +1,14 @@
 import React from 'react';
-import { Form, Field } from 'react-final-form';
+import { Field } from 'react-final-form';
 import Styles from './Test.module.scss';
 
 export default function Test({ test }) {
   return (
     <div className={Styles.Test}>
       <div>
-        <h3><strong>{test.question}</strong></h3>
+        <h3>
+          <strong>{test.question}</strong>
+        </h3>
       </div>
       <div>
         {test.quantity.map((answer, index) => {

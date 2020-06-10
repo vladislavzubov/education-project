@@ -15,15 +15,12 @@ export default function Testing(props) {
   let texts = props.texts;
   let codes = props.codes;
 
-
   const onSubmit = async (value) => {
     const resolve = { response: value };
     putUserResponse(resolve);
   };
 
   const putUserResponse = async (resolve) => {
-    console.log(resolve);
-    
     try {
       const exercise = await requests(
         'put',
@@ -54,7 +51,6 @@ export default function Testing(props) {
               </div>
 
               <div className={Styles.Content}>
-
                 {texts === undefined
                   ? null
                   : tests.map((test, index) => {
@@ -91,7 +87,6 @@ export default function Testing(props) {
                         />
                       );
                     })}
-
               </div>
               <div>
                 <button

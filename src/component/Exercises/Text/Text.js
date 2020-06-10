@@ -16,7 +16,6 @@ export default function Text({ text, input }) {
           name={text._id}
           component="textarea"
           placeholder="Enter your answer"
-
         />
       </div>
     </div>

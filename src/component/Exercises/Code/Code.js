@@ -6,8 +6,6 @@ export default function Code({ code, input }) {
   const codeValue = (code) => {
     input.onChange(code);
   };
- 
-  
 
   return (
     <div className={Styles.Code}>
