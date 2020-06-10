@@ -20,6 +20,7 @@ function Lecture() {
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
   const idUser = useSelector((store) => store.server_redux.id);
+
   const permission = useSelector((store) => store.server_redux.role);
 
   const onPerfomigExercise = async () => {
@@ -27,7 +28,7 @@ function Lecture() {
     try {
       const onExercise = await requests(
         'get',
-        `exercise/${lecturesID}?numberOfTest=${lecture.numberOfTest}&numberOfText=${lecture.numberOfText}`
+        `exercise/${lecturesID}?numberOfTest=${lecture.numberOfTest}&numberOfText=${lecture.numberOfText}&numberOfCode=${lecture.numberOfCode}`
       );
       try {
         const postExerciseServer = await requests('post', 'userResponse', {
@@ -147,13 +148,7 @@ function Lecture() {
               initialValues={{
                 value: `${lecture.value}`,
               }}
-              render={({
-                handleSubmit,
-                form,
-                submitting,
-                pristine,
-                values,
-              }) => (
+              render={({ handleSubmit }) => (
                 <div>
                   <form onSubmit={handleSubmit} className={Styles.EditTitle}>
                     <InputFull_TextArea name="value" placeholder="Value" />
