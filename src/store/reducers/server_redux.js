@@ -18,7 +18,6 @@ export function changeUserInfo(name, age) {
 }
 
 export function receptionUser(name, email, age, id, role) {
-  console.log(name, email, age, id, role);
   return (dispatch) => {
     dispatch({
       type: 'RECEPTION_USER',

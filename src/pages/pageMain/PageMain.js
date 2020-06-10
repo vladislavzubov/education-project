@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import Matrix from '../../containers/Matrix/Matrix';
-import Menu from '../../component/Menu/Menu';
 import Styles from './PageMain.module.scss';
 import ContentInfo from '../../component/contentInfo/ContentInfo';
-//import { connect } from 'react-redux';
 import axios from '../../services/axios';
 import { receptionUser } from '../../store/reducers/server_redux';
 import { connect } from 'react-redux';
 import { requests } from '../../services/requests';
-import { Button, Spinner } from '@blueprintjs/core';
 
 class PageMain extends Component {
   componentDidMount() {

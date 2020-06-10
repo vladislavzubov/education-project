@@ -1,21 +1,23 @@
-.Testing{
+.Testing {
     width: 100%; 
     font-size: 1rem;
-    
 }
-.Testing form{ 
+
+.Testing form { 
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
 }
-.Content{
+
+.Content {
     width: 80%;
     display: flex;
     flex-direction: column;
 }
-.Testing_Button{
+
+.Testing_Button {
     margin-top: 2rem;
     width: 100%;
     height: 2rem;
@@ -33,4 +35,7 @@
     box-shadow: 0 0 1.25rem rgba(0,0,0,.1);
     transition: .5s;
 }
-.Testing_Button:hover {background-position: right center;}
+
+.Testing_Button:hover {
+    background-position: right center;
+}

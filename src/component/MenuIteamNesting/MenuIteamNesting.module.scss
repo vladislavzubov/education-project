@@ -1,4 +1,4 @@
-.MenuIteam{
+.MenuIteam {
     color: #9fa1b0;
     margin: 0 0 0 0;
 }
@@ -7,20 +7,24 @@
     text-decoration:none;
     color: #9fa1b0;
 }
-.line div{
+
+.line div {
     display: flex;
     justify-items: flex-start;
     align-items: center;
     margin-left: 0.625rem;
 }
-.line:hover{
+
+.line:hover {
     background-color: #6881f5;
     color: whitesmoke;
 }
-.value{
+
+.value {
     flex-grow: 1;
 }
-.badges{
+
+.badges {
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
     background-color: #5a76f5;
@@ -28,15 +32,18 @@
     border-radius: 0.125rem;
     justify-self: self-end;
 }
-.nesting{
+
+.nesting {
     display: flex;
     background-color: #515983;
     flex: none;
 }
-.nesting ul{
+
+.nesting ul {
     margin: 0;
 }
-.nesting li{
+
+.nesting li {
     padding-left:1.125rem;
     margin-top:0.625rem;
     margin-bottom: 0.625rem;

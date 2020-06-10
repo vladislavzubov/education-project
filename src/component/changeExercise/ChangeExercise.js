@@ -21,10 +21,10 @@ export default function ChangeExercise() {
         `exercise-info/${exerciseId}`
       );
       setExercise(getExercise.data);
-
-      // console.log('success get all categories');
+      return;
     } catch (e) {
-      // console.log('falied get all categories', e);
+      console.log('falied get all categories', e);
+      return;
     }
   };
 
@@ -33,12 +33,12 @@ export default function ChangeExercise() {
     try {
       const getAllCategories = await requests('get', 'category');
       setAllCategories(getAllCategories.data);
-
-      // console.log('success get all categories');
       setIsLoading(false);
+      return;
     } catch (e) {
-      // console.log('falied get all categories', e);
+      console.log('falied get all categories', e);
       setIsLoading(false);
+      return;
     }
   };
 
@@ -47,12 +47,12 @@ export default function ChangeExercise() {
     try {
       const getAllLecture = await requests('get', `lecture`);
       setAllLecture(getAllLecture.data);
-
-      // console.log('success get own lecture');
       setIsLoading(false);
+      return;
     } catch (e) {
-      // console.log('falied get wn lecture', e);
+      console.log('falied get wn lecture', e);
       setIsLoading(false);
+      return;
     }
   };
 
@@ -61,12 +61,12 @@ export default function ChangeExercise() {
     try {
       const getAllExercise = await requests('get', `exercise`);
       setAllexercise(getAllExercise.data);
-
-      // console.log('success get own exercise');
       setIsLoading(false);
+      return;
     } catch (e) {
-      // console.log('falied get wn exercise', e);
+      console.log('falied get wn exercise', e);
       setIsLoading(false);
+      return;
     }
   };
 
@@ -110,11 +110,13 @@ export default function ChangeExercise() {
       question: exerciseQuestion,
       type: type,
     };
-    console.log(modefiedExercise);
 
     try {
       await requests('put', `exercise/${exerciseId}`, modefiedExercise);
-    } catch (e) {}
+      return;
+    } catch (e) {
+      return;
+    }
   };
 
   React.useEffect(() => {
