@@ -7,7 +7,7 @@ const { passwordCoding } = require('../helpers/passwordHelpers');
 const searchByEmail = (req, res) => {
   const { email } = req.body;
   const key = passwordCoding(email);
-  const site = 'http://localhost:3000/change-password';
+  const site = `${REACT_CLIENT_URL}/change-password`;
   const link = `${site}?key=${key}`;
 
   putKeyInUser(key, email);

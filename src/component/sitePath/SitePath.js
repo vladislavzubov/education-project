@@ -39,7 +39,7 @@ export default function SitePath() {
     items = [
       ...items,
       {
-        href: 'http://localhost:3000/dashboard',
+        href: `${REACT_CLIENT_URL}/dashboard`,
         icon: 'home',
         text: 'Home',
       },
