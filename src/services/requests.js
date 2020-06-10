@@ -19,20 +19,23 @@ export async function requests(methods, route, data, count = 1, roles) {
   }
 }
 
-async function checkRefreshToken() {
+export async function checkRefreshToken() {
   const refreshToken = localStorage.getItem('refreshKey');
   try {
     const response = await axios.post('refresh-tokens', {
       refreshToken: refreshToken,
     });
     localStorage.setItem('accessKey', response.data.accessToken);
+    console.log('dg,fd,gm');
+
     axios.defaults.headers.common[
       'Authorization'
     ] = `${response.data.accessToken}`;
     console.log('refresh token success update');
-    return;
+    return true;
   } catch (e) {
     console.log('falied: refresh token invalid');
-    return;
+    localStorage.removeItem('refreshKey');
+    return false;
   }
 }

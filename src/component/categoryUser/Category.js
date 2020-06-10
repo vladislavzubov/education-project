@@ -1,8 +1,9 @@
 import React from 'react';
 import Styles from './Category.module.scss';
-import { Spinner } from '@blueprintjs/core';
+import { Icon } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
 import { useParams } from 'react-router-dom';
+import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 
 export default function Category() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -26,8 +27,23 @@ export default function Category() {
     getLectures();
   }, []);
 
+  //   switch () {
+  // case 'start' : {
+  // icon='manual';
+  //intent = 'Primary';
+  // }
+  // case 'middle' : {
+  //   icon = 'time'; //edit
+  //intent = 'Warning';
+  // }
+  // case 'end' : {
+  //   icon = 'confirm';
+  //intent = 'Success';
+  // }
+  //   }
+
   if (isLoading) {
-    <Spinner className={Styles.Spinner} />;
+    return <HelperSpinner />;
   }
 
   return (
@@ -36,11 +52,14 @@ export default function Category() {
         if (idCategory === lecture.category) {
           return (
             <div className={Styles.TitleLecture}>
-              <a
-                href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
-              >
-                <h5 className={Styles.Lecture}>{lecture.title}</h5>
-              </a>
+              <div className={Styles.LectureIcon}>
+                <Icon icon={'confirm'} intent="Success" iconSize="20" />
+                <a
+                  href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
+                >
+                  <h5 className={Styles.Lecture}>{lecture.title}</h5>
+                </a>
+              </div>
             </div>
           );
         }

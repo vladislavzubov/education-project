@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './ChangeExercise.module.scss';
-import { Spinner } from '@blueprintjs/core';
+import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 import { Form, Field, FormSpy } from 'react-final-form';
 import { requests } from '../../services/requests';
 import InputDisabled from '../InputDisabled/InputDisabled';
@@ -130,7 +130,7 @@ export default function ChangeExercise() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <HelperSpinner />;
   }
 
   return (

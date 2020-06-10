@@ -8,6 +8,7 @@ import { Form } from 'react-final-form';
 import { useSelector } from 'react-redux';
 import Testing from '../Testing/Testing';
 import { useParams } from 'react-router-dom';
+import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 
 function Lecture() {
   const lecturesID = React.useMemo(() => {
@@ -121,11 +122,7 @@ function Lecture() {
   };
 
   if (isLoading) {
-    return (
-      <div className={Styles.Content}>
-        <Spinner className={Styles.Spinner} />
-      </div>
-    );
+    return <HelperSpinner />;
   }
 
   return (
