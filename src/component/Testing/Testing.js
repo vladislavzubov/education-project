@@ -2,6 +2,7 @@ import React from 'react';
 import Styles from './Testing.module.scss';
 import Test from '../Exercises/Test/Test';
 import Text from '../Exercises/Text/Text';
+import InputFull_TextArea from '../InputFull/InputFull_TextArea';
 import { Button, Spinner } from '@blueprintjs/core';
 import { Form, Field } from 'react-final-form';
 import { requests } from '../../services/requests';
@@ -15,7 +16,7 @@ export default function Testing(props) {
   const lecturesId = props.lecturesID;
   const tests = props.tests;
   const texts = props.texts;
-  console.log(tests, texts);
+  const codes = props.codes;
 
   const onSubmit = async (value) => {
     const resolve = { response: value };
@@ -63,19 +64,33 @@ export default function Testing(props) {
                     />
                   );
                 })}
+                {codes.map((code, index) => {
+                  return (
+                    <Field
+                      name={code._id}
+                      component={Text}
+                      code={code}
+                      value={`${index}`}
+                    />
+                  );
+                })}
                 {texts.map((text, index) => {
                   return (
                     <Field
                       name={text._id}
-                      component={Text}
+                      component={InputFull_TextArea}
                       text={text}
                       value={`${index}`}
                     />
                   );
                 })}
               </div>
-              <div >
-                <button type="submit" disabled={submitting} className={Styles.Testing_Button} >
+              <div>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className={Styles.Testing_Button}
+                >
                   Сomplete the test
                 </button>
               </div>

@@ -53,7 +53,7 @@ function CreateExercise() {
         delete value.trueRequest;
         formValue = { ...value, correctAnswer };
       }
-    } else if (value.type === 'text') {
+    } else if (value.type === 'text' || 'code') {
       delete value.correctAnswer;
       delete value.quantity;
       formValue = { ...value };
@@ -106,6 +106,16 @@ function CreateExercise() {
                     onClick={() => setIsAnswer(false)}
                   />
                   Text
+                </label>
+                <label>
+                  <Field
+                    name="type"
+                    component="input"
+                    type="radio"
+                    value="code"
+                    onClick={() => setIsAnswer(false)}
+                  />
+                  Code
                 </label>
               </div>
               {isOnAnswer ? (

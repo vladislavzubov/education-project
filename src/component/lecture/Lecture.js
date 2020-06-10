@@ -141,6 +141,7 @@ function Lecture() {
           lecturesID={lecturesID}
           tests={allExercise.tests}
           texts={allExercise.texts}
+          codes={allExercise.codes}
           idUser={idUser}
           onPerformExersice={onPerformExersice}
         />

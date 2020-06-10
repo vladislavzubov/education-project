@@ -34,10 +34,11 @@ function CreateLecture() {
   React.useEffect(() => {
     getCategories();
   }, []);
-  
+
   const onSubmit = async (value) => {
     value.numberOfText = Number(value.numberOfText);
     value.numberOfTest = Number(value.numberOfTest);
+    value.numberOfCode = Number(value.numberOfCode);
     postCategoryName(value);
     location.reload();
   };
@@ -72,6 +73,12 @@ function CreateLecture() {
               <InputFull
                 name="numberOfTest"
                 placeholder="Quantity test question"
+                type="text"
+                validate={[haveNotChar]}
+              />
+              <InputFull
+                name="numberOfCode"
+                placeholder="Quantity code question"
                 type="text"
                 validate={[haveNotChar]}
               />
