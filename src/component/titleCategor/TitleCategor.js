@@ -72,7 +72,9 @@ function TitleCategor({
         if (category._id === lecture.category) {
           return (
             <div className={Styles.TitleLecture}>
-              <a href={`${REACT_CLIENT_URL}/dashboard/lectures/${lecture._id}`}>
+              <a
+                href={`${process.env.REACT_CLIENT_URL}/dashboard/lectures/${lecture._id}`}
+              >
                 <h5>{lecture.title}</h5>
               </a>
               <button

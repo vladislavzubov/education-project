@@ -53,7 +53,7 @@ function DashboardPage(props) {
       const manuCategories = allCategories.data.map((category, index) => {
         return {
           value: category.name,
-          href: `${REACT_CLIENT_URL}/dashboard/category/${category._id}`,
+          href: `${process.env.REACT_CLIENT_URL}/dashboard/category/${category._id}`,
           icon: 'properties',
         };
       });
@@ -64,7 +64,7 @@ function DashboardPage(props) {
           menuIteam: [
             {
               value: 'home',
-              href: `${REACT_CLIENT_URL}/dashboard`,
+              href: `${process.env.REACT_CLIENT_URL}/dashboard`,
               icon: 'home',
             },
           ],
