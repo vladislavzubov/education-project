@@ -98,6 +98,8 @@ const getExerciseInfo = (req, res) => {
     });
 };
 
+
+
 module.exports = {
   getAll,
   create,
@@ -107,4 +109,5 @@ module.exports = {
   getAllExercisesLecture,
   exerciseForLecture,
   getExerciseInfo,
+  
 };
