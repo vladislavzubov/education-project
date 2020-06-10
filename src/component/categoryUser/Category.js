@@ -10,14 +10,11 @@ export default function Category() {
   const idCategory = React.useMemo(() => {
     return useParams().id;
   }, []);
-
   const getLectures = async () => {
     setIsLoading(true);
     try {
       const getAllLectures = await requests('get', 'lecture');
       setLecturesAll(getAllLectures.data);
-
-      // console.log('success get all lecture');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all lecture', e);
@@ -29,25 +26,25 @@ export default function Category() {
     getLectures();
   }, []);
 
+  if (isLoading) {
+    <Spinner className={Styles.Spinner} />;
+  }
+
   return (
     <div className={Styles.Content}>
-      {isLoading ? (
-        <Spinner className={Styles.Spinner} />
-      ) : (
-        lecturesAll.map((lecture, index) => {
-          if (idCategory === lecture.category) {
-            return (
-              <div className={Styles.TitleLecture}>
-                <a
-                  href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
-                >
-                  <h5>{lecture.title}</h5>
-                </a>
-              </div>
-            );
-          }
-        })
-      )}
+      {lecturesAll.map((lecture, index) => {
+        if (idCategory === lecture.category) {
+          return (
+            <div className={Styles.TitleLecture}>
+              <a
+                href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
+              >
+                <h5 className={Styles.Lecture}>{lecture.title}</h5>
+              </a>
+            </div>
+          );
+        }
+      })}
     </div>
   );
 }

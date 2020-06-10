@@ -20,8 +20,8 @@ function Lecture() {
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
   const idUser = useSelector((store) => store.server_redux.id);
-  
-  
+
+  const permission = useSelector((store) => store.server_redux.role);
 
   const onPerfomigExercise = async () => {
     setIsLoading(true);
@@ -36,14 +36,12 @@ function Lecture() {
           lectureId: lecturesID,
           exercise: onExercise.data,
         });
-        console.log('success post exercise server');
       } catch (e) {
         console.log('falied post exercise server', e);
       }
       setAllExercise(onExercise.data);
       setIsOnExercise(true);
       setIsLoading(false);
-      console.log('success get exercise');
     } catch (e) {
       console.log('falied get exercise', e);
     }
@@ -52,19 +50,16 @@ function Lecture() {
   const getLecture = async () => {
     setIsLoading(true);
     try {
-      console.log(lecturesID);
       const lecture = await requests('get', `lecture-one/${lecturesID}`);
       setLecture(lecture.data);
-
-      console.log('success get own lecture');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get wn lecture', e);
       setIsLoading(false);
     }
   };
+
   const onSubmit = async (value) => {
-    console.log(value);
     setIsOnChange(!isOnChange);
     chanheLecture(value);
   };
@@ -76,7 +71,6 @@ function Lecture() {
         'get',
         `requestUserLecture/${lecturesID}?userId=${idUser}`
       );
-
       switch (onExercise.data.type) {
         case 'lecture': {
           setLecture(onExercise.data.lecture);
@@ -93,7 +87,7 @@ function Lecture() {
         case 'exercise': {
           setIsOnExercise(true);
           setAllExercise(onExercise.data.exercise[0]);
-          console.log(onExercise.data.exercise[0]);
+          break;
         }
       }
       setIsLoading(false);
@@ -108,15 +102,18 @@ function Lecture() {
     onPerformExersice(idUser);
   }, []);
   const handleChange = () => {
-    setIsOnChange(!isOnChange);
-    return;
+    if (permission === 'admin') {
+      setIsOnChange(!isOnChange);
+      return;
+    } else {
+      return;
+    }
   };
   const chanheLecture = async (value) => {
     setIsLoading(true);
     try {
       const putLecture = await requests('put', `lecture/${lecturesID}`, value);
       getLecture(lecturesID);
-      console.log('success put own lecture');
     } catch (e) {
       setIsLoading(false);
       console.log('falied put own lecture');

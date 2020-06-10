@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Form } from 'react-final-form';
 import classes from './LostPassword.module.css';
 import { validateEmail, required } from '../../services/validation';
-import { Button, Card, Elevation, Popover } from '@blueprintjs/core';
-import axios from '../../services/axios';
+import { Button, Card, Elevation } from '@blueprintjs/core';
 import InputFull from '../../component/InputFull/InputFull';
 import { requests } from '../../services/requests';
 

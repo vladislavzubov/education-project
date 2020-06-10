@@ -6,19 +6,14 @@ import { requests } from '../../services/requests';
 
 export default function SitePath() {
   const url = useLocation().pathname;
-  
   const [lecture, setLecture] = React.useState([]);
   const [category, setCategory] = React.useState([]);
-
   let items = [];
-
   const arrUrl = url.split('/');
-
   const getCategory = async (categoryId) => {
     if (category.length === 0) {
       try {
         const categoryRequest = await requests('get', `category/${categoryId}`);
-
         setCategory(categoryRequest.data);
       } catch (e) {
         console.log('falied get wn category', e);

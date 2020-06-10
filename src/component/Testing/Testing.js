@@ -8,13 +8,13 @@ import { requests } from '../../services/requests';
 
 export default function Testing(props) {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [responses, setResponse] = React.useState({});
   const [userId, setUserId] = React.useState(props.idUser);
 
   const lecturesId = props.lecturesID;
   let tests = props.tests;
   let texts = props.texts;
   let codes = props.codes;
+
 
   const onSubmit = async (value) => {
     const resolve = { response: value };
@@ -54,6 +54,7 @@ export default function Testing(props) {
               </div>
 
               <div className={Styles.Content}>
+
                 {texts === undefined
                   ? null
                   : tests.map((test, index) => {
@@ -90,6 +91,7 @@ export default function Testing(props) {
                         />
                       );
                     })}
+
               </div>
               <div>
                 <button

@@ -1,54 +1,55 @@
 .CreateCategory {
-    display: flex;
-    flex-direction: column;
- 
+  display: flex;
+  flex-direction: column;
   align-items: center;
-    background: white;
-   border-radius: 15px;
-   padding: 2rem;
-   flex-grow: 1;
-   width: 100%;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  flex-grow: 1;
+  width: 100%;
 }
 
 .CreateCategory_Title{
-    font-size: 4rem;
-    margin: 1rem 0;
+  font-size: 4rem;
+  margin: 1rem 0;
 }
 
 .CreateCategory_Input{
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 .CreateCategory_Button {
   width: 100%;
-    display: inline-block;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    text-shadow: 0 -1px rgba(0,0,0,.5);
-    user-select: none;
-    padding: .7em 1.5em;
-    border: 1px solid rgb(80,32,0);
-    border-radius: 5px;
-    outline: none;
-    background: rgb(52, 62, 66) linear-gradient(rgb(39, 76, 97), rgb(33, 172, 142) 80%);
-    box-shadow:
-     0 6px rgb(191, 16, 245),
-     0 3px 15px rgba(15, 236, 218, 0.4),
-     inset 0 1px rgba(236, 69, 69, 0.3),
-     inset 0 0 3px rgba(179, 192, 62, 0.5);
-    transition: .2s;
-  } 
-  .CreateCategory_Button:hover {
-    background: rgb(82, 190, 204) linear-gradient(rgb(20, 30, 71), rgb(148, 70, 212) 80%);
-  }
-  .CreateCategory_Button:active {
-    background: rgb(120,63,25) linear-gradient(rgb(74, 146, 151) 20%, rgb(27, 158, 60));
-    box-shadow:
-     0 2px rgb(86,38,6),
-     0 1px 6px rgba(0,0,0,.4),
-     inset 0 1px rgba(255,255,255,.3),
-     inset 0 0 3px rgba(255,255,255,.5);
-    -webkit-transform: translate(0, 4px);
-    transform: translate(0, 4px);
-  }
+  display: inline-block;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px rgba(0,0,0,.5);
+  user-select: none;
+  padding: .7em 1.5em;
+  border: 1px solid rgb(80,32,0);
+  border-radius: 5px;
+  outline: none;
+  background: rgb(52, 62, 66) linear-gradient(rgb(39, 76, 97), rgb(33, 172, 142) 80%);
+  box-shadow:
+  0 6px rgb(191, 16, 245),
+  0 3px 15px rgba(15, 236, 218, 0.4),
+  inset 0 1px rgba(236, 69, 69, 0.3),
+  inset 0 0 3px rgba(179, 192, 62, 0.5);
+  transition: .2s;
+}
+
+.CreateCategory_Button:hover {
+  background: rgb(82, 190, 204) linear-gradient(rgb(20, 30, 71), rgb(148, 70, 212) 80%);
+}
+
+.CreateCategory_Button:active {
+  background: rgb(120,63,25) linear-gradient(rgb(74, 146, 151) 20%, rgb(27, 158, 60));
+  box-shadow:
+  0 2px rgb(86,38,6),
+  0 1px 6px rgba(0,0,0,.4),
+  inset 0 1px rgba(255,255,255,.3),
+  inset 0 0 3px rgba(255,255,255,.5);
+  -webkit-transform: translate(0, 4px);
+  transform: translate(0, 4px);
+}

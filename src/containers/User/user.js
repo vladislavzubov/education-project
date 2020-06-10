@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
-import { Form } from 'react-final-form'
-import classes from './user.module.css'
-import { Card, Elevation, InputGroup, FormGroup } from '@blueprintjs/core'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { Form } from 'react-final-form';
+import classes from './user.module.css';
+import { Card, Elevation, InputGroup, FormGroup } from '@blueprintjs/core';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   onSubmit = (value) => {
-    console.log('ngjfnjg')
-
     this.setState({
       loading: !this.state.loading,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -39,22 +37,21 @@ class Login extends Component {
                     placeholder={this.props.store}
                   />
                 </FormGroup>
-                {/* <p>`${this.props.accessToken}`</p> */}
               </div>
             </Card>
           )}
         />
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (store) => {
-  return {}
-}
+  return {};
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
-}
+  return {};
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classes from './NotFoundPage.module.scss';
 import BaseLayouts from '../../layouts/baseLayouts/BaseLayouts';
-import { Button } from '@blueprintjs/core';
 
 class NotFoundPage extends Component {
   render() {

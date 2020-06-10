@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import Matrix from '../../containers/Matrix/Matrix';
-import Menu from '../../component/Menu/Menu';
 import Styles from './PageMain.module.scss';
 import ContentInfo from '../../component/contentInfo/ContentInfo';
-//import { connect } from 'react-redux';
 import axios from '../../services/axios';
 import { receptionUser } from '../../store/reducers/server_redux';
 import { connect } from 'react-redux';
 import { requests } from '../../services/requests';
-import { Button, Spinner } from '@blueprintjs/core';
 
 class PageMain extends Component {
   componentDidMount() {
@@ -38,7 +34,8 @@ class PageMain extends Component {
         response.data.name,
         response.data.email,
         response.data.age,
-        response.data._id
+        response.data._id,
+        response.data.role
       );
       this.setState({
         isLoading: false,
@@ -67,13 +64,14 @@ const mapStateToProps = (store) => {
     email: receptionUser(store).email,
     age: receptionUser(store).age,
     id: receptionUser(store).id,
+    role: receptionUser(store).role,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receptionUser: (name, email, age, id) =>
-      dispatch(receptionUser(name, email, age, id)),
+    receptionUser: (name, email, age, id, role) =>
+      dispatch(receptionUser(name, email, age, id, role)),
   };
 };
 
