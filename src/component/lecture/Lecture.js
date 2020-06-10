@@ -20,13 +20,15 @@ function Lecture() {
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
   const idUser = useSelector((store) => store.server_redux.id);
+  
+  
 
   const onPerfomigExercise = async () => {
     setIsLoading(true);
     try {
       const onExercise = await requests(
         'get',
-        `exercise/${lecturesID}?numberOfTest=${lecture.numberOfTest}&numberOfText=${lecture.numberOfText}`
+        `exercise/${lecturesID}?numberOfTest=${lecture.numberOfTest}&numberOfText=${lecture.numberOfText}&numberOfCode=${lecture.numberOfCode}`
       );
       try {
         const postExerciseServer = await requests('post', 'userResponse', {
@@ -136,6 +138,7 @@ function Lecture() {
           lecturesID={lecturesID}
           tests={allExercise.tests}
           texts={allExercise.texts}
+          codes={allExercise.codes}
           idUser={idUser}
           onPerformExersice={onPerformExersice}
         />
@@ -148,13 +151,7 @@ function Lecture() {
               initialValues={{
                 value: `${lecture.value}`,
               }}
-              render={({
-                handleSubmit,
-                form,
-                submitting,
-                pristine,
-                values,
-              }) => (
+              render={({ handleSubmit }) => (
                 <div>
                   <form onSubmit={handleSubmit} className={Styles.EditTitle}>
                     <InputFull_TextArea name="value" placeholder="Value" />

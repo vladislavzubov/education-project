@@ -28,6 +28,7 @@ const create = (req, res) => {
     link: req.body.link,
     numberOfText: req.body.numberOfText,
     numberOfTest: req.body.numberOfTest,
+    numberOfCode: req.body.numberOfCode,
   };
 
   Lecture.create(lectureObj)

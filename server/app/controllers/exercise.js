@@ -66,21 +66,28 @@ const shuffle = (arr) => {
 const exerciseForLecture = async (req, res) => {
   const numberOfTest = req.query.numberOfTest;
   const numberOfText = req.query.numberOfText;
+  const numberOfCode = req.query.numberOfCode;
 
   let tes = [];
   let tex = [];
+  let cod = [];
 
   await Exercise.find({ lecture: req.params.id })
     .exec()
     .then((exercises) =>
       shuffle(exercises).map((exercise, index) => {
-        exercise.type === 'test' ? tes.push(exercise) : tex.push(exercise);
+        exercise.type === 'test'
+          ? tes.push(exercise)
+          : exercise.type === 'text'
+          ? tex.push(exercise)
+          : cod.push(exercise);
       })
     );
   const tests = tes.splice(0, numberOfTest);
   const texts = tex.splice(0, numberOfText);
+  const codes = cod.splice(0, numberOfCode);
 
-  res.json({ texts, tests });
+  res.json({ texts, tests, codes });
 };
 
 const getExerciseInfo = (req, res) => {
