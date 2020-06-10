@@ -39,7 +39,7 @@ export default function SitePath() {
     items = [
       ...items,
       {
-        href: `${process.env.REACT_CLIENT_URL}/dashboard`,
+        href: `https://dashboard-exceed.herokuapp.com//dashboard`,
         icon: 'home',
         text: 'Home',
       },
@@ -54,7 +54,7 @@ export default function SitePath() {
     items = [
       ...items,
       {
-        href: `${process.env.REACT_CLIENT_URL}/dashboard/category/${category._id}`,
+        href: `https://dashboard-exceed.herokuapp.com//dashboard/category/${category._id}`,
         icon: 'applications',
         text: category.name,
       },
@@ -70,7 +70,7 @@ export default function SitePath() {
     items = [
       ...items,
       {
-        href: `${process.env.REACT_CLIENT_URL}/dashboard/category/${category._id}`,
+        href: `https://dashboard-exceed.herokuapp.com//dashboard/category/${category._id}`,
         icon: 'applications',
         text: category.name,
       },

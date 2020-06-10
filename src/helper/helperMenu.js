@@ -6,46 +6,46 @@ export default function helperMenu() {
         {
           value: 'Charts',
           icon: 'grouped-bar-chart',
-          href: `${process.env.REACT_CLIENT_URL}/probe`,
+          href: `https://dashboard-exceed.herokuapp.com//probe`,
           nesting: [
             {
               value: 'Create category',
-              href: `${process.env.REACT_CLIENT_URL}/dashboard/create-category`,
+              href: `https://dashboard-exceed.herokuapp.com//dashboard/create-category`,
             },
             {
               value: 'Create lecture',
-              href: `${process.env.REACT_CLIENT_URL}/dashboard/create-lecture`,
+              href: `https://dashboard-exceed.herokuapp.com//dashboard/create-lecture`,
             },
             {
               value: 'Chart exercise',
-              href: `${process.env.REACT_CLIENT_URL}/dashboard/create-exercise`,
+              href: `https://dashboard-exceed.herokuapp.com//dashboard/create-exercise`,
             },
           ],
         },
         {
           value: 'Categories',
           icon: 'pivot',
-          href: `${process.env.REACT_CLIENT_URL}/dashboard/categories`,
+          href: `https://dashboard-exceed.herokuapp.com//dashboard/categories`,
         },
         {
           value: 'Dashboard',
           icon: 'home',
-          href: `${process.env.REACT_CLIENT_URL}/`,
+          href: `https://dashboard-exceed.herokuapp.com//`,
         },
         {
           value: 'Change user info',
           icon: 'form',
-          href: `${process.env.REACT_CLIENT_URL}/dashboard/change_user_data`,
+          href: `https://dashboard-exceed.herokuapp.com//dashboard/change_user_data`,
         },
         {
           value: 'Lectures',
           icon: 'send-to-graph',
-          href: `${process.env.REACT_CLIENT_URL}/dashboard/lectures`,
+          href: `https://dashboard-exceed.herokuapp.com//dashboard/lectures`,
         },
         {
           value: 'Сhange exercise',
           icon: 'exchange',
-          href: `${process.env.REACT_CLIENT_URL}/dashboard/change-exercise`,
+          href: `https://dashboard-exceed.herokuapp.com//dashboard/change-exercise`,
         },
       ],
     },
