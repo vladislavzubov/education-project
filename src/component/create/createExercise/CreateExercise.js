@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './CreateExercise.module.scss';
-import { Spinner } from '@blueprintjs/core';
+import HelperSpinner from '../../../helper/helperSpinner/HelperSpinner';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../../component/InputFull/InputFull';
 import { requests } from '../../../services/requests';
@@ -55,7 +55,7 @@ function CreateExercise() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <HelperSpinner />;
   }
 
   return (

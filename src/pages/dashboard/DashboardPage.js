@@ -1,7 +1,9 @@
 import React, { Component, useCallback } from 'react';
+import Styles from './DashboardPage.module.scss';
 import BasikLayout from '../../layouts/mainLayout/BasikLayout';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { requests } from '../../services/requests';
+import { checkRefreshToken } from '../../services/requests';
 import Menu from '../../component/Menu/Menu';
 import Header from '../../component/headInfo/HeadInfo';
 import SitePath from '../../component/sitePath/SitePath';
@@ -80,9 +82,27 @@ function DashboardPage(props) {
     }
   };
 
+  const isCheckRefreshToken = () => {
+    const refreshToken = localStorage.getItem('refreshKey');
+    if (refreshToken === null) {
+      console.log('gfdgfdg');
+
+      return false;
+    } else {
+      console.log('gfdgfdgfd,gfmdkg,');
+      if (checkRefreshToken()) {
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `${localStorage.getItem('accessKey')}`;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+
   const loadMainData = async () => {
     setLoading(true);
-
     const token = localStorage.getItem('accessKey');
     try {
       const response = await requests('get', 'info-user', {
@@ -120,7 +140,10 @@ function DashboardPage(props) {
 
   React.useEffect(() => {
     if (!isAuthorized) {
-      props.history.replace('/login');
+      if (!isCheckRefreshToken()) {
+        props.history.replace('/login');
+      }
+      loadMainData();
     } else {
       loadMainData();
     }
@@ -128,7 +151,11 @@ function DashboardPage(props) {
   }, [isAuthorized, role]);
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className={Styles.Spinner}>
+        <Spinner />
+      </div>
+    );
   }
 
   return (

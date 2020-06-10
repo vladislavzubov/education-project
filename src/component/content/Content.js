@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './Content.module.scss';
 import Matrix from '../../containers/Matrix/Matrix';
-import { Spinner } from '@blueprintjs/core';
+import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 
 function Content() {
   const prop = {
@@ -222,23 +222,23 @@ function Content() {
     loadLectures();
   }, []);
 
+  if (isLoading) {
+    return <HelperSpinner />;
+  }
+
   return (
     <div className={Styles.Content}>
-      {isLoading ? (
-        <Spinner className={Styles.Spinner} />
-      ) : (
-        <div className={Styles.Matrix}>
-          {prop.selection.map((section, index) => {
-            return (
-              <Matrix
-                title={section.title}
-                lectures={section.lectures}
-                key={index}
-              />
-            );
-          })}
-        </div>
-      )}
+      <div className={Styles.Matrix}>
+        {prop.selection.map((section, index) => {
+          return (
+            <Matrix
+              title={section.title}
+              lectures={section.lectures}
+              key={index}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

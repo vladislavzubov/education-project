@@ -12,10 +12,10 @@ function TitleCategor({
 }) {
   const [isOnChange, setIsOnChange] = React.useState(false);
   const handleChange = (newCategory, id) => {
-    onChangeTitle();
     if (typeof onChange === 'function') {
       onChange(newCategory, id);
     }
+    onChangeTitle();
   };
 
   const handleDelete = () => {
@@ -36,8 +36,8 @@ function TitleCategor({
     setIsOnChange(!isOnChange);
   };
   const onSubmit = async (value) => {
-    setIsOnChange(!isOnChange);
     handleChange(value, category._id);
+    setIsOnChange(!isOnChange);
   };
 
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import Styles from './Categories.module.scss';
-import { Spinner } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
 import TitleCategory from '../titleCategor/TitleCategor';
+import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 
 export default function Categories() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -97,27 +97,27 @@ export default function Categories() {
     getLectures();
   }, []);
 
+  if (isLoading) {
+    return <HelperSpinner />;
+  }
+
   return (
     <div className={Styles.Content}>
-      {isLoading ? (
-        <Spinner className={Styles.Spinner} />
-      ) : (
-        <div className={Styles.Category}>
-          {categoriesAll.map((category, index) => {
-            return (
-              <TitleCategory
-                key={index}
-                lectures={lecturesAll}
-                category={category}
-                getCategories={getCategories}
-                onChange={handleCategoryChange}
-                onDelete={handleCategoryDelete}
-                onDeleteLecture={handleLectureDelete}
-              />
-            );
-          })}
-        </div>
-      )}
+      <div className={Styles.Category}>
+        {categoriesAll.map((category, index) => {
+          return (
+            <TitleCategory
+              key={index}
+              lectures={lecturesAll}
+              category={category}
+              getCategories={getCategories}
+              onChange={handleCategoryChange}
+              onDelete={handleCategoryDelete}
+              onDeleteLecture={handleLectureDelete}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

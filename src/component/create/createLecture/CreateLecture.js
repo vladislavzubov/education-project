@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './CreateLecture.module.scss';
-import { Spinner, NumericInput } from '@blueprintjs/core';
+import HelperSpinner from '../../../helper/helperSpinner/HelperSpinner';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../../component/InputFull/InputFull';
 import { requests } from '../../../services/requests';
@@ -40,7 +40,7 @@ function CreateLecture() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <HelperSpinner />;
   }
 
   return (
