@@ -16,6 +16,8 @@ const cors = require('cors');
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
 
+ 
+
   app.get(
     '/api/requestUserLecture/:id',
     authMiddleware,
@@ -139,6 +141,13 @@ module.exports = (app) => {
   );
 
   //category
+  app.get(
+    '/api/lectures-of-category/:id',
+    authMiddleware,
+    checkRole(['admin', 'user']),
+    category.lecturesOfCategory
+  );
+
   app.get(
     '/api/category',
     authMiddleware,
