@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const ExerciseModel = require('../models/exercise');
 
 const Exercise = ExerciseModel;
@@ -19,13 +18,13 @@ const getAllExercisesLecture = (req, res) => {
 const create = (req, res) => {
   const date = new Date();
   const exerciseObj = {
-    title: req.body.title,
-    value: req.body.value,
+    question: req.body.question,
+    quantity: req.body.quantity,
+    correctAnswers: req.body.correctAnswers,
     date: date,
     author: req.body.author,
     lecture: req.body.lecture,
     type: req.body.type,
-    time: req.body.time,
   };
   Exercise.create(exerciseObj)
     .then((exercise) => res.json(exercise))
@@ -64,30 +63,42 @@ const shuffle = (arr) => {
   return arr;
 };
 
-const spliceArr = (arr, number) => {
-  arr.splice(0, number);
-  return arr;
-};
-
 const exerciseForLecture = async (req, res) => {
-  const numberOfTest = req.body.numberOfTest;
-  const numberOfText = req.body.numberOfText;
+  const numberOfTest = req.query.numberOfTest;
+  const numberOfText = req.query.numberOfText;
+  const numberOfCode = req.query.numberOfCode;
 
   let tes = [];
   let tex = [];
+  let cod = [];
 
   await Exercise.find({ lecture: req.params.id })
     .exec()
     .then((exercises) =>
       shuffle(exercises).map((exercise, index) => {
-        exercise.type === 'test' ? tes.push(exercise) : tex.push(exercise);
+        exercise.type === 'test'
+          ? tes.push(exercise)
+          : exercise.type === 'text'
+          ? tex.push(exercise)
+          : cod.push(exercise);
       })
     );
   const tests = tes.splice(0, numberOfTest);
   const texts = tex.splice(0, numberOfText);
+  const codes = cod.splice(0, numberOfCode);
 
-  res.json({ texts, tests });
+  res.json({ texts, tests, codes });
 };
+
+const getExerciseInfo = (req, res) => {
+  Exercise.findOne({ _id: req.params.id })
+    .exec()
+    .then((exercise) => {
+      res.json(exercise);
+    });
+};
+
+
 
 module.exports = {
   getAll,
@@ -97,4 +108,6 @@ module.exports = {
   removingFromLecture,
   getAllExercisesLecture,
   exerciseForLecture,
+  getExerciseInfo,
+  
 };

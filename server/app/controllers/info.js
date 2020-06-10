@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const UserModel = require('../models/user');
 
 const User = UserModel;
@@ -13,11 +12,7 @@ const infoUser = (req, res) => {
       res.status(404).json({ message: 'User not found!' });
       return;
     }
-    return res.json({
-      name: user.name,
-      email: user.email,
-      age: user.age,
-    });
+    return res.json(user);
   });
 };
 

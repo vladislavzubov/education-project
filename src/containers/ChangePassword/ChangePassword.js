@@ -7,12 +7,10 @@ import {
   minLength,
   haveOneUppercase,
   haveOneNumeral,
-  password,
   setPasswordValue,
   setRepeatPasswordValue,
 } from '../../services/validation';
 import { BrowserRouter as Link } from 'react-router-dom';
-import axios from 'axios';
 import queryString from 'query-string';
 import InputFull from '../../component/InputFull/InputFull';
 import { requests } from '../../services/requests';
@@ -25,13 +23,10 @@ class ChangePassword extends Component {
 
   transferServerRegist = async (value) => {
     const parsed = queryString.parse(location.search);
-
     const registPost = {
       password: value.password,
       key: parsed.key,
     };
-    console.log(registPost);
-
     try {
       const response = await requests('put', 'change-password', registPost);
       console.log('success');
@@ -62,7 +57,6 @@ class ChangePassword extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>ChangePassword</h1>
-
                 <InputFull
                   name="password"
                   placeholder="Password"

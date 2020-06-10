@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import Matrix from '../../containers/Matrix/Matrix';
-import Menu from '../../component/Menu/Menu';
 import Styles from './PageMain.module.scss';
 import ContentInfo from '../../component/contentInfo/ContentInfo';
-//import { connect } from 'react-redux';
 import axios from '../../services/axios';
 import { receptionUser } from '../../store/reducers/server_redux';
 import { connect } from 'react-redux';
 import { requests } from '../../services/requests';
-import { Button, Spinner } from '@blueprintjs/core';
-import helperMenu from '../../helper/helperMenu';
 
 class PageMain extends Component {
   componentDidMount() {
@@ -38,7 +33,9 @@ class PageMain extends Component {
       this.props.receptionUser(
         response.data.name,
         response.data.email,
-        response.data.age
+        response.data.age,
+        response.data._id,
+        response.data.role
       );
       this.setState({
         isLoading: false,
@@ -51,12 +48,10 @@ class PageMain extends Component {
   };
 
   render() {
-    const props =helperMenu();
     return this.state.isLoading ? (
       <Spinner className={Styles.GlobalStyles} />
     ) : (
       <MainLayout>
-        <Menu categories={props} />
         <ContentInfo />
       </MainLayout>
     );
@@ -68,13 +63,15 @@ const mapStateToProps = (store) => {
     name: receptionUser(store).name,
     email: receptionUser(store).email,
     age: receptionUser(store).age,
+    id: receptionUser(store).id,
+    role: receptionUser(store).role,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receptionUser: (name, email, age) =>
-      dispatch(receptionUser(name, email, age)),
+    receptionUser: (name, email, age, id, role) =>
+      dispatch(receptionUser(name, email, age, id, role)),
   };
 };
 

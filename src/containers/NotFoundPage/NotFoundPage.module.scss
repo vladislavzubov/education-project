@@ -1,4 +1,4 @@
-.NotFoundPages{
+.NotFoundPages {
     display: flex;
     width: 18.75rem;
     height: 15.625rem;
@@ -7,22 +7,25 @@
     background-color: white;
     flex-direction: column;
 }
-.NotFoundPages div{
+
+.NotFoundPages div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.NotFoundPages h2{
+
+.NotFoundPages h2 {
     text-shadow: 0.3125rem 0.3125rem 0.125rem black;
     opacity: 0.5;
     margin: 0;
     font-size: 500%;
 }
 
-.NotFoundPages h3{
+.NotFoundPages h3 {
     font-size: 125%;
 }
-.NotFoundPages a{
+
+.NotFoundPages a {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     padding-left: 1.875rem;
@@ -31,8 +34,4 @@
     text-decoration: none;
     color: white;
     background-color:rgb(27, 29, 179);
-}
-.NotFoundPages a :hover{
-    
-    
 }

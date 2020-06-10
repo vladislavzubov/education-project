@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const authHelper = require('../helpers/authHelpers');
 const {
@@ -12,8 +11,8 @@ const TokenModel = require('../models/token');
 const User = UserModel;
 const Token = TokenModel;
 
-const updateTokens = (userId) => {
-  const accessToken = authHelper.generateAccessToken(userId);
+const updateTokens = (userId, role) => {
+  const accessToken = authHelper.generateAccessToken(userId, role);
   const refreshToken = authHelper.generateRefreshToken();
 
   return authHelper.replaceDbRefreshToken(refreshToken.id, userId).then(() => ({
@@ -22,8 +21,14 @@ const updateTokens = (userId) => {
   }));
 };
 
-const updateTokenAccess = (userId) => {
-  const accessToken = authHelper.generateAccessToken(userId);
+const updateTokenAccess = async (userId) => {
+  let role;
+  await User.findOne({ _id: userId })
+    .exec()
+    .then((user) => {
+      role = user.role;
+    });
+  const accessToken = authHelper.generateAccessToken(userId, role);
 
   return authHelper.replaceDbRefreshToken(userId).then(() => ({
     accessToken,
@@ -45,7 +50,7 @@ const signIn = (req, res) => {
       const resolveCompare = passwordCompare(passwordServer, passwordUser);
 
       if (resolveCompare) {
-        updateTokens(user._id).then((tokens) =>
+        updateTokens(user._id, user.role).then((tokens) =>
           res.json({
             tokens,
           })

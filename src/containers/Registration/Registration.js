@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Registration.module.css';
-import { Form } from 'react-final-form';
+import { Form, Field } from 'react-final-form';
 import { Button } from '@blueprintjs/core';
 import {
   minAge,
@@ -10,12 +10,10 @@ import {
   minLength,
   haveOneUppercase,
   haveOneNumeral,
-  password,
   setPasswordValue,
   setRepeatPasswordValue,
 } from '../../services/validation';
 import { Link } from 'react-router-dom';
-import axios from '../../services/axios';
 import InputFull from '../../component/InputFull/InputFull';
 import { requests } from '../../services/requests';
 
@@ -27,21 +25,23 @@ class Registration extends Component {
   };
 
   transferServerRegist = async (value) => {
+    console.log(value);
+
     const registPost = {
       name: value.userName,
       age: value.age,
       password: value.password,
       email: value.email,
+      role: value.role,
     };
 
     try {
       const response = await requests('post', 'registration', registPost);
       this.setState({ loading: false, errMessage: false });
-      // console.log('success')
       return true;
     } catch (e) {
       this.setState({ loading: false, errMessage: e.response.data.message });
-      // console.log('falied', e.response.data.message)
+      console.log('falied', e);
       return false;
     }
   };
@@ -90,7 +90,6 @@ class Registration extends Component {
                   placeholder="Age"
                   validate={[required, haveNotChar, minAge]}
                   loading={this.state.loading}
-                  type="number"
                 />
 
                 <InputFull
@@ -117,6 +116,11 @@ class Registration extends Component {
                   loading={this.state.loading}
                 />
 
+                <Field name="role" component="select">
+                  <option />
+                  <option value="user">user</option>;
+                  <option value="admin">admin</option>;
+                </Field>
                 <Button
                   type="sumbit"
                   text="Sumbit"

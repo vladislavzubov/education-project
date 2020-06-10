@@ -1,4 +1,4 @@
-.Regist{
+.Regist {
     width: 400px;
     margin: 5px;
     padding: 30px;
@@ -10,54 +10,54 @@
 
 .Content {
     display: flex;
-  justify-content: center;
+    justify-content: center;
     background: white;
-   border-radius: 15px;
-   padding: 2rem;
-   flex-grow: 1;
-   width: 100%;
+    border-radius: 15px;
+    padding: 2rem;
+    flex-grow: 1;
+    width: 100%;
 }
 
 .Title {
 text-align: left;
 }
 
-.Regist h1{
+.Regist h1 {
     color: #394B59;
     font-weight: normal;
 }
-.Regist Button{
-    margin: 5px;
-   
-}
-.Regist Input{
+
+.Regist Button {
     margin: 5px;
 }
-.Regist p{
+
+.Regist Input {
+    margin: 5px;
+}
+
+.Regist p {
     color: white;
 }
-.Regist p Link{
+
+.Regist p Link {
     color: white;
 }
 
 .form_regist {
     background: #ffffff;
-  
 }
 
 img {
     width: 10rem;
     height: 10rem;
-  justify-content: center;
-margin: 0px 15%;
-    
+    justify-content: center;
+    margin: 0px 15%;   
 }
 
 .InputChange_Name {
     padding-top: 5rem;
-   
 }
 
-.form_regist .InputChange_Name{
+.form_regist .InputChange_Name {
     margin-top: 10px;
 }

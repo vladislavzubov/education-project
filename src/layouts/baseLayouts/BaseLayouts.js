@@ -5,8 +5,6 @@ import { withRouter } from 'react-router';
 class BaseLayouts extends Component {
   componentDidMount() {
     const asseccToken = localStorage.getItem('accessKey');
-    console.log(asseccToken);
-
     if (asseccToken !== null) {
       this.props.history.replace('/dashboard');
     }

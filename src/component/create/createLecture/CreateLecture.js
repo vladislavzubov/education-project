@@ -1,37 +1,28 @@
 import React from 'react';
 import Styles from './CreateLecture.module.scss';
-import { Spinner } from '@blueprintjs/core';
+import HelperSpinner from '../../../helper/helperSpinner/HelperSpinner';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../../component/InputFull/InputFull';
-import InputFull_TextArea from '../../../component/InputFull/InputFull_TextArea';
 import { requests } from '../../../services/requests';
+import { haveNotChar } from '../../../services/validation';
 
 function CreateLecture() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [allCategories, setAllCategories] = React.useState();
-  const onSubmit = async (value) => {
-    postCategoryName(value);
-  };
-
   const getCategories = async () => {
     setIsLoading(true);
     try {
       const getAllCategories = await requests('get', 'category');
       setAllCategories(getAllCategories.data);
-      console.log(getAllCategories.data);
-
-      console.log('success get all categories');
       setIsLoading(false);
     } catch (e) {
       console.log('falied get all categories', e);
       setIsLoading(false);
     }
   };
-
   const postCategoryName = async (value) => {
     try {
       const response = await requests('post', 'lecture', value);
-      console.log('success create lecture');
     } catch (e) {
       console.log('falied create lecture', e);
     }
@@ -40,8 +31,16 @@ function CreateLecture() {
     getCategories();
   }, []);
 
+  const onSubmit = async (value) => {
+    value.numberOfText = Number(value.numberOfText);
+    value.numberOfTest = Number(value.numberOfTest);
+    value.numberOfCode = Number(value.numberOfCode);
+    postCategoryName(value);
+    location.reload();
+  };
+
   if (isLoading) {
-    return <Spinner />;
+    return <HelperSpinner />;
   }
 
   return (
@@ -56,23 +55,48 @@ function CreateLecture() {
                 className={Styles.CreateLecture_Input}
                 name="title"
                 placeholder="Title"
+                type="text"
               />
-              <InputFull_TextArea name="value" placeholder="Value" />
-              <InputFull name="author" placeholder="Author" />
-              <InputFull name="link" placeholder="Link" />
-              <Field name="category" component="select">
+              <InputFull name="value" placeholder="Value" type="text_area" />
+              <InputFull name="author" placeholder="Author" type="text" />
+              <InputFull name="link" placeholder="Link" type="text" />
+              <InputFull
+                name="numberOfText"
+                placeholder="Quantity text question"
+                type="text"
+                validate={[haveNotChar]}
+              />
+              <InputFull
+                name="numberOfTest"
+                placeholder="Quantity test question"
+                type="text"
+                validate={[haveNotChar]}
+              />
+              <InputFull
+                name="numberOfCode"
+                placeholder="Quantity code question"
+                type="text"
+                validate={[haveNotChar]}
+              />
+              <Field
+                name="category"
+                component="select"
+                className={Styles.custom_drop}
+              >
                 <option />
                 {allCategories.map((category, index) => {
                   return <option value={category._id}>{category.name}</option>;
                 })}
               </Field>
-              <button
-                className={Styles.CreateLecture_Button}
-                type="submit"
-                disabled={submitting}
-              >
-                Submit
-              </button>
+              <div>
+                <button
+                  className={Styles.CreateLecture_Button}
+                  type="submit"
+                  disabled={submitting}
+                >
+                  Create lecture
+                </button>
+              </div>
             </form>
           </div>
         )}

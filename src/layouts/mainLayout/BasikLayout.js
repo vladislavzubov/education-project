@@ -8,9 +8,7 @@ class Layout extends Component {
         {this.props.menu}
         <div className={Styles.MainLayout_Container}>
           {this.props.header}
-
           {this.props.breadcrumbs}
-
           {this.props.children}
         </div>
       </div>

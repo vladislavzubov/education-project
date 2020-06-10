@@ -1,4 +1,4 @@
-.Regist{
+.Regist {
     width: 400px;
     margin: 5px;
     padding: 30px;
@@ -7,22 +7,31 @@
     margin-left: auto;
     margin-right: auto;
 }
-.Regist h1{
+
+.Regist h1 {
     color: #394B59;
     font-weight: normal;
 }
-.Regist Button{
-    margin: 5px;
-   
-}
-.Regist Input{
+
+.Regist Button {
     margin: 5px;
 }
-.Regist p{
+
+.Regist Input {
+    margin: 5px;
+}
+
+.Regist p {
     color: white;
 }
-.Regist p Link{
-    color: white;
+
+.Regist p Link {
+    color: whitesmoke;
+}
+
+.Regist select {
+    width: 100%;
+    background-color: white;
 }
 
 .form_regist {

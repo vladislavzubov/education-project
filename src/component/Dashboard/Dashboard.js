@@ -4,13 +4,14 @@ import Header from '../headInfo/HeadInfo';
 import SitePath from '../sitePath/SitePath';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import Menu from '../../component/Menu/Menu';
-import helperMenu from '../../helper/helperMenu'
+import helperMenu from '../../helper/helperMenu';
+
 
 export default function Dashboard() {
   const state = {
     isLoading: false,
   };
-  const props =helperMenu();
+  const props = helperMenu();
   return state.isLoading ? (
     <Spinner className={Styles.GlobalStyles} />
   ) : (

@@ -1,9 +1,7 @@
 import React from 'react';
 import Styles from './TitleCategor.module.scss';
-import { requests } from '../../services/requests';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../component/InputFull/InputFull';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function TitleCategor({
   category,
@@ -13,13 +11,11 @@ function TitleCategor({
   onDeleteLecture,
 }) {
   const [isOnChange, setIsOnChange] = React.useState(false);
-  console.log(lectures);
-
   const handleChange = (newCategory, id) => {
-    onChangeTitle();
     if (typeof onChange === 'function') {
       onChange(newCategory, id);
     }
+    onChangeTitle();
   };
 
   const handleDelete = () => {
@@ -40,10 +36,9 @@ function TitleCategor({
     setIsOnChange(!isOnChange);
   };
   const onSubmit = async (value) => {
-    setIsOnChange(!isOnChange);
     handleChange(value, category._id);
+    setIsOnChange(!isOnChange);
   };
-  //console.log(lectures._id);
 
   return (
     <div className={Styles.ContenetCategor}>
@@ -58,11 +53,7 @@ function TitleCategor({
               <div>
                 <form onSubmit={handleSubmit} className={Styles.EditTitle}>
                   <InputFull name="name" placeholder="Name" />
-                  <button
-                    className={Styles.Edit_Button}
-                    type="submit"
-                    //onClick={onChangeTitle}
-                  >
+                  <button className={Styles.Edit_Button} type="submit">
                     Edit
                   </button>
                 </form>

@@ -1,0 +1,27 @@
+.ChangeExercise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  flex-grow: 1;
+  width: 100%;
+}
+.ChangeExercise select{
+  display: flex;
+  flex-direction: column;
+
+align-items: center;
+  background: white;
+  border-radius: 15px;
+  height: auto;
+  flex-grow: 1;
+  width: 100%;
+}
+.Select{
+  display: flex;
+}
+.ChangeExercise_Content{
+  width: 80%;
+}

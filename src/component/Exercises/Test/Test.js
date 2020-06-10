@@ -1,17 +1,27 @@
 import React from 'react';
+import { Field } from 'react-final-form';
 import Styles from './Test.module.scss';
 
 export default function Test({ test }) {
   return (
     <div className={Styles.Test}>
-      <h2>{test.question}</h2>
       <div>
-        {test.answers.map((answer, index) => {
+        <h3>
+          <strong>{test.question}</strong>
+        </h3>
+      </div>
+      <div>
+        {test.quantity.map((answer, index) => {
           return (
-            <div>
+            <label>
+              <Field
+                name={test._id}
+                component="input"
+                type="checkbox"
+                value={answer}
+              />
               {answer}
-              <input type="radio" />
-            </div>
+            </label>
           );
         })}
       </div>

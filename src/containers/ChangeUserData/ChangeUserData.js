@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import classes from './ChangeUserData.module.scss';
 import { Form } from 'react-final-form';
 import { Button, Spinner } from '@blueprintjs/core';
-import { BrowserRouter as Link } from 'react-router-dom';
 import {
   changeUserInfo,
   receptionUser,
@@ -28,8 +27,6 @@ class User extends Component {
     this.updateUserData(localStorage.getItem('accessKey'));
   }
 
-  componentWillUnmount() {}
-
   updateUserData = async (token) => {
     this.setState({
       download: true,
@@ -42,9 +39,10 @@ class User extends Component {
       this.props.receptionUser(
         response.data.name,
         response.data.email,
-        response.data.age
+        response.data.age,
+        response.data._id,
+        response.data.role
       );
-      console.log('success data user');
       this.setState({
         loading: false,
       });
@@ -61,12 +59,10 @@ class User extends Component {
     this.setState({
       loading: true,
     });
-
     const globalUserData = {
       name: this.props.userDataName,
       age: this.props.userDataAge,
     };
-
     const changeData = {
       name: value.Name,
       age: +value.Age,
@@ -80,7 +76,6 @@ class User extends Component {
         this.setState({
           loading: false,
         });
-        console.log('change data user');
         return;
       } catch (e) {
         console.log('falied change data user', e);
@@ -114,9 +109,7 @@ class User extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1 className={classes.Title}>Change User Data</h1>
-
                 <img src="/Ivan.jpg" />
-
                 <InputDisabled
                   name="Name"
                   placeholder="Name"
@@ -155,14 +148,16 @@ const mapStateToProps = (store) => {
     name: receptionUser(store).name,
     email: receptionUser(store).email,
     age: receptionUser(store).age,
+    id: receptionUser(store).id,
+    role: receptionUser(store).role,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeUserInfo: (name, age) => dispatch(changeUserInfo(name, age)),
-    receptionUser: (name, email, age) =>
-      dispatch(receptionUser(name, email, age)),
+    receptionUser: (name, email, age, id, role) =>
+      dispatch(receptionUser(name, email, age, id, role)),
   };
 };
 

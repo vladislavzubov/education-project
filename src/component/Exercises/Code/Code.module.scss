@@ -1,0 +1,21 @@
+.Code{
+    margin-bottom: 2rem;
+}
+.Code div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.Code label{
+    width: 100%;
+    display: flex;
+    word-wrap: break-word;
+    align-items:center;
+    padding-bottom: 0.625rem;
+}
+.Code input{
+  margin-right: 1rem;
+ 
+}

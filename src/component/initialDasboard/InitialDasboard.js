@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './InitialDashboard.module.scss';
-import { Spinner } from '@blueprintjs/core';
+import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 
 function Content() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -16,13 +16,13 @@ function Content() {
     loadLectures();
   }, []);
 
+  if (isLoading) {
+    return <HelperSpinner />;
+  }
+
   return (
     <div className={Styles.Content}>
-      {isLoading ? (
-        <Spinner className={Styles.Spinner} />
-      ) : (
-        <p>> Hi, Initial Dasboard </p>
-      )}
+      <p>> Hi, Initial Dasboard </p>
     </div>
   );
 }
