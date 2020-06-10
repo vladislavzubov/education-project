@@ -21,7 +21,13 @@ const updateTokens = (userId, role) => {
   }));
 };
 
-const updateTokenAccess = (userId, role) => {
+const updateTokenAccess = async (userId) => {
+  let role;
+  await User.findOne({ _id: userId })
+    .exec()
+    .then((user) => {
+      role = user.role;
+    });
   const accessToken = authHelper.generateAccessToken(userId, role);
 
   return authHelper.replaceDbRefreshToken(userId).then(() => ({
