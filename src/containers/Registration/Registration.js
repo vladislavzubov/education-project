@@ -22,6 +22,7 @@ class Registration extends Component {
     loading: false,
     showPassword: false,
     errMessage: false,
+    isClick: false,
   };
 
   transferServerRegist = async (value) => {
@@ -47,6 +48,7 @@ class Registration extends Component {
   };
 
   onSubmit = async (value) => {
+    this.setState({ isClick: true });
     this.setState({
       loading: true,
     });
@@ -65,36 +67,38 @@ class Registration extends Component {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
-                <h1>Registration</h1>
-                {this.state.errMessage ? (
-                  <h3>{this.state.errMessage}</h3>
-                ) : (
-                  <h3>User successfully registered</h3>
-                )}
+                <h1>Регистрация</h1>
+                {this.state.isClick ? (
+                  this.state.errMessage ? (
+                    <h3>{this.state.errMessage}</h3>
+                  ) : (
+                    <h3>Регистрация прошла успешна</h3>
+                  )
+                ) : null}
                 <InputFull
                   name="userName"
-                  placeholder="User name"
+                  placeholder="Логин"
                   validate={[required]}
                   loading={this.state.loading}
                 />
 
                 <InputFull
                   name="email"
-                  placeholder="Email"
+                  placeholder="Электронная почта"
                   validate={[required, validateEmail]}
                   loading={this.state.loading}
                 />
 
                 <InputFull
                   name="age"
-                  placeholder="Age"
+                  placeholder="Возраст"
                   validate={[required, haveNotChar, minAge]}
                   loading={this.state.loading}
                 />
 
                 <InputFull
                   name="password"
-                  placeholder="Password"
+                  placeholder="Пароль"
                   rightElement={true}
                   show={true}
                   validate={[
@@ -109,21 +113,23 @@ class Registration extends Component {
 
                 <InputFull
                   name="repeatPassword"
-                  placeholder="Password"
+                  placeholder="Повторите пароль"
                   rightElement={true}
                   show={true}
                   validate={[required, setRepeatPasswordValue]}
                   loading={this.state.loading}
                 />
+                <div className={classes.SelectRegist}>
+                  <Field name="role" component="select">
+                    <option />
+                    <option value="user">Стажёр</option>;
+                    <option value="admin">Админ</option>;
+                  </Field>
+                </div>
 
-                <Field name="role" component="select">
-                  <option />
-                  <option value="user">user</option>;
-                  <option value="admin">admin</option>;
-                </Field>
                 <Button
                   type="sumbit"
-                  text="Sumbit"
+                  text="Зарегистрироваться"
                   intent="primary"
                   fill
                   loading={this.state.loading}
