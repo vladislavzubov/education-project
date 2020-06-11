@@ -19,6 +19,11 @@ export default function helperMenu() {
           href: 'http://localhost:3000/dashboard/trainees',
         },
         {
+          value: 'Регистрация',
+          icon: 'new-person',
+          href: 'http://localhost:3000/dashboard/registration',
+        },
+        {
           value: 'Категории',
           icon: 'application',
           href: 'http://localhost:3000/dashboard/create-category',
