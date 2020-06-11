@@ -15,6 +15,7 @@
 
 .Regist Button {
     margin: 5px;
+    margin-top: 1rem;
 }
 
 .Regist Input {
@@ -29,9 +30,14 @@
     color: whitesmoke;
 }
 
-.Regist select {
+.SelectRegist {
+    margin: 5px;
     width: 100%;
     background-color: white;
+}
+
+.SelectRegist select {
+    border-radius: 0.2rem;
 }
 
 .form_regist {

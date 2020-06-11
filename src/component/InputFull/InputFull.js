@@ -58,6 +58,7 @@ class InputFull extends Component {
                     type={!this.state.showButton ? 'text' : 'password'}
                     placeholder={this.state.placeholder}
                     disabled={this.state.loading}
+                    intent={meta.error ? 'danger' : null}
                   />
                 ) : this.state.type === 'text_area' ? (
                   <TextArea
