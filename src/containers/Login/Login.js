@@ -19,6 +19,7 @@ import { requests } from '../../services/requests';
 class Login extends Component {
   state = {
     loading: false,
+    error: '',
   };
 
   postServerLoginLoading = async (value) => {
@@ -42,6 +43,8 @@ class Login extends Component {
       console.log('success email');
       return;
     } catch (e) {
+      this.setState({ loading: false, errMessage: e.response.data.message });
+
       console.log('falied email', e);
       this.setState({
         loading: false,
@@ -66,6 +69,7 @@ class Login extends Component {
               className={classes.Card}
             >
               <h1>Login</h1>
+              {this.state.errMessage ? <h3>{this.state.errMessage}</h3> : null}
 
               <form onSubmit={handleSubmit}>
                 <InputFull
@@ -81,12 +85,6 @@ class Login extends Component {
                   placeholder="Password"
                   rightElement={true}
                   show={true}
-                  validate={[
-                    required,
-                    minLength,
-                    haveOneUppercase,
-                    haveOneNumeral,
-                  ]}
                   type="text"
                   loading={this.state.loading}
                 />
