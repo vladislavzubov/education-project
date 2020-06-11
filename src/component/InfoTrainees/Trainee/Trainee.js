@@ -13,7 +13,7 @@ export default function Trainee({ trainee }) {
       <div> Дата регистрации: {trainee.dateRegistration}</div>
       <div>{trainee.active ? trainee.dateActive : 'Не перешел по ссылке'}</div>
       <div>{trainee.dateLink ? trainee.dateLink : 'Ссылка еще не выслана'}</div>
-      <Link to={`/dashboard/trainees/${trainee._id}`}>
+      <Link to={`/dashboard/trainee/${trainee._id}`}>
         {' '}
         Перейти на страницу Стажера?{' '}
       </Link>
