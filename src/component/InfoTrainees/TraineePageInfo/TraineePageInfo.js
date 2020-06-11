@@ -4,22 +4,12 @@ import { requests } from '../../../services/requests';
 import HelperSpinner from '../../../helper/helperSpinner/HelperSpinner';
 import { useParams } from 'react-router-dom';
 import Trainee from '../Trainee/Trainee';
-
-import {
-  Tooltip,
-  InputGroup,
-  Button,
-  FormGroup,
-  TextArea,
-  NumericInput,
-} from '@blueprintjs/core';
+import Resp from '../Resp/Resp';
 
 export default function TraineePageInfo() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [trainee, setTrainee] = React.useState({});
   const [responses, setResponses] = React.useState([]);
-
-  console.log(responses);
 
   const traineeID = React.useMemo(() => {
     return useParams().id;
@@ -47,6 +37,7 @@ export default function TraineePageInfo() {
         'get',
         `userResponse/${traineeID}`
       );
+
       setResponses(getResponsesAll.data);
       setIsLoading(false);
     } catch (e) {
@@ -57,7 +48,7 @@ export default function TraineePageInfo() {
 
   React.useEffect(() => {
     getInfoTrainee();
-    getResponsesTrainee;
+    getResponsesTrainee();
   }, []);
 
   if (isLoading) {
@@ -69,7 +60,9 @@ export default function TraineePageInfo() {
       <div className={Styles.InfoTrainees}>
         <Trainee trainee={trainee} />
         {responses.length !== 0 ? (
-          <div>{responses.lectureId}</div>
+          responses.map((resp, index) => {
+            return <Resp resp={resp} />;
+          })
         ) : (
           <div>Стажер еще не прошел ни одну лекцию</div>
         )}

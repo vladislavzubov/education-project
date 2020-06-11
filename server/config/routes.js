@@ -11,10 +11,21 @@ const authMiddleware = require('../app/middleware/auth');
 const checkRole = require('../app/middleware/checkRole');
 const changePassword = require('../app/controllers/changePassword');
 const updateUserInfo = require('../app/controllers/updateUserInfo');
+const getAll = require('../app/controllers/getAll');
+
+
 const cors = require('cors');
 
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
+  
+  app.get(
+    '/api/all/',
+    authMiddleware,
+    checkRole(['admin', 'user']),
+    getAll.getAll
+  );
+
 
   app.get(
     '/api/requestUserLecture/:id',
