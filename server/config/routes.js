@@ -27,6 +27,7 @@ module.exports = (app) => {
 
   //userResponse
   app.get(
+    //id user
     '/api/userResponse/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
@@ -192,6 +193,12 @@ module.exports = (app) => {
     authMiddleware,
     checkRole(['admin', 'user']),
     info.infoUser
+  );
+  app.get(
+    '/api/info-trainees',
+    authMiddleware,
+    checkRole(['admin']),
+    info.infoTrainees
   );
 
   //serch by email

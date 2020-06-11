@@ -7,6 +7,10 @@ const UserSchema = new mongoose.Schema({
   age: Number,
   keyChangePasswor: String,
   role: String,
+  active: Boolean,
+  dateRegistration: Date,
+  dateLink: Date,
+  dateActive: Date,
 });
 
 const UserModel = mongoose.model('user', UserSchema);

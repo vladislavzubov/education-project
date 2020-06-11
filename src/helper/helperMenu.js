@@ -1,7 +1,49 @@
 export default function helperMenu() {
   const menuAdmin = [
     {
-      value: 'Apps',
+      value: 'Меню Админа',
+      menuIteam: [
+        {
+          value: 'Главная',
+          icon: 'home',
+          href: 'http://localhost:3000/dashboard/',
+        },
+        {
+          value: 'Мой профиль',
+          icon: 'user',
+          href: 'http://localhost:3000/dashboard/change_user_data',
+        },
+        {
+          value: 'Стажеры',
+          icon: 'people',
+          href: 'http://localhost:3000/dashboard/trainees',
+        },
+        {
+          value: 'Регистрация',
+          icon: 'new-person',
+          href: 'http://localhost:3000/dashboard/registration',
+        },
+        {
+          value: 'Категории',
+          icon: 'application',
+          href: 'http://localhost:3000/dashboard/create-category',
+        },
+        {
+          value: 'Лекции',
+          icon: 'applications',
+          href: 'http://localhost:3000/dashboard/create-lecture',
+        },
+        {
+          value: 'Упражнения',
+          icon: 'annotation',
+          href: 'http://localhost:3000/dashboard/create-exercise',
+        },
+        
+        
+      ],
+    },
+    {
+      value: 'Старое меню',
       menuIteam: [
         {
           value: 'Charts',
