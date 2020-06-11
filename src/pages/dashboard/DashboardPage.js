@@ -55,7 +55,7 @@ function DashboardPage(props) {
       const manuCategories = allCategories.data.map((category, index) => {
         return {
           value: category.name,
-          href: `http://localhost:3000/dashboard/category/${category._id}`,
+          href: `/dashboard/category/${category._id}`,
           icon: 'properties',
         };
       });
@@ -66,7 +66,7 @@ function DashboardPage(props) {
           menuIteam: [
             {
               value: 'home',
-              href: `http://localhost:3000/dashboard`,
+              href: `/dashboard`,
               icon: 'home',
             },
           ],

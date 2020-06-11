@@ -3,6 +3,7 @@ import Styles from './TitleCategor.module.scss';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../component/InputFull/InputFull';
 import { Spinner, Popover, Button, Alert } from '@blueprintjs/core';
+import { Link } from 'react-router-dom';
 
 function TitleCategor({
   category,
@@ -92,11 +93,9 @@ function TitleCategor({
         if (category._id === lecture.category) {
           return (
             <div className={Styles.TitleLecture}>
-              <a
-                href={`http://localhost:3000/dashboard/lectures/${lecture._id}`}
-              >
+              <Link to={`/dashboard/lectures/${lecture._id}`}>
                 <h5>{lecture.title}</h5>
-              </a>
+              </Link>
               <div>
                 <Button
                   onClick={() => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './NotFoundPage.module.scss';
 import BaseLayouts from '../../layouts/baseLayouts/BaseLayouts';
+import { Link } from 'react-router-dom';
 
 class NotFoundPage extends Component {
   render() {
@@ -14,7 +15,7 @@ class NotFoundPage extends Component {
             <h3>Page not found</h3>
           </div>
           <div>
-            <a href="http://localhost:3000/login">Go home</a>
+            <Link to="/login">Go home</Link>
           </div>
         </div>
       </BaseLayouts>

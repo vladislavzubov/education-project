@@ -5,6 +5,7 @@ import { requests } from '../../services/requests';
 import { useParams } from 'react-router-dom';
 import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Category() {
   let icon = '';
@@ -65,11 +66,9 @@ export default function Category() {
           <div className={Styles.TitleLecture}>
             <div className={Styles.LectureIcon}>
               <Icon icon={icon} intent={intent} iconSize="20" />
-              <a
-                href={`http://localhost:3000/dashboard/lectures/${lecture.lectureId}`}
-              >
+              <Link to={`/dashboard/lectures/${lecture.lectureId}`}>
                 <h5 className={Styles.Lecture}>{lecture.LectureTitle}</h5>
-              </a>
+              </Link>
             </div>
           </div>
         );
