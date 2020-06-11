@@ -22,6 +22,7 @@ class Registration extends Component {
     loading: false,
     showPassword: false,
     errMessage: false,
+    isClick: false,
   };
 
   transferServerRegist = async (value) => {
@@ -47,6 +48,7 @@ class Registration extends Component {
   };
 
   onSubmit = async (value) => {
+    this.setState({ isClick: true });
     this.setState({
       loading: true,
     });
@@ -66,11 +68,13 @@ class Registration extends Component {
             <form onSubmit={handleSubmit}>
               <div className={classes.form_regist}>
                 <h1>Registration</h1>
-                {this.state.errMessage ? (
-                  <h3>{this.state.errMessage}</h3>
-                ) : (
-                  <h3>User successfully registered</h3>
-                )}
+                {this.state.isClick ? (
+                  this.state.errMessage ? (
+                    <h3>{this.state.errMessage}</h3>
+                  ) : (
+                    <h3>User successfully registered</h3>
+                  )
+                ) : null}
                 <InputFull
                   name="userName"
                   placeholder="User name"
