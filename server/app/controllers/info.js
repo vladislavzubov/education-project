@@ -16,8 +16,15 @@ const infoUser = (req, res) => {
   });
 };
 
+const infoTrainee = (req, res) => {
+  User.findById(req.params.id)
+    .exec()
+    .then((users) => res.json(users))
+    .catch((err) => res.status(500).json(err));
+};
+
 const infoTrainees = (req, res) => {
-  User.find({role: "user"})
+  User.find({ role: 'user' })
     .exec()
     .then((users) => res.json(users))
     .catch((err) => res.status(500).json(err));
@@ -25,5 +32,6 @@ const infoTrainees = (req, res) => {
 
 module.exports = {
   infoUser,
-  infoTrainees
+  infoTrainees,
+  infoTrainee,
 };
