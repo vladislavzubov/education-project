@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './Lecture.module.scss';
-import { Spinner, Popover, Button } from '@blueprintjs/core';
+import { Spinner, Popover, Button, Alert } from '@blueprintjs/core';
 import { requests } from '../../services/requests';
 import ReactMarkdown from 'react-markdown';
 import InputFull_TextArea from '../InputFull/InputFull_TextArea';
@@ -20,6 +20,7 @@ function Lecture() {
   const [isOnButtonExercise, seIsOnButtonExercise] = React.useState(true);
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
+  const [isOpen, setIsOpen] = React.useState(false);
   const idUser = useSelector((store) => store.server_redux.id);
 
   const permission = useSelector((store) => store.server_redux.role);
@@ -162,14 +163,26 @@ function Lecture() {
             </div>
           )}
           {isOnButtonExercise && (
-            <Popover>
-              <Button text="Go to task" />
-              <div>
-                <p>Are you sure you want to go to the tasks?</p>
-                <button onClick={onPerfomigExercise}>Yes</button>
-                <button>No</button>
-              </div>
-            </Popover>
+            <div>
+              <Button
+                onClick={() => {
+                  setIsOpen(true);
+                }}
+                text="Приступить к тестированию"
+              />
+              <Alert
+                cancelButtonText="Нет"
+                confirmButtonText="Да"
+                icon="annotation"
+                isOpen={isOpen}
+                onCancel={() => {
+                  setIsOpen(false);
+                }}
+                onConfirm={onPerfomigExercise}
+              >
+                <p>Вы точно хотите приступить к тестированию?</p>
+              </Alert>
+            </div>
           )}
         </div>
       )}

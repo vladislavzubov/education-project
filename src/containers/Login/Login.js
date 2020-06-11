@@ -19,7 +19,7 @@ import { requests } from '../../services/requests';
 class Login extends Component {
   state = {
     loading: false,
-    error: '',
+    errMessage: '',
   };
 
   postServerLoginLoading = async (value) => {
@@ -43,8 +43,10 @@ class Login extends Component {
       console.log('success email');
       return;
     } catch (e) {
-      this.setState({ loading: false, errMessage: e.response.data.message });
-
+      if (e.response !== undefined) {
+        this.setState({ loading: false, errMessage: e.response.data.message });
+      }
+      this.setState({ loading: false, errMessage: 'Server Error' });
       console.log('falied email', e);
       this.setState({
         loading: false,
@@ -87,6 +89,7 @@ class Login extends Component {
                   show={true}
                   type="text"
                   loading={this.state.loading}
+                  validate={[required]}
                 />
 
                 <Button
