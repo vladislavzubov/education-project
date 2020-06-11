@@ -171,12 +171,9 @@ function Lecture() {
                 text="Приступить к тестированию"
               />
               <Alert
-                //{...alertProps}
-                //className={this.props.data.themeName}
                 cancelButtonText="Нет"
                 confirmButtonText="Да"
                 icon="annotation"
-                //intent={Intent.DANGER}
                 isOpen={isOpen}
                 onCancel={() => {
                   setIsOpen(false);

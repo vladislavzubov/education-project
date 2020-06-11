@@ -2,6 +2,7 @@ import React from 'react';
 import Styles from './TitleCategor.module.scss';
 import { Form, Field } from 'react-final-form';
 import InputFull from '../../component/InputFull/InputFull';
+import { Spinner, Popover, Button, Alert } from '@blueprintjs/core';
 
 function TitleCategor({
   category,
@@ -11,6 +12,7 @@ function TitleCategor({
   onDeleteLecture,
 }) {
   const [isOnChange, setIsOnChange] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   const handleChange = (newCategory, id) => {
     if (typeof onChange === 'function') {
       onChange(newCategory, id);
@@ -63,8 +65,26 @@ function TitleCategor({
         ) : (
           <h3 onDoubleClick={handleChange}>{category.name}</h3>
         )}
+
         <div>
-          <button onClick={handleDelete}>X</button>
+          <Button
+            onClick={() => {
+              setIsOpen(true);
+            }}
+            text="X"
+          />
+          <Alert
+            cancelButtonText="Нет"
+            confirmButtonText="Да"
+            icon="annotation"
+            isOpen={isOpen}
+            onCancel={() => {
+              setIsOpen(false);
+            }}
+            onConfirm={handleDelete}
+          >
+            <p>Вы точно хотите удалить категорию?</p>
+          </Alert>
         </div>
       </div>
 
@@ -77,14 +97,28 @@ function TitleCategor({
               >
                 <h5>{lecture.title}</h5>
               </a>
-              <button
-                onClick={() => {
-                  deleteLecture(lecture._id);
-                }}
-                className={Styles.TitleLecture_Button}
-              >
-                X
-              </button>
+              <div>
+                <Button
+                  onClick={() => {
+                    setIsOpen(true);
+                  }}
+                  text="X"
+                />
+                <Alert
+                  cancelButtonText="Нет"
+                  confirmButtonText="Да"
+                  icon="annotation"
+                  isOpen={isOpen}
+                  onCancel={() => {
+                    setIsOpen(false);
+                  }}
+                  onConfirm={() => {
+                    deleteLecture(lecture._id);
+                  }}
+                >
+                  <p>Вы точно хотите удалить лекцию?</p>
+                </Alert>
+              </div>
             </div>
           );
         }
