@@ -1,5 +1,6 @@
 import React from 'react';
 import Styles from './Trainee.module.scss';
+import { Link } from 'react-router-dom';
 
 
 export default function Trainee({ trainee }) {
@@ -12,10 +13,10 @@ export default function Trainee({ trainee }) {
       <div> Дата регистрации: {trainee.dateRegistration}</div>
       <div>{trainee.active ? trainee.dateActive : 'Не перешел по ссылке'}</div>
       <div>{trainee.dateLink ? trainee.dateLink : 'Ссылка еще не выслана'}</div>
-      <a href={`http://localhost:3000/dashboard/trainees/${trainee._id}`}>
+      <Link to={`/dashboard/trainees/${trainee._id}`}>
         {' '}
         Перейти на страницу Стажера?{' '}
-      </a>
+      </Link>
     </div>
   );
 }

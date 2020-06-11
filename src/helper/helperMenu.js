@@ -6,40 +6,38 @@ export default function helperMenu() {
         {
           value: 'Главная',
           icon: 'home',
-          href: 'http://localhost:3000/dashboard/',
+          href: '/dashboard/',
         },
         {
           value: 'Мой профиль',
           icon: 'user',
-          href: 'http://localhost:3000/dashboard/change_user_data',
+          href: '/dashboard/change_user_data',
         },
         {
           value: 'Стажеры',
           icon: 'people',
-          href: 'http://localhost:3000/dashboard/trainees',
+          href: '/dashboard/trainees',
         },
         {
           value: 'Регистрация',
           icon: 'new-person',
-          href: 'http://localhost:3000/dashboard/registration',
+          href: '/dashboard/registration',
         },
         {
           value: 'Категории',
           icon: 'application',
-          href: 'http://localhost:3000/dashboard/create-category',
+          href: '/dashboard/create-category',
         },
         {
           value: 'Лекции',
           icon: 'applications',
-          href: 'http://localhost:3000/dashboard/create-lecture',
+          href: '/dashboard/create-lecture',
         },
         {
           value: 'Упражнения',
           icon: 'annotation',
-          href: 'http://localhost:3000/dashboard/create-exercise',
+          href: '/dashboard/create-exercise',
         },
-        
-        
       ],
     },
     {
@@ -48,46 +46,46 @@ export default function helperMenu() {
         {
           value: 'Charts',
           icon: 'grouped-bar-chart',
-          href: 'http://localhost:3000/probe',
+          href: '/probe',
           nesting: [
             {
               value: 'Create category',
-              href: 'http://localhost:3000/dashboard/create-category',
+              href: '/dashboard/create-category',
             },
             {
               value: 'Create lecture',
-              href: 'http://localhost:3000/dashboard/create-lecture',
+              href: '/dashboard/create-lecture',
             },
             {
               value: 'Chart exercise',
-              href: 'http://localhost:3000/dashboard/create-exercise',
+              href: '/dashboard/create-exercise',
             },
           ],
         },
         {
           value: 'Categories',
           icon: 'pivot',
-          href: 'http://localhost:3000/dashboard/categories',
+          href: '/dashboard/categories',
         },
         {
           value: 'Dashboard',
           icon: 'home',
-          href: 'http://localhost:3000/',
+          href: '',
         },
         {
           value: 'Change user info',
           icon: 'form',
-          href: 'http://localhost:3000/dashboard/change_user_data',
+          href: '/dashboard/change_user_data',
         },
         {
           value: 'Lectures',
           icon: 'send-to-graph',
-          href: 'http://localhost:3000/dashboard/lectures',
+          href: '/dashboard/lectures',
         },
         {
           value: 'Сhange exercise',
           icon: 'exchange',
-          href: 'http://localhost:3000/dashboard/change-exercise',
+          href: '/dashboard/change-exercise',
         },
       ],
     },
