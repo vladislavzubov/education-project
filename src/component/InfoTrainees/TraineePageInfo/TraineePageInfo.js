@@ -9,7 +9,7 @@ import AnswerUser from './AnswerUser/AnswerUser';
 
 export default function TraineePageInfo() {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [trainee, setTrainee] = React.useState({});
+  const [trainee, setTrainee] = React.useState(undefined);
   const [responses, setResponses] = React.useState([]);
 
   const traineeID = React.useMemo(() => {
@@ -59,9 +59,7 @@ export default function TraineePageInfo() {
         {trainee ? <Trainee trainee={trainee.userInfo} /> : null}
       </div>
 
-      <div>
-        <AnswerUser answers={trainee.answers} />
-      </div>
+      <div>{trainee ? <AnswerUser answers={trainee.answers} /> : null}</div>
     </div>
   );
 }

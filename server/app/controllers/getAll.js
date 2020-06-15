@@ -108,7 +108,6 @@ const getAll = async (req, res) => {
     const percent = Math.round(
       (lectureStatusEnd.length * 100) / response.length
     );
-    console.log(percent);
 
     if (!response) {
       return [
