@@ -12,11 +12,11 @@ const checkRole = require('../app/middleware/checkRole');
 const changePassword = require('../app/controllers/changePassword');
 const updateUserInfo = require('../app/controllers/updateUserInfo');
 const cors = require('cors');
+const firstIn = require('../app/controllers/firstIn');
+const addPasswordUser = require('../app/controllers/addPasswordUser');
 
 module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
-
- 
 
   app.get(
     '/api/requestUserLecture/:id',
@@ -204,6 +204,14 @@ module.exports = (app) => {
   //serch by email
 
   app.post('/api/lost-password', searchByEmail.searchByEmail);
+
+  // first in [registration] [t]
+
+  app.post('/api/first-in', firstIn.firstIn);
+
+  // add password user  [t]
+
+  app.put('/api/add-pasword-user', addPasswordUser.addPasswordUser);
 
   //Change Password
 

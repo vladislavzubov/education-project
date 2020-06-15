@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   dateRegistration: Date,
   dateLink: Date,
   dateActive: Date,
+  secretKey: String,
 });
 
 const UserModel = mongoose.model('user', UserSchema);

@@ -38,7 +38,7 @@ class Registration extends Component {
 
     try {
       const response = await requests('post', 'registration', registPost);
-      this.setState({ loading: false, errMessage: false });
+      this.setState({ loading: false, errMessage: '' });
       return true;
     } catch (e) {
       this.setState({ loading: false, errMessage: e.response.data.message });
