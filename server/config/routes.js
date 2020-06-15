@@ -33,13 +33,16 @@ module.exports = (app) => {
     checkRole(['admin', 'user']),
     userResponse.getAllResponseUser
   );
+
   app.post('/api/userResponse', authMiddleware, userResponse.create);
+
   app.delete(
     '/api/userResponse/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     userResponse.removeAllResponseUser
   );
+
   app.put(
     '/api/userResponse/:id',
     authMiddleware,
@@ -54,42 +57,49 @@ module.exports = (app) => {
     checkRole(['admin', 'user']),
     exercise.exerciseForLecture
   );
+
   app.get(
     '/api/exercise',
     authMiddleware,
     checkRole(['admin', 'user']),
     exercise.getAll
   );
+
   app.get(
     '/api/exercise-all/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     exercise.getAllExercisesLecture
   );
+
   app.get(
     '/api/exercise-info/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     exercise.getExerciseInfo
   );
+
   app.post(
     '/api/exercise',
     authMiddleware,
     checkRole(['admin']),
     exercise.create
   );
+
   app.put(
     '/api/exercise/:id',
     authMiddleware,
     checkRole(['admin']),
     exercise.update
   );
+
   app.delete(
     '/api/exercise/:id',
     authMiddleware,
     checkRole(['admin']),
     exercise.remove
   );
+
   app.delete(
     '/api/exercise-all/:id',
     authMiddleware,
@@ -104,36 +114,42 @@ module.exports = (app) => {
     checkRole(['admin', 'user']),
     lecture.getAll
   );
+
   app.get(
     '/api/lecture-one/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     lecture.getOneLecture
   );
+
   app.get(
     '/api/lecture/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     lecture.getAllLecturesCtegory
   );
+
   app.post(
     '/api/lecture',
     authMiddleware,
     checkRole(['admin']),
     lecture.create
   );
+
   app.put(
     '/api/lecture/:id',
     authMiddleware,
     checkRole(['admin']),
     lecture.update
   );
+
   app.delete(
     '/api/lecture/:id',
     authMiddleware,
     checkRole(['admin']),
     lecture.remove
   );
+
   app.delete(
     '/api/lecture-all/:id',
     authMiddleware,
@@ -155,24 +171,28 @@ module.exports = (app) => {
     checkRole(['admin', 'user']),
     category.getAll
   );
+
   app.get(
     '/api/category/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     category.getOneCategory
   );
+
   app.post(
     '/api/category',
     authMiddleware,
     checkRole(['admin']),
     category.create
   );
+
   app.put(
     '/api/category/:id',
     authMiddleware,
     checkRole(['admin']),
     category.update
   );
+
   app.delete(
     '/api/category/:id',
     authMiddleware,
@@ -185,6 +205,7 @@ module.exports = (app) => {
 
   // registration
   app.post('/api/registration', registration.create);
+
   app.post('/api/refresh-tokens', auth.refreshTokens);
 
   // info
@@ -194,6 +215,14 @@ module.exports = (app) => {
     checkRole(['admin', 'user']),
     info.infoUser
   );
+
+  app.get(
+    '/api/info-trainee/:id',
+    authMiddleware,
+    checkRole(['admin']),
+    info.infoTrainee
+  );
+
   app.get(
     '/api/info-trainees',
     authMiddleware,

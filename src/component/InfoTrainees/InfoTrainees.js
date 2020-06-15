@@ -3,6 +3,7 @@ import Styles from './InfoTrainees.module.scss';
 import { requests } from '../../services/requests';
 import Trainee from './Trainee/Trainee';
 import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
+
 import {
   Tooltip,
   InputGroup,
