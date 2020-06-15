@@ -7,6 +7,7 @@ const LectureSchema = new mongoose.Schema({
   date: Date,
   author: String,
   category: String,
+  categoryName: String,
   link: String,
   numberOfText: Number,
   numberOfTest: Number,

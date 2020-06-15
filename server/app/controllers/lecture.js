@@ -25,6 +25,7 @@ const create = (req, res) => {
     date: date,
     author: req.body.author,
     category: req.body.category,
+    categoryName: req.body.categoryName,
     link: req.body.link,
     numberOfText: req.body.numberOfText,
     numberOfTest: req.body.numberOfTest,
