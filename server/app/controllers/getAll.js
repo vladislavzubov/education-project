@@ -140,3 +140,47 @@ const getAll = async (req, res) => {
 module.exports = {
   getAll,
 };
+
+// const exercise = [
+//   {
+//     texts: [{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
+//     tests: [
+//       {
+//         question: '90 aram zamzam',
+//         resolve: {
+//           1: { title: 'fdsg1', rigth: false, answersUser: true },
+//           2: { title: 'fdsg2', rigth: false },
+//           3: { title: 'fdsg3', rigth: false, answersUser: true },
+//           4: { title: 'fdsg4', rigth: true },
+//           5: { title: 'fdsg5', rigth: false },
+//         },
+//         _id: '5ed8fd5685ceda4f33636942',
+//         lecture: '5ed8c883ff3c470dd70dab90',
+//         type: 'test',
+//       },
+//       {
+//         quantity: ['12', '13', '14', '15', '16'],
+//         correctAnswers: ['12'],
+//         _id: '5ed8fd4e85ceda4f33636940',
+//         question: '7 aram zam zam?',
+//         date: '2020-06-04T13:55:26.116Z',
+//         author: 'Alexandr',
+//         lecture: '5ed8c883ff3c470dd70dab90',
+//         type: 'test',
+//         __v: 0,
+//       },
+//       {
+//         quantity: ['12', '13', '14', '15', '16'],
+//         correctAnswers: ['12'],
+//         _id: '5ed8fd4a85ceda4f3363693f',
+//         question: '6 aram zam zam?',
+//         date: '2020-06-04T13:55:22.573Z',
+//         author: 'Alexandr',
+//         lecture: '5ed8c883ff3c470dd70dab90',
+//         type: 'test',
+//         __v: 0,
+//       },
+//     ],
+//     codes: [{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
+//   },
+// ];

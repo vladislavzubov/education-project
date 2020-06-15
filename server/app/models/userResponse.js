@@ -6,8 +6,8 @@ const UserResponseSchema = new mongoose.Schema({
   date: Date,
   dateEnd: Date,
   completionDate: Date,
-  exercise: Array,
-  response: Array,
+  exercise: {},
+  response: {},
 });
 
 const UserResponseModel = mongoose.model('userResponse', UserResponseSchema);

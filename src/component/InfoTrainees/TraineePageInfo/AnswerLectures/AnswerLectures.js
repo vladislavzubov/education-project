@@ -4,7 +4,7 @@ export default function AnswerLectures({ lecture }) {
   const [showList, setShowList] = React.useState(false);
 
   const { exercise, title } = lecture;
-  console.log(exercise);
+  //   console.log(exercise);
 
   return (
     <div onClick={() => setShowList(!showList)}>
@@ -13,18 +13,18 @@ export default function AnswerLectures({ lecture }) {
         showList ? (
           <div>
             <div>
-              {exercise[0].texts.map((text) => {
-                <p> {text.question}</p>;
+              {exercise.texts.map((text) => {
+                return <p> question: {text.question}</p>;
               })}
             </div>
             <div>
-              {exercise[0].codes.map((code) => {
-                <p> {code.question}</p>;
+              {exercise.codes.map((code) => {
+                return <p> question: {code.question}</p>;
               })}
             </div>
             <div>
-              {exercise[0].tests.map((test) => {
-                <p> {test.question}</p>;
+              {exercise.tests.map((test) => {
+                return <p> question: {test.question}</p>;
               })}
             </div>
           </div>
