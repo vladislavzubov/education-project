@@ -20,7 +20,7 @@ module.exports = (app) => {
   app.use(cors({ allowedHeaders: ['Content-Type', 'Authorization'] }));
   
   app.get(
-    '/api/all/',
+    '/api/all/:id',
     authMiddleware,
     checkRole(['admin', 'user']),
     getAll.getAll

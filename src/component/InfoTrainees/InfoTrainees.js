@@ -4,14 +4,7 @@ import { requests } from '../../services/requests';
 import Trainee from './Trainee/Trainee';
 import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
 
-import {
-  Tooltip,
-  InputGroup,
-  Button,
-  FormGroup,
-  TextArea,
-  NumericInput,
-} from '@blueprintjs/core';
+
 export default function InfoTrainees() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [traineesAll, setTraineesAll] = React.useState([]);
@@ -27,6 +20,9 @@ export default function InfoTrainees() {
       setIsLoading(false);
     }
   };
+
+  
+
 
   React.useEffect(() => {
     getTrainees();

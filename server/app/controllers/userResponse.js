@@ -26,7 +26,7 @@ const getAllResponseUser = (req, res) => {
 const updateUserInLecture = (req, res) => {
   UserResponse.findOneAndUpdate(
     { $and: [{ lectureId: req.params.id }, { userId: req.query.userId }] },
-    req.body,
+    { response: req.body.response, dateEnd: new Date() },
     { new: true }
   )
     .exec()

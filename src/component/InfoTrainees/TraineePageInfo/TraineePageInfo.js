@@ -5,6 +5,7 @@ import HelperSpinner from '../../../helper/helperSpinner/HelperSpinner';
 import { useParams } from 'react-router-dom';
 import Trainee from '../Trainee/Trainee';
 import Resp from '../Resp/Resp';
+import AnswerUser from './AnswerUser/AnswerUser';
 
 export default function TraineePageInfo() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -18,10 +19,7 @@ export default function TraineePageInfo() {
   const getInfoTrainee = async () => {
     setIsLoading(true);
     try {
-      const getInfoTraineeAll = await requests(
-        'get',
-        `info-trainee/${traineeID}`
-      );
+      const getInfoTraineeAll = await requests('get', `all/${traineeID}`);
       setTrainee(getInfoTraineeAll.data);
       setIsLoading(false);
     } catch (e) {
@@ -58,14 +56,11 @@ export default function TraineePageInfo() {
   return (
     <div className={Styles.Content}>
       <div className={Styles.InfoTrainees}>
-        <Trainee trainee={trainee} />
-        {responses.length !== 0 ? (
-          responses.map((resp, index) => {
-            return <Resp resp={resp} />;
-          })
-        ) : (
-          <div>Стажер еще не прошел ни одну лекцию</div>
-        )}
+        {trainee ? <Trainee trainee={trainee.userInfo} /> : null}
+      </div>
+
+      <div>
+        <AnswerUser answers={trainee.answers} />
       </div>
     </div>
   );
