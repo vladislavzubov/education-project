@@ -17,12 +17,17 @@ import RouteWithSubRoutes from '../../helper/RouteWithSubRoutes';
 import tokenCheck from '../../helper/tokenCheck';
 import DashboardPage from '../../pages/dashboard/DashboardPage';
 import Lectures from '../Lecture/Lecture';
+import PageFirstIn from '../../pages/pageBase/PageFirstIn';
 
 class IndexContainers extends Component {
   routes = [
     {
       path: '/probe',
       component: Probe,
+    },
+    {
+      path: '/first-in',
+      component: PageFirstIn,
     },
     {
       path: '/login',

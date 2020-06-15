@@ -1,5 +1,4 @@
 const UserModel = require('../models/user');
-
 const User = UserModel;
 const { sendEmail } = require('./sendEmail');
 const { passwordCoding } = require('../helpers/passwordHelpers');

@@ -22,6 +22,7 @@ import Lecture from '../../component/lecture/Lecture';
 import CreateExercise from '../../component/create/createExercise/CreateExercise';
 import ChangeExercise from '../../component/changeExercise/ChangeExercise';
 import InfoTrainees from '../../component/InfoTrainees/InfoTrainees';
+import TraineeRegistration from '../../component/traineeRegistration/TraineeRegistration';
 import TraineePageInfo from '../../component/InfoTrainees/TraineePageInfo/TraineePageInfo';
 import Category from '../../component/categoryUser/Category';
 import { useSelector } from 'react-redux';
@@ -169,6 +170,11 @@ function DashboardPage(props) {
       breadcrumbs={<SitePath />}
     >
       <Switch>
+        <RoleRouter
+          path="/dashboard/registration"
+          component={TraineeRegistration}
+          role={['admin']}
+        />
         <RoleRouter
           path="/dashboard/trainees"
           component={InfoTrainees}

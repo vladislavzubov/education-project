@@ -3,14 +3,16 @@ const nodemailer = require('nodemailer');
 const sendEmail = async (body) => {
   const email = body.email;
   const bod = body.body;
+  console.log(body.email);
 
   let testEmailAccount = await nodemailer.createTestAccount();
+  console.log('tttttttttttttttttttttttttt', email);
 
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: email,
-      pass: '', // naturally, replace both with your real credentials or an application-specific password
+      user: 'alevitsky.exceedteam@gmail.com',
+      pass: 'restart987', // naturally, replace both with your real credentials or an application-specific password
     },
   });
 
