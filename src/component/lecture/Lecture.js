@@ -24,6 +24,7 @@ function Lecture() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [lookTest, setLookTest] = React.useState(false);
   const idUser = useSelector((store) => store.server_redux.id);
+  console.log(allExercise);
 
   const permission = useSelector((store) => store.server_redux.role);
 
