@@ -90,7 +90,7 @@ const lecturesOfCategory = async (req, res) => {
         },
       ];
     }
-    if (response.response.length === 0) {
+    if (!response.response) {
       return [
         ...currentValue,
         {

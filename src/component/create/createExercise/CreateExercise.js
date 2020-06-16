@@ -38,11 +38,12 @@ function CreateExercise() {
     formValue.quantity = Object.assign({}, value.quantity);
     if (value.type === 'test') {
       if (value.trueRequest !== undefined) {
-        let correctAnswer = value.trueRequest.map((quantityIndex) => {});
-        delete value.trueRequest;
+        const correctAnswers = value.trueRequest;
+        formValue = { ...formValue, correctAnswers };
+        delete formValue.trueRequest;
       }
     } else if (value.type === 'text' || 'code') {
-      delete formValue.correctAnswer;
+      delete formValue.correctAnswers;
       delete formValue.quantity;
     }
     console.log(formValue);

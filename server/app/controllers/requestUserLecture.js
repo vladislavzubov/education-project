@@ -16,7 +16,7 @@ const requestUserLecture = async (req, res) => {
       .then((lecture) => res.json({ type: 'lecture', lecture }))
       .catch((err) => res.status(500).json(err));
   }
-  if (resolveSerch.response.length !== 0) {
+  if (resolveSerch.response) {
     await Lecture.findOne({ _id: lectureId })
       .exec()
       .then((lecture) => res.json({ type: 'after answer lecture ', lecture }))

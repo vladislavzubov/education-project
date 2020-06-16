@@ -13,9 +13,9 @@ export default function Category() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecturesAll, setLecturesAll] = React.useState([]);
   const idUser = useSelector((store) => store.server_redux.id);
-  const idCategory = React.useMemo(() => {
-    return useParams().id;
-  }, []);
+
+  const idCategory = useParams().id;
+
   const getLectures = async () => {
     setIsLoading(true);
     try {
