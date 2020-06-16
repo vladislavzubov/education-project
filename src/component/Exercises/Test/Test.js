@@ -2,7 +2,26 @@ import React from 'react';
 import { Field } from 'react-final-form';
 import Styles from './Test.module.scss';
 
+// const arr = ['value, value_b'];
+
+// const obj = {
+//   a: 'value',
+//   b: 'value_b'
+// };
+
+// const objKeys = Object.keys(obj);
+
+// const array = objKeys.map(key => {
+//   const value = obj[key];
+//   return value;
+// });
+
+// const result = arr.map(value => {
+
+// })
+
 export default function Test({ test }) {
+  console.log(Object.keys(test.quantity));
   return (
     <div className={Styles.Test}>
       <div>
@@ -11,7 +30,7 @@ export default function Test({ test }) {
         </h3>
       </div>
       <div>
-        {test.quantity.map((answer, index) => {
+        {/* {test.quantity.map((answer, index) => {
           return (
             <label>
               <Field
@@ -23,7 +42,7 @@ export default function Test({ test }) {
               {answer}
             </label>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

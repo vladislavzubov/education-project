@@ -13,8 +13,13 @@ export default function Category() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [lecturesAll, setLecturesAll] = React.useState([]);
   const idUser = useSelector((store) => store.server_redux.id);
+<<<<<<< HEAD
   const idCategory = useParams().id;
   console.log(idCategory);
+=======
+
+  const idCategory = useParams().id;
+>>>>>>> deb34b8c15273f63724cc2069d3da9187983e06c
 
   const getLectures = async () => {
     setIsLoading(true);

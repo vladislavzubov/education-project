@@ -24,6 +24,7 @@ function Lecture() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [lookTest, setLookTest] = React.useState(false);
   const idUser = useSelector((store) => store.server_redux.id);
+  console.log(allExercise);
 
   const permission = useSelector((store) => store.server_redux.role);
 
@@ -135,14 +136,16 @@ function Lecture() {
   return (
     <div className={Styles.Content}>
       {isOnExercise ? (
-        <Testing
-          lecturesID={lecturesID}
-          tests={allExercise.tests}
-          texts={allExercise.texts}
-          codes={allExercise.codes}
-          idUser={idUser}
-          onPerformExersice={onPerformExersice}
-        />
+        allExercise ? (
+          <Testing
+            lecturesID={lecturesID}
+            tests={allExercise.tests}
+            texts={allExercise.texts}
+            codes={allExercise.codes}
+            idUser={idUser}
+            onPerformExersice={onPerformExersice}
+          />
+        ) : null
       ) : (
         <div className={Styles.Lecture}>
           <h1>{lecture.title}</h1>
