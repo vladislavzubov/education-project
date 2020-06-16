@@ -59,14 +59,15 @@ const getAll = async (req, res) => {
       return resp.lectureId === String(lecture._id);
     });
 
-    const textsResolve = response.exercise.texts.map((text)=>{
-        response.exercise.result
-
-        return {
-           question = text.question,
-           answerUser
-        }
-    })
+    // const textsResolve = response.exercise.texts.map((text) => {
+    //   // const ans = response.exercise.results[String(text._id)]
+    //   const ans = response.response[text._id];
+    //   if (ans) {
+    //     console.log(ans);
+    //   } else {
+    //     return;
+    //   }
+    // });
 
     if (!response) {
       return [
@@ -152,7 +153,7 @@ module.exports = {
 
 // const exercise =
 //   {
-//     texts: [{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
+//     texts: [{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' },{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' },{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
 //     tests: [
 //       {
 //         question: '90 aram zamzam',
@@ -180,8 +181,7 @@ module.exports = {
 //         lecture: '5ed8c883ff3c470dd70dab90',
 //         type: 'test',
 //       },
-//
+
 //     ],
 //     codes: [{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
 //   },
-//
