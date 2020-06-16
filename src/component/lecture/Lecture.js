@@ -136,14 +136,16 @@ function Lecture() {
   return (
     <div className={Styles.Content}>
       {isOnExercise ? (
-        <Testing
-          lecturesID={lecturesID}
-          tests={allExercise.tests}
-          texts={allExercise.texts}
-          codes={allExercise.codes}
-          idUser={idUser}
-          onPerformExersice={onPerformExersice}
-        />
+        allExercise ? (
+          <Testing
+            lecturesID={lecturesID}
+            tests={allExercise.tests}
+            texts={allExercise.texts}
+            codes={allExercise.codes}
+            idUser={idUser}
+            onPerformExersice={onPerformExersice}
+          />
+        ) : null
       ) : (
         <div className={Styles.Lecture}>
           <h1>{lecture.title}</h1>
