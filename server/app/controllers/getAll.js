@@ -6,14 +6,14 @@ const UserModel = require('../models/user');
 
 const User = UserModel;
 const UserResponse = UserResponseModel;
-// const Exercise = ExerciseModel;
+const Exercise = ExerciseModel;
 const Lecture = LectureModel;
 const Category = CategoryModel;
 
 const getAll = async (req, res) => {
   let categoryes;
   let lectures;
-  //   let exercises;
+  let exercises;
   let userResponses;
   let userInfo;
 
@@ -26,10 +26,10 @@ const getAll = async (req, res) => {
     .then((lecture) => (lectures = lecture))
     .catch((err) => res.status(500).json(err));
 
-  //   await Exercise.find()
-  //     .exec()
-  //     .then((exercise) => (exercises = exercise))
-  //     .catch((err) => res.status(500).json(err));
+  await Exercise.find()
+    .exec()
+    .then((exercise) => (exercises = exercise))
+    .catch((err) => res.status(500).json(err));
 
   await UserResponse.find({ userId: req.params.id })
     .exec()
@@ -59,15 +59,91 @@ const getAll = async (req, res) => {
       return resp.lectureId === String(lecture._id);
     });
 
-    // const textsResolve = response.exercise.texts.map((text) => {
-    //   // const ans = response.exercise.results[String(text._id)]
-    //   const ans = response.response[text._id];
-    //   if (ans) {
-    //     console.log(ans);
-    //   } else {
-    //     return;
-    //   }
-    // });
+    let texts = [];
+    let codes = [];
+    let tests = [];
+
+    if (!!response) {
+      if (!!response.exercise) {
+        response.exercise.texts.map((text) => {
+          const ans = response.response[text._id];
+          if (ans) {
+            texts.push({
+              question: text.question,
+              answerUser: ans,
+            });
+          } else {
+            texts.push({
+              question: text.question,
+            });
+          }
+        });
+        response.exercise.codes.map((code) => {
+          const ans = response.response[code._id];
+          if (ans) {
+            codes.push({
+              question: code.question,
+              answerUser: ans,
+            });
+          } else {
+            codes.push({
+              question: code.question,
+            });
+          }
+        });
+
+        response.exercise.tests.map((test) => {
+          const ans = response.response[test._id];
+
+          if (ans) {
+            let answerUser = test.quantity;
+
+            const exercise = exercises.find((resp) => {
+              return String(resp._id) === String(test._id);
+            });
+            let right;
+            for (
+              let index = 0;
+              index < Object.keys(answerUser).length;
+              index++
+            ) {
+              const truthfulness = ans.filter(
+                (title) => title === answerUser[index]
+              );
+              let resolveTruthfulness;
+              if (truthfulness.length === 0) {
+                resolveTruthfulness = undefined;
+              } else {
+                resolveTruthfulness = true;
+              }
+
+              const rigth = Object.keys(exercise.correctAnswers).includes(
+                String(index)
+              );
+
+              const answer = (answerUser[index] = {
+                title: answerUser[index],
+                rigth,
+                answersUser: resolveTruthfulness,
+              });
+              console.log(answer);
+
+              right = answer;
+            }
+
+            tests.push({
+              question: test.question,
+              answerUser: ans,
+            });
+          } else {
+            texts.push({
+              question: test.question,
+            });
+          }
+        });
+      }
+    }
+    console.log({ texts, codes, tests });
 
     if (!response) {
       return [
@@ -94,8 +170,11 @@ const getAll = async (req, res) => {
       {
         ...value,
         status: 'end',
-        exercise: response.exercise,
-        results: response.response,
+        exercise: {
+          texts,
+          tests,
+          codes,
+        },
       },
     ];
   }, []);
@@ -153,11 +232,11 @@ module.exports = {
 
 // const exercise =
 //   {
-//     texts: [{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' },{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' },{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
+//     texts: [{ question: '90 aram zamzam', answerUser: 'fddfsdffsdsdfdsf' },{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' },{ question: '90 aram zamzam', answersUser: 'fddfsdffsdsdfdsf' }],
 //     tests: [
 //       {
 //         question: '90 aram zamzam',
-//         resolve: {
+//         answerUser: {
 //           1: { title: 'fdsg1', rigth: false, answersUser: true },
 //           2: { title: 'fdsg2', rigth: false },
 //           3: { title: 'fdsg3', rigth: false, answersUser: true },
