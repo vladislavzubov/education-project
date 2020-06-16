@@ -11,11 +11,7 @@ export default function TraineePageInfo() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [trainee, setTrainee] = React.useState(undefined);
   const [responses, setResponses] = React.useState([]);
-
-  const traineeID = React.useMemo(() => {
-    return useParams().id;
-  }, []);
-
+  const traineeID = useParams().id;
   const getInfoTrainee = async () => {
     setIsLoading(true);
     try {
@@ -55,11 +51,9 @@ export default function TraineePageInfo() {
 
   return (
     <div className={Styles.Content}>
-      <div className={Styles.InfoTrainees}>
-        {trainee ? <Trainee trainee={trainee.userInfo} /> : null}
-      </div>
+      {trainee ? <Trainee trainee={trainee.userInfo} /> : null}
 
-      <div>{trainee ? <AnswerUser answers={trainee.answers} /> : null}</div>
+      {trainee ? <AnswerUser answers={trainee.answers} /> : null}
     </div>
   );
 }

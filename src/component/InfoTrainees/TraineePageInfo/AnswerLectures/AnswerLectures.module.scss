@@ -1,0 +1,46 @@
+.AllLectures {
+    display: flex;
+}
+
+.ButtonСursor {
+    transform: rotate(90deg);
+}
+
+.Button {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: auto 0 auto 1rem;
+    border-radius: 100%;
+    font-size: 1rem;
+    background: rgb(180, 59, 3);
+    color: white;
+}
+
+.Lecture {
+    display: flex;
+}
+
+.Exercise {
+    margin-left: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+   
+}
+
+.Green {
+    border-radius: 0.3rem;
+    background: rgb(113, 255, 57);
+}
+
+.Red {
+    border-radius: 0.3rem;
+    background: rgb(204, 38, 38);
+}
+
+.ExerciseTest {
+    display: flex;
+}

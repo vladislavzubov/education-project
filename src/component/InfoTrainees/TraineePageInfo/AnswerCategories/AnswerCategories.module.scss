@@ -1,0 +1,29 @@
+.ButtonСursor {
+    transform: rotate(90deg);
+}
+
+.Button {
+    width: 2rem;
+    height: 2rem;
+    margin: auto 0 auto 1rem;
+    border-radius: 100%;
+    font-size: 1rem;
+    background: rgb(1, 65, 95);
+    color: white;
+}
+
+.AllCategories {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.Categor {
+    display: flex;
+    flex-direction: row;
+}
+
+.Lecture {
+    margin-left: 3rem;
+}
