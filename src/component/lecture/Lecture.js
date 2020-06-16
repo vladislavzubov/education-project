@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import Testing from '../Testing/Testing';
 import { useParams } from 'react-router-dom';
 import HelperSpinner from '../../helper/helperSpinner/HelperSpinner';
+import ReadingTheTest from '../../component/readingTheTest/ReadingTheTest';
 
 function Lecture() {
   const lecturesID = React.useMemo(() => {
@@ -21,6 +22,7 @@ function Lecture() {
   const [isOnExercise, setIsOnExercise] = React.useState(false);
   const [allExercise, setAllExercise] = React.useState({});
   const [isOpen, setIsOpen] = React.useState(false);
+  const [lookTest, setLookTest] = React.useState(false);
   const idUser = useSelector((store) => store.server_redux.id);
 
   const permission = useSelector((store) => store.server_redux.role);
@@ -126,6 +128,10 @@ function Lecture() {
     return <HelperSpinner />;
   }
 
+  if (lookTest) {
+    return <ReadingTheTest idUser={idUser} lecturesID={lecturesID} />;
+  }
+
   return (
     <div className={Styles.Content}>
       {isOnExercise ? (
@@ -162,7 +168,7 @@ function Lecture() {
               <ReactMarkdown source={lecture.value} />
             </div>
           )}
-          {isOnButtonExercise && (
+          {isOnButtonExercise ? (
             <div>
               <Button
                 onClick={() => {
@@ -183,6 +189,13 @@ function Lecture() {
                 <p>Вы точно хотите приступить к тестированию?</p>
               </Alert>
             </div>
+          ) : (
+            <Button
+              text="Показать тест"
+              onClick={() => {
+                setLookTest(true);
+              }}
+            />
           )}
         </div>
       )}

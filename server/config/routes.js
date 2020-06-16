@@ -34,6 +34,14 @@ module.exports = (app) => {
     userResponse.getAllResponseUser
   );
 
+  app.get(
+    //id lecture
+    '/api/userResponseOneLecture/:id',
+    // authMiddleware,
+    // checkRole(['admin', 'user']),
+    userResponse.getResponseUserOneLecture
+  );
+
   app.post('/api/userResponse', authMiddleware, userResponse.create);
 
   app.delete(
