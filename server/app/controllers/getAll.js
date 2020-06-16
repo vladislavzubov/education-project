@@ -59,6 +59,15 @@ const getAll = async (req, res) => {
       return resp.lectureId === String(lecture._id);
     });
 
+    const textsResolve = response.exercise.texts.map((text)=>{
+        response.exercise.result
+
+        return {
+           question = text.question,
+           answerUser
+        }
+    })
+
     if (!response) {
       return [
         ...currentValue,
@@ -68,7 +77,7 @@ const getAll = async (req, res) => {
         },
       ];
     }
-    if (response.response.length === 0) {
+    if (!response.response) {
       return [
         ...currentValue,
         {
