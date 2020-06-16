@@ -42,8 +42,6 @@ export default function Category() {
   return (
     <div className={Styles.Content}>
       {lecturesAll.map((lecture, index) => {
-        console.log(lecture);
-
         switch (lecture.status) {
           case 'start': {
             icon = 'manual';

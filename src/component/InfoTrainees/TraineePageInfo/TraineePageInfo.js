@@ -4,22 +4,13 @@ import { requests } from '../../../services/requests';
 import HelperSpinner from '../../../helper/helperSpinner/HelperSpinner';
 import { useParams } from 'react-router-dom';
 import Trainee from '../Trainee/Trainee';
-
-import {
-  Tooltip,
-  InputGroup,
-  Button,
-  FormGroup,
-  TextArea,
-  NumericInput,
-} from '@blueprintjs/core';
+import Resp from '../Resp/Resp';
+import AnswerUser from './AnswerUser/AnswerUser';
 
 export default function TraineePageInfo() {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [trainee, setTrainee] = React.useState({});
+  const [trainee, setTrainee] = React.useState(undefined);
   const [responses, setResponses] = React.useState([]);
-
-  console.log(responses);
 
   const traineeID = React.useMemo(() => {
     return useParams().id;
@@ -28,10 +19,7 @@ export default function TraineePageInfo() {
   const getInfoTrainee = async () => {
     setIsLoading(true);
     try {
-      const getInfoTraineeAll = await requests(
-        'get',
-        `info-trainee/${traineeID}`
-      );
+      const getInfoTraineeAll = await requests('get', `all/${traineeID}`);
       setTrainee(getInfoTraineeAll.data);
       setIsLoading(false);
     } catch (e) {
@@ -47,6 +35,7 @@ export default function TraineePageInfo() {
         'get',
         `userResponse/${traineeID}`
       );
+
       setResponses(getResponsesAll.data);
       setIsLoading(false);
     } catch (e) {
@@ -57,7 +46,7 @@ export default function TraineePageInfo() {
 
   React.useEffect(() => {
     getInfoTrainee();
-    getResponsesTrainee;
+    getResponsesTrainee();
   }, []);
 
   if (isLoading) {
@@ -67,13 +56,10 @@ export default function TraineePageInfo() {
   return (
     <div className={Styles.Content}>
       <div className={Styles.InfoTrainees}>
-        <Trainee trainee={trainee} />
-        {responses.length !== 0 ? (
-          <div>{responses.lectureId}</div>
-        ) : (
-          <div>Стажер еще не прошел ни одну лекцию</div>
-        )}
+        {trainee ? <Trainee trainee={trainee.userInfo} /> : null}
       </div>
+
+      <div>{trainee ? <AnswerUser answers={trainee.answers} /> : null}</div>
     </div>
   );
 }

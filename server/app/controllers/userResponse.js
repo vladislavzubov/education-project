@@ -9,7 +9,7 @@ const create = (req, res) => {
     date: date,
     completionDate: null,
     exercise: req.body.exercise,
-    response: [],
+    response: {},
   };
   UserResponse.create(UserResponseObj)
     .then((UserResponse) => res.json(UserResponse))
@@ -34,9 +34,11 @@ const getResponseUserOneLecture = (req, res) => {
 };
 
 const updateUserInLecture = (req, res) => {
+  console.log(req.body.response);
+  
   UserResponse.findOneAndUpdate(
     { $and: [{ lectureId: req.params.id }, { userId: req.query.userId }] },
-    req.body,
+    { response: req.body.response, dateEnd: new Date() },
     { new: true }
   )
     .exec()

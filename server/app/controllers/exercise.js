@@ -77,10 +77,26 @@ const exerciseForLecture = async (req, res) => {
     .then((exercises) =>
       shuffle(exercises).map((exercise, index) => {
         exercise.type === 'test'
-          ? tes.push(exercise)
+          ? tes.push({
+              question: exercise.question,
+              quantity: exercise.quantity,
+              lecture: exercise.lecture,
+              type: exercise.type,
+              _id: exercise._id,
+            })
           : exercise.type === 'text'
-          ? tex.push(exercise)
-          : cod.push(exercise);
+          ? tex.push({
+              question: exercise.question,
+              lecture: exercise.lecture,
+              type: exercise.type,
+              _id: exercise._id,
+            })
+          : cod.push({
+              question: exercise.question,
+              lecture: exercise.lecture,
+              type: exercise.type,
+              _id: exercise._id,
+            });
       })
     );
   const tests = tes.splice(0, numberOfTest);
@@ -98,8 +114,6 @@ const getExerciseInfo = (req, res) => {
     });
 };
 
-
-
 module.exports = {
   getAll,
   create,
@@ -109,5 +123,4 @@ module.exports = {
   getAllExercisesLecture,
   exerciseForLecture,
   getExerciseInfo,
-  
 };

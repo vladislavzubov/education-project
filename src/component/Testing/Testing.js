@@ -21,6 +21,8 @@ export default function Testing(props) {
   };
 
   const putUserResponse = async (resolve) => {
+    console.log(resolve);
+
     try {
       const exercise = await requests(
         'put',
