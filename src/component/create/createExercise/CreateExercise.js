@@ -34,21 +34,16 @@ function CreateExercise() {
   }, []);
 
   const onSubmit = async (value) => {
-    console.log(value);
-    let formValue;
+    let formValue = { ...value };
+    formValue.quantity = Object.assign({}, value.quantity);
     if (value.type === 'test') {
-      formValue = { ...value };
       if (value.trueRequest !== undefined) {
-        let correctAnswer = value.trueRequest.map((quantityIndex) => {
-          return value.quantity[quantityIndex];
-        });
+        let correctAnswer = value.trueRequest.map((quantityIndex) => {});
         delete value.trueRequest;
-        formValue = { ...value, correctAnswer };
       }
     } else if (value.type === 'text' || 'code') {
-      delete value.correctAnswer;
-      delete value.quantity;
-      formValue = { ...value };
+      delete formValue.correctAnswer;
+      delete formValue.quantity;
     }
     console.log(formValue);
     postCreateExercise(formValue);

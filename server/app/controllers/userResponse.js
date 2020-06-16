@@ -23,6 +23,16 @@ const getAllResponseUser = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+const getResponseUserOneLecture = (req, res) => {
+  UserResponse.find({
+    $and: [{ lectureId: req.params.id }, { userId: req.query.userId }],
+  })
+
+    .exec()
+    .then((UserResponse) => res.json(UserResponse))
+    .catch((err) => res.status(500).json(err));
+};
+
 const updateUserInLecture = (req, res) => {
   console.log(req.body.response);
   
@@ -48,4 +58,5 @@ module.exports = {
   getAllResponseUser,
   removeAllResponseUser,
   updateUserInLecture,
+  getResponseUserOneLecture,
 };

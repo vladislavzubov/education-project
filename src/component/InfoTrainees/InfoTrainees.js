@@ -1,4 +1,6 @@
 import React from 'react';
+import { Cell, Column, Table } from '@blueprintjs/table';
+import { Example, IExampleProps } from '@blueprintjs/docs-theme';
 import Styles from './InfoTrainees.module.scss';
 import { requests } from '../../services/requests';
 import Trainee from './Trainee/Trainee';
@@ -32,10 +34,17 @@ export default function InfoTrainees() {
     return <HelperSpinner />;
   }
 
+  const cellRenderer = () => {
+    return <Cell>ffffffffff</Cell>;
+  };
+
   return (
     <div className={Styles.Content}>
       <div className={Styles.InfoTrainees}>
         <button> Добавить стажера</button>
+        <Table numRows={3}>
+          <Column name="Dollars" cellRenderer={cellRenderer} />
+        </Table>
         <div className={Styles.select}>
           <p>Соортировать по </p>
           <select>
@@ -47,7 +56,6 @@ export default function InfoTrainees() {
             <option> Невысланым ссылкам </option>
           </select>
         </div>
-
         {traineesAll.map((trainee, index) => {
           return <Trainee key={index} trainee={trainee} />;
         })}

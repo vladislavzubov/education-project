@@ -21,3 +21,18 @@ export default function Text({ text, input }) {
     </div>
   );
 }
+
+// export default function Text({ question, input }) {
+//   const codeValue = (code) => {
+//     input.onChange(code);
+//   };
+
+//   return (
+//     <div className={Styles.Text}>
+//       <h3>{question}</h3>
+
+//       <div className={Styles.Text_textArea}>
+//         <textarea {...input} />
+//       </div>
+//     </div>
+//   );
