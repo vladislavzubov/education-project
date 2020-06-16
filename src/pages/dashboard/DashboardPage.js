@@ -66,7 +66,7 @@ function DashboardPage(props) {
           value: 'Apps',
           menuIteam: [
             {
-              value: 'home',
+              value: 'Home',
               href: `/dashboard`,
               icon: 'home',
             },
@@ -85,7 +85,7 @@ function DashboardPage(props) {
     }
   };
 
-  const isCheckRefreshToken = () => {
+  const isCheckRefreshToken = async () => {
     const refreshToken = localStorage.getItem('refreshKey');
     if (refreshToken === null) {
       console.log('gfdgfdg');
@@ -93,7 +93,7 @@ function DashboardPage(props) {
       return false;
     } else {
       console.log('gfdgfdgfd,gfmdkg,');
-      if (checkRefreshToken()) {
+      if (await checkRefreshToken()) {
         axios.defaults.headers.common[
           'Authorization'
         ] = `${localStorage.getItem('accessKey')}`;
@@ -106,6 +106,7 @@ function DashboardPage(props) {
   };
 
   const loadMainData = async () => {
+    console.log('wtf');
     setLoading(true);
     const token = localStorage.getItem('accessKey');
     try {
@@ -142,18 +143,22 @@ function DashboardPage(props) {
     }
   };
 
-  React.useEffect(() => {
-    if (!isAuthorized) {
-      if (!isCheckRefreshToken()) {
-        props.history.replace('/login');
-      }
-      loadMainData();
-    } else {
-      loadMainData();
-    }
+  const initialize = async () => {
+    const isUserAuthorized = isAuthorized || (await isCheckRefreshToken());
 
+    if (isUserAuthorized) {
+      return loadMainData();
+    }
+    return props.history.replace('/login');
+  };
+
+  React.useEffect(() => {
+    initialize();
+  }, []);
+
+  React.useEffect(() => {
     onMenuList(role);
-  }, [isAuthorized, role]);
+  }, [role]);
 
   if (isLoading) {
     return (

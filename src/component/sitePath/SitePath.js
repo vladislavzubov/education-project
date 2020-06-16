@@ -6,6 +6,7 @@ import { requests } from '../../services/requests';
 
 export default function SitePath() {
   const url = useLocation().pathname;
+
   const [lecture, setLecture] = React.useState([]);
   const [category, setCategory] = React.useState([]);
   let items = [];
@@ -41,42 +42,111 @@ export default function SitePath() {
       {
         href: 'http://localhost:3000/dashboard',
         icon: 'home',
-        text: 'Home',
+        text: 'Главная',
       },
     ];
   }
 
-  if (arrUrl[2] === 'category') {
-    if (category) {
-      getCategory(arrUrl[3]);
+  switch (arrUrl[2]) {
+    case 'category': {
+      if (category) {
+        getCategory(arrUrl[3]);
+      }
+
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/category/${category._id}`,
+          icon: 'applications',
+          text: category.name,
+        },
+      ];
+      break;
     }
-
-    items = [
-      ...items,
-      {
-        href: `http://localhost:3000/dashboard/category/${category._id}`,
-        icon: 'applications',
-        text: category.name,
-      },
-    ];
-  }
-
-  if (arrUrl[2] === 'lectures') {
-    getLecture(arrUrl[3]);
-    if (lecture.category) {
-      getCategory(lecture.category);
+    case 'change_user_data': {
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/change_user_data`,
+          icon: 'user',
+          text: 'Мой профиль',
+        },
+      ];
+      break;
     }
+    case 'lectures': {
+      getLecture(arrUrl[3]);
+      if (lecture.category) {
+        getCategory(lecture.category);
+      }
 
-    items = [
-      ...items,
-      {
-        href: `http://localhost:3000/dashboard/category/${category._id}`,
-        icon: 'applications',
-        text: category.name,
-      },
-      ,
-      { icon: 'application', text: lecture.title },
-    ];
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/category/${category._id}`,
+          icon: 'applications',
+          text: category.name,
+        },
+        ,
+        { icon: 'application', text: lecture.title },
+      ];
+      break;
+    }
+    case 'trainees': {
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/trainees`,
+          icon: 'people',
+          text: 'Стажеры',
+        },
+      ];
+      break;
+    }
+    case 'registration': {
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/registration`,
+          icon: 'new-person',
+          text: 'Регистрация',
+        },
+      ];
+      break;
+    }
+    case 'create-category': {
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/create-category`,
+          icon: 'application',
+          text: 'Категории',
+        },
+      ];
+      break;
+    }
+    case 'create-exercise': {
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/create-exercise`,
+          icon: 'annotation',
+          text: 'Упражнения',
+        },
+      ];
+      break;
+    }
+    case 'create-lecture': {
+      items = [
+        ...items,
+        {
+          href: `http://localhost:3000/dashboard/create-lecture`,
+          icon: 'applications',
+          text: 'Лекции',
+        },
+      ];
+      break;
+    }
   }
 
   return (
