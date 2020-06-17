@@ -21,7 +21,7 @@ import Styles from './Test.module.scss';
 // })
 
 export default function Test({ test }) {
-  console.log(Object.keys(test.quantity));
+  const quantity = Object.values(test.quantity);
   return (
     <div className={Styles.Test}>
       <div>
@@ -30,7 +30,7 @@ export default function Test({ test }) {
         </h3>
       </div>
       <div>
-        {/* {test.quantity.map((answer, index) => {
+        {quantity.map((answer, index) => {
           return (
             <label>
               <Field
@@ -42,7 +42,7 @@ export default function Test({ test }) {
               {answer}
             </label>
           );
-        })} */}
+        })}
       </div>
     </div>
   );
