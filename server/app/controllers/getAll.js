@@ -125,8 +125,17 @@ const getAll = async (req, res) => {
                 title: answerUser[index],
                 rigth,
                 answersUser: resolveTruthfulness,
+                question: test.question,
               });
               console.log(answer);
+              //встваить answer в right индекс это ключ пример ниже
+            //   var tempData = {};
+            //   for ( var index in data ) {
+            //     if ( data[index].Status == "Valid" ) { 
+            //       tempData[index] = data; 
+            //     } 
+            //    }
+            //   data = tempData;
 
               right = answer;
             }
